@@ -107,9 +107,9 @@ public class AwsS3ClassLoader extends ClassLoader {
         }
     }
 
-    public CompileResult createRobot(String author, String content) {
+    public CompileResult createRobot(String author, String code) {
         // 클래스 이름 파싱
-        String[] lines = content.split("\n");
+        String[] lines = code.split("\n");
 
         int startIndex = 0;
         for (int idx = 0; idx < lines.length; ++idx) {
@@ -145,7 +145,7 @@ public class AwsS3ClassLoader extends ClassLoader {
                 importPath + "\n" +
                 "import com.bknote71.codecraft.robocode.event.ScannedRobotEvent;\n" +
                 "import com.bknote71.codecraft.robocode.event.HitByBulletEvent;\n" +
-                content + "\n";
+                code + "\n";
 
         // compile: {javaName}.java 파일 to {javaName}.class 파일
         CompileResult result = null;
@@ -220,7 +220,7 @@ public class AwsS3ClassLoader extends ClassLoader {
             return new CompileResult(-1, e.toString());
         }
 
-        return new CompileResult(0, "success");
+        return new CompileResult(0, "success", javaName, javaClassName);
     }
 
     private void uploadFileToS3(String key, File file) {

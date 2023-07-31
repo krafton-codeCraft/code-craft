@@ -1,6 +1,7 @@
 package com.bknote71.codecraft.session.packet;
 
 import com.bknote71.codecraft.proto.CEnterBattle;
+import com.bknote71.codecraft.proto.CSubmit;
 import com.bknote71.codecraft.proto.Protocol;
 import com.bknote71.codecraft.proto.ProtocolType;
 import com.bknote71.codecraft.session.ClientSession;

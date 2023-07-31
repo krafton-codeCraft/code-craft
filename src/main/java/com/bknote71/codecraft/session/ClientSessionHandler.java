@@ -23,9 +23,13 @@ public class ClientSessionHandler extends TextWebSocketHandler {
         // session 이 지정한 방에 플레이어 추가!!
         log.info("connected established");
         // log.info("username? " + session.getPrincipal());
+        String username = "";
+        if (session.getPrincipal() != null)
+            username = session.getPrincipal().getName();
 
         // 클라이언트 세션 생성 및 추가
-        ClientSessionManager.Instance.generate(session);
+        ClientSession generatedSession = ClientSessionManager.Instance.generate(session);
+        ClientSessionManager.Instance.registerUsername(username, generatedSession);
         // ServerPacketManager.Instance.handlePacket(clientSession, new TextMessage("connect"));
     }
 

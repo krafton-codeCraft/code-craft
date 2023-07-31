@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         property = "type")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = CEnterBattle.class, name = "centerbattle"),
+        @JsonSubTypes.Type(value = CSubmit.class, name = "csubmit"),
 })
 public class Protocol {
 

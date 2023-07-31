@@ -11,16 +11,17 @@ import com.bknote71.codecraft.robocode.core.battle.Battle;
 import com.bknote71.codecraft.robocode.core.battle.BattleManager;
 import com.bknote71.codecraft.robocode.core.RobotSpecification;
 import com.bknote71.codecraft.session.ClientSession;
+import com.bknote71.codecraft.session.ClientSessionManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.WebSocketSession;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Slf4j
 @Component
-@Transactional
 @RequiredArgsConstructor
 public class PacketHandler {
 
@@ -58,6 +59,7 @@ public class PacketHandler {
         return roomId;
     }
 
+    @Transactional
     private RobotPeer createRobotPeer(ClientSession session, String username, int robotIndex) {
         UserEntity user = userRepository.findByUsername(username);
 
@@ -83,5 +85,46 @@ public class PacketHandler {
         robotPeer.init(battle, robotSpecifications, robotIndex);
 
         return robotPeer;
+    }
+
+
+    @Transactional
+    public void changeRobotSpec(String username, int robotId, int specIndex, String robotName, String fullClassName) {
+        log.info("submit new code");
+
+        // spec 변경 및 저장
+        updateRobotSpec(username, specIndex, robotName, fullClassName);
+
+        // 새로운 스펙으로 새로운 로봇 생성
+        ClientSession session = ClientSessionManager.Instance.findByUsername(username);
+
+        RobotPeer robot = createRobotPeer(session, username, specIndex);
+        if (robot == null) {
+            System.out.println("로봇 생성 실패");
+            return;
+        }
+
+        Battle battle = robot.getBattle();
+        if (battle == null) {
+            System.out.println("배틀에 들어가지 못했습니다.");
+            return;
+        }
+
+        battle.push(battle::changeRobot, robotId, robot);
+    }
+
+    @Transactional
+    private void updateRobotSpec(String username, int specIndex, String robotName, String fullClassName) {
+        UserEntity user = userRepository.findByUsername(username);
+
+        List<RobotSpecEntity> specifications = user.getSpecifications();
+        if (specifications.size() <= specIndex) {
+            log.error("스펙 인덱스가 잘못됨");
+            return;
+        }
+
+        RobotSpecEntity robotSpecEntity = specifications.get(specIndex);
+        robotSpecEntity.setName(robotName);
+        robotSpecEntity.setFullClassName(fullClassName);
     }
 }

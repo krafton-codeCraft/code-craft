@@ -139,6 +139,10 @@ public class Battle {
         robotPeer.cleanup();
     }
 
+    public void changeRobot(int robotId, RobotPeer newRobot) {
+
+    }
+
     // 이벤트 등록 및 이벤트 처리
     public void registerDeathRobot(RobotPeer peer) { // == onDie --> DiePacket
         deathRobots.add(peer);
