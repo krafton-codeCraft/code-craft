@@ -44,6 +44,10 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
 	implementation 'org.springframework.boot:spring-boot-starter-security:2.7.11'
 
+	// redis
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis:2.7.11'
+
 }
 
 tasks.named('test') {
