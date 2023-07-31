@@ -5,8 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class CompileResult {
     public int exitCode;
     public String content;
@@ -17,4 +15,12 @@ public class CompileResult {
         this.exitCode = exitCode;
         this.content = content;
     }
+
+    public CompileResult(int exitCode, String content, String robotName, String fullClassName) {
+        this.exitCode = exitCode;
+        this.content = content;
+        this.robotName = robotName;
+        this.fullClassName = fullClassName;
+    }
 }
+
