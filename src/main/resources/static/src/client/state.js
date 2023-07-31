@@ -77,10 +77,10 @@ export function getCurrentState() {
     const next = gameUpdates[base + 1];
     const ratio = (serverTime - baseUpdate.t) / (next.t - baseUpdate.t);
     return {
-      me: interpolateObject(baseUpdate.me, next.me, ratio),
-      others: interpolateObjectArray(baseUpdate.others, next.others, ratio),
+      //me: interpolateObject(baseUpdate.me, next.me, ratio),
+      robots: interpolateObjectArray(baseUpdate.robots, next.robots, ratio),
       bullets: interpolateObjectArray(baseUpdate.bullets, next.bullets, ratio),
-      meteors: interpolateObjectArray(baseUpdate.meteors, next.meteors, ratio),
+      scans: interpolateObjectArray(baseUpdate.scans, next.scans, ratio),
     };
   }
 }

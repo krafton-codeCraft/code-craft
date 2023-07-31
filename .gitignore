@@ -35,7 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
-
+lib
 /node_modules/
 node_modules
 
