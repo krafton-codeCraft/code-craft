@@ -118,10 +118,10 @@ export const requestTodayRanking = () => {
 };
 
 function compile_code() {
-  const author = playerName; // you'll have to determine how to get the author's name
+  const author = username;
   const content = getEditorValue();
 
-  const url = `http://${addr}:8080//create/robot`;
+  const url = `http://${addr}:8080/create/robot`;
 
   fetch(url, {
     method: 'POST',
@@ -140,6 +140,7 @@ function compile_code() {
       console.error('Error:', error);
     });
 };
+window.compile_code = compile_code;
 // export const updateInputKeyBoardDown = throttle(20, (key) => {
 //   let dir;
 //   if (key === 38) {
