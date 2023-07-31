@@ -277,4 +277,26 @@ export const requestTodayRanking = () => {
     });
 };
 
+function compile_code() {
+  const author = playerName; // you'll have to determine how to get the author's name
+  const content = getEditorValue();
 
+  const url = `http://${addr}:8080//create/robot`;
+
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ author, content })
+  })
+    .then(response => response.json())
+    .then(data => {
+      const result = data.result;
+      const status = data.status;
+      code_check(result, status);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+};
