@@ -27,15 +27,17 @@
     gtag('config', 'UA-58664433-3');
   </script>
   <script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
+
+  <script src="../index.js"></script>
+
 </head>
 
 <body>
   <canvas id="game-canvas" class="hidden"></canvas>
 
-  <div></div>
-  <button id="getValueButton">Get Editor Value</button>
-  <button id="setFilePlayer">Switch to player.java</button>
-  <button id="setFileGiven">Switch to move.java</button>
+  <button id="gotoLobby">go to Lobby</button>
+  <button id="gotoIngame">go to Ingame</button>
+  <button id="gotoIndex">go to Index</button>
 
 
   <div id="play-menu" class="hidden">
@@ -57,6 +59,7 @@
     <button id="play-button">시작</button>
   </div>
 
+<<<<<<< HEAD
   <div id="editor-container">
     <div id="container1" class="editor"></div>
     <div id="container2" class="editor" style="display:none;"></div>
@@ -140,6 +143,8 @@
     <button id="replay-button">재입장</button>
   </div>
 
+=======
+>>>>>>> 2ce185188081ec9dfb4b62965762277321835543
   <div id="disconnect-modal" class="hidden">
     <div>
       <h2> 서버 연결 에러! </h2>
