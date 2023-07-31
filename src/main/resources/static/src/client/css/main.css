@@ -243,11 +243,26 @@ button:focus {
 #container {
   position: absolute;
   right: 2%;
-  top: 50%;
+  top: 34%;
   width: 40%;
-  height: 94%;
+  height: 62%;
+  /* 수정된 높이 */
   overflow: hidden;
   transform: translateY(-50%);
+  border: 2px solid gray;
+  cursor: inherit;
+}
+
+#terminal {
+  position: absolute;
+  right: 2%;
+  top: 82%;
+  width: 40%;
+  height: 30%;
+  /* 수정된 높이 */
+  overflow: hidden;
+  transform: translateY(-50%);
+  /* terminal이 아래쪽에 있으므로, positive 값을 사용해야 합니다. */
   border: 2px solid gray;
   cursor: inherit;
 }
