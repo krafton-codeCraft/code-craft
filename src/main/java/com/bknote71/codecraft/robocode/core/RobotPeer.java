@@ -1,8 +1,8 @@
 package com.bknote71.codecraft.robocode.core;
 
+import com.bknote71.codecraft.proto.SDie;
 import com.bknote71.codecraft.robocode.core.battle.Battle;
 import com.bknote71.codecraft.robocode.core.battle.BattleRules;
-import com.bknote71.basicwebsocketrobocode.robocode.event.*;
 import com.bknote71.codecraft.robocode.event.*;
 import com.bknote71.codecraft.robocode.proxy.BasicRobotProxy;
 import com.bknote71.codecraft.robocode.proxy.RobotProxy;
@@ -39,6 +39,10 @@ public class RobotPeer {
     private Battle battle;
     private RobotStatistics statistics;
     private RobotSpecification specification;
+
+    // 선택
+    private int specIndex;
+    private RobotSpecification[] specifications;
 
     // robot proxy (로봇 로직인 로봇피어와, 커스텀 정보인 로봇을 합쳐서 실행시킬 주체)
     private RobotProxy robotProxy;
@@ -100,7 +104,17 @@ public class RobotPeer {
     private Arc2D scanArc; // 스캔 각도
     private BoundingRectangle boundingBox;
 
-    public RobotPeer(int id, Battle battle, RobotSpecification robotSpecification, String robotName) {
+    public RobotPeer(int id) {
+        this.id = id;
+
+        this.boundingBox = new BoundingRectangle();
+        this.scanArc = new Arc2D.Double();
+
+        this.state = RobotState.ACTIVE;
+    }
+
+
+    public RobotPeer(int id, Battle battle, RobotSpecification robotSpecification) {
         this.id = id;
         this.battle = battle;
         this.specification = robotSpecification;
@@ -114,6 +128,15 @@ public class RobotPeer {
         this.statics = new RobotStatics(robotSpecification, robotSpecification.getName(), "", battleRules);
 
         this.robotProxy = new BasicRobotProxy(robotSpecification, this, statics);
+    }
+
+    public void init(Battle battle, RobotSpecification[] robotSpecifications, int specIndex) {
+        this.battle = battle;
+        this.specIndex = specIndex;
+        this.specification = robotSpecifications[specIndex];
+        this.battleRules = battle.getBattleRules();
+        this.statics = new RobotStatics(this.specification, this.specification.getName(), "", battleRules);
+        this.robotProxy = new BasicRobotProxy(this.specification, this, statics);
     }
 
     // session
@@ -140,7 +163,6 @@ public class RobotPeer {
     public double getEnergy() {
         return energy;
     }
-
 
     private double getVelocity() {
         return velocity;
@@ -174,14 +196,6 @@ public class RobotPeer {
         return scanArc;
     }
 
-    public BoundingRectangle getBoundingBox() {
-        return boundingBox;
-    }
-
-    public void setPaintEnabled(boolean enabled) {
-        isPaintEnabled = enabled;
-    }
-
     public boolean isPaintEnabled() {
         return isPaintEnabled;
     }
@@ -206,6 +220,14 @@ public class RobotPeer {
         return state;
     }
 
+    public int getSpecIndex() {
+        return specIndex;
+    }
+
+    public RobotSpecification[] getSpecifications() {
+        return specifications;
+    }
+
     private void setState(RobotState state) {
         this.state = state;
     }
@@ -213,6 +235,15 @@ public class RobotPeer {
     public void setRunning(boolean running) {
         isRunning.set(running);
     }
+
+    public BoundingRectangle getBoundingBox() {
+        return boundingBox;
+    }
+
+    public void setPaintEnabled(boolean enabled) {
+        isPaintEnabled = enabled;
+    }
+
 
     // execute: 실행해야할 커맨드 세팅
     public final ExecResults executeImpl(ExecCommands newCommands) {
@@ -389,6 +420,9 @@ public class RobotPeer {
         lastExecutionTime = -1;
 
         status = new AtomicReference<RobotStatus>();
+
+        readoutEvents();
+        readoutBullets();
 
         ExecCommands newExecCommands = new ExecCommands();
         newExecCommands.copyColors(commands.get());
@@ -815,10 +849,14 @@ public class RobotPeer {
             battle.registerDeathRobot(this);
         }
         // updateEnergy(-energy);
-        setState(RobotState.DEAD);
+        setState(RobotState.DEAD); // 사실 이것도 필요 없음
 
-        // respawn 해야 함!
-        System.out.println("on dead getName(), so restart battle");
+        // die 패킷
+        SDie diePacket = new SDie();
+        diePacket.setId(id);
+        battle.broadcast(diePacket);
+
+        // 다시 배틀 시작
         startBattle();
     }
 

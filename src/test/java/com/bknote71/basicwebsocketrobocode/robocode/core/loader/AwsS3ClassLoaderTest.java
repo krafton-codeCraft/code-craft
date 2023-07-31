@@ -56,7 +56,6 @@ class AwsS3ClassLoaderTest {
 
         CompileResult robot = AwsS3ClassLoader.Instance.createRobot(author, content);
         System.out.println("content: \n");
-        System.out.println(robot.content);
     }
 
     @Test
@@ -86,7 +85,7 @@ class AwsS3ClassLoaderTest {
                 "}\n";
         CompileResult robot = AwsS3ClassLoader.Instance.createRobot(author, content);
         System.out.println("content: \n");
-        System.out.println(robot.content);
+        System.out.println(robot);
     }
 
 }

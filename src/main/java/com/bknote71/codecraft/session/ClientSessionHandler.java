@@ -22,7 +22,7 @@ public class ClientSessionHandler extends TextWebSocketHandler {
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         // session 이 지정한 방에 플레이어 추가!!
         log.info("connected established");
-        log.info("username? " + session.getPrincipal());
+        // log.info("username? " + session.getPrincipal());
 
         // 클라이언트 세션 생성 및 추가
         ClientSessionManager.Instance.generate(session);

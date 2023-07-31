@@ -14,24 +14,24 @@ public class UpdateInfo {
     @Data
     public static class RobotInfo {
         int id;
-        String name;
-        double robotX;
-        double robotY;
-        double bodyHeading;
-        double gunHeading;
+        String name; // 로봇 이름
         double x;
         double y;
+        double bodyHeading;
+        double gunHeading;
+        double radarHeading;
+        double energy;
 
-        public RobotInfo(int id, String name, double robotX, double robotY,
-                         double bodyHeading, double gunHeading, double x, double y) {
+        public RobotInfo(int id, String name, double x, double y,
+                         double bodyHeading, double gunHeading, double radarHeading, double energy) {
             this.id = id;
             this.name = name;
-            this.robotX = robotX;
-            this.robotY = robotY;
-            this.bodyHeading = bodyHeading;
-            this.gunHeading = gunHeading;
             this.x = x;
             this.y = y;
+            this.bodyHeading = bodyHeading;
+            this.gunHeading = gunHeading;
+            this.radarHeading = radarHeading;
+            this.energy = energy;
         }
     }
 

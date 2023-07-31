@@ -1,7 +1,6 @@
 package com.bknote71.codecraft.robocode.api;
 
 import com.bknote71.codecraft.robocode.core.BulletPeer;
-import com.bknote71.basicwebsocketrobocode.robocode.event.*;
 import com.bknote71.codecraft.robocode.event.*;
 import com.bknote71.codecraft.robocode.robointerface.IBasicEvent;
 import com.bknote71.codecraft.robocode.robointerface.IBasicRobotPeer;

@@ -16,11 +16,11 @@ public class AwsS3ClassLoader extends ClassLoader {
 
     private static final String S3_URL = "https://s3.amazonaws.com/";
 
-    private static final String packagePath = "com.bknote71.basicwebsocketrobocode.robocode.sample";
-    private static final String importPath = "import com.bknote71.basicwebsocketrobocode.robocode.api.Robot;";
-    private static final String filePath = "/Users/bknote71/Repository/basic-server/basic-websocket-robocode/sample/";
+    private static final String packagePath = "com.bknote71.codecraft.robocode.sample";
+    private static final String importPath = "import com.bknote71.codecraft.robocode.api.Robot;";
+    private static final String filePath = "/Users/bknote71/Jungle/code-craft/sample/";
     private static final String outputPath = "/Users/bknote71/Jungle/sample/";
-    private static final String eventPath = "import com.bknote71.basicwebsocketrobocode.robocode.event.";
+    private static final String eventPath = "import com.bknote71.codecraft.robocode.event.";
 
     // amazon s3
     private AmazonS3Client s3;
@@ -53,6 +53,7 @@ public class AwsS3ClassLoader extends ClassLoader {
 
     @Override
     protected Class<?> findClass(String name) { // sa/FireBot.class
+        System.out.println("find class");
         try {
             Class<?> result;
             byte[] classBytes = getClassBytes(name);
@@ -70,7 +71,11 @@ public class AwsS3ClassLoader extends ClassLoader {
                 return result;
             }
 
-            return defineClass(fullPath, classBytes, 0, classBytes.length);
+            result = defineClass(fullPath, classBytes, 0, classBytes.length);
+
+            System.out.println("result is null? " + result + " and class bytes: " + classBytes.length);
+
+            return result;
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("in find class error");
@@ -82,6 +87,9 @@ public class AwsS3ClassLoader extends ClassLoader {
         try {
             System.out.println("key: " + key);
             long contentLength = s3.getObjectMetadata(bucketName, key).getContentLength();
+            if (contentLength == 0) {
+                System.out.println("컨텐츠를 s3로부터 불러오지 못함");
+            }
             byte[] bytes = new byte[(int) contentLength];
             getResourceAsStream(key).read(bytes);
             return bytes;
@@ -135,8 +143,8 @@ public class AwsS3ClassLoader extends ClassLoader {
         String realContent
                 = "package " + packagePath + ";\n" +
                 importPath + "\n" +
-                "import com.bknote71.basicwebsocketrobocode.robocode.event.ScannedRobotEvent;\n" +
-                "import com.bknote71.basicwebsocketrobocode.robocode.event.HitByBulletEvent;\n" +
+                "import com.bknote71.codecraft.robocode.event.ScannedRobotEvent;\n" +
+                "import com.bknote71.codecraft.robocode.event.HitByBulletEvent;\n" +
                 content + "\n";
 
         // compile: {javaName}.java 파일 to {javaName}.class 파일

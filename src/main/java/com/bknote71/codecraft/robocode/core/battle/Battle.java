@@ -1,6 +1,5 @@
 package com.bknote71.codecraft.robocode.core.battle;
 
-import com.bknote71.basicwebsocketrobocode.proto.*;
 import com.bknote71.codecraft.robocode.core.BulletPeer;
 import com.bknote71.codecraft.robocode.core.BulletState;
 import com.bknote71.codecraft.robocode.core.RobotPeer;
@@ -108,24 +107,22 @@ public class Battle {
         battleRules = BattleRules.HiddenHelper.createRules(battleProperties);
     }
 
-    public void enterBattle(RobotSpecification[] specifications, ClientSession session) {
-        RobotSpecification useSpecification = specifications[0];
-        String robotName = useSpecification.getAuthor() + ":" + useSpecification.getName();
-
-        RobotPeer robotPeer = new RobotPeer(++robotId, this, useSpecification, robotName);
-        robotPeer.setSession(session);
+    public void enterBattle(RobotPeer robotPeer) {
         robotPeer.startBattle();
 
-        robots.put(robotId, robotPeer);
+        robots.put(robotPeer.getId(), robotPeer);
 
+        ClientSession session = robotPeer.session();
         if (session == null)
             return;
 
-        session.setMyRobot(robotPeer);
-
         // enter packet
         SEnterBattle enterPacket = new SEnterBattle();
-        enterPacket.setSpecifications(specifications);
+        enterPacket.setRobotId(robotId);
+        enterPacket.setRobotName(robotPeer.getName());
+        enterPacket.setSpecIndex(robotPeer.getSpecIndex());
+        enterPacket.setSpecifications(robotPeer.getSpecifications());
+        enterPacket.setUsername(session.getUsername());
         session.send(enterPacket);
     }
 

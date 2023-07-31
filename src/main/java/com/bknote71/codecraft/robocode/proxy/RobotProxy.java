@@ -1,7 +1,6 @@
 package com.bknote71.codecraft.robocode.proxy;
 
 import com.bknote71.codecraft.robocode.api.Robot;
-import com.bknote71.basicwebsocketrobocode.robocode.core.*;
 import com.bknote71.codecraft.robocode.core.loader.RobotClassLoader;
 import com.bknote71.codecraft.robocode.event.EventManager;
 import com.bknote71.codecraft.robocode.robointerface.IBasicRobotPeer;

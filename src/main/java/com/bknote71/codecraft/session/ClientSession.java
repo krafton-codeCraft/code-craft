@@ -8,6 +8,7 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
 import java.io.IOException;
+import java.security.Principal;
 
 public class ClientSession {
 
@@ -31,6 +32,13 @@ public class ClientSession {
         return sessionId;
     }
 
+    public String getUsername() {
+        Principal principal = webSocketSession.getPrincipal();
+        if (principal == null)
+            return "anon";
+        return principal.getName();
+    }
+
     public void setMyRobot(RobotPeer robotPeer) {
         this.myRobot = robotPeer;
     }
@@ -50,5 +58,4 @@ public class ClientSession {
             }
         }
     }
-
 }
