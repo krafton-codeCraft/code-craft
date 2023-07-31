@@ -80,6 +80,12 @@ function handleEnterKey(event) {
   }
 }
 
-document.getElementById('setFilePlayer').addEventListener('click', function() {
+document.getElementById('gotoLobby').addEventListener('click', function() {
   window.location.href = '/lobby.html';
+});
+document.getElementById('gotoIngame').addEventListener('click', function() {
+  window.location.href = '/ingame.html';
+});
+document.getElementById('gotoIndex').addEventListener('click', function() {
+  window.location.href = '/index.html';
 });

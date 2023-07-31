@@ -35,10 +35,9 @@
 <body>
   <canvas id="game-canvas" class="hidden"></canvas>
 
-  <div></div>
   <button id="gotoLobby">go to Lobby</button>
-  <button id="setFilePlayer">Switch to player.java</button>
-  <button id="setFileGiven">Switch to move.java</button>
+  <button id="gotoIngame">go to Ingame</button>
+  <button id="gotoIndex">go to Index</button>
 
 
   <div id="play-menu" class="hidden">
@@ -58,82 +57,6 @@
     <input type="text" id="username-input" placeholder="Username" />
     <!-- <a href="hi.html" class="button">시작</a> -->
     <button id="play-button">시작</button>
-  </div>
-
-  <div id="container">
-    <button id="deck-one">Deck One</button>
-    <button id="deck-two">Deck Two</button>
-    <button id="deck-thress">Deck Three</button>
-    <button id="compile-button" onclick="compile_code()">Run Code</button>
-  </div>
-  <div id="terminal"></div>
-  <script src="../src/client/htmlComponent/codeInterface.js"></script>
-
-  <div id="leaderboard" class="hidden">
-    <table>
-      <tr>
-        <th>Username</th>
-        <th>Score</th>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-      </tr>
-    </table>
-
-    <div id="checkbox"></div>
-
-  </div>
-
-  <div id="game-over" class="hidden">
-    <h1>
-      GAME OVER
-    </h1>
-    <p>
-
-    <h2>
-      [RESULT]
-    </h2>
-
-    <br>
-
-    <h3>
-      <div id="score-ranking">"구현 예정"</div>
-    </h3>
-
-    <br>
-
-    <h2>
-      [DEAD REASON]
-    </h2>
-
-    <br>
-
-    <h3>
-      <div id="dead-reason"></div>
-    </h3>
-
-    <br>
-
-    </p>
-    <input type="text" id="username-reinput" placeholder="Username" />
-    <button id="replay-button">재입장</button>
   </div>
 
   <div id="disconnect-modal" class="hidden">
