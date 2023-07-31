@@ -75,8 +75,8 @@ export const connect = onGameOver => (
 // send data << 어차피 이거 아님
 export const play = name => {
   const message = {
-    type: 'centergame',
-    protocol: 'C_EnterGame',
+    type: 'centerbattle',
+    protocol: 'C_EnterBattle',
     username: name,
   };
   websocket.send(JSON.stringify(message));
