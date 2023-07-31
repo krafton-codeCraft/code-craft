@@ -1,7 +1,7 @@
 package com.bknote71.basicwebsocketrobocode.robocode.core.loader;
 
-import com.bknote71.codecraft.robocode.core.loader.AwsS3ClassLoader;
-import com.bknote71.codecraft.robocode.core.loader.CompileResult;
+import com.bknote71.codecraft.robocode.loader.AwsS3ClassLoader;
+import com.bknote71.codecraft.robocode.loader.CompileResult;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -33,7 +33,7 @@ class AwsS3ClassLoaderTest {
                 "        while (true) {\n" +
                 "            // 총알 커맨드: fire == fireBullet\n" +
                 "            // 15 도 씩 돌기\n" +
-                "            turnLeft(15);\n" +
+                "            turnLeft(360);\n" +
                 "            // scan();\n" +
                 "\n" +
                 "            System.out.println(Thread.currentThread().getName() + \"스레드에서의 각도: \" + getGunHeading());\n" +
