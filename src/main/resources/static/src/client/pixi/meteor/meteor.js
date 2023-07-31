@@ -12,13 +12,6 @@ function renderMeteor(me, meteor, app) {
     const canvasX = app.screen.width / 2 + x - me.x;
     const canvasY = app.screen.height / 2 + y - me.y;
 
-    if (sprite && app.stage.children.includes(sprite)) {
-        app.stage.removeChild(sprite);
-    }
-    if (text && app.stage.children.includes(text)) {
-        app.stage.removeChild(text);
-    }
-
     // 운석 그리기
     sprite = new PIXI.Sprite(PIXI.Texture.from(getAsset('meteor.png')));
     sprite.anchor.set(0.5); // Set the anchor point to the center

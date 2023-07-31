@@ -2,8 +2,9 @@ import * as PIXI from 'pixi.js';
 import { renderBackground, makestar } from './background/background';
 import { playground } from './playground/playground';
 import renderPlayer from './player/player';
-import renderMeteor from './meteor/meteor';
+import renderBullet from './bullet/bullet';
 import { getCurrentState } from '../state';
+import renderScan from './scan/scan';
 
 export function pixiApp() {
   const app = new PIXI.Application({ resizeTo: window });
@@ -13,17 +14,23 @@ export function pixiApp() {
 
 
   app.ticker.add((delta) => {
+    playgroundApp.stage.removeChildren();
 
-    const { me, meteors } = getCurrentState();
+    const { robots,bullets,scans } = getCurrentState();
 
     renderBackground(app, delta);
+    
+    if(robots){
+      robots.foreach((robot) => renderPlayer(robot,playgroundApp));
+      bullets.foreach((bullet) => renderBullet(bullet,playgroundApp));
+      scans.foreach((scan) => renderScan(scan,playgroundApp));
+    }
+    /* if(me){
 
-    if(me){
-
-      renderPlayer(me, me, playgroundApp);
+      renderPlayer(me, playgroundApp);
       meteors.forEach((meteor) => renderMeteor(me, meteor, playgroundApp));
     
-    }
+    } */
   });
 
 }
