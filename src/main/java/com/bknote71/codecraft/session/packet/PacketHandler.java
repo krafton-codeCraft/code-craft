@@ -10,6 +10,7 @@ import com.bknote71.codecraft.robocode.core.RobotPeer;
 import com.bknote71.codecraft.robocode.core.battle.Battle;
 import com.bknote71.codecraft.robocode.core.battle.BattleManager;
 import com.bknote71.codecraft.robocode.core.RobotSpecification;
+import com.bknote71.codecraft.robocode.loader.AwsS3ClassLoader;
 import com.bknote71.codecraft.session.ClientSession;
 import com.bknote71.codecraft.session.ClientSessionManager;
 import lombok.RequiredArgsConstructor;
