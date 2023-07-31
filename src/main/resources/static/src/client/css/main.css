@@ -13,7 +13,45 @@ hr {
   margin: 1rem 0;
   width: 100%;
 }
+#gotoLobby {
 
+  font-size: 18px;
+  outline: none;
+  border: none;
+  color: white;
+  background-color: transparent;
+  padding: 5px 20px;
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+
+}
+#gotoIngame {
+
+  font-size: 18px;
+  outline: none;
+  border: none;
+  color: white;
+  background-color: transparent;
+  padding: 5px 20px;
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+
+}
+#gotoIndex {
+
+  font-size: 18px;
+  outline: none;
+  border: none;
+  color: white;
+  background-color: transparent;
+  padding: 5px 20px;
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+
+}
 button {
   font-size: 18px;
   outline: none;
@@ -262,6 +300,32 @@ button:focus {
   /* 수정된 높이 */
   overflow: hidden;
   transform: translateY(-50%);
+  /* terminal이 아래쪽에 있으므로, positive 값을 사용해야 합니다. */
+  border: 2px solid gray;
+  cursor: inherit;
+}
+
+#container-lobby {
+  position: absolute;
+  top: 34%;
+  left: 50%;
+  width: 40%;
+  height: 62%;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+  border: 2px solid gray;
+  cursor: inherit;
+}
+
+#terminal-lobby {
+  position: absolute;
+  left: 50%;
+  top: 82%;
+  width: 40%;
+  height: 30%;
+  /* 수정된 높이 */
+  overflow: hidden;
+  transform: translate(-50%, -50%);
   /* terminal이 아래쪽에 있으므로, positive 값을 사용해야 합니다. */
   border: 2px solid gray;
   cursor: inherit;
