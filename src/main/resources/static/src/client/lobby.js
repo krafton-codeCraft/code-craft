@@ -80,6 +80,6 @@ function handleEnterKey(event) {
   }
 }
 
-document.getElementById('gotoLobby').addEventListener('click', function() {
-  window.location.href = '/lobby.html';
+document.getElementById('setFilePlayer').addEventListener('click', function() {
+  window.location.href = '/index.html';
 });

@@ -6,10 +6,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { EnvironmentPlugin } = require('webpack');
 
 module.exports = {
-  externals: {
-    'pixi.js': 'pixi.js',
-    'monaco-editor': 'monaco-editor'
-  },
   entry: {
     game: './src/main/resources/static/src/client/index.js',
   },
@@ -18,7 +14,9 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   externals: {
-    'pixi.js': 'PIXI'
+    'pixi.js': 'pixi.js',
+    'pixi.js': 'PIXI',
+    'monaco-editor': 'monaco-editor'
   },
   module: {
     rules: [
@@ -49,8 +47,24 @@ module.exports = {
       filename: '[name].[contenthash].css',
     }),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
+      chunks: ['game'],
       template: 'src/main/resources/static/src/client/html/index.html',
-    })
+      filename: 'index.html',
+    }),
+    new HtmlWebpackPlugin({
+      chunks: ['ingame'],
+      template: 'src/main/resources/static/src/client/html/ingame.html',
+      filename: 'ingame.html',
+    }),
+    new HtmlWebpackPlugin({
+      chunks: ['lobby'],
+      template: 'src/main/resources/static/src/client/html/lobby.html',
+      filename: 'lobby.html',
+    }),
   ],
+  entry: {
+    game: './src/main/resources/static/src/client/index.js',
+    ingame: './src/main/resources/static/src/client/ingame.js',
+    lobby: './src/main/resources/static/src/client/lobby.js',
+  },
 };
