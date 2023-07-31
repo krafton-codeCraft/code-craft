@@ -9,12 +9,12 @@ import renderCheckbox from './htmlComponent/checkbox';
 // import redis from 'redis';
 
 // websocket connection
-const roomId = 1;
+const battleId = 1;
 const devaddr = 'localhost';
-const prodaddr = '3.35.214.100';
+// const prodaddr = '3.35.214.100';
 const addr = process.env.ADDRR;
 // const websocket = new WebSocket(`ws://13.124.67.137:8080/room/${roomId}`);
-const websocket = new WebSocket(`ws://${addr}:8080/room/${roomId}`);
+const websocket = new WebSocket(`ws://${addr}:8080/battle/${battleId}`);
 
 const wsconnectedPromise = new Promise(resolve => {
   // to websocket, 이벤트 핸들러 변경
@@ -25,8 +25,8 @@ const wsconnectedPromise = new Promise(resolve => {
   });
 });
 
-export let playerId;
-export let playerName;
+export let robotId;
+export let robotName;
 
 // connect 이후 콜백 등록
 export const connect = onGameOver => (
@@ -39,8 +39,8 @@ export const connect = onGameOver => (
       const message = JSON.parse(event.data);
 
       if (message.type === 'sentergame') {
-        playerId = message.player.objectId;
-        playerName = message.player.name;
+        robotId = message.player.objectId;
+        robotName = message.player.name;
         console.log(`enter game!! ${playerId}`);
 
       } else if (message.type === 'sspawn') {
