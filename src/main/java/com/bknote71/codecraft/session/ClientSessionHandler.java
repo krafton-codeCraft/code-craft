@@ -37,6 +37,7 @@ public class ClientSessionHandler extends TextWebSocketHandler {
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         // ClientSession 이게 굳이 필요한가?
         // 일단 ClientSession == WebSocketSession wrapper
+        log.info("handle text message");
         ClientSession clientSession = ClientSessionManager.Instance.find(session.getId());
         serverPacketManager.handlePacket(clientSession, message);
     }

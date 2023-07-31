@@ -29,13 +29,14 @@ public class PacketHandler {
     private final UserRepository userRepository;
 
     public void CEnterBattleHandler(ClientSession clientSession, Protocol protocol) {
-        log.info("client enter game");
         CEnterBattle enterPacket = (CEnterBattle) protocol;
 
         // 로봇 생성 (음.. 어떻게 하지?)
         // 로봇피어를 생성하기 전에 specification 을 읽어와야 한다.
         String username = clientSession.getUsername();
         username = username.equals("anon") ? enterPacket.getUsername() : username;
+
+        log.info("{} is entered", username);
 
         // robot index = 0
         RobotPeer robot = createRobotPeer(clientSession, username, 0);
@@ -83,7 +84,9 @@ public class PacketHandler {
             return null;
         }
 
+        log.info("init start");
         robotPeer.init(battle, robotSpecifications, robotIndex);
+        log.info("init end");
 
         return robotPeer;
     }

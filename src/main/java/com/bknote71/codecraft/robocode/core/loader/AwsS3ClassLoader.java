@@ -4,6 +4,7 @@ import com.amazonaws.auth.ClasspathPropertiesFileCredentialsProvider;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.Region;
+import lombok.SneakyThrows;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -53,7 +54,14 @@ public class AwsS3ClassLoader extends ClassLoader {
 
     @Override
     protected Class<?> findClass(String name) { // sa/FireBot.class
-        System.out.println("find class");
+        try {
+            if (name.startsWith("com.bknote71.codecraft.robocode.api") || name.startsWith("com.bknote71.codecraft.robocode.event")) {
+                return Class.forName(name);
+            }
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
         try {
             Class<?> result;
             byte[] classBytes = getClassBytes(name);
@@ -66,19 +74,17 @@ public class AwsS3ClassLoader extends ClassLoader {
             String classname = robotClass.split("\\.")[0];
             String fullPath = packagePath + "." + classname;
 
+            System.out.println("full path? " + fullPath + " " + classBytes.length);
+
             if ((result = isClassLoaded(fullPath)) != null) {
                 System.out.println("이미 로드된 클래스입니다.");
                 return result;
             }
 
-            result = defineClass(fullPath, classBytes, 0, classBytes.length);
-
-            System.out.println("result is null? " + result + " and class bytes: " + classBytes.length);
-
-            return result;
+            return defineClass(fullPath, classBytes, 0, classBytes.length);
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("in find class error");
+            System.out.println("error");
         }
         return null;
     }
