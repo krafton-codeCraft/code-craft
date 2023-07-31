@@ -4,8 +4,8 @@ export function playground() {
    
     const playgroundApp = new PIXI.Application({ 
         view: canvasElement,
-        width: 1000, 
-        height: 1000,
+        width: 900, 
+        height: 900,
         antialias: true,
         transparent: true
     });

@@ -304,3 +304,29 @@ button:focus {
   border: 2px solid gray;
   cursor: inherit;
 }
+
+#container-lobby {
+  position: absolute;
+  top: 34%;
+  left: 50%;
+  width: 40%;
+  height: 62%;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+  border: 2px solid gray;
+  cursor: inherit;
+}
+
+#terminal-lobby {
+  position: absolute;
+  left: 50%;
+  top: 82%;
+  width: 40%;
+  height: 30%;
+  /* 수정된 높이 */
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+  /* terminal이 아래쪽에 있으므로, positive 값을 사용해야 합니다. */
+  border: 2px solid gray;
+  cursor: inherit;
+}
