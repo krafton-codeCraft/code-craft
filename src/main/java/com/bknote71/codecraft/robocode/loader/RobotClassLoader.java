@@ -22,7 +22,7 @@ public class RobotClassLoader extends ClassLoader {
     public RobotClassLoader(String author, String fullClassName) {
         this.author = author;
         this.fullClassName = fullClassName;
-        classLoader = AwsS3ClassLoader.Instance;
+        classLoader = new AwsS3ClassLoader("robot-class");
     }
 
     public void setRobotProxy(RobotProxy robotProxy) {
