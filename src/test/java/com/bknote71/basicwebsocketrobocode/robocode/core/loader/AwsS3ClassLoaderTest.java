@@ -1,7 +1,7 @@
 package com.bknote71.basicwebsocketrobocode.robocode.core.loader;
 
-import com.bknote71.codecraft.robocode.loader.AwsS3ClassLoader;
-import com.bknote71.codecraft.robocode.loader.CompileResult;
+// import com.bknote71.codecraft.robocode.loader.AwsS3ClassLoader;
+// import com.bknote71.codecraft.robocode.loader.CompileResult;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -23,38 +23,6 @@ class AwsS3ClassLoaderTest {
 //        myRobot1.pyosik();
 //    }
 
-<<<<<<< HEAD
-    // @Test
-    // void compileFireBot() {
-    //     String author = "sa";
-    //     String content =
-    //             "public class FireBot extends Robot {\n" +
-    //             "    @Override\n" +
-    //             "    public void run() {\n" +
-    //             "        while (true) {\n" +
-    //             "            // 총알 커맨드: fire == fireBullet\n" +
-    //             "            // 15 도 씩 돌기\n" +
-    //             "            turnLeft(15);\n" +
-    //             "            // scan();\n" +
-    //             "\n" +
-    //             "            System.out.println(Thread.currentThread().getName() + \"스레드에서의 각도: \" + getGunHeading());\n" +
-    //             "            try {\n" +
-    //             "                Thread.sleep(1500);\n" +
-    //             "            } catch (InterruptedException e) {\n" +
-    //             "                e.printStackTrace();\n" +
-    //             "                throw new RuntimeException(e);\n" +
-    //             "            }\n" +
-    //             "        }\n" +
-    //             "    }\n" +
-    //             "\n" +
-    //             "    @Override\n" +
-    //             "    public void onScannedRobot(ScannedRobotEvent event) {\n" +
-    //             "        System.out.println(\"스캐닝 성공! 대상: \" + event.getName());\n" +
-    //             "        System.out.println(\"총쏘기\");\n" +
-    //             "        fire(1);\n" +
-    //             "    }\n" +
-    //             "}\n";
-=======
     @Test
     void compileFireBot() {
         String author = "sa";
@@ -85,7 +53,6 @@ class AwsS3ClassLoaderTest {
                 "        fire(1);\n" +
                 "    }\n" +
                 "}\n";
->>>>>>> 486ec2155762e1cf7860c5f3b6290cb7acaa083d
 
     //     CompileResult robot = AwsS3ClassLoader.Instance.createRobot(author, content);
     //     System.out.println("content: \n");

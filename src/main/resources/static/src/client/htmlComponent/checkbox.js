@@ -1,4 +1,4 @@
-import { targetId } from "../input";
+import { targetId } from "../html/pages/input";
 
 const checkbox = document.getElementById('checkbox');
 

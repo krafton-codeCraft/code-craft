@@ -8,13 +8,14 @@ const { EnvironmentPlugin } = require('webpack');
 module.exports = {
   entry: {
     game: './src/main/resources/static/src/client/index.js',
+    ingame: './src/main/resources/static/src/client/ingame.js',
+    lobby: './src/main/resources/static/src/client/lobby.js',
   },
   output: {
     filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
   },
   externals: {
-    'pixi.js': 'pixi.js',
     'pixi.js': 'PIXI',
     'monaco-editor': 'monaco-editor'
   },
@@ -62,9 +63,4 @@ module.exports = {
       filename: 'lobby.html',
     }),
   ],
-  entry: {
-    game: './src/main/resources/static/src/client/index.js',
-    ingame: './src/main/resources/static/src/client/ingame.js',
-    lobby: './src/main/resources/static/src/client/lobby.js',
-  },
 };
