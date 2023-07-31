@@ -57,11 +57,18 @@
     <button id="play-button">시작</button>
   </div>
 
-  <div id="container">
-    <button id="deck-one">Deck One</button>
-    <button id="deck-two">Deck Two</button>
-    <button id="deck-thress">Deck Three</button>
-    <button id="compile-button" onclick="compile_code()">Run Code</button>
+  <div id="editor-container">
+    <div id="container1" class="editor"></div>
+    <div id="container2" class="editor" style="display:none;"></div>
+    <div id="container3" class="editor" style="display:none;"></div>
+
+    <!-- Buttons inside the editor container -->
+    <div id="button-container">
+      <button id="deck-one" onclick="deck_change(1)">Deck One</button>
+      <button id="deck-two" onclick="deck_change(2)">Deck Two</button>
+      <button id="deck-three" onclick="deck_change(3)">Deck Three</button>
+      <button id="compile-button" onclick="compile_code()">Run Code</button>
+    </div>
   </div>
   <div id="terminal"></div>
   <script src="../src/client/htmlComponent/codeInterface.js"></script>

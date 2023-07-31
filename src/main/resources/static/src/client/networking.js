@@ -120,15 +120,15 @@ export const requestTodayRanking = () => {
 function compile_code() {
   const author = username;
   const content = getEditorValue();
-
   const url = `http://${addr}:8080/create/robot`;
-
+  let Data = { username: author, code: content }
+  console.log(author, content)
   fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ author, content })
+    body: JSON.stringify(Data)
   })
     .then(response => response.json())
     .then(data => {
