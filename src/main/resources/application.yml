@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/robocode
     username: root
-    password:
+    password: 1dlalsgur0
 
   jpa:
     generate-ddl: true
