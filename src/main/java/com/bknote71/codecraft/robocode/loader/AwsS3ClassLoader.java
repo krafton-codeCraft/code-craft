@@ -54,6 +54,16 @@ public class AwsS3ClassLoader extends ClassLoader {
     }
 
     @Override
+    public Class<?> loadClass(String name) throws ClassNotFoundException {
+        try {
+            return super.loadClass(name);
+        } catch (ClassNotFoundException e) {
+            System.out.println("load class 하지 못했으므로 find class 호출");
+            return findClass(name);
+        }
+    }
+
+    @Override
     protected Class<?> findClass(String name) { // sa/FireBot.class
         try {
             if (name.startsWith("com.bknote71.codecraft.robocode.api") || name.startsWith("com.bknote71.codecraft.robocode.event"))

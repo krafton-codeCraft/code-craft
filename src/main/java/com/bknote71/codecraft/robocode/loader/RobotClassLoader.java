@@ -70,7 +70,8 @@ public class RobotClassLoader extends ClassLoader {
         try {
             if (robotClass == null) {
                 robotClass = loadClass(author + "/" + fullClassName, resolve);
-                if (!Robot.class.isAssignableFrom(robotClass)) {
+                if (robotClass == null || !Robot.class.isAssignableFrom(robotClass)) {
+                    System.out.println("robot class is null? " + robotClass);
                     return null;
                 }
                 if (resolve) {
