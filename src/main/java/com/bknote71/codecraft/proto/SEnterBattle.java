@@ -6,7 +6,6 @@ import lombok.Data;
 
 
 @JsonTypeName("senterbattle")
-@Data
 public class SEnterBattle extends Protocol {
 
     private int robotId;
@@ -17,5 +16,45 @@ public class SEnterBattle extends Protocol {
 
     public SEnterBattle() {
         super(ProtocolType.S_EnterBattle);
+    }
+
+    public int getRobotId() {
+        return robotId;
+    }
+
+    public void setRobotId(int robotId) {
+        this.robotId = robotId;
+    }
+
+    public int getSpecIndex() {
+        return specIndex;
+    }
+
+    public void setSpecIndex(int specIndex) {
+        this.specIndex = specIndex;
+    }
+
+    public String getRobotName() {
+        return robotName;
+    }
+
+    public void setRobotName(String robotName) {
+        this.robotName = robotName;
+    }
+
+    public RobotSpecification[] getSpecifications() {
+        return specifications;
+    }
+
+    public void setSpecifications(RobotSpecification[] specifications) {
+        this.specifications = specifications;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
