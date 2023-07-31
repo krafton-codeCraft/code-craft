@@ -1,7 +1,7 @@
-package com.bknote71.basicwebsocketrobocode.robocode.sample;
-import com.bknote71.basicwebsocketrobocode.robocode.api.Robot;
-import com.bknote71.basicwebsocketrobocode.robocode.event.ScannedRobotEvent;
-import com.bknote71.basicwebsocketrobocode.robocode.event.HitByBulletEvent;
+package com.bknote71.codecraft.robocode.sample;
+import com.bknote71.codecraft.robocode.api.Robot;
+import com.bknote71.codecraft.robocode.event.ScannedRobotEvent;
+import com.bknote71.codecraft.robocode.event.HitByBulletEvent;
 public class FireBot extends Robot {
     @Override
     public void run() {

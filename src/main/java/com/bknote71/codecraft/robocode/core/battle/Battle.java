@@ -8,7 +8,6 @@ import com.bknote71.codecraft.robocode.job.JobSerializer;
 import com.bknote71.codecraft.session.ClientSession;
 import com.bknote71.codecraft.session.packet.TriConsumer;
 import com.bknote71.codecraft.proto.*;
-import lombok.extern.slf4j.Slf4j;
 
 import java.awt.geom.Arc2D;
 import java.util.*;
@@ -16,7 +15,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-@Slf4j
 public class Battle {
 
     private TimerTask battleTask;
@@ -99,7 +97,7 @@ public class Battle {
                 robot.session().send(updatePacket);
             }
         } catch (Exception e) {
-            log.error("Error: {}", e);
+            System.out.println("update error");
         }
     }
 
@@ -108,6 +106,7 @@ public class Battle {
     }
 
     public void enterBattle(RobotPeer robotPeer) {
+        System.out.println("enter battle " + robotPeer.getName());
         robotPeer.startBattle();
 
         robots.put(robotPeer.getId(), robotPeer);

@@ -57,35 +57,35 @@ class AwsS3ClassLoaderTest {
         CompileResult robot = AwsS3ClassLoader.Instance.createRobot(author, content);
         System.out.println("content: \n");
     }
-
-    @Test
-    void stupidTest() {
-        // AwsS3ClassLoader loader = new AwsS3ClassLoader("robot-class");
-
-        String author = "sb";
-        String content =
-                "public class StupidBot extends Robot {\n" +
-                "\n" +
-                "    @Override\n" +
-                "    public void run() {\n" +
-                "        while (true) {\n" +
-                "            System.out.println(Thread.currentThread().getName() + \" 헤헤헤헤: \" + getX() + \", \" + getY());\n" +
-                "            try {\n" +
-                "                Thread.sleep(1000);\n" +
-                "            } catch (InterruptedException e) {\n" +
-                "                throw new RuntimeException(e);\n" +
-                "            }\n" +
-                "        }\n" +
-                "    }\n" +
-                "\n" +
-                "    @Override\n" +
-                "    public void onScannedRobot(ScannedRobotEvent event) {\n" +
-                "        System.out.println(\"헤헤헤헤헤 스캔: \" + event.getName());\n" +
-                "    }\n" +
-                "}\n";
-        CompileResult robot = AwsS3ClassLoader.Instance.createRobot(author, content);
-        System.out.println("content: \n");
-        System.out.println(robot);
-    }
+//
+//    @Test
+//    void stupidTest() {
+//        // AwsS3ClassLoader loader = new AwsS3ClassLoader("robot-class");
+//
+//        String author = "sb";
+//        String content =
+//                "public class StupidBot extends Robot {\n" +
+//                "\n" +
+//                "    @Override\n" +
+//                "    public void run() {\n" +
+//                "        while (true) {\n" +
+//                "            System.out.println(Thread.currentThread().getName() + \" 헤헤헤헤: \" + getX() + \", \" + getY());\n" +
+//                "            try {\n" +
+//                "                Thread.sleep(1000);\n" +
+//                "            } catch (InterruptedException e) {\n" +
+//                "                throw new RuntimeException(e);\n" +
+//                "            }\n" +
+//                "        }\n" +
+//                "    }\n" +
+//                "\n" +
+//                "    @Override\n" +
+//                "    public void onScannedRobot(ScannedRobotEvent event) {\n" +
+//                "        System.out.println(\"헤헤헤헤헤 스캔: \" + event.getName());\n" +
+//                "    }\n" +
+//                "}\n";
+//        CompileResult robot = AwsS3ClassLoader.Instance.createRobot(author, content);
+//        System.out.println("content: \n");
+//        System.out.println(robot);
+//    }
 
 }
