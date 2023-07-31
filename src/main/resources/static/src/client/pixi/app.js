@@ -19,11 +19,11 @@ export function pixiApp() {
     const { robots,bullets,scans } = getCurrentState();
 
     renderBackground(app, delta);
-    
+
     if(robots){
-      robots.foreach((robot) => renderPlayer(robot,playgroundApp));
-      bullets.foreach((bullet) => renderBullet(bullet,playgroundApp));
-      scans.foreach((scan) => renderScan(scan,playgroundApp));
+      robots.forEach((robot) => renderPlayer(robot,playgroundApp));
+      bullets.forEach((bullet) => renderBullet(bullet,playgroundApp));
+      scans.forEach((scan) => renderScan(scan,playgroundApp));
     }
     /* if(me){
 
