@@ -73,7 +73,7 @@ public class AwsS3ClassLoader extends ClassLoader {
             String robotClass = authorAndClass[1];
             String classname = robotClass.split("\\.")[0];
             String fullPath = packagePath + "." + classname;
-            System.out.println("full path? " + fullPath);
+
             if ((result = findLoadedClass(fullPath)) != null) {
                 System.out.println("이미 로드된 클래스입니다.");
                 return result;
