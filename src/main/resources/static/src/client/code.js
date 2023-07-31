@@ -12,13 +12,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     require(["vs/editor/editor.main"], function () {
         let editor = monaco.editor.create(document.getElementById('javaEditor'), {
-        value: [
-            'function x() {',
-            '\tconsole.log("Hello world!");',
-            '}'
-        ].join('\n'),
-        language: 'java',
-        theme: 'hc-black'
+            value: [
+                'function x() {',
+                '\tconsole.log("Hello world!");',
+                '}'
+            ].join('\n'),
+            language: 'java',
+            theme: 'hc-black'
         });
     });
 });
+
+function code_check(result, status) {
+    const terminal = document.getElementById('terminal');
+    terminal.innerHTML = `${status}: ${result}`;
+}

@@ -1,6 +1,7 @@
 package com.bknote71.basicwebsocketrobocode.robocode.core.loader;
 
-import com.bknote71.basicwebsocketrobocode.robocode.api.Robot;
+import com.bknote71.codecraft.robocode.core.loader.AwsS3ClassLoader;
+import com.bknote71.codecraft.robocode.core.loader.CompileResult;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -55,7 +56,6 @@ class AwsS3ClassLoaderTest {
 
         CompileResult robot = AwsS3ClassLoader.Instance.createRobot(author, content);
         System.out.println("content: \n");
-        System.out.println(robot.content);
     }
 
     @Test
@@ -85,7 +85,7 @@ class AwsS3ClassLoaderTest {
                 "}\n";
         CompileResult robot = AwsS3ClassLoader.Instance.createRobot(author, content);
         System.out.println("content: \n");
-        System.out.println(robot.content);
+        System.out.println(robot);
     }
 
 }
