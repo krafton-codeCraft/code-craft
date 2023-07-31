@@ -1,10 +1,10 @@
-package com.bknote71.codecraft.robocode.core.loader;
+package com.bknote71.codecraft.robocode.loader;
 
 import com.amazonaws.auth.ClasspathPropertiesFileCredentialsProvider;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.Region;
-import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -17,11 +17,12 @@ public class AwsS3ClassLoader extends ClassLoader {
 
     private static final String S3_URL = "https://s3.amazonaws.com/";
 
-    private static final String packagePath = "com.bknote71.codecraft.robocode.sample";
-    private static final String importPath = "import com.bknote71.codecraft.robocode.api.Robot;";
-    private static final String filePath = "/Users/bknote71/Jungle/code-craft/sample/";
-    private static final String outputPath = "/Users/bknote71/Jungle/sample/";
-    private static final String eventPath = "import com.bknote71.codecraft.robocode.event.";
+
+    private String packagePath = "com.bknote71.codecraft.robocode.sample";
+    private String importPath = "import com.bknote71.codecraft.robocode.api.Robot;";
+    private String filePath = "/Users/bknote71/Jungle/code-craft/sample/";
+    private String outputPath = "/Users/bknote71/Jungle/sample/";
+    private String eventPath = "import com.bknote71.codecraft.robocode.event.";
 
     // amazon s3
     private AmazonS3Client s3;
@@ -55,9 +56,8 @@ public class AwsS3ClassLoader extends ClassLoader {
     @Override
     protected Class<?> findClass(String name) { // sa/FireBot.class
         try {
-            if (name.startsWith("com.bknote71.codecraft.robocode.api") || name.startsWith("com.bknote71.codecraft.robocode.event")) {
+            if (name.startsWith("com.bknote71.codecraft.robocode.api") || name.startsWith("com.bknote71.codecraft.robocode.event"))
                 return Class.forName(name);
-            }
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -74,17 +74,15 @@ public class AwsS3ClassLoader extends ClassLoader {
             String classname = robotClass.split("\\.")[0];
             String fullPath = packagePath + "." + classname;
 
-            System.out.println("full path? " + fullPath + " " + classBytes.length);
-
-            if ((result = isClassLoaded(fullPath)) != null) {
+            if ((result = findLoadedClass(fullPath)) != null) {
                 System.out.println("이미 로드된 클래스입니다.");
                 return result;
             }
 
             return defineClass(fullPath, classBytes, 0, classBytes.length);
-        } catch (Exception e) {
+        } catch (Throwable e) {
+            System.out.println(e);
             e.printStackTrace();
-            System.out.println("error");
         }
         return null;
     }
@@ -102,14 +100,6 @@ public class AwsS3ClassLoader extends ClassLoader {
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
-        }
-    }
-
-    private Class<?> isClassLoaded(String className) {
-        try {
-            return ClassLoader.getSystemClassLoader().loadClass(className);
-        } catch (ClassNotFoundException e) {
-            return null;
         }
     }
 

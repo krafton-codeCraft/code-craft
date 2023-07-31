@@ -1,4 +1,4 @@
-package com.bknote71.codecraft.robocode.core.loader;
+package com.bknote71.codecraft.robocode.loader;
 
 import com.bknote71.codecraft.robocode.api.Robot;
 import com.bknote71.codecraft.robocode.proxy.RobotProxy;

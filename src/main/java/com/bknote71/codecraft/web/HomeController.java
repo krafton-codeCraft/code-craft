@@ -1,7 +1,7 @@
 package com.bknote71.codecraft.web;
 
-import com.bknote71.codecraft.robocode.core.loader.AwsS3ClassLoader;
-import com.bknote71.codecraft.robocode.core.loader.CompileResult;
+import com.bknote71.codecraft.robocode.loader.AwsS3ClassLoader;
+import com.bknote71.codecraft.robocode.loader.CompileResult;
 import com.bknote71.codecraft.session.packet.PacketHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
