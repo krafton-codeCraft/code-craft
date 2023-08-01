@@ -8,6 +8,7 @@ import com.bknote71.codecraft.robocode.loader.AwsS3ClassLoader;
 import com.bknote71.codecraft.robocode.loader.CompileResult;
 import com.bknote71.codecraft.session.packet.PacketHandler;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
+@Slf4j
 @RequiredArgsConstructor
 @Controller
 public class HomeController {
@@ -41,6 +43,7 @@ public class HomeController {
     @ResponseBody
     public ResponseEntity<?> createRobot(@AuthenticationPrincipal(expression = "username") String username,
             String code) { // author == username
+        log.info("create robot {}", username);
         if (username == null) {
             System.out.println("말도안됨");
             return null;
@@ -61,6 +64,8 @@ public class HomeController {
     @ResponseBody
     public ResponseEntity<?> changeRobotInBattle(@AuthenticationPrincipal(expression = "username") String username,
             int robotId, int specIndex, String code) { // author == username
+        log.info("change robot {}", username);
+
         AwsS3ClassLoader classLoader = new AwsS3ClassLoader("robot-class");
         CompileResult result = classLoader.createRobot(username, code);
         if (result.exitCode != 0)

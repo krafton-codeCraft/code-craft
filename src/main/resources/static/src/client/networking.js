@@ -134,17 +134,19 @@ function change_code(index) {
 };
 
 function fetch_code(Data, url) {
+
+  const params = new URLSearchParams(Data).toString();
   fetch(url, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/x-www-form-urlencoded'
     },
-    body: JSON.stringify(Data)
+    body: params
   })
     .then(response => response.json())
     .then(data => {
-      const result = data.result;
-      const status = data.status;
+      const result = data.exitCode;
+      const status = data.content;
       code_check(result, status);
     })
     .catch(error => {
