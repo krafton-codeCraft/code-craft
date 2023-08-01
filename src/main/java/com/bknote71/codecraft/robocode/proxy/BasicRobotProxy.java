@@ -290,12 +290,12 @@ public class BasicRobotProxy extends RobotProxy implements IBasicRobotPeer {
 
         // add other events, 기존의 이벤트
         if (execResults.getEvents() != null) {
-            for (com.bknote71.codecraft.robocode.event.Event event : execResults.getEvents()) {
+            for (Event event : execResults.getEvents()) {
                 eventManager.add(event);
             }
         }
 
-        // 총알 업데이트 커맨드가 남았다면 업데이트 한다. (근데 이건 뭐임...?)
+        // 총알 업데이트 to bullet
         if (execResults.getBulletUpdates() != null) {
             for (BulletStatus bulletStatus : execResults.getBulletUpdates()) {
                 final Bullet bullet = bullets.get(bulletStatus.bulletId);
@@ -365,7 +365,7 @@ public class BasicRobotProxy extends RobotProxy implements IBasicRobotPeer {
             double fireAssistAngle = Utils.normalAbsoluteAngle(status.getHeadingRadians() + e.getBearingRadians());
 
             bullet = new Bullet(fireAssistAngle, getX(), getY(), power, statics.getName(), null, true, nextBulletId);
-            wrapper = new BulletCommand(power, true, fireAssistAngle, nextBulletId);
+            wrapper = new BulletCommand(power, true, status.getRadarHeadingRadians(), nextBulletId);
         } else {
             // this is normal bullet
             System.out.println("그냥 쏘는 총알: normal bullet");
@@ -378,10 +378,11 @@ public class BasicRobotProxy extends RobotProxy implements IBasicRobotPeer {
         firedHeat += Rules.getGunHeat(power);
 
         // 불릿 커맨드 추가 (이게 핵심)
+        System.out.println("command bullet 추가");
         commands.getBullets().add(wrapper);
 
         // 이거는 일단 신경 ㄴㄴ
-        bullets.put(nextBulletId, bullet);
+        // bullets.put(nextBulletId, bullet);
 
         return bullet;
     }
