@@ -25,7 +25,7 @@ public class BulletPeer {
     protected double power;
     private double deltaX;
     private double deltaY;
-    private double velocity = 10; // 임시값
+    private double velocity = 2; // 임시값
 
     private double lastX;
     private double lastY;
@@ -49,6 +49,10 @@ public class BulletPeer {
         double tx = x + v * sin(heading);
         double ty = y + v * cos(heading);
 
+        System.out.println(bulletId + " heading: " + heading);
+        System.out.println("x, y : " + x + ", " + y);
+        System.out.println("tx, ty : " + tx + ", " + ty);
+
         // 위치 밖이면 그냥 없애는 걸로 ㄱㄱ <<
         if (tx < 0 || tx >= battleRules.getBattlefieldWidth() || ty < 0 || ty >= battleRules.getBattlefieldHeight()) {
             System.out.println("총알이 경계 밖에 있으므로 소멸됩니다.");
@@ -67,6 +71,10 @@ public class BulletPeer {
             // 총알 삭제 : inactive
             state = BulletState.INACTIVE;
         }
+
+        // update bullet state
+
+        owner.addBulletStatus(createStatus());
     }
 
     public BulletState getState() {
@@ -115,5 +123,13 @@ public class BulletPeer {
 
     public void setVelocity(double velocity) {
         this.velocity = velocity;
+    }
+
+    public boolean isActive() {
+        return state.isActive();
+    }
+
+    private BulletStatus createStatus() {
+        return new BulletStatus(bulletId, x, y, null, false);
     }
 }
