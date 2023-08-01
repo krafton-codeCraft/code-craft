@@ -13,10 +13,9 @@ export function pixiApp() {
   makestar(app);
   const playgroundApp = playground();
 
-  
   app.ticker.add((delta) => {
     playgroundApp.stage.removeChildren();
-   /*  for (let i = playgroundApp.stage.children.length - 1; i >= 0; i--) {
+    /* for (let i = playgroundApp.stage.children.length - 1; i >= 0; i--) {
       const child = playgroundApp.stage.children[i];
       if (child !== explosion) {
         playgroundApp.stage.removeChildAt(i);
@@ -28,12 +27,15 @@ export function pixiApp() {
 
     if(robots){
       robots.forEach((robot) => renderPlayer(robot,playgroundApp));
-      //console.log("얼마나 들어오냐?");
-      bullets.forEach((bullet) => renderBullet(bullet,playgroundApp));
       scans.forEach((scan) => renderScan(scan,playgroundApp));
     }
-  });
 
+    if (bullets) {
+      bullets.forEach((bullet) => renderBullet(bullet, playgroundApp));
+    }
+    
+  });
+  
 }
 
 export default pixiApp;
