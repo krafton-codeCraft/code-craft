@@ -5,6 +5,7 @@ import renderPlayer from './player/player';
 import renderBullet from './bullet/bullet';
 import { getCurrentState } from '../state';
 import renderScan from './scan/scan';
+import { explosion } from './effect/explosion';
 
 export function pixiApp() {
   const app = new PIXI.Application({ resizeTo: window });
@@ -12,25 +13,25 @@ export function pixiApp() {
   makestar(app);
   const playgroundApp = playground();
 
-
+  
   app.ticker.add((delta) => {
     playgroundApp.stage.removeChildren();
-
-    const { robots,bullets,scans } = getCurrentState();
+   /*  for (let i = playgroundApp.stage.children.length - 1; i >= 0; i--) {
+      const child = playgroundApp.stage.children[i];
+      if (child !== explosion) {
+        playgroundApp.stage.removeChildAt(i);
+      }
+    } */
+    const { robots,bullets,scans } = getCurrentState(); 
 
     renderBackground(app, delta);
 
     if(robots){
       robots.forEach((robot) => renderPlayer(robot,playgroundApp));
+      //console.log("얼마나 들어오냐?");
       bullets.forEach((bullet) => renderBullet(bullet,playgroundApp));
       scans.forEach((scan) => renderScan(scan,playgroundApp));
     }
-    /* if(me){
-
-      renderPlayer(me, playgroundApp);
-      meteors.forEach((meteor) => renderMeteor(me, meteor, playgroundApp));
-    
-    } */
   });
 
 }
