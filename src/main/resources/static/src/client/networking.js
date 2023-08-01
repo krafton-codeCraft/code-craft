@@ -134,7 +134,6 @@ function change_code(index) {
 };
 
 function fetch_code(Data, url) {
-
   const params = new URLSearchParams(Data).toString();
   fetch(url, {
     method: 'POST',

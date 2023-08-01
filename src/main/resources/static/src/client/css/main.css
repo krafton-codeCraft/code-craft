@@ -97,7 +97,7 @@ button:focus {
   width: 30%;
   padding: 20px;
   text-align: center;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0, 0, 0, 0.7);
   border-radius: 10px;
   color: #ffffff;
 }
@@ -107,7 +107,8 @@ button:focus {
   color: #ff0000;
 }
 
-#play-menu input, #play-menu button {
+#play-menu input,
+#play-menu button {
   width: 30%;
   margin: 10px 0;
   padding: 10px;
@@ -431,7 +432,9 @@ button:focus {
 
 /* -------------------------------------------------------- */
 
-#deck-one, #deck-two, #deck-thress {
+#deck-one,
+#deck-two,
+#deck-thress {
   position: absolute;
   top: 2%;
   padding: 10px 20px;
@@ -439,7 +442,8 @@ button:focus {
   font-size: 20px;
   font-weight: bold;
   color: #ffffff;
-  background-color: rgba(128, 128, 128, 0.5);  /* half-transparent grey */
+  background-color: rgba(128, 128, 128, 0.5);
+  /* half-transparent grey */
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -451,20 +455,27 @@ button:focus {
 }
 
 #deck-two {
-  left: 18%; /* Adjust as necessary */
+  left: 18%;
+  /* Adjust as necessary */
 }
 
 #deck-thress {
-  left: 33%; /* Adjust as necessary */
+  left: 33%;
+  /* Adjust as necessary */
 }
 
-#deck-one:active, #deck-two:active, #deck-thress:active {
+#deck-one:active,
+#deck-two:active,
+#deck-thress:active {
   color: #000000;
   background-color: #ffffff;
 }
 
 @media only screen and (max-width: 600px) {
-  #deck-one, #deck-two, #deck-thress {
+
+  #deck-one,
+  #deck-two,
+  #deck-thress {
     font-size: 1em;
     padding: 5px 10px;
   }
@@ -480,7 +491,8 @@ button:focus {
   font-size: 2em;
   font-weight: bold;
   color: #ffffff;
-  background-color: #28a745; /* updated color */
+  background-color: #28a745;
+  /* updated color */
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -496,7 +508,8 @@ button:focus {
   font-size: 2em;
   font-weight: bold;
   color: #ffffff;
-  background-color: #28a745; /* updated color */
+  background-color: #28a745;
+  /* updated color */
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -504,12 +517,16 @@ button:focus {
   right: 5%;
 }
 
-#lobby-module:hover, #lobby-event:hover {
-  background-color: #218838; /* updated hover color */
+#lobby-module:hover,
+#lobby-event:hover {
+  background-color: #218838;
+  /* updated hover color */
 }
 
 @media only screen and (max-width: 600px) {
-  #lobby-module, #lobby-event {
+
+  #lobby-module,
+  #lobby-event {
     font-size: 1em;
     padding: 5px 10px;
   }
