@@ -32,6 +32,11 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("/lobby")
+    public String lobby() {
+        return "lobby";
+    }
+
     @GetMapping("/enter/battle")
     @ResponseBody
     public ResponseEntity<?> enterBattle(@AuthenticationPrincipal(expression = "username") String username) {
