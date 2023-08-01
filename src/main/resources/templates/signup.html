@@ -33,7 +33,7 @@
             <form th:action="@{/login}" method="POST"> <!-- 수정됨 -->
                 <div class="input-box">
                     <span class="icon"><ion-icon name="id-card-outline"></ion-icon></span>
-                    <input type="text" name="id" required>
+                    <input type="text" name="username" required>
                     <label>ID</label>
                 </div>
                 <div class="input-box">
@@ -50,7 +50,7 @@
 
         <div class="form-box-registration">
             <h2>Registration</h2>
-            <form action="/signup" method="POST">
+            <form action="@{/signup}" method="POST">
                 <div class="input-box">
                     <span class="icon"><ion-icon name="person"></ion-icon></span>
                     <input type="text" name="username" required>

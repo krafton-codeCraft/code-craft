@@ -6,6 +6,9 @@ npm run build
 
 # copy
 cp -f  "${RESOURCES_PATH}/static/dist/index.html" "${RESOURCES_PATH}/templates/"
+cp -f  "${RESOURCES_PATH}/static/dist/lobby.html" "${RESOURCES_PATH}/templates/"
+cp -f  "${RESOURCES_PATH}/static/dist/ingame.html" "${RESOURCES_PATH}/templates/"
+cp -f  "${RESOURCES_PATH}/static/dist/signup.html" "${RESOURCES_PATH}/templates/"
 
 process_id=$(lsof -ti:8080)
 
