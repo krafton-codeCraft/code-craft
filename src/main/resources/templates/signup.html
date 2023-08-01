@@ -23,7 +23,7 @@
     </script>
     <script src="src/client/signup.js"></script>
     <!-- <script src="../static/src/client/htmlComponent/login.js"></script> -->
-<link href="signup.f17c13e3ddb30702a09a.css" rel="stylesheet"></head>
+</head>
 
 <body>
     <canvas id="game-canvas" class="hidden"></canvas>
@@ -32,13 +32,13 @@
             <h2>Login</h2>
             <form th:action="@{/login}" method="POST"> <!-- 수정됨 -->
                 <div class="input-box">
-                    <span class="icon"><ion-icon name="planet"></ion-icon></span>
-                    <input type="email" name="username" required> <!-- name 추가됨 -->
-                    <label>Email</label>
+                    <span class="icon"><ion-icon name="id-card-outline"></ion-icon></span>
+                    <input type="text" name="id" required>
+                    <label>ID</label>
                 </div>
                 <div class="input-box">
                     <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-                    <input type="password" name="password" required> <!-- name 추가됨 -->
+                    <input type="password" name="password" required>
                     <label>Password</label>
                 </div>
                 <button type="submit" class="btn">Login</button>
@@ -50,21 +50,20 @@
 
         <div class="form-box-registration">
             <h2>Registration</h2>
-            <form action="/signup" method="POST"> <!-- 수정됨 -->
+            <form action="/signup" method="POST">
                 <div class="input-box">
-                    <span class="icon"><ion-icon name="rocket"></ion-icon></span>
-                    <input type="text" name="username" required> <!-- name 추가됨 -->
+                    <span class="icon"><ion-icon name="person"></ion-icon></span>
+                    <input type="text" name="username" required>
                     <label>Username</label>
                 </div>
                 <div class="input-box">
-                    <span class="icon"><ion-icon name="planet"></ion-icon></span>
-                    <input type="email" name="email" required>
-                    <!-- name 추가됨 (예시로 email을 추가했지만 서버에서는 처리하지 않는 것으로 보입니다.) -->
-                    <label>Email</label>
+                    <span class="icon"><ion-icon name="id-card-outline"></ion-icon></span>
+                    <input type="text" name="id" required>
+                    <label>ID</label>
                 </div>
                 <div class="input-box">
                     <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-                    <input type="password" name="password" required> <!-- name 추가됨 -->
+                    <input type="password" name="password" required>
                     <label>Password</label>
                 </div>
                 <button type="submit" class="btn">Register</button>
@@ -73,11 +72,12 @@
                 </div>
             </form>
         </div>
+
     </div>
 
     <!-- ionicons 스크립트 추가 -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-<script type="text/javascript" src="signup.227f787804c8b26f4046.js"></script></body>
+</body>
 
 </html>
