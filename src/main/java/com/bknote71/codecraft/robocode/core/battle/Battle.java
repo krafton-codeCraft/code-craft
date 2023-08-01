@@ -8,13 +8,16 @@ import com.bknote71.codecraft.robocode.job.JobSerializer;
 import com.bknote71.codecraft.session.ClientSession;
 import com.bknote71.codecraft.session.packet.TriConsumer;
 import com.bknote71.codecraft.proto.*;
+import lombok.extern.slf4j.Slf4j;
 
 import java.awt.geom.Arc2D;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
+@Slf4j
 public class Battle {
 
     private TimerTask battleTask;
@@ -50,7 +53,7 @@ public class Battle {
     }
 
     private void registerTimerTask() {
-        int frame = 30;
+        int frame = 20;
         Timer battleTimer = new Timer();
         battleTimer.schedule(battleTask, 0, 1000 / frame);
     }
@@ -97,7 +100,8 @@ public class Battle {
                 robot.session().send(updatePacket);
             }
         } catch (Exception e) {
-            System.out.println("update error");
+            e.printStackTrace();
+            log.error("update error");
         }
     }
 
@@ -106,7 +110,7 @@ public class Battle {
     }
 
     public void enterBattle(RobotPeer robotPeer) {
-        System.out.println("enter battle " + robotPeer.getName());
+        log.info("enter battle " + robotPeer.getName());
         robotPeer.startBattle();
 
         robots.put(robotPeer.getId(), robotPeer);
@@ -126,7 +130,7 @@ public class Battle {
     }
 
     public void leaveBattle(int robotId) {
-        System.out.println("leave battle in thread: " + Thread.currentThread().getName());
+        log.info("leave battle in thread: " + Thread.currentThread().getName());
         // clear
         RobotPeer robotPeer;
         if ((robotPeer = robots.remove(robotId)) == null) {
@@ -151,6 +155,7 @@ public class Battle {
     }
 
     public void addBullet(BulletPeer bullet) {
+        System.out.println(Thread.currentThread().getName() + " add bullet and bullets size: " + bullets.size());
         bullets.add(bullet);
     }
 
@@ -164,14 +169,17 @@ public class Battle {
     }
 
     // 총알 업데이트
-    private void updateBullets(UpdateInfo update) {
-        for (BulletPeer bullet : bullets) {
+    private void updateBullets(UpdateInfo updateInfo) {
+        List<BulletPeer> shuffledList = new ArrayList<>(bullets);
+        Collections.shuffle(shuffledList, ThreadLocalRandom.current());
+        log.info("update bullets: " + shuffledList.size());
+        for (BulletPeer bullet : shuffledList) {
             bullet.update();
-            if (bullet.getState() == BulletState.INACTIVE)
+            if (bullet.getState() == BulletState.INACTIVE) {
                 bullets.remove(bullet);
-
-            // 불릿 패킷
-            update.bullets.add(new UpdateInfo.BulletInfo(bullet.getX(), bullet.getY()));
+            } else { // 불릿 패킷
+                updateInfo.bullets.add(new UpdateInfo.BulletInfo(bullet.getX(), bullet.getY()));
+            }
         }
     }
 

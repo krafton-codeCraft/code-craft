@@ -46,8 +46,10 @@ public abstract class Robot implements IBasicEvent, Runnable {
 
     public final void fire(double power) {
         if (peer != null) {
+            System.out.println("set fire 시작");
             peer.setFire(power);
             peer.execute();
+            System.out.println("set fire 끝");
         } else {
             uninitializedException();
         }

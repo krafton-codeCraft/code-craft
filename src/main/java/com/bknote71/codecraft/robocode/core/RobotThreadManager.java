@@ -11,7 +11,7 @@ public class RobotThreadManager {
 
     public RobotThreadManager(RobotProxy robotProxy) {
         this.robotProxy = robotProxy;
-        this.runThreadGroup = new ThreadGroup(robotProxy.getStatics().getName());
+        this.runThreadGroup = new ThreadGroup(robotProxy.getRobotPeer().getId() + ":" + robotProxy.getStatics().getName());
 
         // bit lower than battle have
         this.runThreadGroup.setMaxPriority(Thread.NORM_PRIORITY - 1);
@@ -35,9 +35,10 @@ public class RobotThreadManager {
     // 모든 스레드를 관리하는 스레드 매니저
     public void start(ThreadManager threadManager) {
         try {
+            System.out.println("start robot proxy");
             threadManager.addThreadGroup(runThreadGroup, robotProxy);
 
-            runThread = new Thread(runThreadGroup, robotProxy, robotProxy.getStatics().getName());
+            runThread = new Thread(runThreadGroup, robotProxy, robotProxy.getRobotPeer().getId() + ":" + robotProxy.getStatics().getName());
             runThread.setDaemon(true);
             runThread.setPriority(Thread.NORM_PRIORITY - 1);
             runThread.setContextClassLoader(this.robotProxy.getRobotClassloader());
