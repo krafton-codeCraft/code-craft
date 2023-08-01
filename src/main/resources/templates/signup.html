@@ -21,63 +21,76 @@
 
         gtag('config', 'UA-58664433-3');
     </script>
-    <script src="src/client/signup.js"></script>
     <!-- <script src="../static/src/client/htmlComponent/login.js"></script> -->
-<link href="signup.f17c13e3ddb30702a09a.css" rel="stylesheet"></head>
+<link href="signup.492d4e55eb6ec2b112d3.css" rel="stylesheet"></head>
 
 <body>
     <canvas id="game-canvas" class="hidden"></canvas>
-    <div class="wrapper">
-        <div class="form-box-login">
-            <h2>Login</h2>
-            <form th:action="@{/login}" method="POST"> <!-- 수정됨 -->
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="id-card-outline"></ion-icon></span>
-                    <input type="text" name="username" required>
-                    <label>ID</label>
-                </div>
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-                    <input type="password" name="password" required>
-                    <label>Password</label>
-                </div>
-                <button type="submit" class="btn">Login</button>
-                <div class="login-register">
-                    <p>Don't have an account?<a href="#" class="register-link">Register</a></p>
-                </div>
-            </form>
+
+    <div id="full-container">
+
+        <div id="play-menu">
+            <h1>
+            Code Craft
+            <br />
+            </h1>
         </div>
 
-        <div class="form-box-registration">
-            <h2>Registration</h2>
-            <form action="@{/signup}" method="POST">
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="person"></ion-icon></span>
-                    <input type="text" name="username" required>
-                    <label>Username</label>
-                </div>
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="id-card-outline"></ion-icon></span>
-                    <input type="text" name="id" required>
-                    <label>ID</label>
-                </div>
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-                    <input type="password" name="password" required>
-                    <label>Password</label>
-                </div>
-                <button type="submit" class="btn">Register</button>
-                <div class="login-register">
-                    <p>Already have an account?<a href="#" class="login-link">Login</a></p>
-                </div>
-            </form>
+        <div class="wrapper">
+            <div class="form-box-login">
+                <h2>Login</h2>
+                <form th:action="@{/login}" method="POST"> <!-- 수정됨 -->
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="id-card-outline"></ion-icon></span>
+                        <input type="text" name="username" required>
+                        <label>ID</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                        <input type="password" name="password" required>
+                        <label>Password</label>
+                    </div>
+                    <button type="submit" class="btn">Login</button>
+                    <div class="login-register">
+                        <p>Don't have an account?<a href="#" class="register-link">Register</a></p>
+                    </div>
+                </form>
+            </div>
+
+            <div class="form-box-registration">
+                <h2>Registration</h2>
+                <form action="@{/signup}" method="POST">
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="person"></ion-icon></span>
+                        <input type="text" name="username" required>
+                        <label>Username</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="id-card-outline"></ion-icon></span>
+                        <input type="text" name="id" required>
+                        <label>ID</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                        <input type="password" name="password" required>
+                        <label>Password</label>
+                    </div>
+                    <button type="submit" class="btn">Register</button>
+                    <div class="login-register">
+                        <p>Already have an account?<a href="#" class="login-link">Login</a></p>
+                    </div>
+                </form>
+            </div>
+
         </div>
 
     </div>
 
+    <script src="src/client/signup.js"></script>
+
     <!-- ionicons 스크립트 추가 -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-<script type="text/javascript" src="signup.227f787804c8b26f4046.js"></script></body>
+<script type="text/javascript" src="signup.006808ef6700148f3ff5.js"></script></body>
 
 </html>
