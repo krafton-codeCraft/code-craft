@@ -70,3 +70,7 @@ document.getElementById('gotoIngame').addEventListener('click', function () {
 document.getElementById('gotoIndex').addEventListener('click', function () {
   window.location.href = '/index.html';
 });
+
+document.getElementById('play-button').addEventListener('click', function () {
+  window.location.href = '/lobby.html';
+});

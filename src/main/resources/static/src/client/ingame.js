@@ -9,8 +9,10 @@ import { setLeaderboardHidden } from './htmlComponent/leaderboard';
 // but not much. In general, you should be careful using Bootstrap because it makes it
 // easy to unnecessarily bloat your site.
 import './css/bootstrap-reboot.css';
-import './css/main.css';
+// import './css/main.css';
+import './css/ingame.css';
 import pixiApp from './pixi/app.js';
+import { isObject } from 'lodash';
 
 const gamecanvers = document.getElementById('game-canvas');
 
@@ -35,20 +37,6 @@ Promise.all([
 
   const username = sessionStorage.getItem('username');
   play(username);
-
-  playMenu.classList.remove('hidden');
-  usernameInput.focus();
-  playButton.onclick = () => {
-
-    gamecanvers.classList.remove('hidden');
-    window.removeEventListener('keydown' ,handleEnterKey);
-    // Play!
-    playMenu.classList.add('hidden');
-    initState();
-    startCapturingInput();
-    setLeaderboardHidden(false);
-
-  };
 
 }).catch(console.error);
 
