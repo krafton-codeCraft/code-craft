@@ -9,7 +9,7 @@ import { setLeaderboardHidden } from './htmlComponent/leaderboard';
 // but not much. In general, you should be careful using Bootstrap because it makes it
 // easy to unnecessarily bloat your site.
 import './css/bootstrap-reboot.css';
-import './css/main.css';
+import './css/index.css';
 import pixiApp from './pixi/app.js';
 
 const gamecanvers = document.getElementById('game-canvas');

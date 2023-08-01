@@ -1,3 +1,5 @@
+import theme from 'monaco-themes/themes/Active4D.json';
+
 let editor
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -34,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
 }
     `,
       language: 'java',
-      theme: 'hc-black'
+      theme: 'vs-dark'
     });
   });
 });
