@@ -28,14 +28,15 @@ Promise.all([
   downloadAssets(),
   pixiApp(),
 ]).then(() => {
+  
   window.addEventListener('keydown' ,handleEnterKey);
-  playMenu.classList.remove('hidden');
-  usernameInput.focus();
+  const username = sessionStorage.getItem('username');
+
   playButton.onclick = () => {
     gamecanvers.classList.remove('hidden');
     window.removeEventListener('keydown' ,handleEnterKey);
-    // Play!
-    play(usernameInput.value);
+    // Play with the username retrieved from sessionStorage
+    play(username);
     playMenu.classList.add('hidden');
     initState();
     startCapturingInput();
@@ -44,7 +45,6 @@ Promise.all([
 }).catch(console.error);
 
 function onGameOver(obj) {
-  gamecanvers.classList.add('hidden');
   window.addEventListener('keydown' ,handleEnterKey);
   stopCapturingInput();
   setLeaderboardHidden(true);
