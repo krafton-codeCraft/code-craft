@@ -1,5 +1,5 @@
 let editor;
-let selectedDeck = null;
+let selectedDeck = 0;
 document.addEventListener('DOMContentLoaded', function () {
     require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' } });
 
@@ -49,14 +49,14 @@ function getEditorValue() {
 function code_check(result, status) {
     const terminal = document.getElementById('terminal');
     if (result != 0) {
-        terminal.innerHTML = `< span style="font-weight: bold; color: red;" > ${status}: </span > <span style="font-weight: bold; color: red;">${result}</span>`;
+        terminal.innerHTML = `<span style="font-weight: bold; color: red;" > ${status}: </span> <span style="font-weight: bold; color: red;">${result}</span>`;
     }
     else {
-        terminal.innerHTML = `< span style="font-weightL bold; color: green;" > ${status}: </span > <span style="font-weight: bold; color: green;"${result}</span>`;
+        terminal.innerHTML = `<span style="font-weightL bold; color: green;" > ${status}: </span> <span style="font-weight: bold; color: green;"${result}</span>`;
     }
 }
 
 
-function selectDeck(deckId) {
+function selectDeckIndex(deckId) {
     selectedDeck = deckId;
 }

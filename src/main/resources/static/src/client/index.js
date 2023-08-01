@@ -28,12 +28,12 @@ Promise.all([
   downloadAssets(),
   pixiApp(),
 ]).then(() => {
-  window.addEventListener('keydown' ,handleEnterKey);
+  window.addEventListener('keydown', handleEnterKey);
   playMenu.classList.remove('hidden');
   usernameInput.focus();
   playButton.onclick = () => {
     gamecanvers.classList.remove('hidden');
-    window.removeEventListener('keydown' ,handleEnterKey);
+    window.removeEventListener('keydown', handleEnterKey);
     // Play!
     play(usernameInput.value);
     playMenu.classList.add('hidden');
@@ -45,19 +45,19 @@ Promise.all([
 
 function onGameOver(obj) {
   gamecanvers.classList.add('hidden');
-  window.addEventListener('keydown' ,handleEnterKey);
+  window.addEventListener('keydown', handleEnterKey);
   stopCapturingInput();
   setLeaderboardHidden(true);
   gameoverMenu.classList.remove('hidden');
 
-  if(flag){// 전판과 똑같은 이름으로 복사
+  if (flag) {// 전판과 똑같은 이름으로 복사
     usernamereInput.value = usernameInput.value;
     flag = false;
   }
   usernamereInput.focus();
   replayButton.onclick = () => {
     gamecanvers.classList.remove('hidden');
-    window.removeEventListener('keydown' ,handleEnterKey);
+    window.removeEventListener('keydown', handleEnterKey);
     play(usernamereInput.value);
     gameoverMenu.classList.add('hidden');
     initState();
@@ -72,20 +72,20 @@ function handleEnterKey(event) {
   // event.keyCode는 Enter 키의 키코드가 13입니다.
   if (event.keyCode === 13) {
     // 엔터 키를 누른 경우, playButton을 클릭한 것과 같은 동작을 수행합니다.
-    if(flag){
+    if (flag) {
       playButton.click();
-    }else{
+    } else {
       replayButton.click();
     }
   }
 }
 
-document.getElementById('gotoLobby').addEventListener('click', function() {
+document.getElementById('gotoLobby').addEventListener('click', function () {
   window.location.href = '/lobby.html';
 });
-document.getElementById('gotoIngame').addEventListener('click', function() {
+document.getElementById('gotoIngame').addEventListener('click', function () {
   window.location.href = '/ingame.html';
 });
-document.getElementById('gotoIndex').addEventListener('click', function() {
+document.getElementById('gotoIndex').addEventListener('click', function () {
   window.location.href = '/index.html';
 });
