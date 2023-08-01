@@ -96,10 +96,10 @@ function interpolateObject(object1, object2, ratio) {
     if (key === 'direction') {
       interpolated[key] = interpolateDirection(object1[key], object2[key], ratio);
     } else if (key === 'x' || key === 'y') {
-      interpolated[key] = interpolatePosition(object1[key], object2[key], ratio);
-      //interpolated[key] = object1[key] + (object2[key] - object1[key]) * ratio;
+      //interpolated[key] = interpolatePosition(object1[key], object2[key], ratio);
+      interpolated[key] = object1[key] + (object2[key] - object1[key]) * ratio;
     } else {
-      interpolated[key] = object1[key];
+      interpolated[key] = object2[key];
     }
   });
   return interpolated;

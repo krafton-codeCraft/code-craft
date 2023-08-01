@@ -4,7 +4,7 @@ const Constants = require('../../../shared/constants');
 const { PLAYER_RADIUS,PLAYER_MAXENERGY } = Constants;
 
 function renderPlayer(player, app) {
-    const { x, y, name , bodyHeading, gunHeading, raderHeading,energy } = player;
+    const { x, y, name , bodyHeading, gunHeading, raderHeading, energy } = player;
     const canvasX = x;
     const canvasY = y;
     const ratiohp = energy === 0 ? 0 : energy / PLAYER_MAXENERGY * 60;
@@ -13,7 +13,7 @@ function renderPlayer(player, app) {
     bodyship.anchor.set(0.5);
     bodyship.x = canvasX;
     bodyship.y = canvasY;
-    bodyship.rotation = bodyHeading;
+    bodyship.rotation = bodyHeading + 90 ;
     bodyship.width = PLAYER_RADIUS * 2;
     bodyship.height = PLAYER_RADIUS * 2;
     app.stage.addChild(bodyship);
@@ -43,7 +43,7 @@ function renderPlayer(player, app) {
     app.stage.addChild(outerBar);
    
     //체력바 텍스트
-    const hptext = new PIXI.Text(energy+'/100', { fontFamily: 'Arial', fontSize: 10, fill: 'white' });
+    const hptext = new PIXI.Text(energy+'/' + PLAYER_MAXENERGY, { fontFamily: 'Arial', fontSize: 10, fill: 'white' });
     hptext.anchor.set(0.5);
     hptext.x = canvasX;
     hptext.y = canvasY - (PLAYER_RADIUS * 2);
