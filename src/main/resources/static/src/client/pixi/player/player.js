@@ -1,14 +1,16 @@
 import { getAsset } from '../../assets';
-import { explosionPlay } from '../effect/explosion';
 const Constants = require('../../../shared/constants');
 const { PLAYER_RADIUS,PLAYER_MAXENERGY } = Constants;
-let test = 0;
+
 function renderPlayer(player, app) {
-    test += 1;
-    const { x, y, name , bodyHeading, gunHeading, raderHeading, energy } = player;
+
+    const { id, x, y, name , bodyHeading, gunHeading, raderHeading, energy } = player;
     const canvasX = x;
     const canvasY = y;
+    //console.log(`x : ${x} ()  y : ${y}`);
     const ratiohp = energy === 0 ? 0 : energy / PLAYER_MAXENERGY * 60;
+
+    
     // 배 그리기
     const bodyship = new PIXI.Sprite(PIXI.Texture.from(getAsset('ship.svg')));
     bodyship.anchor.set(0.5);
@@ -18,10 +20,7 @@ function renderPlayer(player, app) {
     bodyship.width = PLAYER_RADIUS * 2;
     bodyship.height = PLAYER_RADIUS * 2;
     app.stage.addChild(bodyship);
-    // if (test% 500 === 0){
-    //     explosionPlay(canvasX,canvasY,app);
-    // }
-    // 포탑
+
     const gunhead = new PIXI.Sprite(PIXI.Texture.from(getAsset('ship.svg')));
     gunhead.anchor.set(0.5);
     gunhead.x = canvasX;
