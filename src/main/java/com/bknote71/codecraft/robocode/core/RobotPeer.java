@@ -411,6 +411,7 @@ public class RobotPeer {
         setState(RobotState.ACTIVE);
 
         velocity = 0;
+        hp = 100;
         energy = 100;
         gunHeat = 3;
 
@@ -852,8 +853,8 @@ public class RobotPeer {
     public void onDead() { // 죽음 ?? 리스폰 해야함
         // 죽음 처리 작업 푸쉬
         if (isAlive()) {
-            addEvent(new DeathEvent());
-            battle.registerDeathRobot(this);
+            // addEvent(new DeathEvent());
+            // battle.registerDeathRobot(this);
         }
         // updateEnergy(-energy);
         setState(RobotState.DEAD); // 사실 이것도 필요 없음
