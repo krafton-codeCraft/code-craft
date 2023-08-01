@@ -144,8 +144,8 @@ function fetch_code(Data, url) {
   })
     .then(response => response.json())
     .then(data => {
-      const result = data.result;
-      const status = data.status;
+      const result = data.exitCode;
+      const status = data.content;
       code_check(result, status);
     })
     .catch(error => {

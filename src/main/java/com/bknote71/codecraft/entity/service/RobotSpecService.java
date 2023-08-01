@@ -53,6 +53,7 @@ public class RobotSpecService {
 
         RobotSpecEntity robotSpecEntity = new RobotSpecEntity();
         robotSpecEntity.setName(robotName);
+        robotSpecEntity.setAuthor(username);
         robotSpecEntity.setFullClassName(fullClassName);
         robotSpecEntity.setCode(code);
         robotSpecEntity.setUser(user);
