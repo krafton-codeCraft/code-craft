@@ -2,9 +2,9 @@ import * as PIXI from 'pixi.js';
 
 let cameraZ = 0;
 const fov = 20;
-const baseSpeed = 0.05;
+const baseSpeed = 0.1;
 let speed = 0;
-let warpSpeed = 0;
+export let warpSpeed = 0;
 const starStretch = 5;
 const starBaseSize = 0.05;
 const starAmount = 1000;
@@ -35,6 +35,7 @@ export function makestar(app){
 
     star.sprite.anchor.x = 0.5;
     star.sprite.anchor.y = 0.7;
+    star.sprite.tint = Math.random() * 0xFFFFFF;
     randomizeStar(star, true);
     app.stage.addChild(star.sprite);
     stars.push(star);
