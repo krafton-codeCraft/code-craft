@@ -24,23 +24,32 @@ const usernamereInput = document.getElementById('username-reinput');
 let flag = true;
 
 Promise.all([
+
   connect(onGameOver),
   downloadAssets(),
   pixiApp(),
+
 ]).then(() => {
+
   window.addEventListener('keydown' ,handleEnterKey);
+
+  const username = sessionStorage.getItem('username');
+  play(username);
+
   playMenu.classList.remove('hidden');
   usernameInput.focus();
   playButton.onclick = () => {
+
     gamecanvers.classList.remove('hidden');
     window.removeEventListener('keydown' ,handleEnterKey);
     // Play!
-    play(usernameInput.value);
     playMenu.classList.add('hidden');
     initState();
     startCapturingInput();
     setLeaderboardHidden(false);
+
   };
+
 }).catch(console.error);
 
 function onGameOver(obj) {
