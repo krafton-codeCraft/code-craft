@@ -1,4 +1,4 @@
-import theme from 'monaco-themes/themes/Active4D.json';
+// import theme from 'monaco-themes/themes/Active4D.json';
 
 let editor
 
