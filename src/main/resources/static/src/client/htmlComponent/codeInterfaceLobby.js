@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
   window.MonacoEnvironment = { getWorkerUrl: () => proxy };
 
   require(["vs/editor/editor.main"], function () {
-    editor = monaco.editor.create(document.getElementById('container-lobby'), {
+    editor = monaco.editor.create(document.getElementById('container-lobby-body'), {
       value: `public class StupidBot extends Robot {
   @Override
   public void run() {
