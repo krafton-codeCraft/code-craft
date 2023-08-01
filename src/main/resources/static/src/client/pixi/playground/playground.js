@@ -4,8 +4,8 @@ export function playground() {
    
     const playgroundApp = new PIXI.Application({ 
         view: canvasElement,
-        width: 900, 
-        height: 900,
+        width: 1000, 
+        height: 1000,
         antialias: true,
         transparent: true
     });
@@ -15,6 +15,9 @@ export function playground() {
     playgroundApp.view.style.left = "5%";
     playgroundApp.view.style.transform = "translateY(-50%)";
     playgroundApp.view.style.border = "2px solid gray";
+    // playgroundApp.renderer.view.style.width = "94vh";
+    // playgroundApp.renderer.view.style.height = "94vh";
+    // playgroundApp.renderer.resize(window.innerWidth, window.innerHeight * 0.94);
 
     document.body.appendChild(playgroundApp.view);
 

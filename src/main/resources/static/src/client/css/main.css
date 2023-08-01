@@ -285,9 +285,9 @@ button:focus {
 #container {
   position: absolute;
   right: 2%;
-  top: 34%;
+  top: 39%;
   width: 40%;
-  height: 62%;
+  height: 72%;
   /* 수정된 높이 */
   overflow: hidden;
   transform: translateY(-50%);
@@ -298,9 +298,9 @@ button:focus {
 #terminal {
   position: absolute;
   right: 2%;
-  top: 82%;
+  top: 87%;
   width: 40%;
-  height: 30%;
+  height: 20%;
   /* 수정된 높이 */
   overflow: hidden;
   transform: translateY(-50%);
@@ -309,31 +309,12 @@ button:focus {
   cursor: inherit;
 }
 
-#compile-button {
-  font-size: 18px;
-  outline: none;
-  border: none;
-  position: absolute;
-  /* Add this */
-  right: 0;
-  /* Add this */
-  top: 0;
-  /* Add this */
-  /* Add this */
-  color: whitesmoke;
-  background-color: green;
-  padding: 5px 20px;
-  border-radius: 3px;
-  transition: background-color 0.2s ease;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-
 #container-lobby {
   position: absolute;
-  top: 34%;
+  top: 39%;
   left: 50%;
   width: 40%;
-  height: 62%;
+  height: 72%;
   overflow: hidden;
   transform: translate(-50%, -50%);
   border: 2px solid gray;
@@ -343,9 +324,9 @@ button:focus {
 #terminal-lobby {
   position: absolute;
   left: 50%;
-  top: 82%;
+  top: 87%;
   width: 40%;
-  height: 30%;
+  height: 20%;
   /* 수정된 높이 */
   overflow: hidden;
   transform: translate(-50%, -50%);
@@ -354,47 +335,77 @@ button:focus {
   cursor: inherit;
 }
 
-/*--------------Sign up----------------*/
-.signup-container {
-  body {
-    font-family: 'Arial', sans-serif;
-    background: url('https://path_to_your_space_image.jpg') no-repeat center center fixed;
-    background-size: cover;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
+/* -------------------------------------------------------- */
 
-  .signup-container {
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  }
+/* #compile-button {
+  font-size: 18px;
+  outline: none;
+  border: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: whitesmoke;
+  background-color: green;
+  padding: 5px 20px;
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+} */
 
-  input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
+#compile-button {
+  position: absolute;
+  right: 5%;
+  bottom: 5%;
+  padding: 10px 20px;
+  width: 200px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #ff0000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
 
-  button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #333;
-    color: #fff;
-    cursor: pointer;
-  }
+#compile-button:hover {
+  background-color: #cc0000;
+}
 
-  button:hover {
-    background-color: #555;
+@media only screen and (max-width: 600px) {
+  #compile-button {
+    font-size: 1em;
+    padding: 5px 10px;
+  }
+}
+
+
+
+/* -------------------------------------------------------- */
+
+#start-button {
+  position: absolute;
+  right: 5%;
+  bottom: 5%;
+  padding: 10px 20px;
+  width: 200px;
+  font-size: 2em;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #ff0000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+
+#start-button:hover {
+  background-color: #cc0000;
+}
+
+@media only screen and (max-width: 600px) {
+  #start-button {
+    font-size: 1em;
+    padding: 5px 10px;
   }
 }

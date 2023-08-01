@@ -21,8 +21,8 @@ function renderScan(scan, app) {
     const midx = robotX;//(x+width)/2
     const midy = robotY;//(y+height)/2
     const dist = width/2;//distRadius(x,y,width,height);
-    const startrad = toRadius(angleStart);
-    const endrad = toRadius(angleStart + angleExtent);
+    const startrad = toRadius(2*Math.PI - angleStart);
+    const endrad = toRadius(2*Math.PI - angleStart + angleExtent);
 
     Scaning = new PIXI.Graphics();
     Scaning.beginFill(0x00ff00, 0.25);
