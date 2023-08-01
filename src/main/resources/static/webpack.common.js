@@ -10,6 +10,7 @@ module.exports = {
     game: './src/main/resources/static/src/client/index.js',
     ingame: './src/main/resources/static/src/client/ingame.js',
     lobby: './src/main/resources/static/src/client/lobby.js',
+    signup: './src/main/resources/static/src/client/signup.js',
   },
   output: {
     filename: '[name].[contenthash].js',
@@ -61,6 +62,11 @@ module.exports = {
       chunks: ['lobby'],
       template: 'src/main/resources/static/src/client/html/lobby.html',
       filename: 'lobby.html',
+    }),
+    new HtmlWebpackPlugin({
+      chunks: ['signup'],
+      template: 'src/main/resources/static/src/client/html/signup.html',
+      filename: 'signup.html',
     }),
   ],
 };
