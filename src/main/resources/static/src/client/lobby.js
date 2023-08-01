@@ -28,15 +28,15 @@ Promise.all([
   pixiApp(),
 
 ]).then(() => {
-  
-  window.addEventListener('keydown' ,handleEnterKey);
+
+  window.addEventListener('keydown', handleEnterKey);
   const username = sessionStorage.getItem('username');
   console.log(username);
 
   startButton.onclick = () => {
 
     gamecanvers.classList.remove('hidden');
-    window.removeEventListener('keydown' ,handleEnterKey);
+    window.removeEventListener('keydown', handleEnterKey);
     // Play with the username retrieved from sessionStorage
     // play(username);
     // playMenu.classList.add('hidden');
@@ -55,24 +55,28 @@ function handleEnterKey(event) {
   // event.keyCode는 Enter 키의 키코드가 13입니다.
   if (event.keyCode === 13) {
     // 엔터 키를 누른 경우, playButton을 클릭한 것과 같은 동작을 수행합니다.
-    if(flag){
+    if (flag) {
       playButton.click();
-    }else{
+    } else {
       replayButton.click();
     }
   }
 }
 
-document.getElementById('gotoLobby').addEventListener('click', function() {
+document.getElementById('gotoLobby').addEventListener('click', function () {
   window.location.href = '/lobby.html';
 });
 
-document.getElementById('gotoIngame').addEventListener('click', function() {
+document.getElementById('gotoIngame').addEventListener('click', function () {
   window.location.href = '/ingame.html';
 });
 
-document.getElementById('gotoIndex').addEventListener('click', function() {
+document.getElementById('gotoIndex').addEventListener('click', function () {
   window.location.href = '/index.html';
+});
+
+document.getElementById('gotosignup').addEventListener('click', function () {
+  window.location.href = '/signup.html';
 });
 
 // document.getElementById('start-button').addEventListener('click', function() {

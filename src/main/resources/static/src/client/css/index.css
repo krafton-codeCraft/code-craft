@@ -1,5 +1,6 @@
 html,
 body {
+<<<<<<< HEAD
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -12,10 +13,25 @@ hr {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   margin: 1rem 0;
   width: 100%;
+=======
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    overscroll-behavior: none;
+    background-color: black;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 1rem 0;
+    width: 100%;
+>>>>>>> 2ef99a112b9dbb8223d92ba32312126d7c27c26f
 }
 
 #gotoLobby {
 
+<<<<<<< HEAD
   font-size: 18px;
   outline: none;
   border: none;
@@ -25,11 +41,23 @@ hr {
   border-radius: 3px;
   transition: background-color 0.2s ease;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+=======
+    font-size: 18px;
+    outline: none;
+    border: none;
+    color: white;
+    background-color: transparent;
+    padding: 5px 20px;
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+>>>>>>> 2ef99a112b9dbb8223d92ba32312126d7c27c26f
 
 }
 
 #gotoIngame {
 
+<<<<<<< HEAD
   font-size: 18px;
   outline: none;
   border: none;
@@ -39,11 +67,23 @@ hr {
   border-radius: 3px;
   transition: background-color 0.2s ease;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+=======
+    font-size: 18px;
+    outline: none;
+    border: none;
+    color: white;
+    background-color: transparent;
+    padding: 5px 20px;
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+>>>>>>> 2ef99a112b9dbb8223d92ba32312126d7c27c26f
 
 }
 
 #gotoIndex {
 
+<<<<<<< HEAD
   font-size: 18px;
   outline: none;
   border: none;
@@ -53,10 +93,22 @@ hr {
   border-radius: 3px;
   transition: background-color 0.2s ease;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+=======
+    font-size: 18px;
+    outline: none;
+    border: none;
+    color: white;
+    background-color: transparent;
+    padding: 5px 20px;
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+>>>>>>> 2ef99a112b9dbb8223d92ba32312126d7c27c26f
 
 }
 
 button {
+<<<<<<< HEAD
   font-size: 18px;
   outline: none;
   border: none;
@@ -195,11 +247,141 @@ button:focus {
   #leaderboard table {
     font-size: 14px;
   }
+=======
+    font-size: 18px;
+    outline: none;
+    border: none;
+    color: black;
+    background-color: transparent;
+    padding: 5px 20px;
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: rgb(230, 230, 230);
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+}
+
+.hidden {
+    display: none !important;
+}
+
+#game-canvas {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translateY(-50%);
+    border: 2px solid gray;
+}
+
+#play-menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    padding: 20px;
+    text-align: center;
+}
+
+#play-menu p {
+    margin-bottom: 0;
+}
+
+#play-menu button {
+    background: #ff0000;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#play-menu button:hover {
+    background: #cc0000;
+}
+
+#leaderboard {
+    position: fixed;
+    top: 3%;
+    left: 3%;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#leaderboard th {
+    text-align: center;
+    padding: 2px 5px;
+}
+
+#leaderboard td {
+    text-align: center;
+    padding: 2px 5px;
+}
+
+#disconnect-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+#disconnect-modal>div {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    padding: 15px 20px;
+    background-color: white;
+    border-radius: 5px;
+    text-align: center;
+}
+
+@media screen and (max-width: 640px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    #play-menu {
+        padding: 10px 15px;
+        min-width: 280px;
+    }
+
+    #disconnect-modal>div {
+        padding: 10px;
+        min-width: 280px;
+    }
+
+    #leaderboard th {
+        padding: 0 3px;
+    }
+
+    #leaderboard td {
+        padding: 0 3px;
+    }
+
+    #leaderboard table {
+        font-size: 14px;
+    }
+>>>>>>> 2ef99a112b9dbb8223d92ba32312126d7c27c26f
 }
 
 /*------------------------------------*/
 
 #inputbar {
+<<<<<<< HEAD
   position: fixed;
   bottom: 10%;
   left: 0;
@@ -209,10 +391,22 @@ button:focus {
   background-color: rgba(255, 255, 255, 0.9);
   padding: 10px;
   border-radius: 5px;
+=======
+    position: fixed;
+    bottom: 10%;
+    left: 0;
+    right: 0;
+    width: 300px;
+    margin: auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 5px;
+>>>>>>> 2ef99a112b9dbb8223d92ba32312126d7c27c26f
 }
 
 #checkbox {
 
+<<<<<<< HEAD
   position: fixed;
   bottom: 20%;
   left: 0;
@@ -223,12 +417,25 @@ button:focus {
   border-radius: 5px;
   color: white;
   text-align: center;
+=======
+    position: fixed;
+    bottom: 20%;
+    left: 0;
+    right: 0;
+    width: 300px;
+    margin: auto;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+>>>>>>> 2ef99a112b9dbb8223d92ba32312126d7c27c26f
 
 }
 
 
 #micimage {
 
+<<<<<<< HEAD
   position: fixed;
   bottom: 10%;
   left: 0;
@@ -237,11 +444,22 @@ button:focus {
   margin: auto;
   padding: 10px;
   border-radius: 5px;
+=======
+    position: fixed;
+    bottom: 10%;
+    left: 0;
+    right: 350px;
+    width: 50px;
+    margin: auto;
+    padding: 10px;
+    border-radius: 5px;
+>>>>>>> 2ef99a112b9dbb8223d92ba32312126d7c27c26f
 
 }
 
 #micstatus {
 
+<<<<<<< HEAD
   position: fixed;
   bottom: 10%;
   left: 0;
@@ -252,10 +470,23 @@ button:focus {
   border-radius: 5px;
   color: white;
   text-align: center;
+=======
+    position: fixed;
+    bottom: 10%;
+    left: 0;
+    right: 550px;
+    width: 150px;
+    margin: auto;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+>>>>>>> 2ef99a112b9dbb8223d92ba32312126d7c27c26f
 
 }
 
 #game-over {
+<<<<<<< HEAD
   position: fixed;
   top: 50%;
   left: 50%;
@@ -351,6 +582,90 @@ button:focus {
   /* terminal이 아래쪽에 있으므로, positive 값을 사용해야 합니다. */
   border: 2px solid gray;
   cursor: inherit;
+=======
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    padding: 20px 30px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#game-over p {
+    margin-bottom: 0;
+}
+
+#game-over input {
+    font-size: 18px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    margin-bottom: 5px;
+    padding: 3px;
+    text-align: center;
+}
+
+#game-over input:hover {
+    outline: none;
+}
+
+#container {
+    position: absolute;
+    right: 2%;
+    top: 39%;
+    width: 40%;
+    height: 72%;
+    /* 수정된 높이 */
+    overflow: hidden;
+    transform: translateY(-50%);
+    border: 2px solid gray;
+    cursor: inherit;
+}
+
+#terminal {
+    position: absolute;
+    right: 2%;
+    top: 87%;
+    width: 40%;
+    height: 20%;
+    /* 수정된 높이 */
+    overflow: hidden;
+    transform: translateY(-50%);
+    /* terminal이 아래쪽에 있으므로, positive 값을 사용해야 합니다. */
+    border: 2px solid gray;
+    cursor: inherit;
+}
+
+#container-lobby {
+    position: absolute;
+    top: 39%;
+    left: 50%;
+    width: 40%;
+    height: 72%;
+    overflow: hidden;
+    transform: translate(-50%, -50%);
+    border: 2px solid gray;
+    cursor: inherit;
+}
+
+#terminal-lobby {
+    position: absolute;
+    left: 50%;
+    top: 87%;
+    width: 40%;
+    height: 20%;
+    /* 수정된 높이 */
+    overflow: hidden;
+    transform: translate(-50%, -50%);
+    /* terminal이 아래쪽에 있으므로, positive 값을 사용해야 합니다. */
+    border: 2px solid gray;
+    cursor: inherit;
+>>>>>>> 2ef99a112b9dbb8223d92ba32312126d7c27c26f
 }
 
 /* -------------------------------------------------------- */
@@ -371,6 +686,7 @@ button:focus {
 } */
 
 #compile-button {
+<<<<<<< HEAD
   position: absolute;
   right: 3%;
   top: 2%;
@@ -395,6 +711,32 @@ button:focus {
     font-size: 1em;
     padding: 5px 10px;
   }
+=======
+    position: absolute;
+    right: 3%;
+    top: 2%;
+    padding: 10px 20px;
+    width: 150px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #ff0000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
+#compile-button:hover {
+    background-color: #cc0000;
+}
+
+@media only screen and (max-width: 600px) {
+    #compile-button {
+        font-size: 1em;
+        padding: 5px 10px;
+    }
+>>>>>>> 2ef99a112b9dbb8223d92ba32312126d7c27c26f
 }
 
 
@@ -402,6 +744,7 @@ button:focus {
 /* -------------------------------------------------------- */
 
 #start-button {
+<<<<<<< HEAD
   position: absolute;
   right: 5%;
   bottom: 5%;
@@ -514,3 +857,30 @@ button:focus {
     padding: 5px 10px;
   }
 }
+=======
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
+    padding: 10px 20px;
+    width: 200px;
+    font-size: 2em;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #ff0000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
+#start-button:hover {
+    background-color: #cc0000;
+}
+
+@media only screen and (max-width: 600px) {
+    #start-button {
+        font-size: 1em;
+        padding: 5px 10px;
+    }
+}
+>>>>>>> 2ef99a112b9dbb8223d92ba32312126d7c27c26f

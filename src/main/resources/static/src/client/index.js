@@ -27,12 +27,12 @@ Promise.all([
 
 ]).then(() => {
 
-  window.addEventListener('keydown' ,handleEnterKey);
+  window.addEventListener('keydown', handleEnterKey);
   usernameInput.focus();
 
   playButton.onclick = () => {
 
-    window.removeEventListener('keydown' ,handleEnterKey);
+    window.removeEventListener('keydown', handleEnterKey);
     initState();
     startCapturingInput();
     sessionStorage.setItem('username', usernameInput.value);
