@@ -2,8 +2,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center; /* Vertical centering */
-    height: 100vh; /* Takes full viewport height */
-    padding: 0 5%; /* Optional: Adds some space on the sides */
     background-color: transparent;
 }
 
@@ -196,30 +194,14 @@ body {
 #play-menu {
     position: absolute;
     top: 50%;
-    left: 25%;
+    left: 35%;
     transform: translate(-50%, -50%);
-    width: 30%;
+    width: 700px;
     padding: 20px;
     text-align: center;
     background: rgba(0, 0, 0, 0.7);
     border-radius: 10px;
     color: #ffffff;
-}
-
-#play-menu p {
-    margin-bottom: 0;
-}
-
-#play-menu button {
-    background: #ff0000;
-    border: none;
-    color: #ffffff;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-#play-menu button:hover {
-    background: #cc0000;
 }
 
 #play-menu h1 {
