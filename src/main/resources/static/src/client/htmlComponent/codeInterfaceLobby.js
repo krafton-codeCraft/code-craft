@@ -1,3 +1,5 @@
+// import theme from 'monaco-themes/themes/Active4D.json';
+
 let editor
 const parseTmTheme = require('monaco-themes').parseTmTheme;
 document.addEventListener('DOMContentLoaded', function () {
