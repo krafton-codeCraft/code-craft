@@ -281,9 +281,9 @@ button:focus {
 #container {
   position: absolute;
   right: 2%;
-  top: 34%;
+  top: 39%;
   width: 40%;
-  height: 62%;
+  height: 72%;
   /* 수정된 높이 */
   overflow: hidden;
   transform: translateY(-50%);
@@ -294,9 +294,9 @@ button:focus {
 #terminal {
   position: absolute;
   right: 2%;
-  top: 82%;
+  top: 87%;
   width: 40%;
-  height: 30%;
+  height: 20%;
   /* 수정된 높이 */
   overflow: hidden;
   transform: translateY(-50%);
@@ -307,10 +307,10 @@ button:focus {
 
 #container-lobby {
   position: absolute;
-  top: 34%;
+  top: 39%;
   left: 50%;
   width: 40%;
-  height: 62%;
+  height: 72%;
   overflow: hidden;
   transform: translate(-50%, -50%);
   border: 2px solid gray;
@@ -320,9 +320,9 @@ button:focus {
 #terminal-lobby {
   position: absolute;
   left: 50%;
-  top: 82%;
+  top: 87%;
   width: 40%;
-  height: 30%;
+  height: 20%;
   /* 수정된 높이 */
   overflow: hidden;
   transform: translate(-50%, -50%);

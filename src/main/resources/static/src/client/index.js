@@ -24,7 +24,7 @@ const usernamereInput = document.getElementById('username-reinput');
 let flag = true;
 
 Promise.all([
-  connect(onGameOver),
+  // connect(onGameOver),
   downloadAssets(),
   pixiApp(),
 ]).then(() => {
@@ -32,40 +32,14 @@ Promise.all([
   playMenu.classList.remove('hidden');
   usernameInput.focus();
   playButton.onclick = () => {
-    gamecanvers.classList.remove('hidden');
+    // gamecanvers.classList.remove('hidden');
     window.removeEventListener('keydown' ,handleEnterKey);
     // Play!
-    play(usernameInput.value);
-    playMenu.classList.add('hidden');
-    initState();
-    startCapturingInput();
-    setLeaderboardHidden(false);
+    window.location.href = '/lobby.html';
+    // 로그인 기능 여기다가 넣어야 함
+    // 아이디랑 비빌번호를 기억해서 저장해 둬야 함
   };
 }).catch(console.error);
-
-function onGameOver(obj) {
-  gamecanvers.classList.add('hidden');
-  window.addEventListener('keydown' ,handleEnterKey);
-  stopCapturingInput();
-  setLeaderboardHidden(true);
-  gameoverMenu.classList.remove('hidden');
-
-  if(flag){// 전판과 똑같은 이름으로 복사
-    usernamereInput.value = usernameInput.value;
-    flag = false;
-  }
-  usernamereInput.focus();
-  replayButton.onclick = () => {
-    gamecanvers.classList.remove('hidden');
-    window.removeEventListener('keydown' ,handleEnterKey);
-    play(usernamereInput.value);
-    gameoverMenu.classList.add('hidden');
-    initState();
-    startCapturingInput();
-    setLeaderboardHidden(false);
-  }
-}
-
 
 // 엔터 키 이벤트를 감지하는 함수
 function handleEnterKey(event) {

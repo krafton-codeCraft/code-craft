@@ -48,6 +48,6 @@ function getEditorValue() {
 }
 
 function code_check(result, status) {
-    const terminal = document.getElementById('terminal');
+    const terminal = document.getElementById('terminal-lobby');
     terminal.innerHTML = `${status}: ${result}`;
 }
