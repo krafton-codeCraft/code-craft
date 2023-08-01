@@ -12,7 +12,6 @@ import './css/bootstrap-reboot.css';
 // import './css/main.css';
 import './css/ingame.css';
 import pixiApp from './pixi/app.js';
-import { isObject } from 'lodash';
 
 const gamecanvers = document.getElementById('game-canvas');
 
