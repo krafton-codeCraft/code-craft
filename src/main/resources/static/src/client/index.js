@@ -27,12 +27,12 @@ Promise.all([
 
 ]).then(() => {
 
-  window.addEventListener('keydown' ,handleEnterKey);
+  window.addEventListener('keydown', handleEnterKey);
   usernameInput.focus();
 
   playButton.onclick = () => {
 
-    window.removeEventListener('keydown' ,handleEnterKey);
+    window.removeEventListener('keydown', handleEnterKey);
     initState();
     startCapturingInput();
     sessionStorage.setItem('username', usernameInput.value);
@@ -69,4 +69,8 @@ document.getElementById('gotoIngame').addEventListener('click', function () {
 
 document.getElementById('gotoIndex').addEventListener('click', function () {
   window.location.href = '/index.html';
+});
+
+document.getElementById('play-button').addEventListener('click', function () {
+  window.location.href = '/lobby.html';
 });

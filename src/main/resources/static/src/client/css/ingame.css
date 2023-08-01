@@ -97,7 +97,7 @@ button:focus {
   width: 30%;
   padding: 20px;
   text-align: center;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0,0,0,0.7);
   border-radius: 10px;
   color: #ffffff;
 }
@@ -107,8 +107,7 @@ button:focus {
   color: #ff0000;
 }
 
-#play-menu input,
-#play-menu button {
+#play-menu input, #play-menu button {
   width: 30%;
   margin: 10px 0;
   padding: 10px;
@@ -200,117 +199,37 @@ button:focus {
 
 /*------------------------------------*/
 
-#inputbar {
-  position: fixed;
-  bottom: 10%;
-  left: 0;
-  right: 0;
-  width: 300px;
-  margin: auto;
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 10px;
-  border-radius: 5px;
-}
-
-#checkbox {
-
-  position: fixed;
-  bottom: 20%;
-  left: 0;
-  right: 0;
-  width: 300px;
-  margin: auto;
-  padding: 10px;
-  border-radius: 5px;
-  color: white;
-  text-align: center;
-
-}
-
-
-#micimage {
-
-  position: fixed;
-  bottom: 10%;
-  left: 0;
-  right: 350px;
-  width: 50px;
-  margin: auto;
-  padding: 10px;
-  border-radius: 5px;
-
-}
-
-#micstatus {
-
-  position: fixed;
-  bottom: 10%;
-  left: 0;
-  right: 550px;
-  width: 150px;
-  margin: auto;
-  padding: 10px;
-  border-radius: 5px;
-  color: white;
-  text-align: center;
-
-}
-
-#game-over {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translateY(-50%) translateX(-50%);
-  padding: 20px 30px;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 5px;
-  text-align: center;
-}
-
-#game-over p {
-  margin-bottom: 0;
-}
-
-#game-over input {
-  font-size: 18px;
-  outline: none;
-  border: none;
-  border-bottom: 1px solid black;
-  margin-bottom: 5px;
-  padding: 3px;
-  text-align: center;
-}
-
-#game-over input:hover {
-  outline: none;
-}
-
 #container {
   position: absolute;
-  right: 2%;
   top: 39%;
+  right: 3%;
   width: 40%;
   height: 72%;
-  /* 수정된 높이 */
-  overflow: hidden;
+  overflow: auto; 
   transform: translateY(-50%);
   border: 2px solid gray;
-  cursor: inherit;
 }
 
 #terminal {
   position: absolute;
-  right: 2%;
+  right: 3%;
   top: 87%;
   width: 40%;
   height: 20%;
-  /* 수정된 높이 */
-  overflow: hidden;
+  overflow: auto; 
   transform: translateY(-50%);
-  /* terminal이 아래쪽에 있으므로, positive 값을 사용해야 합니다. */
+  border: 2px solid gray;
+}
+
+
+#container-body {
+  position: absolute;
+  top: 53%;
+  left: 50%;
+  width: 94%;
+  height: 87%;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
   border: 2px solid gray;
   cursor: inherit;
 }
@@ -326,19 +245,6 @@ button:focus {
   border: 2px solid gray;
   cursor: inherit;
 }
-
-#container-lobby-body {
-  position: absolute;
-  top: 53%;
-  left: 50%;
-  width: 94%;
-  height: 87%;
-  overflow: hidden;
-  transform: translate(-50%, -50%);
-  border: 2px solid gray;
-  cursor: inherit;
-}
-
 
 #terminal-lobby {
   position: absolute;
@@ -432,9 +338,7 @@ button:focus {
 
 /* -------------------------------------------------------- */
 
-#deck-one,
-#deck-two,
-#deck-thress {
+#deck-one, #deck-two, #deck-thress {
   position: absolute;
   top: 2%;
   padding: 10px 20px;
@@ -442,8 +346,7 @@ button:focus {
   font-size: 20px;
   font-weight: bold;
   color: #ffffff;
-  background-color: rgba(128, 128, 128, 0.5);
-  /* half-transparent grey */
+  background-color: rgba(128, 128, 128, 0.5);  /* half-transparent grey */
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -455,27 +358,20 @@ button:focus {
 }
 
 #deck-two {
-  left: 18%;
-  /* Adjust as necessary */
+  left: 18%; /* Adjust as necessary */
 }
 
 #deck-thress {
-  left: 33%;
-  /* Adjust as necessary */
+  left: 33%; /* Adjust as necessary */
 }
 
-#deck-one:active,
-#deck-two:active,
-#deck-thress:active {
+#deck-one:active, #deck-two:active, #deck-thress:active {
   color: #000000;
   background-color: #ffffff;
 }
 
 @media only screen and (max-width: 600px) {
-
-  #deck-one,
-  #deck-two,
-  #deck-thress {
+  #deck-one, #deck-two, #deck-thress {
     font-size: 1em;
     padding: 5px 10px;
   }
@@ -491,8 +387,7 @@ button:focus {
   font-size: 2em;
   font-weight: bold;
   color: #ffffff;
-  background-color: #28a745;
-  /* updated color */
+  background-color: #28a745; /* updated color */
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -508,8 +403,7 @@ button:focus {
   font-size: 2em;
   font-weight: bold;
   color: #ffffff;
-  background-color: #28a745;
-  /* updated color */
+  background-color: #28a745; /* updated color */
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -517,16 +411,12 @@ button:focus {
   right: 5%;
 }
 
-#lobby-module:hover,
-#lobby-event:hover {
-  background-color: #218838;
-  /* updated hover color */
+#lobby-module:hover, #lobby-event:hover {
+  background-color: #218838; /* updated hover color */
 }
 
 @media only screen and (max-width: 600px) {
-
-  #lobby-module,
-  #lobby-event {
+  #lobby-module, #lobby-event {
     font-size: 1em;
     padding: 5px 10px;
   }
