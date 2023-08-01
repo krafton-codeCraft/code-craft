@@ -54,6 +54,16 @@ public class AwsS3ClassLoader extends ClassLoader {
     }
 
     @Override
+    public Class<?> loadClass(String name) throws ClassNotFoundException {
+        try {
+            return super.loadClass(name);
+        } catch (ClassNotFoundException e) {
+            System.out.println("load class 하지 못했으므로 find class 호출");
+            return findClass(name);
+        }
+    }
+
+    @Override
     protected Class<?> findClass(String name) { // sa/FireBot.class
         try {
             if (name.startsWith("com.bknote71.codecraft.robocode.api") || name.startsWith("com.bknote71.codecraft.robocode.event"))
@@ -162,12 +172,12 @@ public class AwsS3ClassLoader extends ClassLoader {
     }
 
     // 다른 process 를 실행하여 컴파일하도록 한다. (블로킹 작업 필수)
-    private CompileResult compileRobot(String author, String javaName, String content) {
+    private CompileResult compileRobot(String author, String javaName, String code) {
         String javaFileName = javaName + ".java";
         String javaClassName = javaName + ".class";
         try (FileWriter writer = new FileWriter(filePath + javaFileName)) {
             // 1. 파일 쓰기 작업
-            writer.write(content);
+            writer.write(code);
             writer.flush();
             writer.close();
 
@@ -216,7 +226,7 @@ public class AwsS3ClassLoader extends ClassLoader {
             return new CompileResult(-1, e.toString());
         }
 
-        return new CompileResult(0, "success", javaName, javaClassName);
+        return new CompileResult(0, "success", javaName, javaClassName, code);
     }
 
     private void uploadFileToS3(String key, File file) {

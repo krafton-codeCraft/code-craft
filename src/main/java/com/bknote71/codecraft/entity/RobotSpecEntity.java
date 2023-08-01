@@ -15,6 +15,7 @@ public class RobotSpecEntity {
     private String name;
     private String author;
     private String fullClassName;
+    private String code; // java code
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

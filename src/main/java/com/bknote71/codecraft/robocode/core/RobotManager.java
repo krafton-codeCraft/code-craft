@@ -1,5 +1,8 @@
 package com.bknote71.codecraft.robocode.core;
 
+import com.bknote71.codecraft.session.ClientSession;
+import com.bknote71.codecraft.session.ClientSessionManager;
+
 import java.util.HashMap;
 import java.util.Map;
 
