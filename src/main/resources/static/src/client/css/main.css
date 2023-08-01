@@ -13,6 +13,7 @@ hr {
   margin: 1rem 0;
   width: 100%;
 }
+
 #gotoLobby {
 
   font-size: 18px;
@@ -26,6 +27,7 @@ hr {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 
 }
+
 #gotoIngame {
 
   font-size: 18px;
@@ -39,6 +41,7 @@ hr {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 
 }
+
 #gotoIndex {
 
   font-size: 18px;
@@ -52,6 +55,7 @@ hr {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 
 }
+
 button {
   font-size: 18px;
   outline: none;
@@ -303,6 +307,25 @@ button:focus {
   /* terminal이 아래쪽에 있으므로, positive 값을 사용해야 합니다. */
   border: 2px solid gray;
   cursor: inherit;
+}
+
+#compile-button {
+  font-size: 18px;
+  outline: none;
+  border: none;
+  position: absolute;
+  /* Add this */
+  right: 0;
+  /* Add this */
+  top: 0;
+  /* Add this */
+  /* Add this */
+  color: whitesmoke;
+  background-color: green;
+  padding: 5px 20px;
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 #container-lobby {
