@@ -37,7 +37,7 @@ public class HomeController {
     @PostMapping("/change/robot")
     @ResponseBody
     public ResponseEntity<?> changeRobotInBattle(@AuthenticationPrincipal(expression = "username") String username,
-                                                 int robotId, int specIndex, String code) { // author == username
+            int robotId, int specIndex, String code) { // author == username
         CompileResult result = AwsS3ClassLoader.Instance.createRobot(username, code);
         if (result.exitCode != 0)
             return new ResponseEntity<>(result, HttpStatus.OK);

@@ -118,11 +118,21 @@ export const requestTodayRanking = () => {
 };
 
 function compile_code() {
-  const author = username;
   const content = getEditorValue();
   const url = `http://${addr}:8080/create/robot`;
-  let Data = { username: author, code: content }
-  console.log(author, content)
+  let Data = { code: content };
+  console.log(content);
+  fetch_code(Data, url);
+};
+
+function change_code(index) {
+  const content = getEditorValue();
+  const url = `http://${addr}:8080/change/robot`;
+  let Data = { robotId: robotId, specIndex: index, code: content }
+  fetch_code(Data, url);
+};
+
+function fetch_code(Data, url) {
   fetch(url, {
     method: 'POST',
     headers: {
@@ -139,8 +149,10 @@ function compile_code() {
     .catch(error => {
       console.error('Error:', error);
     });
-};
+}
+window.compile_code = change_code;
 window.compile_code = compile_code;
+
 // export const updateInputKeyBoardDown = throttle(20, (key) => {
 //   let dir;
 //   if (key === 38) {
