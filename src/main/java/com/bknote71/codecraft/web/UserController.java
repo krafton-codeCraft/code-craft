@@ -51,6 +51,6 @@ public class UserController {
 
     @GetMapping("/login")
     public String loginpage() {
-        return "login";
+        return "signup";
     }
 }
