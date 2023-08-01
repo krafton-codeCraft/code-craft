@@ -337,24 +337,20 @@ button:focus {
 
 /* -------------------------------------------------------- */
 
-#compile-button {
+/* #compile-button {
   font-size: 18px;
   outline: none;
   border: none;
   position: absolute;
-  /* Add this */
   right: 0;
-  /* Add this */
   top: 0;
-  /* Add this */
-  /* Add this */
   color: whitesmoke;
   background-color: green;
   padding: 5px 20px;
   border-radius: 3px;
   transition: background-color 0.2s ease;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
+} */
 
 #compile-button {
   position: absolute;
