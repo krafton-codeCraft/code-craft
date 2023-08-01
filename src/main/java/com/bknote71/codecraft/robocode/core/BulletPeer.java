@@ -10,7 +10,7 @@ public class BulletPeer {
 
     private static final int EXPLOSION_LENGTH = 17;
 
-    private static final int RADIUS = 3;
+    private static final int RADIUS = 10;
 
     protected final RobotPeer owner;
     private final BattleRules battleRules;
@@ -25,7 +25,7 @@ public class BulletPeer {
     protected double power;
     private double deltaX;
     private double deltaY;
-    private double velocity = 2; // 임시값
+    private double velocity = 10; // 임시값
 
     private double lastX;
     private double lastY;
