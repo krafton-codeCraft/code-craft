@@ -14,6 +14,12 @@ const registerLink = document.querySelector('.register-link');
 
 let flag = true;
 
+registerLink.addEventListener('click', function () {
+    wrapper.classList.add('active');
+});
+loginLink.addEventListener('click', function () {
+    wrapper.classList.remove('active');
+});
 
 Promise.all([
 
@@ -22,13 +28,6 @@ Promise.all([
 
 ]).then(() => {
 
-    registerLink.addEventListener('click', function () {
-        wrapper.classList.add('active');
-    });
-
-    loginLink.addEventListener('click', function () {
-        wrapper.classList.remove('active');
-    });
     window.addEventListener('keydown', handleEnterKey);
     usernameInput.focus();
 

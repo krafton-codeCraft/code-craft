@@ -196,7 +196,7 @@ body {
 #play-menu {
     position: absolute;
     top: 50%;
-    left: 25%;
+    left: 30%;
     transform: translate(-50%, -50%);
     width: 30%;
     padding: 20px;
