@@ -28,7 +28,7 @@ public class BasicRobotProxy extends RobotProxy implements IBasicRobotPeer {
 
     // 로봇 개인이 관리하는 불릿
     private final Map<Integer, Bullet> bullets = new ConcurrentHashMap<Integer, Bullet>();
-    private int nextBulletId; // 0 is used for bullet explosions
+    // private int nextBulletId; // 0 is used for bullet explosions
 
     private final AtomicInteger setCallCount = new AtomicInteger(0);
     private final AtomicInteger getCallCount = new AtomicInteger(0);
@@ -354,7 +354,7 @@ public class BasicRobotProxy extends RobotProxy implements IBasicRobotPeer {
         BulletCommand wrapper;
         Event currentTopEvent = eventManager.getCurrentTopEvent();
 
-        nextBulletId++;
+        int nextBulletId = BulletIdGenerator.Instance.getId();
 
         if (currentTopEvent != null && currentTopEvent.getTime() == status.getTime()
                 && status.getGunHeadingRadians() == status.getRadarHeadingRadians()
