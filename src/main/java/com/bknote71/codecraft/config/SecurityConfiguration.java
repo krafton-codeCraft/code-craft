@@ -29,7 +29,9 @@ public class SecurityConfiguration {
                 .antMatchers(permitAllResources).permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin();
+                .formLogin()
+                .loginPage("/login")
+                .permitAll();
         return http.build();
     }
 
