@@ -4,6 +4,7 @@
     align-items: center; /* Vertical centering */
     height: 100vh; /* Takes full viewport height */
     padding: 0 5%; /* Optional: Adds some space on the sides */
+    background-color: transparent;
 }
 
 html,
