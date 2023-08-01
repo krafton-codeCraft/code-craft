@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-
+import java.util.Arrays;
 
 public class AwsS3ClassLoader extends ClassLoader {
 
@@ -17,11 +17,10 @@ public class AwsS3ClassLoader extends ClassLoader {
 
     private static final String S3_URL = "https://s3.amazonaws.com/";
 
-
     private String packagePath = "com.bknote71.codecraft.robocode.sample";
     private String importPath = "import com.bknote71.codecraft.robocode.api.Robot;";
-    private String filePath = "/Users/bknote71/Jungle/code-craft/sample/";
-    private String outputPath = "/Users/bknote71/Jungle/sample/";
+    private String filePath = "C:\\Users\\rjadm\\OneDrive\\Desktop\\codeKraft\\code-craft\\sample\\";
+    private String outputPath = "C:\\Users\\rjadm\\OneDrive\\Desktop\\codeKraft\\code-craft\\robot_sample\\";
     private String eventPath = "import com.bknote71.codecraft.robocode.event.";
 
     // amazon s3
@@ -66,7 +65,8 @@ public class AwsS3ClassLoader extends ClassLoader {
     @Override
     protected Class<?> findClass(String name) { // sa/FireBot.class
         try {
-            if (name.startsWith("com.bknote71.codecraft.robocode.api") || name.startsWith("com.bknote71.codecraft.robocode.event"))
+            if (name.startsWith("com.bknote71.codecraft.robocode.api")
+                    || name.startsWith("com.bknote71.codecraft.robocode.event"))
                 return Class.forName(name);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -146,8 +146,7 @@ public class AwsS3ClassLoader extends ClassLoader {
         }
 
         // 완성된 .class
-        String realContent
-                = "package " + packagePath + ";\n" +
+        String realContent = "package " + packagePath + ";\n" +
                 importPath + "\n" +
                 "import com.bknote71.codecraft.robocode.event.ScannedRobotEvent;\n" +
                 "import com.bknote71.codecraft.robocode.event.HitByBulletEvent;\n" +
@@ -187,7 +186,7 @@ public class AwsS3ClassLoader extends ClassLoader {
             String outputDir = outputPath + author;
             String sourceFile = "sample/" + javaFileName;
 
-            String[] cmd = new String[]{
+            String[] cmd = new String[] {
                     "javac",
                     "-cp",
                     String.format("%s:%s", javaPath, libPath),
@@ -195,6 +194,8 @@ public class AwsS3ClassLoader extends ClassLoader {
                     outputDir,
                     sourceFile
             };
+
+            System.out.println("cmd: " + Arrays.toString(cmd));
 
             ProcessBuilder processBuilder = new ProcessBuilder(cmd);
             Process process = processBuilder.start();
@@ -204,7 +205,7 @@ public class AwsS3ClassLoader extends ClassLoader {
                 return new CompileResult(exitCode, new String(error.readAllBytes()));
             }
 
-            String[] copyCmd = new String[]{
+            String[] copyCmd = new String[] {
                     "cp",
                     "-f",
                     String.format("%s/%s/%s", outputDir, packagePath.replace(".", "/"), javaClassName),
@@ -236,7 +237,7 @@ public class AwsS3ClassLoader extends ClassLoader {
 
     private void removeDir(String path) {
         try {
-            String[] removeCmd = new String[]{
+            String[] removeCmd = new String[] {
                     "rm",
                     "-rf",
                     path

@@ -29,5 +29,6 @@ public class DataInitRunner implements CommandLineRunner {
 //        robotSpecEntity.setUser(user);
 //        robotSpecEntity.setAuthor("user2");
 //        robotSpecRepository.save(robotSpecEntity);
+    
     }
 }
