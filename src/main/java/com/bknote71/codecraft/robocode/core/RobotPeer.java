@@ -449,7 +449,6 @@ public class RobotPeer {
     }
 
     private void fireBullets(List<BulletCommand> bulletCommands) {
-        System.out.println(Thread.currentThread() + " " + Thread.currentThread().getName() + " bullet cmd size: " + bulletCommands.size());
         if (bulletCommands == null || bulletCommands.isEmpty()) {
             return;
         }
@@ -720,7 +719,7 @@ public class RobotPeer {
             y += velocity * cos(bodyHeading);
 
             // 위치 보정
-            int mapSize = 2000;
+            int mapSize = 1000;
             x = (x + mapSize) % mapSize;
             y = (y + mapSize) % mapSize;
         }
