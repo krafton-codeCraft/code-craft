@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="ID=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- 수정됨 -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="/assets/icon64.png">
     <meta property="description"
@@ -21,7 +21,7 @@
 
         gtag('config', 'UA-58664433-3');
     </script>
-    <script src="../static/src/client/signup.js"></script>
+    <script src="../signup.js"></script>
     <!-- <script src="../static/src/client/htmlComponent/login.js"></script> -->
 </head>
 
@@ -30,16 +30,15 @@
     <div class="wrapper">
         <div class="form-box-login">
             <h2>Login</h2>
-            <form action="#">
+            <form action="/login" method="POST"> <!-- 수정됨 -->
                 <div class="input-box">
                     <span class="icon"><ion-icon name="planet"></ion-icon></span>
-                    <input type="email" required>
+                    <input type="email" name="username" required> <!-- name 추가됨 -->
                     <label>Email</label>
                 </div>
                 <div class="input-box">
-                    <span class="icon"><ion-icon name="lock-closed"></ion-icon>
-                    </span>
-                    <input type="password" required>
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    <input type="password" name="password" required> <!-- name 추가됨 -->
                     <label>Password</label>
                 </div>
                 <button type="submit" class="btn">Login</button>
@@ -51,21 +50,21 @@
 
         <div class="form-box-registration">
             <h2>Registration</h2>
-            <form action="#">
+            <form action="/signup" method="POST"> <!-- 수정됨 -->
                 <div class="input-box">
                     <span class="icon"><ion-icon name="rocket"></ion-icon></span>
-                    <input type="text" required>
+                    <input type="text" name="username" required> <!-- name 추가됨 -->
                     <label>Username</label>
                 </div>
                 <div class="input-box">
                     <span class="icon"><ion-icon name="planet"></ion-icon></span>
-                    <input type="email" required>
+                    <input type="email" name="email" required>
+                    <!-- name 추가됨 (예시로 email을 추가했지만 서버에서는 처리하지 않는 것으로 보입니다.) -->
                     <label>Email</label>
                 </div>
                 <div class="input-box">
-                    <span class="icon"><ion-icon name="lock-closed"></ion-icon>
-                    </span>
-                    <input type="password" required>
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    <input type="password" name="password" required> <!-- name 추가됨 -->
                     <label>Password</label>
                 </div>
                 <button type="submit" class="btn">Register</button>
@@ -76,7 +75,7 @@
         </div>
     </div>
 
-
+    <!-- ionicons 스크립트 추가 -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
