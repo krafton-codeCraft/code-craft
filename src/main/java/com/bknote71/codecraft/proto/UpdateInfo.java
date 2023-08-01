@@ -37,10 +37,12 @@ public class UpdateInfo {
 
     @Data
     public static class BulletInfo {
+        int id;
         double x;
         double y;
 
-        public BulletInfo(double x, double y) {
+        public BulletInfo(int id, double x, double y) {
+            this.id = id;
             this.x = x;
             this.y = y;
         }

@@ -8,7 +8,8 @@ import com.bknote71.codecraft.robocode.proxy.BasicRobotProxy;
 import com.bknote71.codecraft.robocode.proxy.RobotProxy;
 import com.bknote71.codecraft.session.ClientSession;
 import com.bknote71.codecraft.util.Utils;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.geom.Arc2D;
 import java.awt.geom.Rectangle2D;
@@ -21,8 +22,9 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import static java.lang.Math.*;
 
-@Slf4j
 public class RobotPeer {
+
+    private static final Logger log = LoggerFactory.getLogger(RobotPeer.class);
 
     public static final int
             WIDTH = 36,

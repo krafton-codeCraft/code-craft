@@ -35,9 +35,7 @@ public class RobotThreadManager {
     // 모든 스레드를 관리하는 스레드 매니저
     public void start(ThreadManager threadManager) {
         try {
-            System.out.println("start robot proxy");
             threadManager.addThreadGroup(runThreadGroup, robotProxy);
-
             runThread = new Thread(runThreadGroup, robotProxy, robotProxy.getRobotPeer().getId() + ":" + robotProxy.getStatics().getName());
             runThread.setDaemon(true);
             runThread.setPriority(Thread.NORM_PRIORITY - 1);
