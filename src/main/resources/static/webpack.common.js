@@ -42,6 +42,11 @@ module.exports = {
           'css-loader',
         ],
       },
+      {
+        test: /\.json$/,
+        exclude: /node_modules/,
+        loader: 'json-loader',
+      },
     ],
   },
   plugins: [
