@@ -139,7 +139,10 @@ public class Battle {
     }
 
     public void changeRobot(int robotId, RobotPeer newRobot) {
-
+        // 뭘하냐 여기서...
+        System.out.println("change robot " + robotId);
+        leaveBattle(robotId);
+        enterBattle(newRobot);
     }
 
     // 이벤트 등록 및 이벤트 처리
