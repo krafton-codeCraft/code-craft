@@ -1,8 +1,7 @@
 let editor
-
+const parseTmTheme = require('monaco-themes').parseTmTheme;
 document.addEventListener('DOMContentLoaded', function () {
   require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' } });
-
   let proxy = URL.createObjectURL(new Blob([`
         self.MonacoEnvironment = {
             baseUrl: 'https://unpkg.com/monaco-editor@latest/min/'
@@ -11,7 +10,8 @@ document.addEventListener('DOMContentLoaded', function () {
     `], { type: 'text/javascript' }));
 
   window.MonacoEnvironment = { getWorkerUrl: () => proxy };
-
+  monaco.editor.defineTheme('mytheme', themeData);
+  monaco.editor.setTheme('mytheme');
   require(["vs/editor/editor.main"], function () {
     editor = monaco.editor.create(document.getElementById('container-lobby-body'), {
       value: `public class StupidBot extends Robot {
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
 }
     `,
       language: 'java',
-      theme: 'hc-black'
+      theme: 'vs-dark'
     });
   });
 });
@@ -53,6 +53,6 @@ function code_check(result, status) {
     terminal.innerHTML = `<span style="font-weight: bold; color: red;" > ${status}: </span> <span style="font-weight: bold; color: red;">${result}</span>`;
   }
   else {
-    terminal.innerHTML = `<span style="font-weightL bold; color: green;" > ${status}: </span> <span style="font-weight: bold; color: green;"${result}</span>`;
+    terminal.innerHTML = `<span style="font-weight: bold; color: green;" > ${status}: </span> <span style="font-weight: bold; color: green;"${result}</span>`;
   }
 }
