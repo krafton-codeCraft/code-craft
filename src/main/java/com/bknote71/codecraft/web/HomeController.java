@@ -39,7 +39,8 @@ public class HomeController {
 
     @PostMapping("/create/robot")
     @ResponseBody
-    public ResponseEntity<?> createRobot(@AuthenticationPrincipal(expression = "username") String username, String code) { // author == username
+    public ResponseEntity<?> createRobot(@AuthenticationPrincipal(expression = "username") String username,
+            String code) { // author == username
         if (username == null) {
             System.out.println("말도안됨");
             return null;
@@ -49,7 +50,8 @@ public class HomeController {
         CompileResult result = classLoader.createRobot(username, code);
 
         if (result.exitCode == 0) {
-            robotSpecService.saveRobotSpec(username, result.getRobotName(), result.getFullClassName(), result.getCode());
+            robotSpecService.saveRobotSpec(username, result.getRobotName(), result.getFullClassName(),
+                    result.getCode());
         }
 
         return new ResponseEntity<>(result, HttpStatus.OK);
@@ -58,14 +60,15 @@ public class HomeController {
     @PostMapping("/change/robot")
     @ResponseBody
     public ResponseEntity<?> changeRobotInBattle(@AuthenticationPrincipal(expression = "username") String username,
-                                                 int robotId, int specIndex, String code) { // author == username
+            int robotId, int specIndex, String code) { // author == username
         AwsS3ClassLoader classLoader = new AwsS3ClassLoader("robot-class");
         CompileResult result = classLoader.createRobot(username, code);
         if (result.exitCode != 0)
             return new ResponseEntity<>(result, HttpStatus.OK);
 
         // 컴파일에 성공하면 신호를 줘야함
-        String ret = robotSpecService.changeRobotSpec(username, robotId, specIndex, result.robotName, result.fullClassName, code);
+        String ret = robotSpecService.changeRobotSpec(username, robotId, specIndex, result.robotName,
+                result.fullClassName, code);
         if (ret == null) {
             System.out.println("change robot spec 실패");
             return null;

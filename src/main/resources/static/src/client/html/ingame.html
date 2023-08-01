@@ -60,10 +60,10 @@
   </div>
 
   <div id="container">
-    <button id="deck-one">Deck One</button>
-    <button id="deck-two">Deck Two</button>
-    <button id="deck-thress">Deck Three</button>
-    <button id="compile-button" onclick="compile_code()">Run Code</button>
+    <button id="deck-one" onclick="selectDeckIndex(0)">Deck One</button>
+    <button id="deck-two" onclick="selectDeckIndex(1)">Deck Two</button>
+    <button id="deck-thress" onclick="selectDeckIndex(2)">Deck Three</button>
+    <button id="compile-button" onclick="change_code(selectedDeck)">Run Code</button> <!-- index 값을 넘겨줌 -->
   </div>
   <div id="terminal"></div>
   <script src="../src/client/htmlComponent/codeInterface.js"></script>
