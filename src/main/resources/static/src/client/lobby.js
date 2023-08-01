@@ -16,23 +16,23 @@ const gamecanvers = document.getElementById('game-canvas');
 
 const playMenu = document.getElementById('play-menu');
 const playButton = document.getElementById('play-button');
-const usernameInput = document.getElementById('username-input');
 
-const gameoverMenu = document.getElementById('game-over');
 const replayButton = document.getElementById('replay-button');
-const usernamereInput = document.getElementById('username-reinput');
 let flag = true;
 
 Promise.all([
-  connect(onGameOver),
+  // connect(onGameOver),
   downloadAssets(),
   pixiApp(),
 ]).then(() => {
   
   window.addEventListener('keydown' ,handleEnterKey);
   const username = sessionStorage.getItem('username');
+  // play(username);
+  console(username);
 
   playButton.onclick = () => {
+
     gamecanvers.classList.remove('hidden');
     window.removeEventListener('keydown' ,handleEnterKey);
     // Play with the username retrieved from sessionStorage
@@ -41,30 +41,13 @@ Promise.all([
     initState();
     startCapturingInput();
     setLeaderboardHidden(false);
+
   };
+
+
+
+
 }).catch(console.error);
-
-function onGameOver(obj) {
-  window.addEventListener('keydown' ,handleEnterKey);
-  stopCapturingInput();
-  setLeaderboardHidden(true);
-  gameoverMenu.classList.remove('hidden');
-
-  if(flag){// 전판과 똑같은 이름으로 복사
-    usernamereInput.value = usernameInput.value;
-    flag = false;
-  }
-  usernamereInput.focus();
-  replayButton.onclick = () => {
-    gamecanvers.classList.remove('hidden');
-    window.removeEventListener('keydown' ,handleEnterKey);
-    play(usernamereInput.value);
-    gameoverMenu.classList.add('hidden');
-    initState();
-    startCapturingInput();
-    setLeaderboardHidden(false);
-  }
-}
 
 
 // 엔터 키 이벤트를 감지하는 함수
