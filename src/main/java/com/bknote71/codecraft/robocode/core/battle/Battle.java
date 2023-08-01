@@ -9,6 +9,8 @@ import com.bknote71.codecraft.session.ClientSession;
 import com.bknote71.codecraft.session.packet.TriConsumer;
 import com.bknote71.codecraft.proto.*;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.geom.Arc2D;
 import java.util.*;
@@ -17,8 +19,10 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-@Slf4j
+
 public class Battle {
+
+    private static final Logger log = LoggerFactory.getLogger(Battle.class);
 
     private TimerTask battleTask;
     private int battleId;
@@ -144,7 +148,7 @@ public class Battle {
 
     public void changeRobot(int robotId, RobotPeer newRobot) {
         // 뭘하냐 여기서...
-        System.out.println("change robot " + robotId);
+        log.info("change robot " + robotId);
         leaveBattle(robotId);
         enterBattle(newRobot);
     }
@@ -155,7 +159,6 @@ public class Battle {
     }
 
     public void addBullet(BulletPeer bullet) {
-        System.out.println(Thread.currentThread().getName() + " add bullet and bullets size: " + bullets.size());
         bullets.add(bullet);
     }
 
@@ -170,23 +173,22 @@ public class Battle {
 
     // 총알 업데이트
     private void updateBullets(UpdateInfo updateInfo) {
-        List<BulletPeer> shuffledList = new ArrayList<>(bullets);
-        Collections.shuffle(shuffledList, ThreadLocalRandom.current());
-        log.info("update bullets: " + shuffledList.size());
-        for (BulletPeer bullet : shuffledList) {
+        for (BulletPeer bullet : getBulletsAtRandom()) {
             bullet.update();
             if (bullet.getState() == BulletState.INACTIVE) {
                 bullets.remove(bullet);
             } else { // 불릿 패킷
-                updateInfo.bullets.add(new UpdateInfo.BulletInfo(bullet.getX(), bullet.getY()));
+                updateInfo.bullets.add(
+                        new UpdateInfo.BulletInfo(bullet.getId(), bullet.getX(), bullet.getY())
+                );
             }
         }
     }
 
     private void updateRobots(UpdateInfo update) {
         // move all robots
-        for (RobotPeer robotPeer : robots.values()) {
-            robotPeer.performMove(new ArrayList<>(robots.values()));
+        for (RobotPeer robotPeer :getRobotsAtRandom()) {
+            robotPeer.performMove(getRobotsAtRandom());
             // 위치 정보
             update.robots.add(
                     new UpdateInfo.RobotInfo(robotPeer.getId(), robotPeer.getName(), robotPeer.getX(), robotPeer.getY(),
@@ -198,8 +200,8 @@ public class Battle {
         // 우리 게임은 충돌이 없다.
 
         // scan after moved all
-        for (RobotPeer robotPeer : robots.values()) {
-            robotPeer.performScan(new ArrayList<>(robots.values()));
+        for (RobotPeer robotPeer : getRobotsAtRandom()) {
+            robotPeer.performScan(getRobotsAtRandom());
             // 스캐닝 정보
             Arc2D arc = robotPeer.getScanArc();
             update.scans.add(
@@ -212,7 +214,7 @@ public class Battle {
     private void handleDeadRobots(UpdateInfo update) {
         // publish dead event ??
         // 우리는 dead event 를 아직은 안만들거임 !
-        for (RobotPeer deadRobot : deathRobots) {
+        for (RobotPeer deadRobot : getDeathRobotsAtRandom()) {
             SDie diePacket = new SDie();
             diePacket.setId(deadRobot.getId());
             broadcast(diePacket);
@@ -267,9 +269,26 @@ public class Battle {
         jobSerializer.push(job, t1, t2, t3);
     }
 
-
     public void jobFlush() {
         // job 처리
         jobSerializer.flush();
+    }
+
+    private List<RobotPeer> getRobotsAtRandom() {
+        List<RobotPeer> shuffledList = new ArrayList<>(robots.values());
+        Collections.shuffle(shuffledList, ThreadLocalRandom.current());
+        return shuffledList;
+    }
+
+    private List<BulletPeer> getBulletsAtRandom() {
+        List<BulletPeer> shuffledList = new ArrayList<>(bullets);
+        Collections.shuffle(shuffledList, ThreadLocalRandom.current());
+        return shuffledList;
+    }
+
+    private List<RobotPeer> getDeathRobotsAtRandom() {
+        List<RobotPeer> shuffledList = new ArrayList<>(deathRobots);
+        Collections.shuffle(shuffledList, ThreadLocalRandom.current());
+        return shuffledList;
     }
 }

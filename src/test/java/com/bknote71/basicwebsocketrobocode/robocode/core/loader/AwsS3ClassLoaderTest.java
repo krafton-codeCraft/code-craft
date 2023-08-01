@@ -2,6 +2,9 @@ package com.bknote71.basicwebsocketrobocode.robocode.core.loader;
 
 // import com.bknote71.codecraft.robocode.loader.AwsS3ClassLoader;
 // import com.bknote71.codecraft.robocode.loader.CompileResult;
+
+import com.bknote71.codecraft.robocode.loader.AwsS3ClassLoader;
+import com.bknote71.codecraft.robocode.loader.CompileResult;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -28,34 +31,34 @@ class AwsS3ClassLoaderTest {
         String author = "sa";
         String content =
                 "public class FireBot extends Robot {\n" +
-                "    @Override\n" +
-                "    public void run() {\n" +
-                "        while (true) {\n" +
-                "            // 총알 커맨드: fire == fireBullet\n" +
-                "            // 15 도 씩 돌기\n" +
-                "            turnLeft(360);\n" +
-                "            // scan();\n" +
-                "\n" +
-                "            System.out.println(Thread.currentThread().getName() + \"스레드에서의 각도: \" + getGunHeading());\n" +
-                "            try {\n" +
-                "                Thread.sleep(1500);\n" +
-                "            } catch (InterruptedException e) {\n" +
-                "                e.printStackTrace();\n" +
-                "                throw new RuntimeException(e);\n" +
-                "            }\n" +
-                "        }\n" +
-                "    }\n" +
-                "\n" +
-                "    @Override\n" +
-                "    public void onScannedRobot(ScannedRobotEvent event) {\n" +
-                "        System.out.println(\"스캐닝 성공! 대상: \" + event.getName());\n" +
-                "        System.out.println(\"총쏘기\");\n" +
-                "        fire(1);\n" +
-                "    }\n" +
-                "}\n";
+                        "    @Override\n" +
+                        "    public void run() {\n" +
+                        "        while (true) {\n" +
+                        "            // 총알 커맨드: fire == fireBullet\n" +
+                        "            // 15 도 씩 돌기\n" +
+                        "            turnLeft(360);\n" +
+                        "            // scan();\n" +
+                        "\n" +
+                        "            System.out.println(Thread.currentThread().getName() + \"스레드에서의 각도: \" + getGunHeading());\n" +
+                        "            try {\n" +
+                        "                Thread.sleep(1500);\n" +
+                        "            } catch (InterruptedException e) {\n" +
+                        "                e.printStackTrace();\n" +
+                        "                throw new RuntimeException(e);\n" +
+                        "            }\n" +
+                        "        }\n" +
+                        "    }\n" +
+                        "\n" +
+                        "    @Override\n" +
+                        "    public void onScannedRobot(ScannedRobotEvent event) {\n" +
+                        "        System.out.println(\"스캐닝 성공! 대상: \" + event.getName());\n" +
+                        "        System.out.println(\"총쏘기\");\n" +
+                        "        fire(1);\n" +
+                        "    }\n" +
+                        "}\n";
 
-    //     CompileResult robot = AwsS3ClassLoader.Instance.createRobot(author, content);
-    //     System.out.println("content: \n");
+        //     CompileResult robot = AwsS3ClassLoader.Instance.createRobot(author, content);
+        //     System.out.println("content: \n");
     }
 //
 //    @Test
@@ -87,6 +90,33 @@ class AwsS3ClassLoaderTest {
 //        System.out.println("content: \n");
 //        System.out.println(robot);
 //    }
+
+    @Test
+    void sagki2() {
+        String author = "user0";
+        String content =
+                "public class Sagak2 extends Robot {\n" +
+                "    @Override\n" +
+                "    public void run() {\n" +
+                "        while (true) {\n" +
+                "            ahead(1000);\n" +
+                "            turnLeft(90);\n" +
+                "\n" +
+                "            try {\n" +
+                "                Thread.sleep(100);\n" +
+                "            } catch (InterruptedException e) {\n" +
+                "                throw new RuntimeException(e);\n" +
+                "            }\n" +
+                "        }\n" +
+                "    }\n" +
+                "\n" +
+                "\n" +
+                "}\n";
+
+        AwsS3ClassLoader classLoader = new AwsS3ClassLoader("robot-class");
+        CompileResult robot = classLoader.createRobot(author, content);
+        System.out.println(robot.exitCode);
+    }
 
 
 }
