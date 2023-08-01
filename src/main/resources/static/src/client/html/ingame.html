@@ -15,20 +15,15 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-58664433-3"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.2.4/pixi.min.js"></script>
   <script src="../src/client/networking.js"></script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min/vs/loader.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min/vs/editor/editor.main.nls.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min/vs/editor/editor.main.js"></script> -->
-
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'UA-58664433-3');
   </script>
   <script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
 
-  <script src="../index.js"></script>
+  <script src="../ingame.js"></script>
 
 </head>
 
@@ -39,30 +34,11 @@
   <button id="gotoIngame">go to Ingame</button>
   <button id="gotoIndex">go to Index</button>
 
-
-  <div id="play-menu" class="hidden">
-    <h1>
-      Space Code
-      <br />
-    </h1>
-    <p>
-      hi
-      <br />
-    </p>
-    <hr />
-    <p>
-      그린반 3팀
-    </p>
-    <hr />
-    <input type="text" id="username-input" placeholder="Username" />
-    <!-- <a href="hi.html" class="button">시작</a> -->
-    <button id="play-button">시작</button>
-  </div>
-
   <div id="container">
-    <button id="deck-one" onclick="selectDeckIndex(0)">Deck One</button>
-    <button id="deck-two" onclick="selectDeckIndex(1)">Deck Two</button>
-    <button id="deck-thress" onclick="selectDeckIndex(2)">Deck Three</button>
+    <button id="deck-one" onclick="selectDeckIndex(0)">1</button>
+    <button id="deck-two" onclick="selectDeckIndex(1)">2</button>
+    <button id="deck-thress" onclick="selectDeckIndex(2)">3</button>
+    <div id="container-body"></div>
     <button id="compile-button" onclick="change_code(selectedDeck)">Run Code</button> <!-- index 값을 넘겨줌 -->
   </div>
   <div id="terminal"></div>
@@ -95,45 +71,6 @@
         <td></td>
       </tr>
     </table>
-
-    <div id="checkbox"></div>
-
-  </div>
-
-  <div id="game-over" class="hidden">
-    <h1>
-      GAME OVER
-    </h1>
-    <p>
-
-    <h2>
-      [RESULT]
-    </h2>
-
-    <br>
-
-    <h3>
-      <div id="score-ranking">"구현 예정"</div>
-    </h3>
-
-    <br>
-
-    <h2>
-      [DEAD REASON]
-    </h2>
-
-    <br>
-
-    <h3>
-      <div id="dead-reason"></div>
-    </h3>
-
-    <br>
-
-    </p>
-    <input type="text" id="username-reinput" placeholder="Username" />
-    <button id="replay-button">재입장</button>
-  </div>
 
   <div id="disconnect-modal" class="hidden">
     <div>
