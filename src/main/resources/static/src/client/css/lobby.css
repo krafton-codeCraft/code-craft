@@ -1,5 +1,6 @@
 html,
 body {
+
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -79,79 +80,6 @@ button:focus {
     display: none !important;
 }
 
-#game-canvas {
-    position: absolute;
-    top: 50%;
-    left: 5%;
-    transform: translateY(-50%);
-    border: 2px solid gray;
-}
-
-#play-menu {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 30%;
-    padding: 20px;
-    text-align: center;
-}
-
-#play-menu p {
-    margin-bottom: 0;
-}
-
-#play-menu button {
-    background: #ff0000;
-    border: none;
-    color: #ffffff;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-#play-menu button:hover {
-    background: #cc0000;
-}
-
-#leaderboard {
-    position: fixed;
-    top: 3%;
-    left: 3%;
-    background-color: rgba(255, 255, 255, 0.5);
-    padding: 10px;
-    border-radius: 5px;
-}
-
-#leaderboard th {
-    text-align: center;
-    padding: 2px 5px;
-}
-
-#leaderboard td {
-    text-align: center;
-    padding: 2px 5px;
-}
-
-#disconnect-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.75);
-}
-
-#disconnect-modal>div {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translateY(-50%) translateX(-50%);
-    padding: 15px 20px;
-    background-color: white;
-    border-radius: 5px;
-    text-align: center;
-}
-
 @media screen and (max-width: 640px) {
     h1 {
         font-size: 2rem;
@@ -205,7 +133,7 @@ button:focus {
   height: 87%;
   overflow: hidden;
   transform: translate(-50%, -50%);
-  border: 2px solid gray;
+  border: 2px solid rgba(128, 128, 128, 0.5);
   cursor: inherit;
 }
 
@@ -219,7 +147,7 @@ button:focus {
   overflow: hidden;
   transform: translate(-50%, -50%);
   /* terminal이 아래쪽에 있으므로, positive 값을 사용해야 합니다. */
-  border: 2px solid gray;
+  border: 2px solid rgba(128, 128, 128, 0.5);
   cursor: inherit;
   background-color: rgba(128, 128, 128, 0.5);
 }
@@ -240,10 +168,12 @@ button:focus {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.5s ease;
+  opacity: 0.7;
 }
 
 #compile-button:hover {
   background-color: #cc0000;
+  opacity: 0.9;
 }
 
 @media only screen and (max-width: 600px) {
@@ -340,6 +270,7 @@ button:focus {
   cursor: pointer;
   transition: background-color 0.5s ease;
   right: 5%;
+  opacity: 0.8;
 }
 
 #lobby-event {
@@ -356,6 +287,7 @@ button:focus {
   cursor: pointer;
   transition: background-color 0.5s ease;
   right: 5%;
+  opacity: 0.8;
 }
 
 #lobby-module:hover, #lobby-event:hover {

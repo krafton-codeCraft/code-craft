@@ -170,6 +170,7 @@ button:focus {
   height: 72%;
   overflow: auto; 
   transform: translateY(-50%);
+  cursor: inherit;
 }
 
 #container-body {
@@ -180,7 +181,7 @@ button:focus {
   height: 87%;
   overflow: hidden;
   transform: translate(-50%, -50%);
-  border: 2px solid gray;
+  border: 2px solid rgba(128, 128, 128, 0.5);
   cursor: inherit;
 }
 
@@ -190,31 +191,35 @@ button:focus {
   top: 87%;
   width: 40%;
   height: 20%;
-  overflow: auto; 
+  overflow: hidden; 
   transform: translateY(-50%);
-  border: 2px solid gray;
+  border: 2px solid rgba(128, 128, 128, 0.5);
+  cursor: inherit;
+  background-color: rgba(128, 128, 128, 0.5);
 }
 
 /* -------------------------------------------------------- */
 
 #compile-button {
-  position: absolute;
-  right: 0%;
-  top: 0%;
-  padding: 10px 20px;
-  width: 150px;
-  font-size: 20px;
-  font-weight: bold;
-  color: #ffffff;
-  background-color: #ff0000;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.5s ease;
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    padding: 10px 20px;
+    width: 150px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #ff0000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+    opacity: 0.7;
 }
 
 #compile-button:hover {
   background-color: #cc0000;
+  opacity: 0.9;
 }
 
 @media only screen and (max-width: 600px) {
@@ -223,38 +228,6 @@ button:focus {
     padding: 5px 10px;
   }
 }
-
-
-
-/* -------------------------------------------------------- */
-
-#start-button {
-  position: absolute;
-  right: 5%;
-  bottom: 5%;
-  padding: 10px 20px;
-  width: 200px;
-  font-size: 2em;
-  font-weight: bold;
-  color: #ffffff;
-  background-color: #ff0000;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.5s ease;
-}
-
-#start-button:hover {
-  background-color: #cc0000;
-}
-
-@media only screen and (max-width: 600px) {
-  #start-button {
-    font-size: 1em;
-    padding: 5px 10px;
-  }
-}
-
 
 /* -------------------------------------------------------- */
 
@@ -292,51 +265,6 @@ button:focus {
 
 @media only screen and (max-width: 600px) {
   #deck-one, #deck-two, #deck-thress {
-    font-size: 1em;
-    padding: 5px 10px;
-  }
-}
-
-/* -------------------------------------------------------- */
-
-#lobby-module {
-  position: absolute;
-  top: 5%;
-  padding: 10px 20px;
-  width: 200px;
-  font-size: 2em;
-  font-weight: bold;
-  color: #ffffff;
-  background-color: #28a745; /* updated color */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.5s ease;
-  right: 5%;
-}
-
-#lobby-event {
-  position: absolute;
-  top: 15%;
-  padding: 10px 20px;
-  width: 200px;
-  font-size: 2em;
-  font-weight: bold;
-  color: #ffffff;
-  background-color: #28a745; /* updated color */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.5s ease;
-  right: 5%;
-}
-
-#lobby-module:hover, #lobby-event:hover {
-  background-color: #218838; /* updated hover color */
-}
-
-@media only screen and (max-width: 600px) {
-  #lobby-module, #lobby-event {
     font-size: 1em;
     padding: 5px 10px;
   }
