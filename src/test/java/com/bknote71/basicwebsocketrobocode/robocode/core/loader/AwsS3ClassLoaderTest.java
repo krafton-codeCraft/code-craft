@@ -91,32 +91,79 @@ class AwsS3ClassLoaderTest {
 //        System.out.println(robot);
 //    }
 
-    @Test
-    void sagki2() {
-        String author = "user0";
-        String content =
-                "public class Sagak2 extends Robot {\n" +
-                "    @Override\n" +
-                "    public void run() {\n" +
-                "        while (true) {\n" +
-                "            ahead(1000);\n" +
-                "            turnLeft(90);\n" +
-                "\n" +
-                "            try {\n" +
-                "                Thread.sleep(100);\n" +
-                "            } catch (InterruptedException e) {\n" +
-                "                throw new RuntimeException(e);\n" +
-                "            }\n" +
-                "        }\n" +
-                "    }\n" +
-                "\n" +
-                "\n" +
-                "}\n";
+//    @Test
+//    void sagki2() {
+//        String author = "user0";
+//        String content =
+//                "public class Sagak2 extends Robot {\n" +
+//                "    @Override\n" +
+//                "    public void run() {\n" +
+//                "        while (true) {\n" +
+//                "            ahead(200);\n" +
+//                "            turnLeft(90);\n" +
+//                "\n" +
+//                "            try {\n" +
+//                "                Thread.sleep(100);\n" +
+//                "            } catch (InterruptedException e) {\n" +
+//                "                throw new RuntimeException(e);\n" +
+//                "            }\n" +
+//                "        }\n" +
+//                "    }\n" +
+//                "\n" +
+//                "\n" +
+//                "}\n";
+//
+//        AwsS3ClassLoader classLoader = new AwsS3ClassLoader("robot-class");
+//        CompileResult robot = classLoader.createRobot(author, content);
+//        System.out.println(robot.exitCode);
+//    }
 
-        AwsS3ClassLoader classLoader = new AwsS3ClassLoader("robot-class");
-        CompileResult robot = classLoader.createRobot(author, content);
-        System.out.println(robot.exitCode);
-    }
+//    @Test
+//    void gogobot() {
+//        String author = "user1";
+//        String content =
+//                "public class GogoBot extends Robot {\n" +
+//                "\n" +
+//                "    @Override\n" +
+//                "    public void run() {\n" +
+//                "        while (true) {\n" +
+//                "            ahead(200);\n" +
+//                "            try {\n" +
+//                "                Thread.sleep(100);\n" +
+//                "            } catch (InterruptedException e) {\n" +
+//                "                throw new RuntimeException(e);\n" +
+//                "            }\n" +
+//                "        }\n" +
+//                "    }\n" +
+//                "}";
+//
+//        AwsS3ClassLoader classLoader = new AwsS3ClassLoader("robot-class");
+//        CompileResult robot = classLoader.createRobot(author, content);
+//        System.out.println(robot.exitCode);
+//    }
 
 
+//    @Test
+//    void dongr2() {
+//        String author = "user2";
+//        String content =
+//                "public class Dongr2Bot extends Robot {\n" +
+//                "    @Override\n" +
+//                "    public void run() {\n" +
+//                "        while (true) {\n" +
+//                "            turnLeft(30);\n" +
+//                "            ahead(200);\n" +
+//                "            try {\n" +
+//                "                Thread.sleep(150);\n" +
+//                "            } catch (InterruptedException e) {\n" +
+//                "                throw new RuntimeException(e);\n" +
+//                "            }\n" +
+//                "        }\n" +
+//                "    }\n" +
+//                "}\n";
+//        AwsS3ClassLoader classLoader = new AwsS3ClassLoader("robot-class");
+//        CompileResult robot = classLoader.createRobot(author, content);
+//        System.out.println(robot.exitCode);
+//
+//    }
 }

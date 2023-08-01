@@ -49,5 +49,8 @@ public class UserController {
         return userService.signup(username, password);
     }
 
-
+    @GetMapping("/login")
+    public String loginpage() {
+        return "signup";
+    }
 }
