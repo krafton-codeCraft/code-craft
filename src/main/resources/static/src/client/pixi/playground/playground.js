@@ -12,7 +12,7 @@ export function playground() {
     
     playgroundApp.view.style.position = "absolute";
     playgroundApp.view.style.top = "50%";
-    playgroundApp.view.style.left = "5%";
+    playgroundApp.view.style.left = "3%";
     playgroundApp.view.style.transform = "translateY(-50%)";
     playgroundApp.view.style.border = "2px solid gray";
     // playgroundApp.renderer.view.style.width = "94vh";

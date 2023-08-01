@@ -8,6 +8,8 @@ import com.bknote71.codecraft.robocode.proxy.BasicRobotProxy;
 import com.bknote71.codecraft.robocode.proxy.RobotProxy;
 import com.bknote71.codecraft.session.ClientSession;
 import com.bknote71.codecraft.util.Utils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.geom.Arc2D;
 import java.awt.geom.Rectangle2D;
@@ -21,6 +23,8 @@ import java.util.concurrent.atomic.AtomicReference;
 import static java.lang.Math.*;
 
 public class RobotPeer {
+
+    private static final Logger log = LoggerFactory.getLogger(RobotPeer.class);
 
     public static final int
             WIDTH = 36,
@@ -274,7 +278,8 @@ public class RobotPeer {
         RobotStatus resStatus = status.get();
 
         // bulletUpdates ?? 로봇 피어에서의 총알 상태로 업데이트
-        return new ExecResults(resCommands, resStatus, readoutEvents(), readoutBullets(),
+        List<BulletStatus> readoutBullets = readoutBullets();
+        return new ExecResults(resCommands, resStatus, readoutEvents(), new ArrayList<>(),
                 isHalt(), isPaintEnabled());
     }
 
@@ -444,11 +449,10 @@ public class RobotPeer {
     }
 
     private void fireBullets(List<BulletCommand> bulletCommands) {
+        System.out.println(Thread.currentThread() + " " + Thread.currentThread().getName() + " bullet cmd size: " + bulletCommands.size());
         if (bulletCommands == null || bulletCommands.isEmpty()) {
             return;
         }
-
-        System.out.println("fire bullets in robot peer!");
 
         BulletPeer newBullet = null;
         for (BulletCommand bulletCommand : bulletCommands) {
@@ -472,8 +476,13 @@ public class RobotPeer {
             newBullet.setX(x);
             newBullet.setY(y);
         }
-        if (newBullet != null)
+        // there is only last bullet in one turn
+        if (newBullet != null) {
+            log.info("총알 발사 !!!");
             battle.addBullet(newBullet);
+        }
+
+        bulletCommands.clear();
     }
 
     public void performMove(List<RobotPeer> robots) {
@@ -800,7 +809,6 @@ public class RobotPeer {
                 double dy = otherRobot.y - y;
                 double angle = atan2(dx, dy);
                 double dist = Math.hypot(dx, dy);
-                System.out.println("scanning 성공, 대상: " + otherRobot.getName());
                 ScannedRobotEvent event = new ScannedRobotEvent(getNameForEvent(otherRobot), otherRobot.energy,
                         Utils.normalRelativeAngle(angle - getBodyHeading()), dist, otherRobot.getBodyHeading(),
                         otherRobot.getVelocity());
@@ -903,6 +911,8 @@ public class RobotPeer {
 
     void addBulletStatus(BulletStatus bulletStatus) {
         if (isAlive()) {
+            if (bulletUpdates == null)
+                return;
             bulletUpdates.get().add(bulletStatus);
         }
     }
