@@ -18,34 +18,35 @@ const playMenu = document.getElementById('play-menu');
 const playButton = document.getElementById('play-button');
 
 const replayButton = document.getElementById('replay-button');
+const startButton = document.getElementById('start-button');
+
+
 let flag = true;
 
 Promise.all([
-  // connect(onGameOver),
+
   downloadAssets(),
   pixiApp(),
+
 ]).then(() => {
   
   window.addEventListener('keydown' ,handleEnterKey);
   const username = sessionStorage.getItem('username');
-  // play(username);
-  console(username);
+  console.log(username);
 
-  playButton.onclick = () => {
+  startButton.onclick = () => {
 
     gamecanvers.classList.remove('hidden');
     window.removeEventListener('keydown' ,handleEnterKey);
     // Play with the username retrieved from sessionStorage
-    play(username);
-    playMenu.classList.add('hidden');
-    initState();
-    startCapturingInput();
-    setLeaderboardHidden(false);
+    // play(username);
+    // playMenu.classList.add('hidden');
+    // initState();
+    // startCapturingInput();
+    // setLeaderboardHidden(false);
+    window.location.href = '/ingame.html';
 
   };
-
-
-
 
 }).catch(console.error);
 
@@ -66,9 +67,15 @@ function handleEnterKey(event) {
 document.getElementById('gotoLobby').addEventListener('click', function() {
   window.location.href = '/lobby.html';
 });
+
 document.getElementById('gotoIngame').addEventListener('click', function() {
   window.location.href = '/ingame.html';
 });
+
 document.getElementById('gotoIndex').addEventListener('click', function() {
   window.location.href = '/index.html';
 });
+
+// document.getElementById('start-button').addEventListener('click', function() {
+//   window.location.href = '/ingame.html';
+// });

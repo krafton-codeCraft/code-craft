@@ -309,25 +309,6 @@ button:focus {
   cursor: inherit;
 }
 
-#compile-button {
-  font-size: 18px;
-  outline: none;
-  border: none;
-  position: absolute;
-  /* Add this */
-  right: 0;
-  /* Add this */
-  top: 0;
-  /* Add this */
-  /* Add this */
-  color: whitesmoke;
-  background-color: green;
-  padding: 5px 20px;
-  border-radius: 3px;
-  transition: background-color 0.2s ease;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-
 #container-lobby {
   position: absolute;
   top: 39%;
@@ -352,4 +333,83 @@ button:focus {
   /* terminal이 아래쪽에 있으므로, positive 값을 사용해야 합니다. */
   border: 2px solid gray;
   cursor: inherit;
+}
+
+/* -------------------------------------------------------- */
+
+#compile-button {
+  font-size: 18px;
+  outline: none;
+  border: none;
+  position: absolute;
+  /* Add this */
+  right: 0;
+  /* Add this */
+  top: 0;
+  /* Add this */
+  /* Add this */
+  color: whitesmoke;
+  background-color: green;
+  padding: 5px 20px;
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+#compile-button {
+  position: absolute;
+  right: 5%;
+  bottom: 5%;
+  padding: 10px 20px;
+  width: 200px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #ff0000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+
+#compile-button:hover {
+  background-color: #cc0000;
+}
+
+@media only screen and (max-width: 600px) {
+  #compile-button {
+    font-size: 1em;
+    padding: 5px 10px;
+  }
+}
+
+
+
+/* -------------------------------------------------------- */
+
+#start-button {
+  position: absolute;
+  right: 5%;
+  bottom: 5%;
+  padding: 10px 20px;
+  width: 200px;
+  font-size: 2em;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #ff0000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+
+#start-button:hover {
+  background-color: #cc0000;
+}
+
+@media only screen and (max-width: 600px) {
+  #start-button {
+    font-size: 1em;
+    padding: 5px 10px;
+  }
 }
