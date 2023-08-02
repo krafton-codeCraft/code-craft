@@ -874,8 +874,9 @@ public class RobotPeer {
         setState(RobotState.DEAD);
     }
 
-    public void changeRobotInfo(RobotPeer newRobot) {
 
+    public void changeRobotSpec(RobotSpecification[] specifications, int robotIndex) {
+        init(battle, specifications, robotIndex);
     }
 
     void updateEnergy(double delta) {
