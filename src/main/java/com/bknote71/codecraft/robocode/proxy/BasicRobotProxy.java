@@ -365,7 +365,7 @@ public class BasicRobotProxy extends RobotProxy implements IBasicRobotPeer {
             double fireAssistAngle = Utils.normalAbsoluteAngle(status.getHeadingRadians() + e.getBearingRadians());
 
             bullet = new Bullet(fireAssistAngle, getX(), getY(), power, statics.getName(), null, true, nextBulletId);
-            wrapper = new BulletCommand(power, true, status.getRadarHeadingRadians(), nextBulletId);
+            wrapper = new BulletCommand(power, true, fireAssistAngle, nextBulletId);
         } else {
             // this is normal bullet
             System.out.println("그냥 쏘는 총알: normal bullet");

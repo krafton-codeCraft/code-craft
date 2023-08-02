@@ -6,6 +6,7 @@ import { processGameUpdate } from './state';
 //import { explosionPlay } from './pixi/effect/explosion'
 //import constants from '../shared/constants';
 //import renderCheckbox from './htmlComponent/checkbox';
+import { renderCode } from './lobby';
 
 // import redis from 'redis';
 
@@ -155,6 +156,20 @@ function fetch_code(Data, url) {
 }
 window.change_code = change_code;
 window.compile_code = compile_code;
+
+export const getRobotInfos = () => {
+  const url = `http://${addr}:8080/get/robot-infos`;
+  fetch(url, {
+    method: 'GET'
+  })
+    .then(response => response.json())
+    .then(data => {
+      renderCode(data);
+    })
+    .catch(error => {
+      console.error('in get robot-infos error: ', error);
+    });
+}
 
 // export const updateInputKeyBoardDown = throttle(20, (key) => {
 //   let dir;

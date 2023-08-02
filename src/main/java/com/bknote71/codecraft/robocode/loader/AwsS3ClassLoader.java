@@ -2,6 +2,7 @@ package com.bknote71.codecraft.robocode.loader;
 
 import com.amazonaws.auth.ClasspathPropertiesFileCredentialsProvider;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.Region;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,6 +11,11 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
+<<<<<<< HEAD
+=======
+import java.util.Properties;
+
+>>>>>>> 468885226246c7008556dad87fe81a01ed6b1e63
 
 public class AwsS3ClassLoader extends ClassLoader {
 
@@ -17,11 +23,44 @@ public class AwsS3ClassLoader extends ClassLoader {
 
     private static final String S3_URL = "https://s3.amazonaws.com/";
 
+<<<<<<< HEAD
     private String packagePath = "com.bknote71.codecraft.robocode.sample";
     private String importPath = "import com.bknote71.codecraft.robocode.api.Robot;";
     private String filePath = "C:\\Users\\rjadm\\OneDrive\\Desktop\\codeKraft\\code-craft\\sample\\";
     private String outputPath = "C:\\Users\\rjadm\\OneDrive\\Desktop\\codeKraft\\code-craft\\robot_sample\\";
     private String eventPath = "import com.bknote71.codecraft.robocode.event.";
+=======
+
+    private static String packagePath;
+    private static String importPath;
+    private static String filePath;
+    private static String outputPath;
+    private static String eventPath;
+    private static String[] delegatedNames;
+
+    static {
+        try (InputStream input = AwsS3ClassLoader.class.getClassLoader().getResourceAsStream("config.properties")) {
+            Properties prop = new Properties();
+
+            if (input == null) {
+                System.out.println("Sorry, unable to find config.properties");
+            }
+
+            //load a properties file from class path
+            prop.load(input);
+
+            // get the property value
+            packagePath = prop.getProperty("path.package");
+            importPath = prop.getProperty("path.import");
+            filePath = prop.getProperty("path.file");
+            outputPath = prop.getProperty("path.output");
+            eventPath = prop.getProperty("path.event");
+            delegatedNames = prop.getProperty("path.delegate").split(",");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+>>>>>>> 468885226246c7008556dad87fe81a01ed6b1e63
 
     // amazon s3
     private AmazonS3Client s3;
@@ -65,13 +104,19 @@ public class AwsS3ClassLoader extends ClassLoader {
     @Override
     protected Class<?> findClass(String name) { // sa/FireBot.class
         try {
+<<<<<<< HEAD
             if (name.startsWith("com.bknote71.codecraft.robocode.api")
                     || name.startsWith("com.bknote71.codecraft.robocode.event"))
                 return Class.forName(name);
+=======
+            if (Arrays.stream(delegatedNames).anyMatch(name::startsWith))
+//                return Class.forName(name);
+                return AwsS3ClassLoader.class.getClassLoader().loadClass(name);
+>>>>>>> 468885226246c7008556dad87fe81a01ed6b1e63
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-
+        System.out.println("find class: " + name);
         try {
             Class<?> result;
             byte[] classBytes = getClassBytes(name);

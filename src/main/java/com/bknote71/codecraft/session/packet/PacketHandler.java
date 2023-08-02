@@ -10,7 +10,6 @@ import com.bknote71.codecraft.robocode.core.RobotPeer;
 import com.bknote71.codecraft.robocode.core.battle.Battle;
 import com.bknote71.codecraft.robocode.core.battle.BattleManager;
 import com.bknote71.codecraft.robocode.core.RobotSpecification;
-import com.bknote71.codecraft.robocode.loader.AwsS3ClassLoader;
 import com.bknote71.codecraft.session.ClientSession;
 import com.bknote71.codecraft.session.ClientSessionManager;
 import lombok.RequiredArgsConstructor;
@@ -18,8 +17,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.socket.WebSocketSession;
-
-import java.util.List;
 
 @Slf4j
 @Component
@@ -55,10 +52,11 @@ public class PacketHandler {
         battle.push(battle::enterBattle, robot);
     }
 
-    public String changeAndReenter(String username, int robotId, int robotIndex) {
+    public RobotSpecification changeAndReenter(String username, int robotId, int robotIndex) {
         // 새로운 스펙으로 새로운 로봇 생성
         ClientSession session = ClientSessionManager.Instance.findByUsername(username);
-        RobotPeer robot = createRobotPeer(session, username, robotIndex);
+        RobotPeer robot = session.getMyRobot();
+        RobotSpecification[] robotSpecifications = getRobotSpecifications(username);
 
         if (robot == null) {
             System.out.println("로봇 생성 실패");
@@ -71,8 +69,8 @@ public class PacketHandler {
             return null;
         }
 
-        battle.push(battle::changeRobot, robotId, robot);
-        return "success";
+        battle.push(battle::changeRobot, robotId, robotSpecifications, robotIndex);
+        return robotSpecifications[robotIndex];
     }
 
     private Integer getBattleId(WebSocketSession session) {
@@ -83,14 +81,7 @@ public class PacketHandler {
     }
 
     private RobotPeer createRobotPeer(ClientSession session, String username, int robotIndex) {
-        UserEntity user = userRepository.findByUsername(username);
-
-        int specCount = user.getSpecifications().size();
-        RobotSpecification[] robotSpecifications = new RobotSpecification[specCount];
-        for (int i = 0; i < specCount; ++i) {
-            RobotSpecEntity spec = user.getSpecifications().get(i);
-            robotSpecifications[i] = new RobotSpecification(spec.getName(), spec.getAuthor(), spec.getFullClassName());
-        }
+        RobotSpecification[] robotSpecifications = getRobotSpecifications(username);
 
         RobotPeer robotPeer = RobotManager.Instance.add();
         robotPeer.setSession(session);
@@ -109,5 +100,19 @@ public class PacketHandler {
         log.info("init end");
 
         return robotPeer;
+    }
+
+
+    private RobotSpecification[] getRobotSpecifications(String username) {
+        UserEntity user = userRepository.findByUsername(username);
+
+        int specCount = user.getSpecifications().size();
+        RobotSpecification[] robotSpecifications = new RobotSpecification[specCount];
+        for (int i = 0; i < specCount; ++i) {
+            RobotSpecEntity spec = user.getSpecifications().get(i);
+            robotSpecifications[i] = new RobotSpecification(spec.getName(), spec.getUsername(), spec.getFullClassName());
+        }
+
+        return robotSpecifications;
     }
 }
