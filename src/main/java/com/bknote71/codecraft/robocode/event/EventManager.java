@@ -37,6 +37,7 @@ public class EventManager {
         eventNames = new HashMap<>();
         dummyScannedRobotEvent = new ScannedRobotEvent(null, 0, 0, 0, 0, 0);
         register(new HitByBulletEvent(0, null));
+        register(new HitRobotEvent(null, 0, 0, false));
         register(new StatusEvent(null));
         register(dummyScannedRobotEvent);
     }

@@ -1,8 +1,6 @@
 package com.bknote71.codecraft.robocode.robointerface;
 
-import com.bknote71.codecraft.robocode.event.HitByBulletEvent;
-import com.bknote71.codecraft.robocode.event.ScannedRobotEvent;
-import com.bknote71.codecraft.robocode.event.StatusEvent;
+import com.bknote71.codecraft.robocode.event.*;
 
 public interface IBasicEvent {
     void onStatus(StatusEvent statusEvent);
@@ -10,4 +8,8 @@ public interface IBasicEvent {
     void onHitByBullet(HitByBulletEvent hitByBulletEvent);
 
     void onScannedRobot(ScannedRobotEvent scannedRobotEvent);
+
+    void onHitRobot(HitRobotEvent hitRobotEvent);
+
+    void onBulletHit(BulletHitEvent bulletHitEvent);
 }

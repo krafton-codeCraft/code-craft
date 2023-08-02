@@ -32,7 +32,7 @@ public class RobotSpecService {
         List<RobotSpecEntity> specs = null;
         if (user == null || (specs = user.getSpecifications()) == null || specs.isEmpty()) {
             System.out.println("잘못된 접근");
-            return null;
+            return new ArrayList<>();
         }
 
         List<RobotSpecDto> robotSpecDtos = new ArrayList<>();

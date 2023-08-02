@@ -3,6 +3,7 @@ package com.bknote71.codecraft.robocode.event;
 
 import com.bknote71.codecraft.robocode.api.Bullet;
 import com.bknote71.codecraft.robocode.api.Robot;
+import com.bknote71.codecraft.robocode.core.BulletPeer;
 import com.bknote71.codecraft.robocode.core.RobotStatics;
 import com.bknote71.codecraft.robocode.robointerface.IBasicEvent;
 
@@ -11,9 +12,9 @@ public class HitByBulletEvent extends Event {
     private final static int DEFAULT_PRIORITY = 20;
 
     private double bearing; // 총알 회전 각도?
-    private Bullet bullet;
+    private BulletPeer bullet;
 
-    public HitByBulletEvent(double bearing, Bullet bullet) {
+    public HitByBulletEvent(double bearing, BulletPeer bullet) {
         super();
         this.bearing = bearing;
         this.bullet = bullet;
@@ -27,7 +28,7 @@ public class HitByBulletEvent extends Event {
         return bearing;
     }
 
-    public Bullet getBullet() {
+    public BulletPeer getBullet() {
         return bullet;
     }
 

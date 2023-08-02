@@ -245,6 +245,11 @@ public abstract class Robot implements IBasicEvent, Runnable {
     public void onScannedRobot(ScannedRobotEvent event) {
     }
 
+    @Override
+    public void onBulletHit(BulletHitEvent bulletHitEvent) {
+
+    }
+
     public void onWin(WinEvent event) {
     }
 

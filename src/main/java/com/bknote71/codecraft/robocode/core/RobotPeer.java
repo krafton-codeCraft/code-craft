@@ -20,6 +20,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
+import static com.bknote71.codecraft.util.Utils.normalRelativeAngle;
 import static java.lang.Math.*;
 
 public class RobotPeer {
@@ -427,12 +428,12 @@ public class RobotPeer {
 
         status = new AtomicReference<RobotStatus>();
 
-        readoutEvents();
-        readoutBullets();
+        events = new AtomicReference<>(new EventQueue());
+        bulletUpdates = new AtomicReference<>(new ArrayList<>());
 
         ExecCommands newExecCommands = new ExecCommands();
-        newExecCommands.copyColors(commands.get());
-        commands = new AtomicReference<ExecCommands>(newExecCommands);
+        // newExecCommands.copyColors(commands.get());
+        commands = new AtomicReference<>(newExecCommands);
     }
 
     public void performLoadCommands() {
@@ -726,6 +727,61 @@ public class RobotPeer {
         }
     }
 
+
+    private void checkRobotCollision(List<RobotPeer> robots) {
+        inCollision = false;
+
+        for (RobotPeer otherRobot : robots) {
+            if (!(otherRobot == null || otherRobot == this || otherRobot.isDead())
+                    && boundingBox.intersects(otherRobot.boundingBox)) {
+                System.out.println("다른 로봇과의 충돌");
+                // Bounce back
+                double angle = atan2(otherRobot.x - x, otherRobot.y - y);
+
+                double movedx = velocity * sin(bodyHeading);
+                double movedy = velocity * cos(bodyHeading);
+
+                boolean atFault;
+                double bearing = normalRelativeAngle(angle - bodyHeading);
+
+                if ((velocity > 0 && bearing > -PI / 2 && bearing < PI / 2)
+                        || (velocity < 0 && (bearing < -PI / 2 || bearing > PI / 2))) {
+
+                    inCollision = true;
+                    atFault = true;
+                    velocity = 0;
+                    currentCommands.setDistanceRemaining(0);
+                    x -= movedx;
+                    y -= movedy;
+
+                    this.updateEnergy(-Rules.ROBOT_HIT_DAMAGE);
+                    otherRobot.updateEnergy(-Rules.ROBOT_HIT_DAMAGE);
+
+                    if (otherRobot.energy == 0) {
+                        if (otherRobot.isAlive()) {
+                            otherRobot.onDead();
+                        }
+                    }
+                    addEvent(
+                            new HitRobotEvent(getNameForEvent(otherRobot), normalRelativeAngle(angle - bodyHeading),
+                                    otherRobot.energy, atFault));
+                    otherRobot.addEvent(
+                            new HitRobotEvent(getNameForEvent(this),
+                                    normalRelativeAngle(PI + angle - otherRobot.getBodyHeading()), energy, false));
+                }
+            }
+        }
+        if (inCollision) {
+            setState(RobotState.HIT_ROBOT);
+        }
+    }
+
+    public void updateAfterCollision() {
+        if (state == RobotState.HIT_ROBOT) {
+            updateBoundingBox();
+        }
+    }
+
     private double getDistanceTraveledUntilStop(double velocity) {
         double distance = 0;
 
@@ -810,7 +866,7 @@ public class RobotPeer {
                 double angle = atan2(dx, dy);
                 double dist = Math.hypot(dx, dy);
                 ScannedRobotEvent event = new ScannedRobotEvent(getNameForEvent(otherRobot), otherRobot.energy,
-                        Utils.normalRelativeAngle(angle - getBodyHeading()), dist, otherRobot.getBodyHeading(),
+                        normalRelativeAngle(angle - getBodyHeading()), dist, otherRobot.getBodyHeading(),
                         otherRobot.getVelocity());
 
                 addEvent(event);
@@ -846,8 +902,14 @@ public class RobotPeer {
 
         this.hp = max(hp - bulletPeer.getPower(), 0);
 
-        if (hp <= 0)
+        if (hp <= 0) {
             onDead();
+            return;
+        }
+
+        addEvent(new HitByBulletEvent(bulletPeer.getHeading() + PI - bodyHeading, bulletPeer));
+        bulletPeer.owner.addEvent(
+                new BulletHitEvent(bulletPeer.owner.getNameForEvent(this), energy, bulletPeer));
     }
 
     public void onDead() { // 죽음 ?? 리스폰 해야함

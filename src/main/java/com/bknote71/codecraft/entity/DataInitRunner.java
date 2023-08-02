@@ -21,14 +21,6 @@ public class DataInitRunner implements CommandLineRunner {
     @Override
     @Transactional
     public void run(String... args) throws Exception {
-        // ㅎㅎ
-    //    UserEntity user = userRepository.findByUsername("user50");
-    //    RobotSpecEntity robotSpecEntity = new RobotSpecEntity();
-    //    robotSpecEntity.setName("aimbot2");
-    //    robotSpecEntity.setFullClassName("AimAndEvadeBot.class");
-    //    robotSpecEntity.setUser(user);
-    //    robotSpecEntity.setUsername("user50");
-    //    robotSpecRepository.save(robotSpecEntity);
-    
+        // 모두 지우세요 ^.^
     }
 }
