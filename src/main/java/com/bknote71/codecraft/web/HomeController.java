@@ -53,7 +53,7 @@ public class HomeController {
         CompileResult result = classLoader.createRobot(username, code);
 
         if (result.exitCode == 0) {
-            RobotSpecDto saveResult = robotSpecService.saveRobotSpec(username, result.getRobotname(), result.getFullClassName(),
+            RobotSpecDto saveResult = robotSpecService.saveRobotSpec(username, specIndex, result.getRobotname(), result.getFullClassName(),
                     result.getCode());
             if (saveResult == null) {
                 log.error("save robot spec failed");
@@ -66,7 +66,7 @@ public class HomeController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @PostMapping("/change/robot")
+    @PostMapping("/change/ingame-robot")
     @ResponseBody
     public ResponseEntity<?> changeRobotInBattle(@AuthenticationPrincipal(expression = "username") String username,
             int robotId, int specIndex, String code) { // author == username
