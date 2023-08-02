@@ -8,7 +8,6 @@ import com.bknote71.codecraft.robocode.job.JobSerializer;
 import com.bknote71.codecraft.session.ClientSession;
 import com.bknote71.codecraft.session.packet.TriConsumer;
 import com.bknote71.codecraft.proto.*;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -145,7 +144,7 @@ public class Battle {
         robotPeer.cleanup();
     }
 
-    public void changeRobot(int robotId, RobotPeer newRobot) {
+    public void changeRobot(int robotId, RobotSpecification[] specifications, int robotIndex) {
         // 뭘하냐 여기서...
         log.info("change robot " + robotId);
         RobotPeer robotPeer;
@@ -155,7 +154,9 @@ public class Battle {
         }
 
         robotPeer.setDead();
-        robotPeer.changeRobotInfo(newRobot);
+        robotPeer.cleanup();
+        robotPeer.init(this, specifications, robotIndex);
+        robotPeer.startBattle();
     }
 
     // 이벤트 등록 및 이벤트 처리

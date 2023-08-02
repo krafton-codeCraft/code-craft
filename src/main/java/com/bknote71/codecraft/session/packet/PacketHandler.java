@@ -59,6 +59,7 @@ public class PacketHandler {
         // 새로운 스펙으로 새로운 로봇 생성
         ClientSession session = ClientSessionManager.Instance.findByUsername(username);
         RobotPeer robot = session.getMyRobot();
+        RobotSpecification[] robotSpecifications = getRobotSpecifications(username);
 
         if (robot == null) {
             System.out.println("로봇 생성 실패");
@@ -71,7 +72,7 @@ public class PacketHandler {
             return null;
         }
 
-        battle.push(battle::changeRobot, robotId, robot);
+        battle.push(battle::changeRobot, robotId, robotSpecifications, robotIndex);
         return "success";
     }
 
@@ -83,14 +84,7 @@ public class PacketHandler {
     }
 
     private RobotPeer createRobotPeer(ClientSession session, String username, int robotIndex) {
-        UserEntity user = userRepository.findByUsername(username);
-
-        int specCount = user.getSpecifications().size();
-        RobotSpecification[] robotSpecifications = new RobotSpecification[specCount];
-        for (int i = 0; i < specCount; ++i) {
-            RobotSpecEntity spec = user.getSpecifications().get(i);
-            robotSpecifications[i] = new RobotSpecification(spec.getName(), spec.getAuthor(), spec.getFullClassName());
-        }
+        RobotSpecification[] robotSpecifications = getRobotSpecifications(username);
 
         RobotPeer robotPeer = RobotManager.Instance.add();
         robotPeer.setSession(session);
@@ -109,5 +103,19 @@ public class PacketHandler {
         log.info("init end");
 
         return robotPeer;
+    }
+
+
+    private RobotSpecification[] getRobotSpecifications(String username) {
+        UserEntity user = userRepository.findByUsername(username);
+
+        int specCount = user.getSpecifications().size();
+        RobotSpecification[] robotSpecifications = new RobotSpecification[specCount];
+        for (int i = 0; i < specCount; ++i) {
+            RobotSpecEntity spec = user.getSpecifications().get(i);
+            robotSpecifications[i] = new RobotSpecification(spec.getName(), spec.getAuthor(), spec.getFullClassName());
+        }
+
+        return robotSpecifications;
     }
 }
