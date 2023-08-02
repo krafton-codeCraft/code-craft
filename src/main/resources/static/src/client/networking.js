@@ -6,8 +6,6 @@ import { processGameUpdate } from './state.js';
 import { explosionPlay } from './pixi/effect/explosion.js'
 //import constants from '../shared/constants';
 //import renderCheckbox from './htmlComponent/checkbox';
-import { renderCode } from './codeSpace.js';
-import { setEditorValueLobby } from './htmlComponent/codeInterfaceLobby.js';
 
 // import redis from 'redis';
 
@@ -77,11 +75,11 @@ export const connect = onGameOver => (
 );
 
 // send data << 어차피 이거 아님
-export const play = name => {
+export const play = () => {
   const message = {
     type: 'centerbattle',
     protocol: 'C_EnterBattle',
-    username: name,
+    // username: name,
   };
   websocket.send(JSON.stringify(message));
 };

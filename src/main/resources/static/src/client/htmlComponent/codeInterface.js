@@ -2,6 +2,25 @@ let editor;
 let selectedDeck = 0;
 document.addEventListener('DOMContentLoaded', function () {
 
+    require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' } });
+
+    let proxy = URL.createObjectURL(new Blob([`
+        self.MonacoEnvironment = {
+            baseUrl: 'https://unpkg.com/monaco-editor@latest/min/'
+        };
+        importScripts('https://unpkg.com/monaco-editor@latest/min/vs/base/worker/workerMain.js');
+    `], { type: 'text/javascript' }));
+
+    window.MonacoEnvironment = { getWorkerUrl: () => proxy };
+
+    require(["vs/editor/editor.main"], function () {
+        editor = monaco.editor.create(document.getElementById('container-body'), {
+            value: '',
+            language: 'java',
+            theme: 'vs-dark'
+        });
+    });
+
     const url = `http://localhost:8080/get/robot-infos`;
     fetch(url, {
     method: 'GET'
@@ -16,42 +35,6 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log("ee?");
         });
 
-    require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' } });
-
-    let proxy = URL.createObjectURL(new Blob([`
-        self.MonacoEnvironment = {
-            baseUrl: 'https://unpkg.com/monaco-editor@latest/min/'
-        };
-        importScripts('https://unpkg.com/monaco-editor@latest/min/vs/base/worker/workerMain.js');
-    `], { type: 'text/javascript' }));
-
-    window.MonacoEnvironment = { getWorkerUrl: () => proxy };
-
-    require(["vs/editor/editor.main"], function () {
-        editor = monaco.editor.create(document.getElementById('container-body'), {
-            value: `public class StupidBot extends Robot {
-  @Override
-  public void run() {
-    while (true) {
-      System.out.println(Thread.currentThread().getName() + " 헤헤헤헤: " + getX() + ", " + getY());
-      try {
-        Thread.sleep(1000);
-      } catch (InterruptedException e) {
-        throw new RuntimeException(e);
-      }
-    }
-  }
-
-  @Override
-  public void onScannedRobot(ScannedRobotEvent event) {
-    System.out.println("헤헤헤헤헤 스캔: " + event.getName());
-  }
-}
-    `,
-            language: 'java',
-            theme: 'vs-dark'
-        });
-    });
 })
 function getEditorValue() {
     if (editor) {

@@ -32,7 +32,7 @@ public class PacketHandler {
         // 로봇 생성 (음.. 어떻게 하지?)
         // 로봇피어를 생성하기 전에 specification 을 읽어와야 한다.
         String username = clientSession.getUsername();
-        username = username.equals("anon") ? enterPacket.getUsername() : username;
+        // username = username.equals("anon") ? enterPacket.getUsername() : username;
 
         log.info("{} is entered", username);
 
