@@ -2,6 +2,7 @@ package com.bknote71.codecraft.robocode.loader;
 
 import com.amazonaws.auth.ClasspathPropertiesFileCredentialsProvider;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.Region;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Properties;
 
 
 public class AwsS3ClassLoader extends ClassLoader {
@@ -18,11 +20,33 @@ public class AwsS3ClassLoader extends ClassLoader {
     private static final String S3_URL = "https://s3.amazonaws.com/";
 
 
-    private String packagePath = "com.bknote71.codecraft.robocode.sample";
-    private String importPath = "import com.bknote71.codecraft.robocode.api.Robot;";
-    private String filePath = "/Users/bknote71/Jungle/code-craft/sample/";
-    private String outputPath = "/Users/bknote71/Jungle/sample/";
-    private String eventPath = "import com.bknote71.codecraft.robocode.event.";
+    private static String packagePath;
+    private static String importPath;
+    private static String filePath;
+    private static String outputPath;
+    private static String eventPath;
+
+    static {
+        try (InputStream input = AwsS3ClassLoader.class.getClassLoader().getResourceAsStream("config.properties")) {
+            Properties prop = new Properties();
+
+            if (input == null) {
+                System.out.println("Sorry, unable to find config.properties");
+            }
+
+            //load a properties file from class path
+            prop.load(input);
+
+            // get the property value
+            packagePath = prop.getProperty("path.package");
+            importPath = prop.getProperty("path.package");
+            filePath = prop.getProperty("path.package");
+            outputPath = prop.getProperty("path.package");
+            eventPath = prop.getProperty("path.package");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 
     // amazon s3
     private AmazonS3Client s3;
