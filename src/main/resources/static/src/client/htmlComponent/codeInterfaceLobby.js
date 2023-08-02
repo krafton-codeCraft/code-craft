@@ -1,7 +1,8 @@
 // import theme from 'monaco-themes/themes/Active4D.json';
 import { getRobotInfos } from "../networking";
 
-let editor
+let editor;
+let selectedDeckLobby = 0;
 
 document.addEventListener('DOMContentLoaded', async function () {
 
@@ -31,7 +32,6 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
   require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' } });
-
   let proxy = URL.createObjectURL(new Blob([`
         self.MonacoEnvironment = {
             baseUrl: 'https://unpkg.com/monaco-editor@latest/min/'
@@ -81,6 +81,11 @@ function code_check(result, status) {
     terminal.innerHTML = `<span style="font-weight: bold; color: red;" > ${status}: </span> <span style="font-weight: bold; color: red;">${result}</span>`;
   }
   else {
-    terminal.innerHTML = `<span style="font-weightL bold; color: green;" > ${status}: </span> <span style="font-weight: bold; color: green;"${result}</span>`;
+    terminal.innerHTML = `<span style="font-weight: bold; color: green;" > ${status}: </span> <span style="font-weight: bold; color: green;"${result}</span>`;
   }
 }
+function selectDeckIndexLobby(deckId) {
+  selectedDeckLobby = deckId;
+  console.log(selectedDeckLobby);
+}
+

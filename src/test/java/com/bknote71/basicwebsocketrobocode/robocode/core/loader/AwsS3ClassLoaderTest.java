@@ -144,20 +144,20 @@ class AwsS3ClassLoaderTest {
 //    void dongr2() {
 //        String author = "user2";
 //        String content =
-//                "public class Dongr2Bot extends Robot {\n" +
-//                "    @Override\n" +
-//                "    public void run() {\n" +
-//                "        while (true) {\n" +
-//                "            turnLeft(30);\n" +
-//                "            ahead(200);\n" +
-//                "            try {\n" +
-//                "                Thread.sleep(150);\n" +
-//                "            } catch (InterruptedException e) {\n" +
-//                "                throw new RuntimeException(e);\n" +
-//                "            }\n" +
-//                "        }\n" +
-//                "    }\n" +
-//                "}\n";
+            //    "public class Dongr2Bot extends Robot {\n" +
+            //    "    @Override\n" +
+            //    "    public void run() {\n" +
+            //    "        while (true) {\n" +
+            //    "            turnLeft(30);\n" +
+            //    "            ahead(200);\n" +
+            //    "            try {\n" +
+            //    "                Thread.sleep(150);\n" +
+            //    "            } catch (InterruptedException e) {\n" +
+            //    "                throw new RuntimeException(e);\n" +
+            //    "            }\n" +
+            //    "        }\n" +
+            //    "    }\n" +
+            //    "}\n";
 //        AwsS3ClassLoader classLoader = new AwsS3ClassLoader("robot-class");
 //        CompileResult robot = classLoader.createRobot(author, content);
 //        System.out.println(robot.exitCode);
