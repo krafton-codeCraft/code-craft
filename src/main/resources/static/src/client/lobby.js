@@ -5,10 +5,6 @@ import './css/lobby.css';
 import { getRobotInfos } from './networking';
 
 const startButton = document.getElementById('start-button');
-const robotIdElement = document.getElementById('robotId');
-const nameElement = document.getElementById('name');
-const usernameElement = document.getElementById('username');
-const codeElement = document.getElementById('code');
 
 let flag = true;
 
@@ -46,23 +42,35 @@ document.getElementById('gotosignup').addEventListener('click', function () {
 /* -------------------------------------------------------- */
 
 export function renderCode(data) {
-  // Check if the data is valid
-  // if (typeof data !== 'object' || data === null) {
-  //   console.error('Invalid data: ', data);
-  //   return;
-  // }
-
-  // // Set each HTML element's text content
-  // if (data.robotId != null) {
-  //   robotIdElement.textContent = data.robotId;
-  // } else {
-  //   robotIdElement.textContent = 'No robot ID';
-  // }
-  nameElement.textContent = data.name;
-  usernameElement.textContent = data.username;
-  // codeElement.textContent = data.code;
-
+  
   console.log("hi");
   console.log(data);
+
+  // Get each HTML element by its ID
+  const robotIdElement = document.getElementById('robotId');
+  const nameElement = document.getElementById('name');
+  const usernameElement = document.getElementById('username');
+  const codeElement = document.getElementById('code');
+
+  // Set each HTML element's text content
+  if (data.robotId != null) {
+    robotIdElement.textContent = 'Robot ID: ' + data.robotId;
+  } else {
+    robotIdElement.textContent = 'Robot ID: null';
+  }
+  nameElement.textContent = 'Name: ' + data.name;
+  usernameElement.textContent = 'Username: ' + data.username;
+  
+  if (data.code != null) {
+    codeElement.textContent = 'Code: ' + data.code;
+  } else {
+    codeElement.textContent = 'Code: null';
+  }
+
+  // Set each HTML element's color to white
+  robotIdElement.style.color = 'white';
+  nameElement.style.color = 'white';
+  usernameElement.style.color = 'white';
+  codeElement.style.color = 'white';
 
 }
