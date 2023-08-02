@@ -428,12 +428,12 @@ public class RobotPeer {
 
         status = new AtomicReference<RobotStatus>();
 
-        readoutEvents();
-        readoutBullets();
+        events = new AtomicReference<>(new EventQueue());
+        bulletUpdates = new AtomicReference<>(new ArrayList<>());
 
         ExecCommands newExecCommands = new ExecCommands();
-        newExecCommands.copyColors(commands.get());
-        commands = new AtomicReference<ExecCommands>(newExecCommands);
+        // newExecCommands.copyColors(commands.get());
+        commands = new AtomicReference<>(newExecCommands);
     }
 
     public void performLoadCommands() {

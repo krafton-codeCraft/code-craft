@@ -112,9 +112,10 @@ public class Battle {
     }
 
     public void enterBattle(RobotPeer robotPeer) {
-        log.info("enter battle " + robotPeer.getName());
+        log.info("enter battle {}, robot:{}", battleId, robotPeer.getId());
         robotPeer.startBattle();
 
+        log.info("{} is into robots map", robotPeer.getId());
         robots.put(robotPeer.getId(), robotPeer);
 
         ClientSession session = robotPeer.session();
@@ -132,7 +133,7 @@ public class Battle {
     }
 
     public void leaveBattle(int robotId) {
-        log.info("leave battle in thread: " + Thread.currentThread().getName());
+        log.info("leave battle {}", robotId);
         // clear
         RobotPeer robotPeer;
         if ((robotPeer = robots.remove(robotId)) == null) {
@@ -140,16 +141,16 @@ public class Battle {
             return;
         }
 
-        System.out.println("cleanup");
+        log.info("robot peer cleanup");
         robotPeer.cleanup();
     }
 
     public void changeRobot(int robotId, RobotSpecification[] specifications, int robotIndex) {
         // 뭘하냐 여기서...
-        log.info("change robot " + robotId);
+        log.info("change robot in a {} battle, id: {}", battleId, robotId);
         RobotPeer robotPeer;
         if ((robotPeer = robots.get(robotId)) == null) {
-            System.out.println("유효하지 않은 로봇입니다.");
+            log.error("{} 에 해당하는 로봇은 유효하지 않습니다.", robotId);
             return;
         }
 
