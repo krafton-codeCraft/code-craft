@@ -15,19 +15,21 @@ export function pixiApp() {
     const playgroundApp = playground();
 
     app.ticker.add((delta) => {
-      //playgroundApp.stage.removeChildren();
-      for (let i = playgroundApp.stage.children.length - 1; i >= 0; i--) {
-        const child = playgroundApp.stage.children[i];
-        const indexToDelete = explosions.indexOf(child);
-        if (indexToDelete === -1) {
-          // 폭발 이펙트는 알아서 제거
-          playgroundApp.stage.removeChildAt(i);
-        }
-      }
+      playgroundApp.stage.removeChildren();
+
       const { robots,bullets,scans } = getCurrentState(); 
 
       renderBackground(app, delta);
 
+      if(explosions){
+        explosions.forEach((explosion) => {
+          if(!explosion.playing){
+            explosion.gotoAndPlay(Math.random() * 26 | 0);
+          }
+          playgroundApp.stage.addChild(explosion);
+        })
+      }
+      
       if(robots){
         robots.forEach((robot) => renderPlayer(robot,playgroundApp));
         scans.forEach((scan) => renderScan(scan,playgroundApp));
