@@ -34,7 +34,7 @@ export function explosionPlay(rx, ry, id) {
         const indexToDelete = explosions.indexOf(this);
         explosions.splice(indexToDelete, 1);
     };
-    
+
     /* 사운드 */
     const expSound = new Audio(getAsset('BoomTwice.mp3').src);
     expSound.volume = 0.1; 
