@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Properties;
 
 
@@ -25,6 +26,7 @@ public class AwsS3ClassLoader extends ClassLoader {
     private static String filePath;
     private static String outputPath;
     private static String eventPath;
+    private static String[] delegatedNames;
 
     static {
         try (InputStream input = AwsS3ClassLoader.class.getClassLoader().getResourceAsStream("config.properties")) {
@@ -39,10 +41,12 @@ public class AwsS3ClassLoader extends ClassLoader {
 
             // get the property value
             packagePath = prop.getProperty("path.package");
-            importPath = prop.getProperty("path.package");
-            filePath = prop.getProperty("path.package");
-            outputPath = prop.getProperty("path.package");
-            eventPath = prop.getProperty("path.package");
+            importPath = prop.getProperty("path.import");
+            filePath = prop.getProperty("path.file");
+            outputPath = prop.getProperty("path.output");
+            eventPath = prop.getProperty("path.event");
+            delegatedNames = prop.getProperty("path.delegate").split(",");
+            System.out.println("del? " + Arrays.toString(delegatedNames));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -90,12 +94,13 @@ public class AwsS3ClassLoader extends ClassLoader {
     @Override
     protected Class<?> findClass(String name) { // sa/FireBot.class
         try {
-            if (name.startsWith("com.bknote71.codecraft.robocode.api") || name.startsWith("com.bknote71.codecraft.robocode.event"))
-                return Class.forName(name);
+            if (Arrays.stream(delegatedNames).anyMatch(name::startsWith))
+//                return Class.forName(name);
+                return AwsS3ClassLoader.class.getClassLoader().loadClass(name);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-
+        System.out.println("find class: " + name);
         try {
             Class<?> result;
             byte[] classBytes = getClassBytes(name);

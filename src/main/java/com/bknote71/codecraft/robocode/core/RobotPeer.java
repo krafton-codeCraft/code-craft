@@ -862,6 +862,8 @@ public class RobotPeer {
         // die 패킷
         SDie diePacket = new SDie();
         diePacket.setId(id);
+        diePacket.setX(x);
+        diePacket.setX(y);
         battle.broadcast(diePacket);
 
         // 다시 배틀 시작
