@@ -1,7 +1,6 @@
-// import theme from 'monaco-themes/themes/Active4D.json';
+let editor;
+let selectedDeckLobby = 0;
 
-let editor
-const parseTmTheme = require('monaco-themes').parseTmTheme;
 document.addEventListener('DOMContentLoaded', function () {
   require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' } });
   let proxy = URL.createObjectURL(new Blob([`
@@ -12,8 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     `], { type: 'text/javascript' }));
 
   window.MonacoEnvironment = { getWorkerUrl: () => proxy };
-  monaco.editor.defineTheme('mytheme', themeData);
-  monaco.editor.setTheme('mytheme');
+
   require(["vs/editor/editor.main"], function () {
     editor = monaco.editor.create(document.getElementById('container-lobby-body'), {
       value: `public class StupidBot extends Robot {
@@ -58,3 +56,8 @@ function code_check(result, status) {
     terminal.innerHTML = `<span style="font-weight: bold; color: green;" > ${status}: </span> <span style="font-weight: bold; color: green;"${result}</span>`;
   }
 }
+function selectDeckIndexLobby(deckId) {
+  selectedDeckLobby = deckId;
+  console.log(selectedDeckLobby);
+}
+

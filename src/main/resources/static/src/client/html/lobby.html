@@ -30,10 +30,6 @@
 
 <body>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 468885226246c7008556dad87fe81a01ed6b1e63
   <canvas id="game-canvas" class="hidden"></canvas>
 
   <button id="gotoLobby">go to Lobby</button>
@@ -42,11 +38,11 @@
   <button id="gotosignup">go to signup</button>
 
   <div id="container-lobby">
-    <button id="deck-one">1</button>
-    <button id="deck-two">2</button>
-    <button id="deck-thress">3</button>
+    <button id="deck-one" onclick="selectDeckIndexLobby(0)">1</button>
+    <button id="deck-two"onclick="selectDeckIndexLobby(1)">2</button>
+    <button id="deck-thress"onclick="selectDeckIndexLobby(2)">3</button>
     <div id="container-lobby-body"></div>
-    <button id="compile-button" onclick="compile_code()">Run Code</button>
+    <button id="compile-button" onclick="compile_code(selectedDeckLobby)">Run Code</button>
   </div>
 
   <div id="terminal-lobby"></div>
@@ -60,7 +56,7 @@
   <div id="name"></div>
   <div id="username"></div>
   <div id="code"></div>
-
+  <script src="../src/client/htmlComponent/codeInterfaceLobby.js"></script>
 </body>
 
 </html>

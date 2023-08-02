@@ -25,8 +25,3 @@ Promise.all([
 
 }).catch(console.error);
 
-<<<<<<< HEAD
-// 엔터 키 이벤트를 감지하는 함수s
-
-=======
->>>>>>> 468885226246c7008556dad87fe81a01ed6b1e63

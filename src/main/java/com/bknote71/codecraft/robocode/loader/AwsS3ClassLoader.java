@@ -11,11 +11,8 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
-<<<<<<< HEAD
-=======
 import java.util.Properties;
 
->>>>>>> 468885226246c7008556dad87fe81a01ed6b1e63
 
 public class AwsS3ClassLoader extends ClassLoader {
 
@@ -23,13 +20,6 @@ public class AwsS3ClassLoader extends ClassLoader {
 
     private static final String S3_URL = "https://s3.amazonaws.com/";
 
-<<<<<<< HEAD
-    private String packagePath = "com.bknote71.codecraft.robocode.sample";
-    private String importPath = "import com.bknote71.codecraft.robocode.api.Robot;";
-    private String filePath = "C:\\Users\\rjadm\\OneDrive\\Desktop\\codeKraft\\code-craft\\sample\\";
-    private String outputPath = "C:\\Users\\rjadm\\OneDrive\\Desktop\\codeKraft\\code-craft\\robot_sample\\";
-    private String eventPath = "import com.bknote71.codecraft.robocode.event.";
-=======
 
     private static String packagePath;
     private static String importPath;
@@ -60,7 +50,6 @@ public class AwsS3ClassLoader extends ClassLoader {
             ex.printStackTrace();
         }
     }
->>>>>>> 468885226246c7008556dad87fe81a01ed6b1e63
 
     // amazon s3
     private AmazonS3Client s3;
@@ -104,15 +93,9 @@ public class AwsS3ClassLoader extends ClassLoader {
     @Override
     protected Class<?> findClass(String name) { // sa/FireBot.class
         try {
-<<<<<<< HEAD
-            if (name.startsWith("com.bknote71.codecraft.robocode.api")
-                    || name.startsWith("com.bknote71.codecraft.robocode.event"))
-                return Class.forName(name);
-=======
             if (Arrays.stream(delegatedNames).anyMatch(name::startsWith))
 //                return Class.forName(name);
                 return AwsS3ClassLoader.class.getClassLoader().loadClass(name);
->>>>>>> 468885226246c7008556dad87fe81a01ed6b1e63
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -120,12 +103,12 @@ public class AwsS3ClassLoader extends ClassLoader {
         try {
             Class<?> result;
             byte[] classBytes = getClassBytes(name);
-            String[] usernameAndClass = name.split("/");
-            if (usernameAndClass.length < 2) {
+            String[] authorAndClass = name.split("/");
+            if (authorAndClass.length < 2) {
                 System.out.println("유저가 만들지 않은 로봇임");
                 return null;
             }
-            String robotClass = usernameAndClass[1];
+            String robotClass = authorAndClass[1];
             String classname = robotClass.split("\\.")[0];
             String fullPath = packagePath + "." + classname;
 
@@ -158,7 +141,7 @@ public class AwsS3ClassLoader extends ClassLoader {
         }
     }
 
-    public CompileResult createRobot(String username, String code) {
+    public CompileResult createRobot(String author, String code) {
         // 클래스 이름 파싱
         String[] lines = code.split("\n");
 
@@ -199,24 +182,24 @@ public class AwsS3ClassLoader extends ClassLoader {
 
         // compile: {javaName}.java 파일 to {javaName}.class 파일
         CompileResult result = null;
-        if ((result = compileRobot(username, javaName, realContent)).exitCode != 0) {
+        if ((result = compileRobot(author, javaName, realContent)).exitCode != 0) {
             System.out.println(result.content);
             return result;
         }
 
-        // upload to s3: username/{javaName}.class 로 업로드
-        String key = username + "/" + javaName + ".class";
+        // upload to s3: author/{javaName}.class 로 업로드
+        String key = author + "/" + javaName + ".class";
         File file = new File(outputPath + key);
         uploadFileToS3(key, file);
 
         // remove file
-        removeDir(outputPath + username);
+        removeDir(outputPath + author);
 
         return result;
     }
 
     // 다른 process 를 실행하여 컴파일하도록 한다. (블로킹 작업 필수)
-    private CompileResult compileRobot(String username, String javaName, String code) {
+    private CompileResult compileRobot(String author, String javaName, String code) {
         String javaFileName = javaName + ".java";
         String javaClassName = javaName + ".class";
         try (FileWriter writer = new FileWriter(filePath + javaFileName)) {
@@ -228,7 +211,7 @@ public class AwsS3ClassLoader extends ClassLoader {
             // 2. javac 로 컴파일
             String javaPath = "src/main/java";
             String libPath = "lib/*";
-            String outputDir = outputPath + username;
+            String outputDir = outputPath + author;
             String sourceFile = "sample/" + javaFileName;
 
             String[] cmd = new String[] {
