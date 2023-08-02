@@ -166,7 +166,6 @@ export const getRobotInfos = () => {
     .then(response => response.json())
     .then(data => {
       renderCode(data);
-      return data;
     });
 }
 

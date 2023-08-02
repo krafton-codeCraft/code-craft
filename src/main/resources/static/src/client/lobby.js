@@ -12,12 +12,11 @@ Promise.all([
 
   // downloadAssets(),
   pixiApp(),
-  getRobotInfos(),
+  // getRobotInfos(),
 
 ]).then(() => {
 
-  // const username = sessionStorage.getItem('username');
-  // console.log(username);
+  console.log("hihihi");
 
   startButton.onclick = () => {
 

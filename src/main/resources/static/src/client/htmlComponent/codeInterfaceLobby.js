@@ -1,19 +1,13 @@
-import { getRobotInfos } from "../networking";
+// import theme from 'monaco-themes/themes/Active4D.json';
 
-let editor;
-let info;
-let selectedDeckLobby = 0;
+let editor
 
-document.addEventListener('DOMContentLoaded', async function () {
+document.addEventListener('DOMContentLoaded', function () {
 
-  console.log("hi");
-
-  const data = await getRobotInfos();
-  info = data[0].code || `public class StupidBot extends Robot {
-  // ... (여기에 StupidBot 코드를 적으세요)
-  }`;
+  console.log("jjojo");
 
   require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' } });
+
   let proxy = URL.createObjectURL(new Blob([`
         self.MonacoEnvironment = {
             baseUrl: 'https://unpkg.com/monaco-editor@latest/min/'
@@ -25,7 +19,25 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   require(["vs/editor/editor.main"], function () {
     editor = monaco.editor.create(document.getElementById('container-lobby-body'), {
-      value: info,
+      value: `public class StupidBot extends Robot {
+  @Override
+  public void run() {
+    while (true) {
+      System.out.println(Thread.currentThread().getName() + " 헤헤헤헤: " + getX() + ", " + getY());
+      try {
+        Thread.sleep(1000);
+      } catch (InterruptedException e) {
+        throw new RuntimeException(e);
+      }
+    }
+  }
+
+  @Override
+  public void onScannedRobot(ScannedRobotEvent event) {
+    System.out.println("헤헤헤헤헤 스캔: " + event.getName());
+  }
+}
+    `,
       language: 'java',
       theme: 'vs-dark'
     });
@@ -46,11 +58,6 @@ function code_check(result, status) {
     terminal.innerHTML = `<span style="font-weight: bold; color: red;" > ${status}: </span> <span style="font-weight: bold; color: red;">${result}</span>`;
   }
   else {
-    terminal.innerHTML = `<span style="font-weight: bold; color: green;" > ${status}: </span> <span style="font-weight: bold; color: green;"${result}</span>`;
+    terminal.innerHTML = `<span style="font-weightL bold; color: green;" > ${status}: </span> <span style="font-weight: bold; color: green;"${result}</span>`;
   }
 }
-function selectDeckIndexLobby(deckId) {
-  selectedDeckLobby = deckId;
-  console.log(selectedDeckLobby);
-}
-
