@@ -4,7 +4,7 @@ let cameraZ = 0;
 const fov = 20;
 const baseSpeed = 0.1;
 let speed = 0;
-export let warpSpeed = 0;
+let warpSpeed = 0;
 const starStretch = 5;
 const starBaseSize = 0.05;
 const starAmount = 1000;
@@ -12,6 +12,10 @@ const starAmount = 1000;
 const starTexture = PIXI.Texture.from('https://pixijs.com/assets/star.png');
 
 const stars = [];
+
+export function setWarpSpeed (speed){
+  warpSpeed = speed;
+}
 
 // 별의 위치를 무작위로 설정하는 함수
 export function randomizeStar(star, initial) {
