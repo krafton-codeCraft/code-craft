@@ -2,7 +2,19 @@ let editor;
 let selectedDeck = 0;
 document.addEventListener('DOMContentLoaded', function () {
 
-    console.log("hi");
+    const url = `http://localhost:8080/get/robot-infos`;
+    fetch(url, {
+    method: 'GET'
+    })
+        .then(response => response.json())
+        .then(data => {
+        console.log(data);
+        console.log(data[0].code);
+        editor.setValue(data[0].code);
+        })
+        .catch(e => {
+        console.log("ee?");
+        });
 
     require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' } });
 
@@ -37,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
 }
     `,
             language: 'java',
-            theme: 'hc-black'
+            theme: 'vs-dark'
         });
     });
 })

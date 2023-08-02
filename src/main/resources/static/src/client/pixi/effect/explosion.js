@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js';
-import {playgroundApp} from '../playground/playground'
+import {playgroundApp} from '../playground/playground.js'
 let explosionTextures = [];
 export let explosions  =  [] ;
 

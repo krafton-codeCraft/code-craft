@@ -2,11 +2,12 @@
 // https://victorzhou.com/blog/build-an-io-game-part-1/#4-client-networking
 // import io from 'socket.io-client';
 //import { throttle } from 'throttle-debounce';
-import { processGameUpdate } from './state';
-import { explosionPlay } from './pixi/effect/explosion'
+import { processGameUpdate } from './state.js';
+import { explosionPlay } from './pixi/effect/explosion.js'
 //import constants from '../shared/constants';
 //import renderCheckbox from './htmlComponent/checkbox';
-import { renderCode } from './codeSpace';
+import { renderCode } from './codeSpace.js';
+import { setEditorValueLobby } from './htmlComponent/codeInterfaceLobby.js';
 
 // import redis from 'redis';
 
@@ -159,168 +160,22 @@ window.change_code = change_code;
 window.compile_code = compile_code;
 
 export const getRobotInfos = () => {
+  console.log('asdfasdfasdf');
   const url = `http://${addr}:8080/get/robot-infos`;
   return fetch(url, {
     method: 'GET'
   })
-    .then(response => response.json())
+    .then(response => {
+      return response.json();
+    })
+
     .then(data => {
-      renderCode(data);
+      // console.log(data[0].code);
+      // const info = data[0].code;
+      // setEditorValueLobby(info);
+      return data;
+    })
+    .catch(e => {
+      console.log(e);
     });
 }
-
-// export const updateInputKeyBoardDown = throttle(20, (key) => {
-//   let dir;
-//   if (key === 38) {
-//     dir = 'North';
-//   } else if (key === 40) {
-//     dir = 'South';
-//   } else if (key === 39) {
-//     dir = 'East';
-//   } else if (key === 37) {
-//     dir = 'West';
-//   }
-
-//   const message = {
-//     type: 'cmove',
-//     protocol: 'C_Move',
-//     posInfo: {
-//       pos: {},
-//       dirs: [],
-//       state: null,
-//     },
-//     dir: dir,
-//     updown: true,
-//   };
-
-//   websocket.send(JSON.stringify(message));
-// });
-
-// export const updateInputKeyBoardUp = (key) => {
-//   let dir;
-//   if (key === 38) {
-//     dir = 'North';
-//   } else if (key === 40) {
-//     dir = 'South';
-//   } else if (key === 39) {
-//     dir = 'East';
-//   } else if (key === 37) {
-//     dir = 'West';
-//   }
-
-//   const message = {
-//     type: 'cmove',
-//     protocol: 'C_Move',
-//     posInfo: {
-//       pos: {},
-//       dirs: [],
-//       state: null,
-//     },
-//     dir: dir,
-//     updown: false,
-//   };
-
-//   websocket.send(JSON.stringify(message));
-// };
-
-// let analysisResult = { result: null, percentage: null };
-// export { analysisResult };
-
-// export const performSentimentAnalysisPlayer = (playerID, targetID, inputValue) => {
-//   const url = `http://localhost:5050/sentiment-analysis-player`; // Adjust the URL to match your Python server
-//   const dataString = playerID + '|' + targetID + '|' + inputValue;
-//   // Send the input value to the Python server using fetch API
-//   sendContent(url, dataString, targetID, inputValue);
-// }
-// export const performSentimentAnalysisMeteor = (meteorWord, targetID, inputValue) => {
-//   const url = `http://localhost:5050/sentiment-analysis-meteor`; // Adjust the URL to match your Python server
-//   const dataString = meteorWord + '|' + targetID + '|' + inputValue;
-//   // Send the input value to the Python server using fetch API
-//   sendContent(url, dataString, targetID, inputValue);
-// }
-
-
-// function sendContent(url, dataString, targetID, inputValue) {
-//   fetch(url, {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'text/plain',
-//       'Connection': 'keep-alive'
-//     },
-//     body: dataString
-//   })
-//     .then(response => response.json())
-//     .then(data => {
-//       const result = data.result;
-//       handleChatAttack(targetID, inputValue, result, data.percentage);
-
-//       console.log(result);
-//       analysisResult.result = data.result;
-//       analysisResult.percentage = data.percentage;
-//       // Update the UI with the sentiment analysis result as needed
-//       renderCheckbox(targetID, inputValue, result);
-
-//     })
-//     .catch(error => {
-//       console.error('Error:', error);
-//     });
-// }
-
-
-// const bullletInstance = {
-//   skillId: 1,
-//   name: 'bullet',
-//   damage: constants.BULLET_DAMAGE,
-//   skillType: 'BULLET',
-//   projectile: {
-//     speed: constants.BULLET_SPEED,
-//     range: constants.BULLET_RADIUS,
-//   }
-// };
-
-// const shieldInstance = {
-//   skillId: 2,
-//   name: 'shield',
-//   damage: 0,
-//   skillType: 'SHIELD',
-// };
-
-// export const handleChatAttack = (targetID, content, result, percent) => {
-
-//   if (targetID == -1 && !result) { //
-//     console.log('타겟이 없는 상태에서 부정이면 방어할 수 없습니다.');
-//     return;
-//   }
-
-//   let targetType = ((targetID >> 24) & 0x7F);
-//   if (targetType == 2 && !result) {
-//     console.log('70% 의 유사도를 넘지 못했으므로 공격할 수 없습니다.');
-//     return;
-//   }
-
-//   if (targetID == -1) {
-//     sendSkill(targetID, true);
-//   }
-//   else if (targetType == 1) {
-//     sendSkill(targetID, result);
-//   }
-//   else if (targetType == 2) {
-//     sendSkill(targetID, false);
-//   }
-//   else {
-//     console.log('굉장히 잘못되었다.');
-//   }
-// }
-
-// function sendSkill(targetID, result) {
-//   // false 이면 공격, true 이면 쉴드
-//   let info = result === false ? bullletInstance : shieldInstance;
-//   const skillPacket = {
-//     type: 'cskill',
-//     protocol: 'C_Skill',
-//     target: targetID,
-//     info: info
-//   }
-//   // skill
-//   websocket.send(JSON.stringify(skillPacket));
-// }z

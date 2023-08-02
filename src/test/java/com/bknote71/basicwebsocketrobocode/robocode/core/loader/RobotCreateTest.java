@@ -8,7 +8,7 @@ public class RobotCreateTest {
 
     @Test
     void star2() {
-        String author = "user5";
+        String author = "user20";
         String content =
                 "public class Star2Bot extends Robot {\n" +
                 "    @Override\n" +

@@ -1,6 +1,6 @@
 // Learn more about this file at:
 // https://victorzhou.com/blog/build-an-io-game-part-1/#7-client-state
-import { updateLeaderboard } from './htmlComponent/leaderboard';
+import { updateLeaderboard } from './htmlComponent/leaderboard.js';
 
 const Constants = require('../shared/constants');
 

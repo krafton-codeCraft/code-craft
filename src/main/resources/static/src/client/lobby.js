@@ -2,7 +2,8 @@ import { downloadAssets } from './assets';
 import './css/bootstrap-reboot.css';
 import pixiApp from './pixi/app.js';
 import './css/lobby.css';
-import { getRobotInfos } from './networking';
+import { getRobotInfos } from './networking.js';
+import { setEditorValueLobby } from './htmlComponent/codeInterfaceLobby';
 
 const startButton = document.getElementById('start-button');
 
@@ -12,11 +13,9 @@ Promise.all([
 
   // downloadAssets(),
   pixiApp(),
-  // getRobotInfos(),
-
+  getRobotInfos(),
+  
 ]).then(() => {
-
-  console.log("hihihi");
 
   startButton.onclick = () => {
 
