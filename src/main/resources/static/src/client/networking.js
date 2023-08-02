@@ -129,7 +129,7 @@ function compile_code() {
 
 function change_code(index) {
   const content = getEditorValue();
-  const url = `http://${addr}:8080/change/robot`;
+  const url = `http://${addr}:8080/change/ingame-robot`;
   let Data = { robotId: robotId, specIndex: index, code: content }
   console.log(Data)
   fetch_code(Data, url);
