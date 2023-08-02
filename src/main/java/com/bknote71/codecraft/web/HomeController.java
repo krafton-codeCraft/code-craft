@@ -1,6 +1,5 @@
 package com.bknote71.codecraft.web;
 
-import com.bknote71.codecraft.entity.RobotSpecEntity;
 import com.bknote71.codecraft.entity.service.RobotSpecService;
 import com.bknote71.codecraft.robocode.leaderboard.LeaderBoardInfo;
 import com.bknote71.codecraft.robocode.leaderboard.LeaderBoardTemplate;
@@ -37,30 +36,32 @@ public class HomeController {
         return "lobby";
     }
 
-    @GetMapping("/enter/battle")
+    @GetMapping("/get/robot-infos")
     @ResponseBody
-    public ResponseEntity<?> enterBattle(@AuthenticationPrincipal(expression = "username") String username) {
-        List<RobotSpecEntity> robotInfos = robotSpecService.getRobotInfo(username);
+    public ResponseEntity<?> getRobotInfos(@AuthenticationPrincipal(expression = "username") String username) {
+        List<RobotSpecDto> robotInfos = robotSpecService.getRobotInfo(username);
         return new ResponseEntity<>(robotInfos, HttpStatus.OK);
     }
 
     @PostMapping("/create/robot")
     @ResponseBody
     public ResponseEntity<?> createRobot(@AuthenticationPrincipal(expression = "username") String username,
-            String code) { // author == username
+            int specIndex, String code) { // author == username
         log.info("create robot {}", username);
-        if (username == null) {
-            System.out.println("말도안됨");
-            return null;
-        }
 
         AwsS3ClassLoader classLoader = new AwsS3ClassLoader("robot-class");
         CompileResult result = classLoader.createRobot(username, code);
 
         if (result.exitCode == 0) {
-            robotSpecService.saveRobotSpec(username, result.getRobotName(), result.getFullClassName(),
+            RobotSpecDto saveResult = robotSpecService.saveRobotSpec(username, result.getRobotname(), result.getFullClassName(),
                     result.getCode());
+            if (saveResult == null) {
+                log.error("save robot spec failed");
+                return new ResponseEntity<>(result, HttpStatus.INTERNAL_SERVER_ERROR);
+            }
         }
+
+        result.username = username;
 
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
@@ -73,16 +74,19 @@ public class HomeController {
 
         AwsS3ClassLoader classLoader = new AwsS3ClassLoader("robot-class");
         CompileResult result = classLoader.createRobot(username, code);
-        if (result.exitCode != 0)
-            return new ResponseEntity<>(result, HttpStatus.OK);
 
-        // 컴파일에 성공하면 신호를 줘야함
-        String ret = robotSpecService.changeRobotSpec(username, robotId, specIndex, result.robotName,
-                result.fullClassName, code);
-        if (ret == null) {
-            System.out.println("change robot spec 실패");
-            return null;
+        if (result.exitCode == 0) {
+            // 컴파일에 성공하면 신호를 줘야함
+            RobotSpecDto changeResult = robotSpecService.changeRobotSpec(username, robotId, specIndex, result.robotname,
+                    result.fullClassName, code);
+
+            if (changeResult == null) {
+                log.error("change robot spec failed");
+                return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            }
         }
+
+        result.username = username;
 
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

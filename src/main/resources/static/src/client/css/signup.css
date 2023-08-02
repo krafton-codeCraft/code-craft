@@ -11,7 +11,7 @@ body {
     padding: 0;
     overflow: hidden;
     overscroll-behavior: none;
-    background-color: black;
+    /* background-color: black; */
 }
 
 .hidden {
@@ -33,10 +33,9 @@ body {
     width: 400px;
     height: 440px;
     background: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    border-radius: 20px;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(60, 60, 60, 0.5);
+    backdrop-filter: blur(1px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,6 +52,10 @@ body {
 .wrapper .form-box {
     width: 100%;
     padding: 0;
+}
+
+.wrapper h2 {
+    color: #f0f0f0;
 }
 
 .wrapper .form-box-login {
@@ -95,6 +98,7 @@ body {
     height: 100%;
     background: -webkit-linear-gradient(left, #4A90E2, #8E44AD, #f39c12, #27ae60);
     -webkit-background-clip: text;
+    backdrop-filter: blur(1px);
     color: transparent;
     border: none;
     outline: none;

@@ -4,12 +4,12 @@ package com.bknote71.codecraft.robocode.core;
 public class RobotSpecification {
 
     private final String name; // bucket 의 key
-    private final String author; // owner
+    private final String username; // owner
     private final String fullClassName; // MyRobot.class (or MyRobot.java) in s3
 
-    public RobotSpecification(String name, String author, String fullClassName) {
+    public RobotSpecification(String name, String username, String fullClassName) {
         this.name = name;
-        this.author = author;
+        this.username = username;
         this.fullClassName = fullClassName;
     }
 
@@ -17,8 +17,8 @@ public class RobotSpecification {
         return name;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getUsername() {
+        return username;
     }
 
     public String getFullClassName() {
