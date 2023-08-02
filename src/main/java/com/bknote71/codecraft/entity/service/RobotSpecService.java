@@ -46,7 +46,7 @@ public class RobotSpecService {
 
 
     @Transactional
-    public RobotSpecDto saveRobotSpec(String username, String robotName, String fullClassName, String code) {
+    public RobotSpecDto saveRobotSpec(String username, int specIndex, String robotName, String fullClassName, String code) {
         UserEntity user = userRepository.findByUsername(username);
         if (user == null) {
             System.out.println("save robot spec 하는데 유저가 존재하지 않음");
@@ -59,6 +59,8 @@ public class RobotSpecService {
         robotSpecEntity.setFullClassName(fullClassName);
         robotSpecEntity.setCode(code);
         robotSpecEntity.setUser(user);
+
+        user.changeSpec(specIndex, robotSpecEntity);
 
         RobotSpecEntity savedEntity = robotSpecRepository.save(robotSpecEntity);
         if (savedEntity == null) {

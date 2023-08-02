@@ -23,6 +23,5 @@ public class RobotCreateTest {
         AwsS3ClassLoader classLoader = new AwsS3ClassLoader("robot-class");
         CompileResult result = classLoader.createRobot(author, content);
         System.out.println(result.content);
-
     }
 }
