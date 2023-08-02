@@ -21,35 +21,6 @@ public class DataInitRunner implements CommandLineRunner {
     @Override
     @Transactional
     public void run(String... args) throws Exception {
-        // ㅎㅎ
-        UserEntity user = userRepository.findByUsername("sa");
-        RobotSpecEntity robotSpecEntity = new RobotSpecEntity();
-        robotSpecEntity.setName("sa");
-        robotSpecEntity.setFullClassName("FireBot.class");
-        robotSpecEntity.setUser(user);
-        robotSpecEntity.setUsername("sa");
-        robotSpecEntity.setCode( "public class FireBot extends Robot {\n" +
-                "    @Override\n" +
-                "    public void run() {\n" +
-                "        while (true) {\n" +
-                "            turnLeft(360);\n" +
-                "\n" +
-                "            try {\n" +
-                "                Thread.sleep(300);\n" +
-                "            } catch (InterruptedException e) {\n" +
-                "                e.printStackTrace();\n" +
-                "                throw new RuntimeException(e);\n" +
-                "            }\n" +
-                "        }\n" +
-                "    }\n" +
-                "\n" +
-                "    @Override\n" +
-                "    public void onScannedRobot(ScannedRobotEvent event) {\n" +
-                "        System.out.println(\"scanning success target: \" + event.getName());\n" +
-                "        System.out.println(\"shooooooooooooooot\");\n" +
-                "        fire(1);\n" +
-                "    }\n" +
-                "}\n");
-        robotSpecRepository.save(robotSpecEntity);
+        // 모두 지우세요 ^.^
     }
 }
