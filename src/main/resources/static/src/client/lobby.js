@@ -10,6 +10,7 @@ let flag = true;
 
 Promise.all([
 
+  // downloadAssets(),
   pixiApp(),
   getRobotInfos(),
 
@@ -44,5 +45,3 @@ Promise.all([
 // document.getElementById('gotosignup').addEventListener('click', function () {
 //   window.location.href = '/signup.html';
 // });
-
-/* -------------------------------------------------------- */

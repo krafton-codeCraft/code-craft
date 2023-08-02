@@ -1,35 +1,17 @@
-// import theme from 'monaco-themes/themes/Active4D.json';
 import { getRobotInfos } from "../networking";
 
 let editor;
+let info;
 let selectedDeckLobby = 0;
 
 document.addEventListener('DOMContentLoaded', async function () {
 
+  console.log("hi");
+
   const data = await getRobotInfos();
-  let info = data[0].code;
-
-  // Check if info is null and set a default value
-  if (info === null) {
-    info = `public class StupidBot extends Robot {
-      @Override
-      public void run() {
-        while (true) {
-          System.out.println(Thread.currentThread().getName() + " 헤헤헤헤: " + getX() + ", " + getY());
-          try {
-            Thread.sleep(1000);
-          } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-          }
-        }
-      }
-
-      @Override
-      public void onScannedRobot(ScannedRobotEvent event) {
-        System.out.println("헤헤헤헤헤 스캔: " + event.getName());
-      }
-    }`;
-  }
+  info = data[0].code || `public class StupidBot extends Robot {
+  // ... (여기에 StupidBot 코드를 적으세요)
+  }`;
 
   require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' } });
   let proxy = URL.createObjectURL(new Blob([`
@@ -43,24 +25,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   require(["vs/editor/editor.main"], function () {
     editor = monaco.editor.create(document.getElementById('container-lobby-body'), {
-      value: `public class StupidBot extends Robot {
-        @Override
-        public void run() {
-          while (true) {
-            System.out.println(Thread.currentThread().getName() + " 헤헤헤헤: " + getX() + ", " + getY());
-            try {
-              Thread.sleep(1000);
-            } catch (InterruptedException e) {
-              throw new RuntimeException(e);
-            }
-          }
-        }
-  
-        @Override
-        public void onScannedRobot(ScannedRobotEvent event) {
-          System.out.println("헤헤헤헤헤 스캔: " + event.getName());
-        }
-      }`,
+      value: info,
       language: 'java',
       theme: 'vs-dark'
     });

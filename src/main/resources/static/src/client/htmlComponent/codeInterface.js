@@ -1,6 +1,9 @@
 let editor;
 let selectedDeck = 0;
 document.addEventListener('DOMContentLoaded', function () {
+
+    console.log("hi");
+
     require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' } });
 
     let proxy = URL.createObjectURL(new Blob([`
