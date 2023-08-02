@@ -1,12 +1,6 @@
 import * as PIXI from 'pixi.js';
-<<<<<<< HEAD
-import {playgroundApp} from '../playground/playground.js'
-let explosionTextures = [];
-export let explosions  =  [] ;
-=======
 import {playgroundApp} from '../playground/playground'
 import { getAsset } from '../../assets';
->>>>>>> 1be59269ffcd3f49c069994fdd16d0003b54bb18
 
 export let explosions  =  [];
 
@@ -40,7 +34,7 @@ export function explosionPlay(rx, ry, id) {
         const indexToDelete = explosions.indexOf(this);
         explosions.splice(indexToDelete, 1);
     };
-    
+
     /* 사운드 */
     const expSound = new Audio(getAsset('BoomTwice.mp3').src);
     expSound.volume = 0.1; 
