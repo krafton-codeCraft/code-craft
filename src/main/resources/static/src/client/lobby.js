@@ -11,6 +11,7 @@ Promise.all([
 
   downloadAssets(),
   pixiApp(),
+  
 
 ]).then(() => {
 
@@ -22,6 +23,9 @@ Promise.all([
     window.location.href = '/ingame.html';
 
   };
+
+
+
 
 }).catch(console.error);
 
