@@ -37,10 +37,10 @@ public class HomeController {
         return "lobby";
     }
 
-    @GetMapping("/enter/battle")
+    @GetMapping("/get/robot-infos")
     @ResponseBody
-    public ResponseEntity<?> enterBattle(@AuthenticationPrincipal(expression = "username") String username) {
-        List<RobotSpecEntity> robotInfos = robotSpecService.getRobotInfo(username);
+    public ResponseEntity<?> getRobotInfos(@AuthenticationPrincipal(expression = "username") String username) {
+        List<RobotSpecDto> robotInfos = robotSpecService.getRobotInfo(username);
         return new ResponseEntity<>(robotInfos, HttpStatus.OK);
     }
 

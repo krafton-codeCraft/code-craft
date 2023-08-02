@@ -9,11 +9,13 @@ import com.bknote71.codecraft.robocode.core.RobotPeer;
 import com.bknote71.codecraft.robocode.core.battle.Battle;
 import com.bknote71.codecraft.robocode.loader.AwsS3ClassLoader;
 import com.bknote71.codecraft.session.packet.PacketHandler;
+import com.bknote71.codecraft.web.RobotSpecDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -26,7 +28,7 @@ public class RobotSpecService {
     private final RobotSpecRepository robotSpecRepository;
     private final PacketHandler packetHandler;
 
-    public List<RobotSpecEntity> getRobotInfo(String username) {
+    public List<RobotSpecDto> getRobotInfo(String username) {
         AwsS3ClassLoader classLoader = new AwsS3ClassLoader("robot-class");
         UserEntity user = userRepository.findByUsername(username);
         List<RobotSpecEntity> specs = null;
@@ -35,11 +37,13 @@ public class RobotSpecService {
             return null;
         }
 
+        List<RobotSpecDto> robotSpecDtos = new ArrayList<>();
         for (RobotSpecEntity spec : specs) {
             // 여기서 뭔가 dto 로 변환 ??
+            robotSpecDtos.add(new RobotSpecDto(null, spec.getName(), username, spec.getFullClassName(), spec.getCode()));
         }
 
-        return specs;
+        return robotSpecDtos;
     }
 
 

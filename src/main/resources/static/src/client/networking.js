@@ -156,6 +156,20 @@ function fetch_code(Data, url) {
 window.change_code = change_code;
 window.compile_code = compile_code;
 
+export const getRobotInfos = () => {
+  const url = `http://${addr}:8080/get/robot-infos`;
+  fetch_code(url, {
+    method: 'GET'
+  })
+    .then(response => response.json())
+    .then(data => {
+      renderCode(data);
+    })
+    .catch(error => {
+      console.error('in get robot-infos error: ', error);
+    });
+}
+
 // export const updateInputKeyBoardDown = throttle(20, (key) => {
 //   let dir;
 //   if (key === 38) {
