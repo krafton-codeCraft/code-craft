@@ -212,7 +212,7 @@ public class RobotPeer {
         return state != RobotState.DEAD;
     }
 
-    private boolean isDead() {
+    public boolean isDead() {
         return state == RobotState.DEAD;
     }
 
@@ -411,7 +411,7 @@ public class RobotPeer {
         setState(RobotState.ACTIVE);
 
         velocity = 0;
-        hp = 100;
+        hp = 0;
         energy = 100;
         gunHeat = 3;
 
@@ -863,11 +863,19 @@ public class RobotPeer {
         SDie diePacket = new SDie();
         diePacket.setId(id);
         diePacket.setX(x);
-        diePacket.setX(y);
+        diePacket.setY(y);
         battle.broadcast(diePacket);
 
         // 다시 배틀 시작
-        startBattle();
+        battle.pushAfter(1000, this::startBattle);
+    }
+
+    public void setDead() {
+        setState(RobotState.DEAD);
+    }
+
+    public void changeRobotInfo(RobotPeer newRobot) {
+
     }
 
     void updateEnergy(double delta) {

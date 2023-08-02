@@ -58,7 +58,7 @@ public class PacketHandler {
     public String changeAndReenter(String username, int robotId, int robotIndex) {
         // 새로운 스펙으로 새로운 로봇 생성
         ClientSession session = ClientSessionManager.Instance.findByUsername(username);
-        RobotPeer robot = createRobotPeer(session, username, robotIndex);
+        RobotPeer robot = session.getMyRobot();
 
         if (robot == null) {
             System.out.println("로봇 생성 실패");

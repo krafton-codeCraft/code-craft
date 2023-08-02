@@ -42,6 +42,8 @@ public class JobSerializer { // 잡 큐
 
     // 큐에 있는 잡 모두 실행
     public void flush() {
+        // 우선 타이머 실행
+        timer.flush();
         while (true) {
             IJob job = pop();
             if (job == null)
