@@ -33,7 +33,6 @@ public class Battle {
     private int nanoWait;
 
     // objects in the battle
-    private int robotId;
     private Map<Integer, RobotPeer> robots = new HashMap<>();
     private List<BulletPeer> bullets = new CopyOnWriteArrayList<>();
 
@@ -125,7 +124,7 @@ public class Battle {
 
         // enter packet
         SEnterBattle enterPacket = new SEnterBattle();
-        enterPacket.setRobotId(robotId);
+        enterPacket.setRobotId(robotPeer.getId());
         enterPacket.setRobotName(robotPeer.getName());
         enterPacket.setSpecIndex(robotPeer.getSpecIndex());
         enterPacket.setSpecifications(robotPeer.getSpecifications());

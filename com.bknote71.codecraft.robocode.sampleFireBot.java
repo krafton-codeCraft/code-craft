@@ -1,5 +1,5 @@
 package com.bknote71.codecraft.robocode.sample;
-import com.bknote71.codecraft.robocode.api.Robot;
+com.bknote71.codecraft.robocode.sample
 import com.bknote71.codecraft.robocode.event.ScannedRobotEvent;
 import com.bknote71.codecraft.robocode.event.HitByBulletEvent;
 public class FireBot extends Robot {

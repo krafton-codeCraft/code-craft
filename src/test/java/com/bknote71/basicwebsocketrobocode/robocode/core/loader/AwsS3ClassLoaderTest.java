@@ -11,12 +11,12 @@ import java.util.Arrays;
 
 class AwsS3ClassLoaderTest {
 
-    @Test
-    void parse() {
-        String name = "MyRobot.class";
-        String[] split = name.split("\\.");
-        System.out.println(Arrays.toString(split));
-    }
+//    @Test
+//    void parse() {
+//        String name = "MyRobot.class";
+//        String[] split = name.split("\\.");
+//        System.out.println(Arrays.toString(split));
+//    }
 
 //    @Test
 //    void classLoadTest() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
@@ -31,34 +31,31 @@ class AwsS3ClassLoaderTest {
         String author = "sa";
         String content =
                 "public class FireBot extends Robot {\n" +
-                        "    @Override\n" +
-                        "    public void run() {\n" +
-                        "        while (true) {\n" +
-                        "            // 총알 커맨드: fire == fireBullet\n" +
-                        "            // 15 도 씩 돌기\n" +
-                        "            turnLeft(360);\n" +
-                        "            // scan();\n" +
-                        "\n" +
-                        "            System.out.println(Thread.currentThread().getName() + \"스레드에서의 각도: \" + getGunHeading());\n" +
-                        "            try {\n" +
-                        "                Thread.sleep(1500);\n" +
-                        "            } catch (InterruptedException e) {\n" +
-                        "                e.printStackTrace();\n" +
-                        "                throw new RuntimeException(e);\n" +
-                        "            }\n" +
-                        "        }\n" +
-                        "    }\n" +
-                        "\n" +
-                        "    @Override\n" +
-                        "    public void onScannedRobot(ScannedRobotEvent event) {\n" +
-                        "        System.out.println(\"스캐닝 성공! 대상: \" + event.getName());\n" +
-                        "        System.out.println(\"총쏘기\");\n" +
-                        "        fire(1);\n" +
-                        "    }\n" +
-                        "}\n";
+                "    @Override\n" +
+                "    public void run() {\n" +
+                "        while (true) {\n" +
+                "            turnLeft(360);\n" +
+                "\n" +
+                "            try {\n" +
+                "                Thread.sleep(300);\n" +
+                "            } catch (InterruptedException e) {\n" +
+                "                e.printStackTrace();\n" +
+                "                throw new RuntimeException(e);\n" +
+                "            }\n" +
+                "        }\n" +
+                "    }\n" +
+                "\n" +
+                "    @Override\n" +
+                "    public void onScannedRobot(ScannedRobotEvent event) {\n" +
+                "        System.out.println(\"scanning success target: \" + event.getName());\n" +
+                "        System.out.println(\"shooooooooooooooot\");\n" +
+                "        fire(1);\n" +
+                "    }\n" +
+                "}\n";
 
-        //     CompileResult robot = AwsS3ClassLoader.Instance.createRobot(author, content);
-        //     System.out.println("content: \n");
+        CompileResult robot = AwsS3ClassLoader.Instance.createRobot(author, content);
+        System.out.println("content: \n");
+        System.out.println(robot.content);
     }
 //
 //    @Test
