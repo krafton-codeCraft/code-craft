@@ -6,7 +6,7 @@ import { processGameUpdate } from './state';
 import { explosionPlay } from './pixi/effect/explosion'
 //import constants from '../shared/constants';
 //import renderCheckbox from './htmlComponent/checkbox';
-import { renderCode } from './lobby';
+import { renderCode } from './codeSpace';
 
 // import redis from 'redis';
 
@@ -162,15 +162,13 @@ window.compile_code = compile_code;
 
 export const getRobotInfos = () => {
   const url = `http://${addr}:8080/get/robot-infos`;
-  fetch(url, {
+  return fetch(url, {
     method: 'GET'
   })
     .then(response => response.json())
     .then(data => {
       renderCode(data);
-    })
-    .catch(error => {
-      console.error('in get robot-infos error: ', error);
+      return data;
     });
 }
 
