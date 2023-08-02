@@ -54,12 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// export function setEditorValueLobby(code){
-//   if(code){
-//     editor.setValue(code);
-//   }
-// }
-
 function getEditorValue() {
   if (editor) {
       const content = editor.getValue();
@@ -69,7 +63,7 @@ function getEditorValue() {
 }
 
 function code_check(result, status) {
-  const terminal = document.getElementById('terminal');
+  const terminal = document.getElementById('terminal-lobby');
   if (result != 0) {
       terminal.innerHTML = `<span style="font-weight: bold; color: red;" > ${status}: </span> <span style="font-weight: bold; color: red;">${result}</span>`;
   }
