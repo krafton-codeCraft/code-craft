@@ -46,7 +46,6 @@ public class AwsS3ClassLoader extends ClassLoader {
             outputPath = prop.getProperty("path.output");
             eventPath = prop.getProperty("path.event");
             delegatedNames = prop.getProperty("path.delegate").split(",");
-            System.out.println("del? " + Arrays.toString(delegatedNames));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
