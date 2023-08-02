@@ -2,10 +2,9 @@ import * as PIXI from 'pixi.js';
 
 import {playgroundApp} from '../playground/playground'
 import { getAsset } from '../../assets';
-
 export let explosions  =  [];
-
 const explosionTextures = [];
+
 PIXI.Assets.load('https://pixijs.com/assets/spritesheet/mc.json').then(() => {
     let i;
     for (i = 0; i < 26; i++) {
