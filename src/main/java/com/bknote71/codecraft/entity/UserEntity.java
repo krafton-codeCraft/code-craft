@@ -20,7 +20,7 @@ public class UserEntity {
     private String username;
     private String password;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RobotSpecEntity> specifications = new ArrayList<>();
 
     public UserEntity(String username, String password) {
@@ -30,5 +30,11 @@ public class UserEntity {
 
     public void add(RobotSpecEntity robot) {
         specifications.add(robot);
+    }
+
+    public void changeSpec(int specIndex, RobotSpecEntity robotSpecEntity) {
+        if (specIndex < specifications.size())
+            specifications.remove(specIndex);
+        specifications.add(specIndex, robotSpecEntity);
     }
 }
