@@ -203,7 +203,9 @@ public class Battle {
         }
 
         // 충돌 이후 업데이트 ??
-        // 우리 게임은 충돌이 없다.
+        for (RobotPeer robotPeer : robots.values()) {
+            robotPeer.updateAfterCollision();
+        }
 
         // scan after moved all
         for (RobotPeer robotPeer : getRobotsAtRandom()) {

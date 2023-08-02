@@ -26,37 +26,37 @@ class AwsS3ClassLoaderTest {
 //        myRobot1.pyosik();
 //    }
 
-    // @Test
-    // void compileFireBot() {
-    //     String author = "sa";
-    //     String content =
-    //             "public class FireBot extends Robot {\n" +
-    //             "    @Override\n" +
-    //             "    public void run() {\n" +
-    //             "        while (true) {\n" +
-    //             "            turnLeft(360);\n" +
-    //             "\n" +
-    //             "            try {\n" +
-    //             "                Thread.sleep(300);\n" +
-    //             "            } catch (InterruptedException e) {\n" +
-    //             "                e.printStackTrace();\n" +
-    //             "                throw new RuntimeException(e);\n" +
-    //             "            }\n" +
-    //             "        }\n" +
-    //             "    }\n" +
-    //             "\n" +
-    //             "    @Override\n" +
-    //             "    public void onScannedRobot(ScannedRobotEvent event) {\n" +
-    //             "        System.out.println(\"scanning success target: \" + event.getName());\n" +
-    //             "        System.out.println(\"shooooooooooooooot\");\n" +
-    //             "        fire(1);\n" +
-    //             "    }\n" +
-    //             "}\n";
-
-    //     CompileResult robot = AwsS3ClassLoader.Instance.createRobot(author, content);
-    //     System.out.println("content: \n");
-    //     System.out.println(robot.content);
-    // }
+//     @Test
+//     void compileFireBot() {
+//         String author = "sa";
+//         String content =
+//                 "public class FireBot extends Robot {\n" +
+//                 "    @Override\n" +
+//                 "    public void run() {\n" +
+//                 "        while (true) {\n" +
+//                 "            turnLeft(360);\n" +
+//                 "\n" +
+//                 "            try {\n" +
+//                 "                Thread.sleep(300);\n" +
+//                 "            } catch (InterruptedException e) {\n" +
+//                 "                e.printStackTrace();\n" +
+//                 "                throw new RuntimeException(e);\n" +
+//                 "            }\n" +
+//                 "        }\n" +
+//                 "    }\n" +
+//                 "\n" +
+//                 "    @Override\n" +
+//                 "    public void onScannedRobot(ScannedRobotEvent event) {\n" +
+//                 "        System.out.println(\"scanning success target: \" + event.getName());\n" +
+//                 "        System.out.println(\"shooooooooooooooot\");\n" +
+//                 "        fire(1);\n" +
+//                 "    }\n" +
+//                 "}\n";
+//
+//         CompileResult robot = AwsS3ClassLoader.Instance.createRobot(author, content);
+//         System.out.println("content: \n");
+//         System.out.println(robot.content);
+//     }
 //
 //    @Test
 //    void stupidTest() {
