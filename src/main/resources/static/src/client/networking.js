@@ -60,9 +60,7 @@ export const connect = onGameOver => (
       } else if (message.type === 'schat') {
         // console.log('schat');
       } else if (message.type === 'sdie') {
-        /* for(let e = 0 ; e < 3 ; i ++){
-          explosionPlay()
-        } */
+        explosionPlay(message.x,message.y,message.id);
         console.log('sdie');
       }
     };

@@ -1,11 +1,23 @@
 import { getAsset } from '../../assets';
 import { robotId } from '../../networking'
+import { deadRobot } from '../scan/scan'
 const Constants = require('../../../shared/constants');
-const { PLAYER_RADIUS,PLAYER_MAXENERGY } = Constants;
+const { PLAYER_RADIUS,PLAYER_MAXENERGY, PLAYER_MAXHP } = Constants;
 
 function renderPlayer(player, app) {
 
-    const { id, x, y, name , bodyHeading, gunHeading, raderHeading, energy } = player;
+    const { id, x, y, name , bodyHeading, gunHeading, raderHeading, energy ,hp , dead} = player;
+    if(dead){
+        deadRobot.push(id);
+        return;
+    }else{
+        const indexToDelete = deadRobot.indexOf(id);
+        // 배열에서 해당 인덱스의 요소를 삭제합니다.
+        if (indexToDelete !== -1) {
+            deadRobot.splice(indexToDelete, 1);
+            return;
+        }
+    }
     const canvasX = x;
     const canvasY = y;
     let randcolor = 0xFFFFFF;
@@ -54,7 +66,7 @@ function renderPlayer(player, app) {
     app.stage.addChild(outerBar); */
    
     //체력바 텍스트
-    const hptext = new PIXI.Text(energy+'/' + PLAYER_MAXENERGY, { fontFamily: 'Arial', fontSize: 10, fill: 'white' });
+    const hptext = new PIXI.Text(hp +'/' + PLAYER_MAXHP, { fontFamily: 'Arial', fontSize: 10, fill: 'white' });
     hptext.anchor.set(0.5);
     hptext.x = canvasX;
     hptext.y = canvasY - (PLAYER_RADIUS * 2);
