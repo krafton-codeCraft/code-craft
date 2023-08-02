@@ -54,8 +54,7 @@ public class HomeController {
         CompileResult result = classLoader.createRobot(username, code);
 
         if (result.exitCode == 0) {
-            RobotSpecDto saveResult = robotSpecService.saveRobotSpec(username, specIndex, result.getRobotname(), result.getFullClassName(),
-                    result.getCode());
+            RobotSpecDto saveResult = robotSpecService.saveRobotSpec(username, specIndex, result.getRobotname(), result.getFullClassName(), code);
             if (saveResult == null) {
                 log.error("save robot spec failed");
                 return new ResponseEntity<>(result, HttpStatus.INTERNAL_SERVER_ERROR);
