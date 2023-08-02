@@ -58,8 +58,8 @@ export function renderCode(data) {
   // } else {
   //   robotIdElement.textContent = 'No robot ID';
   // }
-  // nameElement.textContent = data.name;
-  // usernameElement.textContent = data.username;
+  nameElement.textContent = data.name;
+  usernameElement.textContent = data.username;
   // codeElement.textContent = data.code;
 
   console.log("hi");
