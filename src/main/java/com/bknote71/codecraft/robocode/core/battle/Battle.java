@@ -148,8 +148,14 @@ public class Battle {
     public void changeRobot(int robotId, RobotPeer newRobot) {
         // 뭘하냐 여기서...
         log.info("change robot " + robotId);
-        leaveBattle(robotId);
-        enterBattle(newRobot);
+        RobotPeer robotPeer;
+        if ((robotPeer = robots.get(robotId)) == null) {
+            System.out.println("유효하지 않은 로봇입니다.");
+            return;
+        }
+
+        robotPeer.setDead();
+        robotPeer.changeRobotInfo(newRobot);
     }
 
     // 이벤트 등록 및 이벤트 처리
@@ -191,7 +197,7 @@ public class Battle {
             // 위치 정보
             update.robots.add(
                     new UpdateInfo.RobotInfo(robotPeer.getId(), robotPeer.getName(), robotPeer.getX(), robotPeer.getY(),
-                            robotPeer.getBodyHeading(), robotPeer.getGunHeading(), robotPeer.getRadarHeading(), robotPeer.getEnergy())
+                            robotPeer.getBodyHeading(), robotPeer.getGunHeading(), robotPeer.getRadarHeading(), robotPeer.getEnergy(), robotPeer.isDead())
             );
         }
 
@@ -253,26 +259,6 @@ public class Battle {
         return null;
     }
 
-    // job queue
-    private JobSerializer jobSerializer = new JobSerializer();
-
-    public <T> void push(Consumer<T> job, T t) {
-        jobSerializer.push(job, t);
-    }
-
-    public <T1, T2> void push(BiConsumer<T1, T2> job, T1 t1, T2 t2) {
-        jobSerializer.push(job, t1, t2);
-    }
-
-    public <T1, T2, T3> void push(TriConsumer<T1, T2, T3> job, T1 t1, T2 t2, T3 t3) {
-        jobSerializer.push(job, t1, t2, t3);
-    }
-
-    public void jobFlush() {
-        // job 처리
-        jobSerializer.flush();
-    }
-
     private List<RobotPeer> getRobotsAtRandom() {
         List<RobotPeer> shuffledList = new ArrayList<>(robots.values());
         Collections.shuffle(shuffledList, ThreadLocalRandom.current());
@@ -289,5 +275,33 @@ public class Battle {
         List<RobotPeer> shuffledList = new ArrayList<>(deathRobots);
         Collections.shuffle(shuffledList, ThreadLocalRandom.current());
         return shuffledList;
+    }
+
+    // job queue
+    private JobSerializer jobSerializer = new JobSerializer();
+
+    public <T> void push(Consumer<T> job, T t) {
+        jobSerializer.push(job, t);
+    }
+
+    public <T1, T2> void push(BiConsumer<T1, T2> job, T1 t1, T2 t2) {
+        jobSerializer.push(job, t1, t2);
+    }
+
+    public <T1, T2, T3> void push(TriConsumer<T1, T2, T3> job, T1 t1, T2 t2, T3 t3) {
+        jobSerializer.push(job, t1, t2, t3);
+    }
+
+    public void pushAfter(int tickAfter, Runnable job) {
+        jobSerializer.pushAfter(tickAfter, job);
+    }
+
+    public <T> void pushAfter(int tickAfter, Consumer<T> job, T t) {
+        jobSerializer.pushAfter(tickAfter, job, t);
+    }
+
+    public void jobFlush() {
+        // job 처리
+        jobSerializer.flush();
     }
 }

@@ -21,9 +21,10 @@ public class UpdateInfo {
         double gunHeading;
         double radarHeading;
         double energy;
+        boolean dead;
 
         public RobotInfo(int id, String name, double x, double y,
-                         double bodyHeading, double gunHeading, double radarHeading, double energy) {
+                         double bodyHeading, double gunHeading, double radarHeading, double energy, boolean dead) {
             this.id = id;
             this.name = name;
             this.x = x;
@@ -32,6 +33,7 @@ public class UpdateInfo {
             this.gunHeading = gunHeading;
             this.radarHeading = radarHeading;
             this.energy = energy;
+            this.dead = dead;
         }
     }
 
