@@ -6,6 +6,7 @@ import { processGameUpdate } from './state';
 //import { explosionPlay } from './pixi/effect/explosion'
 //import constants from '../shared/constants';
 //import renderCheckbox from './htmlComponent/checkbox';
+import { renderCode } from './lobby';
 
 // import redis from 'redis';
 
@@ -158,7 +159,7 @@ window.compile_code = compile_code;
 
 export const getRobotInfos = () => {
   const url = `http://${addr}:8080/get/robot-infos`;
-  fetch_code(url, {
+  fetch(url, {
     method: 'GET'
   })
     .then(response => response.json())
