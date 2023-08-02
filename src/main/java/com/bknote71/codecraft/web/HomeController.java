@@ -40,6 +40,7 @@ public class HomeController {
     @ResponseBody
     public ResponseEntity<?> getRobotInfos(@AuthenticationPrincipal(expression = "username") String username) {
         List<RobotSpecDto> robotInfos = robotSpecService.getRobotInfo(username);
+        System.out.println(username + " 응답성공 " + robotInfos.size());
         return new ResponseEntity<>(robotInfos, HttpStatus.OK);
     }
 

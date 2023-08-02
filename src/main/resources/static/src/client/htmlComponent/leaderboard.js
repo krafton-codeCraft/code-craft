@@ -1,6 +1,6 @@
-import escape from 'lodash/escape';
+import escape from 'lodash/escape.js';
 import { throttle } from 'throttle-debounce';
-import { requestLeaderBoard, playerId, playerName } from '../networking';
+import { requestLeaderBoard, playerId, playerName } from '../networking.js';
 
 const leaderboard = document.getElementById('leaderboard');
 const rows = document.querySelectorAll('#leaderboard table tr');

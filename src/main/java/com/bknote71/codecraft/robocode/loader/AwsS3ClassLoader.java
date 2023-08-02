@@ -212,7 +212,7 @@ public class AwsS3ClassLoader extends ClassLoader {
             String javaPath = "src/main/java";
             String libPath = "lib/*";
             String outputDir = outputPath + author;
-            String sourceFile = "sample/" + javaFileName;
+            String sourceFile = filePath + javaFileName;
 
             String[] cmd = new String[] {
                     "javac",

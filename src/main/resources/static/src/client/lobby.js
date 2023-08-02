@@ -2,7 +2,8 @@ import { downloadAssets } from './assets';
 import './css/bootstrap-reboot.css';
 import pixiApp from './pixi/app.js';
 import './css/lobby.css';
-import { getRobotInfos } from './networking';
+import { getRobotInfos } from './networking.js';
+import { setEditorValueLobby } from './htmlComponent/codeInterfaceLobby';
 
 const startButton = document.getElementById('start-button');
 
@@ -10,13 +11,11 @@ let flag = true;
 
 Promise.all([
 
+  // downloadAssets(),
   pixiApp(),
   getRobotInfos(),
-
+  
 ]).then(() => {
-
-  // const username = sessionStorage.getItem('username');
-  // console.log(username);
 
   startButton.onclick = () => {
 
@@ -44,5 +43,3 @@ Promise.all([
 // document.getElementById('gotosignup').addEventListener('click', function () {
 //   window.location.href = '/signup.html';
 // });
-
-/* -------------------------------------------------------- */
