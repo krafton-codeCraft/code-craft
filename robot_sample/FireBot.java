@@ -6,7 +6,6 @@ public class FireBot extends Robot {
     @Override
     public void run() {
         while (true) {
-<<<<<<< HEAD
             // 총알 커맨드: fire == fireBullet
             // 15 도 씩 돌기
             turnLeft(90);
@@ -14,12 +13,10 @@ public class FireBot extends Robot {
             turnRight(90);
             ahead(250);
             // scan();
-=======
-            turnLeft(360);
->>>>>>> 468885226246c7008556dad87fe81a01ed6b1e63
 
+            System.out.println(Thread.currentThread().getName() + "스레드에서의 각도: " + getGunHeading());
             try {
-                Thread.sleep(300);
+                Thread.sleep(1500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 throw new RuntimeException(e);
@@ -29,8 +26,8 @@ public class FireBot extends Robot {
 
     @Override
     public void onScannedRobot(ScannedRobotEvent event) {
-        System.out.println("scanning success target: " + event.getName());
-        System.out.println("shooooooooooooooot");
+        System.out.println("스캐닝 성공! 대상: " + event.getName());
+        System.out.println("총쏘기");
         fire(1);
     }
 }

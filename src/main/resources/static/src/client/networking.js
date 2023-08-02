@@ -122,11 +122,11 @@ export const requestTodayRanking = () => {
     });
 };
 
-function compile_code() {
+function compile_code(index) {
   const content = getEditorValue();
   const url = `http://${addr}:8080/create/robot`;
-  let Data = { code: content };
-  console.log(content);
+  let Data = {specIndex: index, code: content };
+  console.log(index, content);
   fetch_code(Data, url);
 };
 

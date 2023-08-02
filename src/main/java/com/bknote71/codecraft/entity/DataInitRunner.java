@@ -22,12 +22,13 @@ public class DataInitRunner implements CommandLineRunner {
     @Transactional
     public void run(String... args) throws Exception {
         // ㅎㅎ
-//        UserEntity user = userRepository.findByUsername("user5");
-//        RobotSpecEntity robotSpecEntity = new RobotSpecEntity();
-//        robotSpecEntity.setName("star2");
-//        robotSpecEntity.setFullClassName("Star2Bot.class");
-//        robotSpecEntity.setUser(user);
-//        robotSpecEntity.setUsername("user5");
-//        robotSpecRepository.save(robotSpecEntity);
+    //    UserEntity user = userRepository.findByUsername("user50");
+    //    RobotSpecEntity robotSpecEntity = new RobotSpecEntity();
+    //    robotSpecEntity.setName("aimbot2");
+    //    robotSpecEntity.setFullClassName("AimAndEvadeBot.class");
+    //    robotSpecEntity.setUser(user);
+    //    robotSpecEntity.setUsername("user50");
+    //    robotSpecRepository.save(robotSpecEntity);
+    
     }
 }
