@@ -13,7 +13,7 @@ public class RobotSpecEntity {
     private Long id;
 
     private String name;
-    private String author;
+    private String username;
     private String fullClassName;
     private String code; // java code
 

@@ -66,7 +66,7 @@ public abstract class RobotProxy implements Runnable, IRobotPeer { // 로봇 피
     }
 
     private RobotClassLoader createLoader(RobotSpecification robotSpecification) { // 유저 네임 붙이기.
-        return new RobotClassLoader(robotSpecification.getAuthor(), robotSpecification.getFullClassName());
+        return new RobotClassLoader(robotSpecification.getUsername(), robotSpecification.getFullClassName());
     }
 
     protected abstract void initializeBattle(ExecCommands commands, RobotStatus stat);
