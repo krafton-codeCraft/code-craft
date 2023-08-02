@@ -1,4 +1,5 @@
 import * as PIXI from 'pixi.js';
+import {playgroundApp} from '../playground/playground'
 let explosionTextures = null;
 export let explosion = null;
 
@@ -19,13 +20,10 @@ PIXI.Assets.load('https://pixijs.com/assets/spritesheet/mc.json').then(() =>
         explosion = new PIXI.AnimatedSprite(explosionTextures);
     });
 
-function effectExplosion(rx,ry, app){
-    
-}
-
-export function explosionPlay(rx,ry,app){
+export function explosionPlay(rx,ry){
     explosion.x = rx;
-    explosion.y = ry;explosion.anchor.set(0.5);
+    explosion.y = ry;
+    explosion.anchor.set(0.5);
     explosion.rotation = Math.random() * Math.PI;
     explosion.scale.set(0.75 + Math.random() * 0.5);
     explosion.gotoAndPlay(Math.random() * 26 | 0);
@@ -33,8 +31,8 @@ export function explosionPlay(rx,ry,app){
     explosion.loop = false;
     // 애니메이션의 재생이 끝나면 스테이지에서 제거
     explosion.onComplete = () => {
-        app.stage.removeChild(explosion);
+        playgroundApp.stage.removeChild(explosion);
     };
-    app.stage.addChild(explosion);
+    playgroundApp.stage.addChild(explosion);
 }
 

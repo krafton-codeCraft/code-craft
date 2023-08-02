@@ -3,7 +3,7 @@
 // import io from 'socket.io-client';
 //import { throttle } from 'throttle-debounce';
 import { processGameUpdate } from './state';
-//import { explosionPlay } from './pixi/effect/explosion'
+import { explosionPlay } from './pixi/effect/explosion'
 //import constants from '../shared/constants';
 //import renderCheckbox from './htmlComponent/checkbox';
 
@@ -59,6 +59,9 @@ export const connect = onGameOver => (
       } else if (message.type === 'schat') {
         // console.log('schat');
       } else if (message.type === 'sdie') {
+        /* for(let e = 0 ; e < 3 ; i ++){
+          explosionPlay()
+        } */
         console.log('sdie');
       }
     };

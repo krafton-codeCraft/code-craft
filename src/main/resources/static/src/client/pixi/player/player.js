@@ -1,4 +1,5 @@
 import { getAsset } from '../../assets';
+import { robotId } from '../../networking'
 const Constants = require('../../../shared/constants');
 const { PLAYER_RADIUS,PLAYER_MAXENERGY } = Constants;
 
@@ -7,9 +8,16 @@ function renderPlayer(player, app) {
     const { id, x, y, name , bodyHeading, gunHeading, raderHeading, energy } = player;
     const canvasX = x;
     const canvasY = y;
+    let randcolor = 0xFFFFFF;
+
     //console.log(`x : ${x} ()  y : ${y}`);
     const ratiohp = energy === 0 ? 0 : energy / PLAYER_MAXENERGY * 60;
-
+    if(robotId === id){
+        randcolor = 0x00ff00;
+    }else{
+        randcolor = 0xffffff;
+    }
+    
     
     // 배 그리기
     const bodyship = new PIXI.Sprite(PIXI.Texture.from(getAsset('ship.svg')));
@@ -19,8 +27,9 @@ function renderPlayer(player, app) {
     bodyship.rotation = Math.PI - bodyHeading;
     bodyship.width = PLAYER_RADIUS * 2;
     bodyship.height = PLAYER_RADIUS * 2;
+    bodyship.tint = randcolor
     app.stage.addChild(bodyship);
-
+    
     const gunhead = new PIXI.Sprite(PIXI.Texture.from(getAsset('ship.svg')));
     gunhead.anchor.set(0.5);
     gunhead.x = canvasX;
@@ -51,9 +60,10 @@ function renderPlayer(player, app) {
     hptext.y = canvasY - (PLAYER_RADIUS * 2);
     app.stage.addChild(hptext);
 
-
+    randcolor = Math.floor(randcolor);
+    const fillValue = '#' + randcolor.toString(16).padStart(6, '0');
     // 텍스트 그리기
-    const text = new PIXI.Text(name, { fontFamily: 'Arial', fontSize: 16, fill: 'white' });
+    const text = new PIXI.Text(name, { fontFamily: 'Arial', fontSize: 16, fill: fillValue });
     text.anchor.set(0.5);
     text.x = canvasX;
     text.y = canvasY + PLAYER_RADIUS + 20;
