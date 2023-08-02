@@ -30,20 +30,16 @@ Promise.all([
   connect(onGameOver),
   downloadAssets(),
   pixiApp(),
-  getRobotInfos(),
+  // getRobotInfos(),
 
 ]).then(() => {
 
-  window.addEventListener('keydown' ,handleEnterKey);
-
-  const username = sessionStorage.getItem('username');
-  play(username);
+  play();
 
 }).catch(console.error);
 
 function onGameOver(obj) {
   gamecanvers.classList.add('hidden');
-  window.addEventListener('keydown' ,handleEnterKey);
   stopCapturingInput();
   setLeaderboardHidden(true);
   gameoverMenu.classList.remove('hidden');

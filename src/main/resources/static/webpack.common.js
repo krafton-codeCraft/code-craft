@@ -19,7 +19,6 @@ module.exports = {
   },
   externals: {
     'pixi.js': 'PIXI',
-    'monaco-editor': 'monaco-editor'
   },
   module: {
     rules: [

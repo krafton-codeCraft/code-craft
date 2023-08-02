@@ -6,7 +6,7 @@ import lombok.Data;
 @JsonTypeName("centerbattle")
 @Data
 public class CEnterBattle extends Protocol {
-    private String username;
+    // private String username;
 
     public CEnterBattle() {
         super(ProtocolType.C_EnterBattle);
