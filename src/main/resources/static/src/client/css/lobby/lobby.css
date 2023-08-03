@@ -157,7 +157,7 @@ button:focus {
   width: 40%;
   height: 20%;
   /* 수정된 높이 */
-  overflow: hidden;
+  overflow: auto;
   transform: translate(-50%, -50%);
   /* terminal이 아래쪽에 있으므로, positive 값을 사용해야 합니다. */
   border: 1px solid hsl(186 100% 69%);
@@ -169,11 +169,43 @@ button:focus {
     0 0 15px rgba(128, 128, 128, 0.5), 
     0 0 20px rgba(128, 128, 128, 0.5);
 }
+.terminal-error {
+  font-weight: bold;
+  color: rgb(248, 30, 30);
+}
 
+/* 성공 메시지 */
+.terminal-success {
+  font-weight: bold;
+  color: rgb(13, 218, 13);
+}
+#terminal-lobby::-webkit-scrollbar {
+  width: 8px;
+  /* Scrollbar width */
+}
+
+#terminal-lobby::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  /* Scrollbar track color */
+}
+
+#terminal-lobby::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.4);
+  /* Scrollbar thumb color */
+  border-radius: 4px;
+}
+
+#terminal-lobby::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.7);
+  /* Hover color */
+}
+
+/* Firefox custom scrollbar */
 /* -------------------------------------------------------- */
 
 #compile-button {
   position: absolute;
+  z-index: 100;
   right: 1%;
   bottom: 4%;
   padding: 10px 20px;
