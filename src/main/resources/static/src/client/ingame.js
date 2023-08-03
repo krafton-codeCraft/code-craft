@@ -74,12 +74,16 @@ function handleEnterKey(event) {
   }
 }
 
-// document.getElementById('gotoLobby').addEventListener('click', function() {
-//   window.location.href = '/lobby.html';
-// });
-// document.getElementById('gotoIngame').addEventListener('click', function() {
-//   window.location.href = '/ingame.html';
-// });
-// document.getElementById('gotoIndex').addEventListener('click', function() {
-//   window.location.href = '/index.html';
-// });
+document.getElementById('toggle-main-container').addEventListener('click', function() {
+  var mainContainer = document.getElementById('main-container');
+  if(mainContainer.classList.contains('open')) {
+    mainContainer.classList.remove('open');
+  } else {
+    mainContainer.classList.add('open');
+  }
+});
+
+document.getElementById('closebtn').addEventListener('click', function() {
+  var mainContainer = document.getElementById('main-container');
+  mainContainer.classList.remove('open');
+});

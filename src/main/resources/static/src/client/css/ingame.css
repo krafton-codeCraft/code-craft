@@ -162,13 +162,23 @@ button:focus {
 
 /*------------------------------------*/
 
+#deck{
+  position: absolute; 
+  top: 6%; 
+  left: 3%;
+  width: 40%;
+  height: 50%;
+}
+
 #container {
   position: absolute;
-  top: 39%;
-  right: 3%;
-  width: 40%;
-  height: 72%;
-  overflow: auto; 
+  top: 38%;
+  /* right: 3%;
+  width: 40%; */
+  left: 8%;
+  width: 89%;
+  height: 81%;
+  overflow: hidden; 
   transform: translateY(-50%);
   cursor: inherit;
 }
@@ -181,25 +191,37 @@ button:focus {
   height: 87%;
   overflow: hidden;
   transform: translate(-50%, -50%);
-  border: 2px solid rgba(128, 128, 128, 0.5);
   cursor: inherit;
 }
-#terminal{
+
+#terminal-box {
   position: absolute;
-  right: 3%;
   top: 87%;
-  width: 40%;
+  /* right: 3%; */
+  /* width: 40%; */
+  left: 8%;
+  width: 89%;
   height: 20%;
-  overflow: auto;
+  /* 수정된 높이 */
+  display: flex;
+  overflow: hidden;
   transform: translateY(-50%);
-  border: 2px solid rgba(128, 128, 128, 0.5);
+  /* terminal이 아래쪽에 있으므로, positive 값을 사용해야 합니다. */
+  /* border: 1px solid hsl(186 100% 69%); */
   cursor: inherit;
-  background-color: rgba(128, 128, 128, 0.5);
-  /* 여기서 마지막 숫자 0.5가 알파값입니다. */
-  font-family: 'Courier New', Courier, monospace;
-  padding: 15px;
-  border-radius: 5px;
-  color: #ffffff;
+  background-color: rgba(128, 128, 128, 0.2);
+}
+
+#terminal {
+  flex: 8;
+  height: 100%;
+  overflow: auto;
+}
+
+#separator {
+  flex: 0;
+  width: 2px; /* You can adjust this value to change the width of the line */
+  background-color: #fff; /* Change this color as per your need */
 }
 
 .terminal-error {
@@ -235,20 +257,20 @@ button:focus {
 /* -------------------------------------------------------- */
 
 #compile-button {
-    position: absolute;
-    right: 0%;
-    top: 0%;
-    padding: 10px 20px;
-    width: 150px;
-    font-size: 20px;
-    font-weight: bold;
-    color: #ffffff;
-    background-color: #ff0000;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.5s ease;
-    opacity: 0.7;
+  flex: 2;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #ff0000;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  opacity: 0.7;
 }
 
 #compile-button:hover {
@@ -269,27 +291,27 @@ button:focus {
   position: absolute;
   top: 0%;
   padding: 10px 20px;
-  width: 15%;
+  width: 20%;
   font-size: 20px;
   font-weight: bold;
   color: #ffffff;
-  background-color: rgba(128, 128, 128, 0.5);  /* half-transparent grey */
+  background-color: rgba(128, 128, 128, 0.2);  /* half-transparent grey */
   border: none;
-  border-radius: 5px;
+  border-radius: 1px;
   cursor: pointer;
   transition: background-color 0.5s ease;
 }
 
 #deck-one {
-  left: 0%;
+  top: 0%;
 }
 
 #deck-two {
-  left: 16%; /* Adjust as necessary */
+  top: 12%; /* Adjust as necessary */
 }
 
 #deck-thress {
-  left: 32%; /* Adjust as necessary */
+  top: 24%; /* Adjust as necessary */
 }
 
 #deck-one:active, #deck-two:active, #deck-thress:active {
@@ -302,4 +324,59 @@ button:focus {
     font-size: 1em;
     padding: 5px 10px;
   }
+}
+
+#main-container {
+  position: fixed;
+  right: -40%; /* Initially hide the container off-screen to the right */
+  top: 0;
+  width: 40%; /* Container takes 50% of the full width */
+  height: 100%; /* Container takes the full height */
+  background-color: rgba(128, 128, 128, 0.2); /* Change to your preferred color */
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+#main-container.open {
+  right: 0; /* When the container is opened, it aligns to the right edge */
+}
+
+body.open {
+
+  background-color: rgba(128, 128, 128, 0.2);
+
+}
+
+#closebtn {
+  position: absolute;
+  top: 0;
+  left: 15px;
+  font-size: 36px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+#closebtn:hover {
+  color: lightgray;
+}
+
+.space-button {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 100%);
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,212,255,0.5);
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.space-button:hover {
+  box-shadow: 0 0 20px rgba(0,212,255,1), 0 0 30px rgba(0,212,255,1), 0 0 40px rgba(0,212,255,1);
 }
