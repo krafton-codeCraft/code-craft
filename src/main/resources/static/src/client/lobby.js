@@ -30,3 +30,29 @@ Promise.all([
 }).catch(console.error);
 
 /* -------------------------------------------------------- */
+
+document.querySelector('.module-btn').addEventListener('click', function() {
+  var sidebar = document.getElementById('module-sidebar');
+  if(sidebar.classList.contains('open')) {
+    sidebar.classList.remove('open');
+  } else {
+    sidebar.classList.add('open');
+  }
+});
+
+document.querySelector('.event-btn').addEventListener('click', function() {
+  var sidebar = document.getElementById('event-sidebar');
+  if(sidebar.classList.contains('open')) {
+    sidebar.classList.remove('open');
+  } else {
+    sidebar.classList.add('open');
+  }
+});
+
+document.getElementById('module-sidebar').addEventListener('click', function() {
+  this.classList.remove('open');
+});
+
+document.getElementById('event-sidebar').addEventListener('click', function() {
+  this.classList.remove('open');
+});

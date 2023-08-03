@@ -3,7 +3,7 @@
 RESOURCES_PATH="./src/main/resources/templates"
 
 lobbyfile="${RESOURCES_PATH}/lobby.html"
-lobby_insert_line="64"
+lobby_insert_line="68"
 lobby_insert_file="./scripts/lobby-script"
 
 head -n $(($lobby_insert_line - 1)) "$lobbyfile" > tmpfile1
@@ -15,7 +15,7 @@ mv tmpfile1 "$lobbyfile"
 ##########################################################################
 
 ingamefile="${RESOURCES_PATH}/ingame.html"
-ingame_insert_line="82"
+ingame_insert_line="91"
 ingame_insert_file="./scripts/ingame-script"
 
 head -n $(($ingame_insert_line - 1)) "$ingamefile" > tmpfile2

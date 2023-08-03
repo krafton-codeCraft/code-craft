@@ -28,19 +28,29 @@
 
 <body>
   <canvas id="game-canvas"></canvas>
-<!-- 
-  <button id="gotoLobby">go to Lobby</button>
-  <button id="gotoIngame">go to Ingame</button>
-  <button id="gotoIndex">go to Index</button> -->
+  <button id="toggle-main-container" class="space-button">View Code</button>
 
-  <div id="container">
-    <button id="deck-one" th:onclick="selectDeckIndex(0)">1</button>
-    <button id="deck-two" th:onclick="selectDeckIndex(1)">2</button>
-    <button id="deck-thress" th:onclick="selectDeckIndex(2)">3</button>
-    <div id="container-body"></div>
-    <button id="compile-button" th:onclick="run_code()">Run Code</button> <!-- index 값을 넘겨줌 -->
+
+  <div id="main-container">
+
+    <div id="closebtn" class="closebtn">×</div>
+
+    <div id="deck">
+      <button id="deck-one" th:onclick="selectDeckIndex(0)">1</button>
+      <button id="deck-two" th:onclick="selectDeckIndex(1)">2</button>
+      <button id="deck-thress" th:onclick="selectDeckIndex(2)">3</button>
+    </div>
+
+    <div id="container">
+      <div id="container-body"></div>
+    </div>
+
+    <div id="terminal-box">
+      <div id="terminal"></div>
+      <div id="separator"></div>
+      <button id="compile-button" th:onclick="run_code()">Run Code</button> <!-- index 값을 넘겨줌 -->
+    </div>
   </div>
-  <div id="terminal"></div>
 
   <div id="leaderboard" class="hidden">
     <table>

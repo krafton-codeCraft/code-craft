@@ -16,7 +16,12 @@
       language: 'java',
       theme: 'vs-dark',
       automaticLayout: true,
-      fontSize: 20
+      fontSize: 20,
+      minimap: {
+            
+        enabled: false,
+    },
+    wordWrap: "on"
     });
   });
   /*]]>*/
