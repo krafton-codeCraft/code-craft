@@ -144,6 +144,11 @@ button:focus {
   background-color: rgba(128, 128, 128, 0.1 );
   /* border: 1px solid hsl(186 100% 69%); */
   cursor: inherit;
+  box-shadow: 
+    0 0 5px rgba(128, 128, 128, 0.5), 
+    0 0 10px rgba(128, 128, 128, 0.5), 
+    0 0 15px rgba(128, 128, 128, 0.5), 
+    0 0 20px rgba(128, 128, 128, 0.5);
 }
 
 #terminal-box {
@@ -153,60 +158,81 @@ button:focus {
   width: 50%;
   height: 20%;
   /* 수정된 높이 */
-  display: flex;
-  overflow: hidden;
+  overflow: auto;
   transform: translate(-50%, -50%);
   /* terminal이 아래쪽에 있으므로, positive 값을 사용해야 합니다. */
-  /* border: 1px solid hsl(186 100% 69%); */
+  border: 1px solid hsl(186 100% 69%);
   cursor: inherit;
-  background-color: rgba(128, 128, 128, 0.2);
+  background-color: rgba(128, 128, 128, 0.1);
+  box-shadow: 
+    0 0 5px rgba(128, 128, 128, 0.5), 
+    0 0 10px rgba(128, 128, 128, 0.5), 
+    0 0 15px rgba(128, 128, 128, 0.5), 
+    0 0 20px rgba(128, 128, 128, 0.5);
+}
+.terminal-error {
+  font-weight: bold;
+  color: rgb(248, 30, 30);
 }
 
+/* 성공 메시지 */
+.terminal-success {
+  font-weight: bold;
+  color: rgb(13, 218, 13);
+}
+#terminal-lobby::-webkit-scrollbar {
+  width: 8px;
+  /* Scrollbar width */
+}
+
+#terminal-lobby::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  /* Scrollbar track color */
+}
+
+#terminal-lobby::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.4);
+  /* Scrollbar thumb color */
+  border-radius: 4px;
+}
+
+#terminal-lobby::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.7);
+  /* Hover color */
+}
+
+/* Firefox custom scrollbar */
 /* -------------------------------------------------------- */
 
-#terminal-lobby {
-  flex: 8;
-  height: 100%;
-  overflow: auto;
-}
-
-#separator {
-  flex: 0;
-  width: 2px; /* You can adjust this value to change the width of the line */
-  background-color: #fff; /* Change this color as per your need */
-}
-
-/* -------------------------------------------------------- */
-
-#compile-button {
-  flex: 2;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* #compile-button {
+  position: absolute;
+  z-index: 100;
+  right: 1%;
+  bottom: 4%;
   padding: 10px 20px;
+  width: 150px;
   font-size: 20px;
   font-weight: bold;
   color: #ffffff;
-  background-color: #ff0000;
-  border-radius: 5px;
+  /* background-color: #ff0000; */
+  /* border: 0.5px solid hsl(186 100% 69%); */
+  /* border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.5s ease;
   opacity: 0.7;
-}
+} */ */
 
-
-#compile-button:hover {
+/* #compile-button:hover {
   background-color: #cc0000;
   opacity: 0.9;
-}
+} */
 
-@media only screen and (max-width: 600px) {
+/* @media only screen and (max-width: 600px) {
   #compile-button {
     font-size: 1em;
     padding: 5px 10px;
   }
-}
+} */
 
 /* -------------------------------------------------------- */
 
@@ -248,8 +274,8 @@ button:focus {
   font-size: 20px;
   font-weight: bold;
   color: #ffffff;
-  background-color: rgba(128, 128, 128, 0.2);  /* half-transparent grey */
-  /* border: 0.5px solid hsl(186 100% 69%); */
+  background-color: none;  /* half-transparent grey */
+  border: 0.5px solid hsl(186 100% 69%);
   border-radius: 1px;
   cursor: pointer;
   transition: background-color 0.5s ease;

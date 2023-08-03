@@ -4,6 +4,7 @@ import pixiApp from './pixi/app.js';
 import './css/lobby/lobby.css';
 import './css/lobby/start-button.css';
 import './css/lobby/module-button.css';
+import './css/compile-button.css';
 import './css/lobby/event-button.css';
 import { getRobotInfos } from './networking.js';
 
