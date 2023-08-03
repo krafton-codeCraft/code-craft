@@ -25,6 +25,7 @@
   </script>
   <script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
   <script src="src/client/lobby.js"></script>
+  <script src="src/client/htmlComponent/codeInterfaceLobby.js"></script>
 </head>
 
 <body>
@@ -37,11 +38,11 @@
   <button id="gotosignup">go to signup</button>
 
   <div id="container-lobby">
-    <button id="deck-one" onclick="selectDeckIndex(0)">1</button>
-    <button id="deck-two"onclick="selectDeckIndex(1)">2</button>
-    <button id="deck-thress"onclick="selectDeckIndex(2)">3</button>
+    <button id="deck-one" onclick="selectDeckIndexLobby(0)">1</button>
+    <button id="deck-two" onclick="selectDeckIndexLobby(1)">2</button>
+    <button id="deck-thress"  onclick="selectDeckIndexLobby(2)">3</button>
     <div id="container-lobby-body"></div>
-    <button id="compile-button" onclick="compile_code(selectedDeck)">Run Code</button>
+    <button id="compile-button" onclick="compile_code(selectedDeckLobby)">Run Code</button>
   </div>
 
   <div id="terminal-lobby"></div>
@@ -56,7 +57,7 @@
   <div id="username"></div>
   <div id="code"></div>
 
-  <script src="src/client/htmlComponent/codeInterfaceLobby.js"></script>
+  
 
 </body>
 
