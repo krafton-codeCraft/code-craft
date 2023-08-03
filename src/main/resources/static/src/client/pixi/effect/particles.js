@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js';
 import {playgroundApp} from '../playground/playground'
-
+import { getAsset } from '../../assets';
 import { rand, lerp, gradient, colorGradient, colorLerp } from './utility';
 
 const WIDTH = 640;
@@ -78,7 +78,7 @@ function resetEffect({ x, y }) {
   ];
 }
 
-particlesapp.loader.add('star', 'https://cdn.glitch.com/a10133ef-3919-4200-ad35-26200e16b146%2Fwhite-star.png?v=1562875677679')
+particlesapp.loader.add('star', getAsset('circle.png'))
 .load(function (loader, resources) {
   
   for (let i = 0; i < totalSprites; i++) {
