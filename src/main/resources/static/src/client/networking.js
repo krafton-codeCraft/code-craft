@@ -118,8 +118,7 @@ export const requestTodayRanking = () => {
     });
 };
 
-function compile_code(index) {
-  const content = getEditorValueLobby();
+function compile_code(index, content) {
   const url = `http://${addr}:8080/create/robot`;
   let Data = {specIndex: index, code: content };
   console.log(index, content);
@@ -144,7 +143,6 @@ function compile_code(index) {
 };
 
 function change_code(index) {
-  const content = getEditorValue();
   const url = `http://${addr}:8080/change/ingame-robot`;
   let Data = { robotId: robotId, specIndex: index, code: content }
   console.log(Data)
