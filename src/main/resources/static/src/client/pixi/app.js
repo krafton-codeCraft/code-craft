@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js';
 import { renderBackground, makestar } from './background/background';
-import { playground } from './playground/playground';
+import { playground,playgroundApp } from './playground/playground';
 import renderPlayer from './player/player';
 import renderBullet from './bullet/bullet';
 import { getCurrentState } from '../state';
@@ -9,10 +9,10 @@ import { explosions } from './effect/explosion';
 
 export function pixiApp() {
   return new Promise((resolve) => {
-    const app = new PIXI.Application({ resizeTo: window });
+    const app = new PIXI.Application({ resizeTo: window});
     document.body.appendChild(app.view);
     makestar(app);
-    const playgroundApp = playground();
+    playground();
 
     app.ticker.add((delta) => {
       playgroundApp.stage.removeChildren();
@@ -21,7 +21,7 @@ export function pixiApp() {
 
       renderBackground(app, delta);
 
-      if(explosions){
+      if(explosions && explosions.length > 0){
         explosions.forEach((explosion) => {
           if(!explosion.playing){
             explosion.gotoAndPlay(Math.random() * 26 | 0);
