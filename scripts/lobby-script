@@ -1,6 +1,6 @@
 <script th:inline="javascript">
   /*<![CDATA[*/
-  var robotInfosLobby = /*[[${robotInfos}]]*/ [];
+  var robotInfos = /*[[${robotInfos}]]*/ [];
   var codeOfFirstRobot = 'defaultCode'; // 기본 코드 설정
   let selectedDeckLobby = 0;
   let editorLobby;
@@ -20,7 +20,7 @@
   });
   /*]]>*/
 
-  function getEditorValueLobby() {
+  function getEditorValue() {
       if (editorLobby) {
           const content = editorLobby.getValue();// Display the content, you can do whatever you want with it
           return content;
@@ -41,12 +41,16 @@
 
     function selectDeckIndexLobby(deckId) {
         selectedDeckLobby = deckId;
-        console.log(robotInfosLobby)
-        if (robotInfosLobby[selectedDeckLobby]) {
-            editorLobby.setValue(robotInfosLobby[selectedDeckLobby].code)
+        console.log(robotInfos)
+        if (robotInfos[selectedDeckLobby]) {
+            editorLobby.setValue(robotInfos[selectedDeckLobby].code)
             console.log(selectedDeckLobby);
         } else {
             console.log('No robot info found for selected deck.')
         }
+    }
+
+    function run_code() {
+        compile_code(selectedDeckLobby, getEditorValue());
     }
 </script>
