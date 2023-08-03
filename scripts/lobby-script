@@ -1,6 +1,6 @@
 <script th:inline="javascript">
   /*<![CDATA[*/
-  var robotInfos = /*[[${robotInfos}]]*/ [];
+  var robotInfosLobby = /*[[${robotInfos}]]*/ [];
   var codeOfFirstRobot = 'defaultCode'; // 기본 코드 설정
   let selectedDeckLobby = 0;
   let editorLobby;
@@ -20,7 +20,7 @@
   });
   /*]]>*/
 
-  function getEditorValue() {
+  function getEditorValueLobby() {
       if (editorLobby) {
           const content = editorLobby.getValue();// Display the content, you can do whatever you want with it
           return content;

@@ -4,8 +4,6 @@
   let editor;
   var robotInfos = /*[[${robotInfos}]]*/ [];
   var codeOfFirstRobot = 'defaultCode'; // 기본 코드 설정
-  let selectedDeck = 0;
-  let editor;
   if (robotInfos.length > 0) {
       codeOfFirstRobot = robotInfos[0].code; // 0번 인덱스의 코드로 설정
   }
