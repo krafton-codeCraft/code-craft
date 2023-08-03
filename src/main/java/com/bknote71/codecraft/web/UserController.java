@@ -6,11 +6,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 
 @Controller
@@ -19,28 +22,9 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/usercheck")
-    @ResponseBody
-    public String homepage(@AuthenticationPrincipal UserDetails userDetails) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println(authentication.getName());
-        System.out.println(authentication.getDetails());
-        System.out.println(authentication.getPrincipal());
-        return "this is home " + authentication.getName();
-    }
-
-    @GetMapping("/username")
     @ResponseBody
     public String getusernmae(@AuthenticationPrincipal(expression = "username") String username) {
         return "this username: " + username;
-    }
-
-    @GetMapping("/principle")
-    @ResponseBody
-    public String getprincipal(Principal principal) {
-        // [Principal=org.springframework.security.core.userdetails.User]
-        System.out.println("null? " + principal);
-        return principal.getName();
     }
 
     @PostMapping("/signup")
@@ -52,5 +36,16 @@ public class UserController {
     @GetMapping("/login")
     public String loginpage() {
         return "signup";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        if (auth != null) {
+            new SecurityContextLogoutHandler().logout(request, response, auth);;
+        }
+
+        return "redirect:/login";
     }
 }

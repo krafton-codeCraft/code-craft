@@ -40,6 +40,9 @@ jobs:
           cp -f  ./src/main/resources/static/dist/lobby.html ./src/main/resources/templates/lobby.html
           cp -f  ./src/main/resources/static/dist/ingame.html ./src/main/resources/templates/ingame.html
           cp -f  ./src/main/resources/static/dist/signup.html ./src/main/resources/templates/signup.html
+          ## script insert
+          chmod +x scripts/script-insert.sh
+          ./scripts/script-insert.sh
 
       - name: Set up JDK 17
         uses: actions/setup-java@v3
