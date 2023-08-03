@@ -43,6 +43,8 @@ jobs:
           ## script insert
           chmod +x scripts/script-insert.sh
           ./scripts/script-insert.sh
+          echo ./src/main/resources/templates/lobby.html
+          echo ./src/main/resources/templates/ingame.html
 
       - name: Set up JDK 17
         uses: actions/setup-java@v3
