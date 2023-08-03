@@ -1,0 +1,38 @@
+<script th:inline="javascript">
+  /*<![CDATA[*/
+  let codeOfFirstRobot = /*[[${robotInfo[0].code} != null ? ${robotInfo[0].code} : 'defaultCode' ]]*/ 'defaultCode';
+  console.log('code?');
+  console.log(codeOfFirstRobot);
+  require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' } });
+  require(["vs/editor/editor.main"], function () {
+    editor = monaco.editor.create(document.getElementById('container-body'), {
+      value: codeOfFirstRobot,
+      language: 'java',
+      theme: 'vs-dark'
+    });
+  });
+  /*]]>*/
+
+  function getEditorValue() {
+      if (editor) {
+          const content = editor.getValue();
+          alert(content); // Display the content, you can do whatever you want with it
+          return content;
+      }
+  }
+
+  function code_check(result, status) {
+      const terminal = document.getElementById('terminal');
+      if (result != 0) {
+          terminal.innerHTML = `<span style="font-weight: bold; color: red;" > ${status}: </span> <span style="font-weight: bold; color: red;">${result}</span>`;
+      }
+      else {
+          terminal.innerHTML = `<span style="font-weightL bold; color: green;" > ${status}: </span> <span style="font-weight: bold; color: green;"${result}</span>`;
+      }
+  }
+
+
+  function selectDeckIndex(deckId) {
+      selectedDeck = deckId;
+  }
+</script>

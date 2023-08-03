@@ -24,7 +24,7 @@
     gtag('config', 'UA-58664433-3');
   </script>
   <script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
-  <script src="src/client/lobby.js"></script>
+
 </head>
 
 <body>
@@ -37,11 +37,11 @@
   <button id="gotosignup">go to signup</button>
 
   <div id="container-lobby">
-    <button id="deck-one" onclick="selectDeckIndex(0)">1</button>
-    <button id="deck-two"onclick="selectDeckIndex(1)">2</button>
-    <button id="deck-thress"onclick="selectDeckIndex(2)">3</button>
+    <button id="deck-one" th:onclick="selectDeckIndex(0)">1</button>
+    <button id="deck-two"th:onclick="selectDeckIndex(1)">2</button>
+    <button id="deck-thress" th:onclick="selectDeckIndex(2)">3</button>
     <div id="container-lobby-body"></div>
-    <button id="compile-button" onclick="compile_code(selectedDeck)">Run Code</button>
+    <button id="compile-button" th:onclick="compile_code(selectedDeck)">Run Code</button>
   </div>
 
   <div id="terminal-lobby"></div>
@@ -49,14 +49,16 @@
   <button id="lobby-module">MODULE</button>
   <button id="lobby-event">EVENT</button>
 
-  <button id="start-button">START</button>
+  <button id="start-button" th:onclick="'window.location.href=\'' + @{/ingame} + '\''">START</button>
 
   <div id="robotId"></div>
   <div id="name"></div>
   <div id="username"></div>
   <div id="code"></div>
 
-  <script src="src/client/htmlComponent/codeInterfaceLobby.js"></script>
+
+
+  <script src="src/client/lobby.js">  </script>
 
 </body>
 
