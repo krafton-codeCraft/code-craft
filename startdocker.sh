@@ -9,8 +9,11 @@ if [ "$(docker ps -q -f name=boot_app)" ]; then
     docker rm boot_app
 fi
 
+# 도커 이미지 삭제
+
 # 도커 기동
 cd ${WORKDIRECTORY}
+./gradlew clean build
 docker build -t boot_app ${WORKDIRECTORY}
 
 docker-compose --compatibility up -d

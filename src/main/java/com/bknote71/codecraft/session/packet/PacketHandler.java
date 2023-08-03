@@ -2,6 +2,7 @@ package com.bknote71.codecraft.session.packet;
 
 import com.bknote71.codecraft.entity.RobotSpecEntity;
 import com.bknote71.codecraft.entity.UserEntity;
+import com.bknote71.codecraft.proto.CChangeRobot;
 import com.bknote71.codecraft.proto.CEnterBattle;
 import com.bknote71.codecraft.proto.Protocol;
 import com.bknote71.codecraft.entity.repository.UserRepository;
@@ -37,7 +38,7 @@ public class PacketHandler {
         log.info("{} is entered", username);
 
         // robot index = 0
-        RobotPeer robot = createRobotPeer(clientSession, username, 0);
+        RobotPeer robot = createRobotPeer(clientSession, username, enterPacket.getSpecIndex());
         if (robot == null) {
             System.out.println("로봇 생성 실패");
             return;
@@ -52,7 +53,12 @@ public class PacketHandler {
         battle.push(battle::enterBattle, robot);
     }
 
-    public RobotSpecification changeAndReenter(String username, int robotId, int robotIndex) {
+    public void CChangeRobotHandler(ClientSession clientSession, Protocol protocol) {
+        CChangeRobot changePacket = (CChangeRobot) protocol;
+        changeAndReenter(clientSession.getUsername(), changePacket.getSpecIndex());
+    }
+
+    public RobotSpecification changeAndReenter(String username, int robotIndex) {
         // 새로운 스펙으로 새로운 로봇 생성
         ClientSession session = ClientSessionManager.Instance.findByUsername(username);
         RobotPeer robot = session.getMyRobot();
@@ -69,7 +75,7 @@ public class PacketHandler {
             return null;
         }
 
-        battle.push(battle::changeRobot, robotId, robotSpecifications, robotIndex);
+        battle.push(battle::changeRobot, robot.getId(), robotSpecifications, robotIndex);
         return robotSpecifications[robotIndex];
     }
 

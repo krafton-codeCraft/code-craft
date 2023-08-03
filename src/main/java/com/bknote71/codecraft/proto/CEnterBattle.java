@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 public class CEnterBattle extends Protocol {
     // private String username;
+    private int specIndex;
 
     public CEnterBattle() {
         super(ProtocolType.C_EnterBattle);

@@ -6,4 +6,5 @@ public enum ProtocolType {
     S_Update,
     S_Die,
     C_Submit,
+    C_ChangeRobot
 }
