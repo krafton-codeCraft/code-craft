@@ -22,8 +22,6 @@
     gtag('config', 'UA-58664433-3');
   </script>
   <script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
-  <script src="src/client/ingame.js"></script>
-  <script src="src/client/htmlComponent/codeInterface.js"></script>
 
 </head>
 
@@ -35,11 +33,11 @@
   <button id="gotoIndex">go to Index</button>
 
   <div id="container">
-    <button id="deck-one" onclick="selectDeckIndex(0)">1</button>
-    <button id="deck-two" onclick="selectDeckIndex(1)">2</button>
-    <button id="deck-thress" onclick="selectDeckIndex(2)">3</button>
+    <button id="deck-one" th:onclick="selectDeckIndex(0)">1</button>
+    <button id="deck-two" th:onclick="selectDeckIndex(1)">2</button>
+    <button id="deck-thress" th:onclick="selectDeckIndex(2)">3</button>
     <div id="container-body"></div>
-    <button id="compile-button" onclick="change_code(selectedDeck)">Run Code</button> <!-- index 값을 넘겨줌 -->
+    <button id="compile-button" th:onclick="change_code(selectedDeck)">Run Code</button> <!-- index 값을 넘겨줌 -->
   </div>
   <div id="terminal"></div>
 
@@ -70,7 +68,7 @@
         <td></td>
       </tr>
     </table>
-
+  </div>
   <div id="disconnect-modal" class="hidden">
     <div>
       <h2> 서버 연결 에러! </h2>
@@ -78,6 +76,10 @@
       <button id="reconnect-button">reconnect</button>
     </div>
   </div>
+
+  <script src="src/client/ingame.js"></script>
+
+
 
 </body>
 
