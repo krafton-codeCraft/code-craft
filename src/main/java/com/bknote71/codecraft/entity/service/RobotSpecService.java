@@ -83,7 +83,7 @@ public class RobotSpecService {
             return null;
         }
 
-        RobotSpecification spec = packetHandler.changeAndReenter(username, robotId, specIndex);
+        RobotSpecification spec = packetHandler.changeAndReenter(username, specIndex);
         if (spec == null) {
             log.error("change and reenter 실패");
             return null;

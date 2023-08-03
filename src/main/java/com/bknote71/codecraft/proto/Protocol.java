@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 @JsonSubTypes({
         @JsonSubTypes.Type(value = CEnterBattle.class, name = "centerbattle"),
         @JsonSubTypes.Type(value = CSubmit.class, name = "csubmit"),
+        @JsonSubTypes.Type(value = CChangeRobot.class, name = "cchangerobot"),
 })
 public class Protocol {
 
