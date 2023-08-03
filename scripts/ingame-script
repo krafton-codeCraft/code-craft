@@ -1,7 +1,5 @@
 <script th:inline="javascript">
   /*<![CDATA[*/
-  let selectedDeck = 0;
-  let editor;
   var robotInfos = /*[[${robotInfos}]]*/ [];
   var codeOfFirstRobot = 'defaultCode'; // 기본 코드 설정
   if (robotInfos.length > 0) {
@@ -13,10 +11,12 @@
 
   require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' } });
   require(["vs/editor/editor.main"], function () {
-    editor = monaco.editor.create(document.getElementById('container-lobby-body'), {
+    editor = monaco.editor.create(document.getElementById('container-body'), {
       value: codeOfFirstRobot,
       language: 'java',
-      theme: 'vs-dark'
+      theme: 'vs-dark',
+      automaticLayout: true,
+      fontSize: 20
     });
   });
   /*]]>*/
