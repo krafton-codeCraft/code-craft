@@ -40,18 +40,12 @@
   <button id="gotosignup">go to signup</button>
 
   <div id="container-lobby">
-<<<<<<< HEAD
-    <button id="deck-one" class="button" onclick="selectDeckIndexLobby(0)">One</button>
-    <button id="deck-two" class="button" onclick="selectDeckIndexLobby(1)">Two</button>
-    <button id="deck-thress" class="button"  onclick="selectDeckIndexLobby(2)">Three</button>
-=======
 
-    <button id="deck-one" onclick="selectDeckIndexLobby(0)">1</button>
-    <button id="deck-two" onclick="selectDeckIndexLobby(1)">2</button>
-    <button id="deck-thress"  onclick="selectDeckIndexLobby(2)">3</button>
->>>>>>> 7c5c0a2c7eff517ade1cac6103c884582ebae3e9
+    <button id="deck-one" th:onclick="selectDeckIndexLobby(0)">1</button>
+    <button id="deck-two" th:onclick="selectDeckIndexLobby(1)">2</button>
+    <button id="deck-thress" th:onclick="selectDeckIndexLobby(2)">3</button>
     <div id="container-lobby-body"></div>
-    <button id="compile-button" onclick="compile_code(selectedDeckLobby)">Run Code</button>
+    <button id="compile-button" th:onclick="compile_code(selectedDeckLobby)">Run Code</button>
 
   </div>
 
@@ -60,16 +54,15 @@
   <button id="lobby-module">MODULE</button>
   <button id="lobby-event">EVENT</button>
 
-<<<<<<< HEAD
-  <button id="start-button" class='glowing-btn'><span class='glowing-txt'>S<span class='faulty-letter'>T</span>ART</span></button>
-=======
-  <button id="start-button" th:onclick="'window.location.href=\'' + @{/ingame} + '\''">START</button>
->>>>>>> 7c5c0a2c7eff517ade1cac6103c884582ebae3e9
+  <button id="start-button" class='glowing-btn' th:onclick="'window.location.href=\'' + @{/ingame} + '\''">START</button>
 
   <div id="robotId"></div>
   <div id="name"></div>
   <div id="username"></div>
   <div id="code"></div>
+
+
+
 
 </body>
 
