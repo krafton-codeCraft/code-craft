@@ -141,42 +141,33 @@ button:focus {
   height: 87%;
   overflow: hidden;
   transform: translate(-50%, -50%);
-  /* border: 1px solid hsl(186 100% 69%); */
+  border: 1px solid hsl(186 100% 69%);
   cursor: inherit;
+  box-shadow: 
+    0 0 5px rgba(128, 128, 128, 0.5), 
+    0 0 10px rgba(128, 128, 128, 0.5), 
+    0 0 15px rgba(128, 128, 128, 0.5), 
+    0 0 20px rgba(128, 128, 128, 0.5);
 }
 
-#terminal-box {
-  position: absolute;
+#terminal-lobby {
+  position: relative;
   left: 50%;
   top: 87%;
   width: 40%;
   height: 20%;
   /* 수정된 높이 */
-<<<<<<< HEAD
   overflow: auto;
-=======
-  display: flex;
-  overflow: hidden;
->>>>>>> 200b5b21683e91d9911c5b64a4c76e2c448d23d7
   transform: translate(-50%, -50%);
   /* terminal이 아래쪽에 있으므로, positive 값을 사용해야 합니다. */
-  /* border: 1px solid hsl(186 100% 69%); */
+  border: 1px solid hsl(186 100% 69%);
   cursor: inherit;
-  background-color: rgba(128, 128, 128, 0.2);
-}
-
-/* -------------------------------------------------------- */
-
-#terminal-lobby {
-  flex: 8;
-  height: 100%;
-  overflow: auto;
-}
-
-#separator {
-  flex: 0;
-  width: 2px; /* You can adjust this value to change the width of the line */
-  background-color: #fff; /* Change this color as per your need */
+  background-color: rgba(128, 128, 128, 0.1);
+  box-shadow: 
+    0 0 5px rgba(128, 128, 128, 0.5), 
+    0 0 10px rgba(128, 128, 128, 0.5), 
+    0 0 15px rgba(128, 128, 128, 0.5), 
+    0 0 20px rgba(128, 128, 128, 0.5);
 }
 .terminal-error {
   font-weight: bold;
@@ -212,42 +203,35 @@ button:focus {
 /* Firefox custom scrollbar */
 /* -------------------------------------------------------- */
 
-#compile-button {
-<<<<<<< HEAD
+/* #compile-button {
   position: absolute;
   z-index: 100;
   right: 1%;
   bottom: 4%;
-=======
-  flex: 2;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
->>>>>>> 200b5b21683e91d9911c5b64a4c76e2c448d23d7
   padding: 10px 20px;
+  width: 150px;
   font-size: 20px;
   font-weight: bold;
   color: #ffffff;
-  background-color: #ff0000;
-  border-radius: 5px;
+  /* background-color: #ff0000; */
+  /* border: 0.5px solid hsl(186 100% 69%); */
+  /* border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.5s ease;
   opacity: 0.7;
-}
+} */ */
 
-
-#compile-button:hover {
+/* #compile-button:hover {
   background-color: #cc0000;
   opacity: 0.9;
-}
+} */
 
-@media only screen and (max-width: 600px) {
+/* @media only screen and (max-width: 600px) {
   #compile-button {
     font-size: 1em;
     padding: 5px 10px;
   }
-}
+} */
 
 /* -------------------------------------------------------- */
 
@@ -289,8 +273,8 @@ button:focus {
   font-size: 20px;
   font-weight: bold;
   color: #ffffff;
-  background-color: rgba(128, 128, 128, 0.2);  /* half-transparent grey */
-  /* border: 0.5px solid hsl(186 100% 69%); */
+  background-color: none;  /* half-transparent grey */
+  border: 0.5px solid hsl(186 100% 69%);
   border-radius: 1px;
   cursor: pointer;
   transition: background-color 0.5s ease;
