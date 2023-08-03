@@ -1,6 +1,6 @@
 let editorLobby;
 let selectedDeckLobby = 0;
-
+let robotInfosLobby = [];
 document.addEventListener('DOMContentLoaded', function () {
   require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' } });
 
@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })
       .then(response => response.json())
       .then(data => {
+        robotInfosLobby = data;
         console.log(data);
         console.log(data[0].code);
         editorLobby.setValue(data[0].code);
@@ -47,18 +48,25 @@ function getEditorValueLobby() {
   }
 }
 
-function code_check_lobby(result, status) {
+function code_check_lobby(result, status, index, code) {
   const terminal = document.getElementById('terminal-lobby');
   if (result != 0) {
       terminal.innerHTML = `<span style="font-weight: bold; color: red;" > ${status}: </span> <span style="font-weight: bold; color: red;">${result}</span>`;
   }
   else {
-      terminal.innerHTML = `<span style="font-weightL bold; color: green;" > ${status}: </span> <span style="font-weight: bold; color: green;"${result}</span>`;
-  }
+    terminal.innerHTML = `<span style="font-weightL bold; color: green;" > ${status}: </span> <span style="font-weight: bold; color: green;"${result}</span>`;
+    robotInfos[index] = code;
+    }
 }
 
 
 function selectDeckIndexLobby(deckId) {
   selectedDeckLobby = deckId;
-  console.log(selectedDeckLobby);
+  console.log(robotInfosLobby)
+  if (robotInfosLobby[selectedDeckLobby]) {
+    editorLobby.setValue(robotInfosLobby[selectedDeckLobby].code)
+    console.log(selectedDeckLobby);
+  } else {
+    console.log('No robot info found for selected deck.')
+  }
 }

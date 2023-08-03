@@ -12,7 +12,9 @@
     editor = monaco.editor.create(document.getElementById('container-lobby-body'), {
       value: codeOfFirstRobot,
       language: 'java',
-      theme: 'vs-dark'
+      theme: 'vs-dark',
+      automaticLayout: true,
+      fontSize: 24
     });
   });
   /*]]>*/
@@ -25,18 +27,26 @@
       }
   }
 
-  function code_check(result, status) {
-      const terminal = document.getElementById('terminal-lobby');
-      if (result != 0) {
-          terminal.innerHTML = `<span style="font-weight: bold; color: red;" > ${status}: </span> <span style="font-weight: bold; color: red;">${result}</span>`;
-      }
-      else {
-          terminal.innerHTML = `<span style="font-weightL bold; color: green;" > ${status}: </span> <span style="font-weight: bold; color: green;"${result}</span>`;
-      }
-  }
+    function code_check_lobby(result, status, index, code) {
+        const terminal = document.getElementById('terminal-lobby');
+        if (result != 0) {
+            terminal.innerHTML = `<span style="font-weight: bold; color: red;" > ${status}: </span> <span style="font-weight: bold; color: red;">${result}</span>`;
+        }
+        else {
+            terminal.innerHTML = `<span style="font-weightL bold; color: green;" > ${status}: </span> <span style="font-weight: bold; color: green;"${result}</span>`;
+            robotInfos[index] = code;
+    }
+}
 
 
-  function selectDeckIndex(deckId) {
-      selectedDeck = deckId;
-  }
+    function selectDeckIndexLobby(deckId) {
+        selectedDeckLobby = deckId;
+        console.log(robotInfosLobby)
+        if (robotInfosLobby[selectedDeckLobby]) {
+            editorLobby.setValue(robotInfosLobby[selectedDeckLobby].code)
+            console.log(selectedDeckLobby);
+        } else {
+            console.log('No robot info found for selected deck.')
+        }
+    }
 </script>

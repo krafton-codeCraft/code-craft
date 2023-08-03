@@ -36,20 +36,20 @@ Promise.all([
 
 }).catch(console.error);
 
-document.getElementById('play-button').addEventListener('click', function () {
-  window.location.href = '/lobby.html';
-});
+// document.getElementById('play-button').addEventListener('click', function () {
+//   window.location.href = '/lobby.html';
+// });
 
-/* -------------------------------------------------------- */
+// /* -------------------------------------------------------- */
 
-document.getElementById('gotoLobby').addEventListener('click', function () {
-  window.location.href = '/lobby.html';
-});
+// document.getElementById('gotoLobby').addEventListener('click', function () {
+//   window.location.href = '/lobby.html';
+// });
 
-document.getElementById('gotoIngame').addEventListener('click', function () {
-  window.location.href = '/ingame.html';
-});
+// document.getElementById('gotoIngame').addEventListener('click', function () {
+//   window.location.href = '/ingame.html';
+// });
 
-document.getElementById('gotoIndex').addEventListener('click', function () {
-  window.location.href = '/index.html';
-});
+// document.getElementById('gotoIndex').addEventListener('click', function () {
+//   window.location.href = '/index.html';
+// });
