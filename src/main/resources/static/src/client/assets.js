@@ -1,6 +1,7 @@
 // 정의된 asset 이름들의 목록
 const ASSET_IMAGE_NAMES = [
   'ship.svg',
+  'ship2.svg',
   'bullet.svg',
   'icon64.png',
   'plane.png',

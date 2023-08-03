@@ -142,7 +142,7 @@ function compile_code(index, content) {
     });
 };
 
-function change_code(index) {
+function change_code(index, content) {
   const url = `http://${addr}:8080/change/ingame-robot`;
   let Data = { robotId: robotId, specIndex: index, code: content }
   console.log(Data)

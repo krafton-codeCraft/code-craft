@@ -81,13 +81,13 @@ button:focus {
   display: none !important;
 }
 
-#game-canvas {
+/* #game-canvas {
   position: absolute;
   top: 50%;
   left: 5%;
   transform: translateY(-50%);
   border: 2px solid gray;
-}
+} */
 
 #leaderboard {
   position: fixed;
@@ -184,18 +184,33 @@ button:focus {
   border: 2px solid rgba(128, 128, 128, 0.5);
   cursor: inherit;
 }
-
-#terminal {
+#terminal{
   position: absolute;
   right: 3%;
   top: 87%;
   width: 40%;
   height: 20%;
-  overflow: hidden; 
+  overflow: auto;
   transform: translateY(-50%);
   border: 2px solid rgba(128, 128, 128, 0.5);
   cursor: inherit;
   background-color: rgba(128, 128, 128, 0.5);
+  /* 여기서 마지막 숫자 0.5가 알파값입니다. */
+  font-family: 'Courier New', Courier, monospace;
+  padding: 15px;
+  border-radius: 5px;
+  color: #ffffff;
+}
+
+.terminal-error {
+  font-weight: bold;
+  color: rgb(248, 30, 30);
+}
+
+/* 성공 메시지 */
+.terminal-success {
+  font-weight: bold;
+  color: rgb(13, 218, 13);
 }
 
 /* -------------------------------------------------------- */

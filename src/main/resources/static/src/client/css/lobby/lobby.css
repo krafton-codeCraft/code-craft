@@ -114,12 +114,20 @@ button:focus {
 
 /*------------------------------------*/
 
+#deck-lobby{
+  position: absolute; 
+  top: 6%; 
+  left: 27%;
+  width: 20%;
+  height: 100%;
+}
+
 #container-lobby {
   position: absolute;
-  top: 39%;
+  top: 38%;
   left: 50%;
   width: 40%;
-  height: 72%;
+  height: 81%;
   overflow: hidden;
   transform: translate(-50%, -50%);
   cursor: inherit;
@@ -133,43 +141,59 @@ button:focus {
   height: 87%;
   overflow: hidden;
   transform: translate(-50%, -50%);
-  border: 2px solid rgba(128, 128, 128, 0.5);
+  /* border: 1px solid hsl(186 100% 69%); */
   cursor: inherit;
 }
 
-#terminal-lobby {
+#terminal-box {
   position: absolute;
   left: 50%;
   top: 87%;
   width: 40%;
   height: 20%;
   /* 수정된 높이 */
+  display: flex;
   overflow: hidden;
   transform: translate(-50%, -50%);
   /* terminal이 아래쪽에 있으므로, positive 값을 사용해야 합니다. */
-  border: 2px solid rgba(128, 128, 128, 0.5);
+  /* border: 1px solid hsl(186 100% 69%); */
   cursor: inherit;
-  background-color: rgba(128, 128, 128, 0.5);
+  background-color: rgba(128, 128, 128, 0.2);
+}
+
+/* -------------------------------------------------------- */
+
+#terminal-lobby {
+  flex: 8;
+  height: 100%;
+  overflow: auto;
+}
+
+#separator {
+  flex: 0;
+  width: 2px; /* You can adjust this value to change the width of the line */
+  background-color: #fff; /* Change this color as per your need */
 }
 
 /* -------------------------------------------------------- */
 
 #compile-button {
-  position: absolute;
-  right: 0%;
-  top: 0%;
+  flex: 2;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 10px 20px;
-  width: 150px;
   font-size: 20px;
   font-weight: bold;
   color: #ffffff;
   background-color: #ff0000;
-  border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.5s ease;
   opacity: 0.7;
 }
+
 
 #compile-button:hover {
   background-color: #cc0000;
@@ -223,23 +247,23 @@ button:focus {
   font-size: 20px;
   font-weight: bold;
   color: #ffffff;
-  background-color: rgba(128, 128, 128, 0.5);  /* half-transparent grey */
-  border: none;
-  border-radius: 5px;
+  background-color: rgba(128, 128, 128, 0.2);  /* half-transparent grey */
+  /* border: 0.5px solid hsl(186 100% 69%); */
+  border-radius: 1px;
   cursor: pointer;
   transition: background-color 0.5s ease;
 }
 
 #deck-one {
-  left: 0%;
+  top: 0%;
 }
 
 #deck-two {
-  left: 16%; /* Adjust as necessary */
+  top: 6%; /* Adjust as necessary */
 }
 
 #deck-thress {
-  left: 32%; /* Adjust as necessary */
+  top: 12%; /* Adjust as necessary */
 }
 
 #deck-one:active, #deck-two:active, #deck-thress:active {
