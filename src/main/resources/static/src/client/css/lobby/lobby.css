@@ -117,7 +117,7 @@ button:focus {
 #deck-lobby{
   position: absolute; 
   top: 6%; 
-  left: 27%;
+  left: 12%;
   width: 20%;
   height: 100%;
 }
@@ -125,8 +125,8 @@ button:focus {
 #container-lobby {
   position: absolute;
   top: 38%;
-  left: 50%;
-  width: 40%;
+  left: 40%;
+  width: 50%;
   height: 81%;
   overflow: hidden;
   transform: translate(-50%, -50%);
@@ -141,15 +141,16 @@ button:focus {
   height: 87%;
   overflow: hidden;
   transform: translate(-50%, -50%);
+  background-color: rgba(128, 128, 128, 0.1 );
   /* border: 1px solid hsl(186 100% 69%); */
   cursor: inherit;
 }
 
 #terminal-box {
   position: absolute;
-  left: 50%;
+  left: 40%;
   top: 87%;
-  width: 40%;
+  width: 50%;
   height: 20%;
   /* 수정된 높이 */
   display: flex;
@@ -323,4 +324,21 @@ button:focus {
     font-size: 1em;
     padding: 5px 10px;
   }
+}
+
+.sidebar {
+  position: fixed;
+  right: -30%; /* Sidebar width */
+  top: 0;
+  width: 30%; /* Sidebar width */
+  height: 100%;
+  background-color: rgba(128, 128, 128, 0.2);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding: 10px;
+  color: #fff;
+}
+
+.sidebar.open {
+  right: 0;
 }
