@@ -2,27 +2,27 @@
   /*<![CDATA[*/
   var robotInfos = /*[[${robotInfos}]]*/ [];
   var codeOfFirstRobot = 'defaultCode'; // 기본 코드 설정
-
+  let selectedDeckLobby = 0;
+  let editorLobby;
   if (robotInfos.length > 0) {
       codeOfFirstRobot = robotInfos[0].code; // 0번 인덱스의 코드로 설정
   }
 
   require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' } });
   require(["vs/editor/editor.main"], function () {
-    editor = monaco.editor.create(document.getElementById('container-lobby-body'), {
+    editorLobby = monaco.editor.create(document.getElementById('container-lobby-body'), {
       value: codeOfFirstRobot,
       language: 'java',
       theme: 'vs-dark',
       automaticLayout: true,
-      fontSize: 24
+      fontSize: 20
     });
   });
   /*]]>*/
 
   function getEditorValue() {
-      if (editor) {
-          const content = editor.getValue();
-          alert(content); // Display the content, you can do whatever you want with it
+      if (editorLobby) {
+          const content = editorLobby.getValue();// Display the content, you can do whatever you want with it
           return content;
       }
   }
