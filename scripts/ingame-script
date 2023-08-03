@@ -40,11 +40,6 @@
   }
 
 
-<<<<<<< HEAD
-  function selectDeckIndex(deckId) {
-      selectedDeck = deckId;
-  }
-=======
     function selectDeckIndex(deckId) {
         selectedDeck = deckId;
         if(robotInfos[selectedDeck]){
@@ -58,5 +53,4 @@
         change_code(selectedDeck, getEditorValue());
     }
 }
->>>>>>> eeefc263cf24bdf8ca28fb8c8178e299411fef08
 </script>

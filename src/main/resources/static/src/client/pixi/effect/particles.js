@@ -18,13 +18,13 @@ textureContext.beginPath();
 textureContext.ellipse(8, 8, 4, 4, 0, 0, 6.28);
 textureContext.fill();
 
-let app = new PIXI.Application({
+export let particlesapp = new PIXI.Application({
   width: WIDTH,
   height: HEIGHT
 });
-document.body.appendChild(app.view);
 
-let effect = new PIXI.particles.ParticleContainer(1000, {
+
+let effect = new PIXI.ParticleContainer(1000, {
     position: true,
     rotation: true,
     scale: true,
@@ -32,12 +32,12 @@ let effect = new PIXI.particles.ParticleContainer(1000, {
     tint: true,
     alpha: true
 });
-app.stage.addChild(effect);
+particlesapp.stage.addChild(effect);
 
 // create an array to store all the effect
 let particles = [];
 
-let totalSprites = app.renderer instanceof PIXI.WebGLRenderer ? 200 : 100;
+let totalSprites = 200;
 
 function resetParticle(particle) {
   particle.x = WIDTH / 2;
@@ -78,7 +78,7 @@ function resetEffect({ x, y }) {
   ];
 }
 
-app.loader.add('star', 'https://cdn.glitch.com/a10133ef-3919-4200-ad35-26200e16b146%2Fwhite-star.png?v=1562875677679')
+particlesapp.loader.add('star', 'https://cdn.glitch.com/a10133ef-3919-4200-ad35-26200e16b146%2Fwhite-star.png?v=1562875677679')
 .load(function (loader, resources) {
   
   for (let i = 0; i < totalSprites; i++) {
@@ -98,7 +98,7 @@ app.loader.add('star', 'https://cdn.glitch.com/a10133ef-3919-4200-ad35-26200e16b
   
   let waiting = false;
 
-  app.ticker.add(function() {
+  particlesapp.ticker.add(function() {
     // iterate through the effect and update their position
     let now = Date.now();
     let elapsed = now - effect.start;
@@ -133,10 +133,10 @@ app.loader.add('star', 'https://cdn.glitch.com/a10133ef-3919-4200-ad35-26200e16b
     }
   });
   
-  app.view.addEventListener('click', function (e) {
+  particlesapp.view.addEventListener('click', function (e) {
     resetEffect({
-      x: e.pageX - app.view.offsetLeft,
-      y: e.pageY - app.view.offsetTop
+      x: e.pageX - particlesapp.view.offsetLeft,
+      y: e.pageY - particlesapp.view.offsetTop
     });
   });
 

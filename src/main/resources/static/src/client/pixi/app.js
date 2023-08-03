@@ -6,6 +6,7 @@ import renderBullet from './bullet/bullet';
 import { getCurrentState } from '../state';
 import { renderScan }  from './scan/scan';
 import { explosions } from './effect/explosion';
+import { particlesapp } from './effect/particles';
 
 export function pixiApp() {
   return new Promise((resolve) => {
@@ -13,7 +14,7 @@ export function pixiApp() {
     document.body.appendChild(app.view);
     makestar(app);
     playground();
-
+    document.body.appendChild(particlesapp);
     app.ticker.add((delta) => {
       playgroundApp.stage.removeChildren();
 
