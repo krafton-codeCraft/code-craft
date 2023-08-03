@@ -35,7 +35,8 @@ document.addEventListener('DOMContentLoaded', function () {
     `,
             language: 'java',
             theme: 'vs-dark',
-            automaticLayout: true 
+            automaticLayout: true,
+            fontSize: 20
         });
         const url = `http://localhost:8080/get/robot-infos`;
         fetch(url, {
