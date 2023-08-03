@@ -21,36 +21,37 @@
   });
   /*]]>*/
 
-  function getEditorValue() {
-      if (editor) {
-          const content = editor.getValue();
-          alert(content); // Display the content, you can do whatever you want with it
-          return content;
-      }
-  }
-
-  function code_check(result, status) {
-      const terminal = document.getElementById('terminal');
-      if (result != 0) {
-          terminal.innerHTML = `<span style="font-weight: bold; color: red;" > ${status}: </span> <span style="font-weight: bold; color: red;">${result}</span>`;
-      }
-      else {
-          terminal.innerHTML = `<span style="font-weightL bold; color: green;" > ${status}: </span> <span style="font-weight: bold; color: green;"${result}</span>`;
-      }
-  }
-
-
-    function selectDeckIndex(deckId) {
-        selectedDeck = deckId;
-        if(robotInfos[selectedDeck]){
-            editor.setValue(robotInfos[selectedDeck].code)
-            console.log(selectedDeck);
-        } else {
-            console.log('No robot info found for selected deck.')
+    function getEditorValue() {
+        if (editor) {
+            const content = editor.getValue();// Display the content, you can do whatever you want with it
+        return content;
         }
+}
 
-    function run_code() {
-        change_code(selectedDeck, getEditorValue());
+function code_check(result, status, index, code) {
+    const terminal = document.getElementById('terminal');
+
+    if (result != 0) {
+        terminal.innerHTML = `<span class="terminal-error">${status}: ${result}</span>`;
+    } else {
+        terminal.innerHTML = `<span class="terminal-success">${status}: ${result}</span>`;
+    robotInfos[index] = code;
     }
 }
+
+
+function selectDeckIndex(deckId) {
+    selectedDeck = deckId;
+    if(robotInfos[selectedDeck]){
+        editor.setValue(robotInfos[selectedDeck].code)
+        console.log(selectedDeck);
+    } else {
+        console.log('No robot info found for selected deck.')
+    }
+}
+
+function run_code() {
+    change_code(selectedDeck, getEditorValue());
+}
+
 </script>
