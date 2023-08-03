@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,8 +33,20 @@ public class HomeController {
     }
 
     @GetMapping("/lobby")
-    public String lobby() {
+    public String lobby(@AuthenticationPrincipal(expression = "username") String username,
+                        Model model) {
+        // 모델
+        List<RobotSpecDto> robotInfos = robotSpecService.getRobotInfo(username);
+        model.addAttribute("robotInfo", robotInfos);
         return "lobby";
+    }
+
+    @GetMapping("/ingame")
+    public String ingame(@AuthenticationPrincipal(expression = "username") String username,
+                         Model model) {
+        List<RobotSpecDto> robotInfos = robotSpecService.getRobotInfo(username);
+        model.addAttribute("robotInfo", robotInfos);
+        return "ingame";
     }
 
     @GetMapping("/get/robot-infos")
