@@ -1,7 +1,6 @@
 let editor;
 let selectedDeck = 0;
 document.addEventListener('DOMContentLoaded', function () {
-
     require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' } });
 
     let proxy = URL.createObjectURL(new Blob([`
@@ -15,26 +14,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
     require(["vs/editor/editor.main"], function () {
         editor = monaco.editor.create(document.getElementById('container-body'), {
-            value: '',
+            value: `public class StupidBot extends Robot {
+  @Override
+  public void run() {
+    while (true) {
+      System.out.println(Thread.currentThread().getName() + " 헤헤헤헤: " + getX() + ", " + getY());
+      try {
+        Thread.sleep(1000);
+      } catch (InterruptedException e) {
+        throw new RuntimeException(e);
+      }
+    }
+  }
+
+  @Override
+  public void onScannedRobot(ScannedRobotEvent event) {
+    System.out.println("헤헤헤헤헤 스캔: " + event.getName());
+  }
+}
+    `,
             language: 'java',
-            theme: 'vs-dark'
+            theme: 'vs-dark',
+            automaticLayout: true 
         });
-    });
-
-    const url = `http://localhost:8080/get/robot-infos`;
-    fetch(url, {
-    method: 'GET'
-    })
-        .then(response => response.json())
-        .then(data => {
-        console.log(data);
-        console.log(data[0].code);
-        editor.setValue(data[0].code);
+        const url = `http://localhost:8080/get/robot-infos`;
+        fetch(url, {
+            method: 'GET'
         })
-        .catch(e => {
-        console.log("ee?");
-        });
-
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                console.log(data[0].code);
+                editor.setValue(data[0].code);
+            })
+            .catch(e => {
+                console.log("ee?");
+            });
+    });
 })
 function getEditorValue() {
     if (editor) {
@@ -57,5 +73,6 @@ function code_check(result, status) {
 
 function selectDeckIndex(deckId) {
     selectedDeck = deckId;
+    console.log(selectedDeck);
 }
 

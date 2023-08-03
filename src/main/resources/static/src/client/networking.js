@@ -120,11 +120,27 @@ export const requestTodayRanking = () => {
 };
 
 function compile_code(index) {
-  const content = getEditorValue();
+  const content = getEditorValueLobby();
   const url = `http://${addr}:8080/create/robot`;
   let Data = {specIndex: index, code: content };
   console.log(index, content);
-  fetch_code(Data, url);
+  const params = new URLSearchParams(Data).toString();
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: params
+  })
+    .then(response => response.json())
+    .then(data => {
+      const result = data.exitCode;
+      const status = data.content;
+      code_check_lobby(result, status);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
 };
 
 function change_code(index) {
@@ -132,10 +148,6 @@ function change_code(index) {
   const url = `http://${addr}:8080/change/ingame-robot`;
   let Data = { robotId: robotId, specIndex: index, code: content }
   console.log(Data)
-  fetch_code(Data, url);
-};
-
-function fetch_code(Data, url) {
   const params = new URLSearchParams(Data).toString();
   fetch(url, {
     method: 'POST',
@@ -153,7 +165,8 @@ function fetch_code(Data, url) {
     .catch(error => {
       console.error('Error:', error);
     });
-}
+};
+
 window.change_code = change_code;
 window.compile_code = compile_code;
 
