@@ -136,20 +136,34 @@ button:focus {
   border: 2px solid rgba(128, 128, 128, 0.5);
   cursor: inherit;
 }
-
 #terminal-lobby {
   position: absolute;
   left: 50%;
   top: 87%;
   width: 40%;
   height: 20%;
-  /* 수정된 높이 */
-  overflow: hidden;
+  overflow: auto;
   transform: translate(-50%, -50%);
-  /* terminal이 아래쪽에 있으므로, positive 값을 사용해야 합니다. */
-  border: 2px solid rgba(128, 128, 128, 0.5);
+  border: 2px solid #333;
   cursor: inherit;
-  background-color: rgba(128, 128, 128, 0.5);
+  background-color: rgba(30, 30, 30, 0.5);
+  /* 여기서 마지막 숫자 0.5가 알파값입니다. */
+  font-family: 'Courier New', Courier, monospace;
+  padding: 15px;
+  border-radius: 5px;
+  color: #ffffff;
+}
+
+/* 에러 메시지 */
+.terminal-error {
+  font-weight: bold;
+  color: red;
+}
+
+/* 성공 메시지 */
+.terminal-success {
+  font-weight: bold;
+  color: green;
 }
 
 /* -------------------------------------------------------- */
