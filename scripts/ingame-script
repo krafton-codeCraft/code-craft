@@ -1,5 +1,7 @@
 <script th:inline="javascript">
   /*<![CDATA[*/
+  let selectedDeck = 0;
+  let editor;
   var robotInfos = /*[[${robotInfos}]]*/ [];
   var codeOfFirstRobot = 'defaultCode'; // 기본 코드 설정
   let selectedDeck = 0;
