@@ -1,11 +1,15 @@
 <script th:inline="javascript">
   /*<![CDATA[*/
-  let codeOfFirstRobot = /*[[${robotInfo[0].code} != null ? ${robotInfo[0].code} : 'defaultCode' ]]*/ 'defaultCode';
-  console.log('code?');
-  console.log(codeOfFirstRobot);
+  var robotInfos = /*[[${robotInfos}]]*/ [];
+  var codeOfFirstRobot = 'defaultCode'; // 기본 코드 설정
+
+  if (robotInfos.length > 0) {
+      codeOfFirstRobot = robotInfos[0].code; // 0번 인덱스의 코드로 설정
+  }
+
   require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' } });
   require(["vs/editor/editor.main"], function () {
-    editor = monaco.editor.create(document.getElementById('container-body'), {
+    editor = monaco.editor.create(document.getElementById('container-lobby-body'), {
       value: codeOfFirstRobot,
       language: 'java',
       theme: 'vs-dark'
