@@ -1,5 +1,4 @@
 import * as PIXI from 'pixi.js';
-
 import {playgroundApp} from '../playground/playground'
 import { getAsset } from '../../assets';
 export let explosions  =  [];

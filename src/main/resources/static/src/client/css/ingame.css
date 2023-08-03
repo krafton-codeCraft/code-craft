@@ -81,13 +81,13 @@ button:focus {
   display: none !important;
 }
 
-#game-canvas {
+/* #game-canvas {
   position: absolute;
   top: 50%;
   left: 5%;
   transform: translateY(-50%);
   border: 2px solid gray;
-}
+} */
 
 #leaderboard {
   position: fixed;
