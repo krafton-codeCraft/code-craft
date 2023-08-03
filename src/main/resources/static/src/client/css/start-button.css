@@ -29,8 +29,9 @@ body {
     position: absolute;
     right: 5%;
     bottom: 5%;
-    padding: 10px 20px;
-    width: 200px;
+    padding: 0.25em 0.5em; /* adjusted padding */
+    letter-spacing: 0.2em; /* adjusted letter-spacing */
+    width: auto;
     color: var(--glow-color);
     cursor: pointer;
     padding: 0.35em 1em;
