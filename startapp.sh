@@ -11,5 +11,5 @@ if [ -n "$process_id" ]; then
   kill $process_id
 fi
 
-./gradlew clean build
+cd /home/ubuntu/code-craft; ./gradlew clean build
 nohup java -jar -Dserver.port=${TARGET_PORT} /home/ubuntu/code-craft/build/libs/* > /home/ubuntu/nohup.out 2>&1 &
