@@ -26,12 +26,14 @@ export function renderScan(scan, app) {
     const midx = robotX;//(x+width)/2
     const midy = robotY;//(y+height)/2
     const dist = width/2;//distRadius(x,y,width,height);
-    const startrad = toRadius(2*Math.PI - angleStart);
-    let endrad = null
-    if(angleExtent < 0 ){
-        endrad = toRadius(2*Math.PI - angleStart - angleExtent);
+    let startrad = null;
+    let endrad = null;
+    if(angleExtent > 0 ){
+        startrad = toRadius(2*Math.PI - angleStart - angleExtent);
+        endrad = toRadius(2*Math.PI - angleStart - (angleExtent *2));
     }else{
-        endrad = toRadius(2*Math.PI - angleStart + angleExtent);
+        startrad = toRadius(2*Math.PI - angleStart + angleExtent);
+        endrad = toRadius(2*Math.PI - angleStart + (angleExtent *2));
     }
     
 
@@ -44,7 +46,7 @@ export function renderScan(scan, app) {
         Scaning.lineStyle(1, 0xff0000, 0.25);
     }
     Scaning.moveTo(midx,midy);
-    Scaning.arc(midx,midy, dist , startrad, endrad , false); // 각은 라디안을 사용해야함
+    Scaning.arc(midx,midy, dist , startrad, endrad , true); // 각은 라디안을 사용해야함
     Scaning.lineTo(midx,midy);
     Scaning.endFill();
 
