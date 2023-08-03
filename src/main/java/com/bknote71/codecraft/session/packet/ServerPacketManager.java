@@ -1,9 +1,6 @@
 package com.bknote71.codecraft.session.packet;
 
-import com.bknote71.codecraft.proto.CEnterBattle;
-import com.bknote71.codecraft.proto.CSubmit;
-import com.bknote71.codecraft.proto.Protocol;
-import com.bknote71.codecraft.proto.ProtocolType;
+import com.bknote71.codecraft.proto.*;
 import com.bknote71.codecraft.session.ClientSession;
 import com.bknote71.codecraft.util.PacketTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +28,8 @@ public class ServerPacketManager {
     public void register() {
         onRecvs.put(ProtocolType.C_EnterBattle, (session, message, protocol) -> makePacket(session, message, protocol, CEnterBattle.class));
         handlers.put(ProtocolType.C_EnterBattle, packetHandler::CEnterBattleHandler);
+        onRecvs.put(ProtocolType.C_ChangeRobot, (session, message, protocol) -> makePacket(session, message, protocol, CChangeRobot.class));
+        handlers.put(ProtocolType.C_ChangeRobot, packetHandler::CChangeRobotHandler);
     }
 
     public void handlePacket(ClientSession session, TextMessage message) {
