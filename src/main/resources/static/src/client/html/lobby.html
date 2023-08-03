@@ -38,9 +38,9 @@
   <button id="gotosignup">go to signup</button>
 
   <div id="container-lobby">
-    <button id="deck-one" onclick="selectDeckIndexLobby(0)">1</button>
-    <button id="deck-two" onclick="selectDeckIndexLobby(1)">2</button>
-    <button id="deck-thress"  onclick="selectDeckIndexLobby(2)">3</button>
+    <button id="deck-one" class="button" onclick="selectDeckIndexLobby(0)">One</button>
+    <button id="deck-two" class="button" onclick="selectDeckIndexLobby(1)">Two</button>
+    <button id="deck-thress" class="button"  onclick="selectDeckIndexLobby(2)">Three</button>
     <div id="container-lobby-body"></div>
     <button id="compile-button" onclick="compile_code(selectedDeckLobby)">Run Code</button>
   </div>
@@ -50,7 +50,7 @@
   <button id="lobby-module">MODULE</button>
   <button id="lobby-event">EVENT</button>
 
-  <button id="start-button">START</button>
+  <button id="start-button" class='glowing-btn'><span class='glowing-txt'>S<span class='faulty-letter'>T</span>ART</span></button>
 
   <div id="robotId"></div>
   <div id="name"></div>

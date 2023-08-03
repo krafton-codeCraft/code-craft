@@ -136,7 +136,8 @@ function compile_code(index) {
     .then(data => {
       const result = data.exitCode;
       const status = data.content;
-      code_check_lobby(result, status);
+      const code = data.code
+      code_check_lobby(result, status, index, code);
     })
     .catch(error => {
       console.error('Error:', error);
@@ -160,7 +161,8 @@ function change_code(index) {
     .then(data => {
       const result = data.exitCode;
       const status = data.content;
-      code_check(result, status);
+      const code = data.code
+      code_check(result, status, index, code);
     })
     .catch(error => {
       console.error('Error:', error);
@@ -184,6 +186,7 @@ export const getRobotInfos = () => {
       // console.log(data[0].code);
       // const info = data[0].code;
       // setEditorValueLobby(info);
+      console.log(data);
       return data;
     })
     .catch(e => {
