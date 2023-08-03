@@ -33,22 +33,21 @@
 
   <canvas id="game-canvas" class="hidden"></canvas>
 
-  <!-- <button id="gotoLobby">go to Lobby</button>
-  <button id="gotoIngame">go to Ingame</button>
-  <button id="gotoIndex">go to Index</button>
-  <button id="gotosignup">go to signup</button> -->
-
-  <div id="container-lobby">
-
+  <div id="deck-lobby">
     <button id="deck-one" th:onclick="selectDeckIndexLobby(0)">1</button>
     <button id="deck-two" th:onclick="selectDeckIndexLobby(1)">2</button>
     <button id="deck-thress"  th:onclick="selectDeckIndexLobby(2)">3</button>
+  </div>
+
+  <div id="container-lobby">
+
     <div id="container-lobby-body"></div>
-    <button id="compile-button" th:onclick="run_code()">Run Code</button>
 
   </div>
 
-  <div id="terminal-lobby"></div>
+  <div id="terminal-lobby">
+    <button id="compile-button" th:onclick="run_code()">Run Code</button>
+  </div>
 
   <button class='module-btn'>MODULE</button>
   <button class='event-btn'>EVENT</button>
@@ -59,6 +58,7 @@
   <div id="name"></div>
   <div id="username"></div>
   <div id="code"></div>
+
 
 
 
