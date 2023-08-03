@@ -134,6 +134,7 @@ button:focus {
 }
 
 #container-lobby-body {
+
   position: absolute;
   top: 53%;
   left: 50%;
@@ -144,32 +145,32 @@ button:focus {
   background-color: rgba(128, 128, 128, 0.1 );
   /* border: 1px solid hsl(186 100% 69%); */
   cursor: inherit;
-  box-shadow: 
-    0 0 5px rgba(128, 128, 128, 0.5), 
-    0 0 10px rgba(128, 128, 128, 0.5), 
-    0 0 15px rgba(128, 128, 128, 0.5), 
-    0 0 20px rgba(128, 128, 128, 0.5);
+
+}
+
+#terminal-lobby {
+  flex: 8;
+  height: 100%;
+  overflow: auto;
 }
 
 #terminal-box {
+  flex: 8;
   position: absolute;
   left: 40%;
   top: 87%;
   width: 50%;
   height: 20%;
   /* 수정된 높이 */
-  overflow: auto;
+  display: flex;
+  overflow: hidden;
   transform: translate(-50%, -50%);
   /* terminal이 아래쪽에 있으므로, positive 값을 사용해야 합니다. */
-  border: 1px solid hsl(186 100% 69%);
   cursor: inherit;
   background-color: rgba(128, 128, 128, 0.1);
-  box-shadow: 
-    0 0 5px rgba(128, 128, 128, 0.5), 
-    0 0 10px rgba(128, 128, 128, 0.5), 
-    0 0 15px rgba(128, 128, 128, 0.5), 
-    0 0 20px rgba(128, 128, 128, 0.5);
+
 }
+
 .terminal-error {
   font-weight: bold;
   color: rgb(248, 30, 30);
@@ -256,6 +257,11 @@ button:focus {
   background-color: #cc0000;
 } */
 
+#compile-button {
+  flex: 2;
+  
+}
+
 @media only screen and (max-width: 600px) {
   #start-button {
     font-size: 1em;
@@ -274,8 +280,7 @@ button:focus {
   font-size: 20px;
   font-weight: bold;
   color: #ffffff;
-  background-color: none;  /* half-transparent grey */
-  border: 0.5px solid hsl(186 100% 69%);
+  background-color: rgba(128, 128, 128, 0.2);  /* half-transparent grey */
   border-radius: 1px;
   cursor: pointer;
   transition: background-color 0.5s ease;
