@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', function () {
       value: '',
       language: 'java',
       theme: 'vs-dark',
-      automaticLayout: true, 
-      fontSize: 24
+      automaticLayout: true,
+      fontSize: 20
     });
 
     // 에디터가 생성된 후 데이터를 불러옵니다.

@@ -37,7 +37,7 @@ public class HomeController {
                         Model model) {
         // 모델
         List<RobotSpecDto> robotInfos = robotSpecService.getRobotInfo(username);
-        model.addAttribute("robotInfo", robotInfos);
+        model.addAttribute("robotInfos", robotInfos);
         return "lobby";
     }
 
@@ -45,7 +45,7 @@ public class HomeController {
     public String ingame(@AuthenticationPrincipal(expression = "username") String username,
                          Model model) {
         List<RobotSpecDto> robotInfos = robotSpecService.getRobotInfo(username);
-        model.addAttribute("robotInfo", robotInfos);
+        model.addAttribute("robotInfos", robotInfos);
         return "ingame";
     }
 
