@@ -6,6 +6,7 @@ import com.bknote71.codecraft.robocode.leaderboard.LeaderBoardTemplate;
 import com.bknote71.codecraft.robocode.loader.AwsS3ClassLoader;
 import com.bknote71.codecraft.robocode.loader.CompileResult;
 import com.bknote71.codecraft.session.packet.PacketHandler;
+import com.bknote71.codecraft.web.exception.RobotNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -45,6 +46,11 @@ public class HomeController {
     public String ingame(@AuthenticationPrincipal(expression = "username") String username,
                          Model model) {
         List<RobotSpecDto> robotInfos = robotSpecService.getRobotInfo(username);
+
+        if (robotInfos.isEmpty()) {
+            throw new RobotNotFoundException("로봇이 없어 입장하실 수 없습니다.");
+        }
+
         model.addAttribute("robotInfos", robotInfos);
         return "ingame";
     }

@@ -8,6 +8,9 @@
       codeOfFirstRobot = robotInfos[0].code; // 0번 인덱스의 코드로 설정
   }
 
+  let selectedDeck = 0;
+  let editor;
+
   require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' } });
   require(["vs/editor/editor.main"], function () {
     editor = monaco.editor.create(document.getElementById('container-lobby-body'), {
@@ -37,7 +40,23 @@
   }
 
 
+<<<<<<< HEAD
   function selectDeckIndex(deckId) {
       selectedDeck = deckId;
   }
+=======
+    function selectDeckIndex(deckId) {
+        selectedDeck = deckId;
+        if(robotInfos[selectedDeck]){
+            editor.setValue(robotInfos[selectedDeck].code)
+            console.log(selectedDeck);
+        } else {
+            console.log('No robot info found for selected deck.')
+        }
+
+    function run_code() {
+        change_code(selectedDeck, getEditorValue());
+    }
+}
+>>>>>>> eeefc263cf24bdf8ca28fb8c8178e299411fef08
 </script>
