@@ -13,7 +13,7 @@ public class Rules {
 
     public static final double MAX_VELOCITY = 8;
 
-    public static final double RADAR_SCAN_RADIUS = 1200;
+    public static final double RADAR_SCAN_RADIUS = 600;
 
     public static final double MIN_BULLET_POWER = 0.1;
 
