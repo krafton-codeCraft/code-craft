@@ -1,12 +1,15 @@
 import { getAsset } from '../../assets';
-import { robotId } from '../../networking'
-import { deadRobot } from '../scan/scan'
+import { robotId } from '../../networking';
+import { deadRobot } from '../scan/scan';
+import { triggerCustomEvent } from '../effect/particles';
+
 const Constants = require('../../../shared/constants');
 const { PLAYER_RADIUS,PLAYER_MAXENERGY, PLAYER_MAXHP } = Constants;
 
 function renderPlayer(player, app) {
-
+    const robotContainer = new PIXI.Container();
     const { id, x, y, name , bodyHeading, gunHeading, raderHeading, energy ,hp , dead} = player;
+    triggerCustomEvent(x,y);
     // console.log(id);
     if(dead){
         deadRobot.push(id);
@@ -40,7 +43,7 @@ function renderPlayer(player, app) {
     bodyship.width = PLAYER_RADIUS * 2;
     bodyship.height = PLAYER_RADIUS * 2;
     bodyship.tint = randcolor
-    app.stage.addChild(bodyship);
+    robotContainer.addChild(bodyship);
     
     const gunhead = new PIXI.Sprite(PIXI.Texture.from(getAsset('ship.svg')));
     gunhead.anchor.set(0.5);
@@ -50,7 +53,7 @@ function renderPlayer(player, app) {
     gunhead.width = PLAYER_RADIUS;
     gunhead.height = PLAYER_RADIUS;
     gunhead.tint = 0x000000;
-    app.stage.addChild(gunhead);
+    robotContainer.addChild(gunhead);
 
     //체력바 
     /* const innerBar = new PIXI.Graphics();
@@ -69,8 +72,8 @@ function renderPlayer(player, app) {
     const hptext = new PIXI.Text(hp +'/' + PLAYER_MAXHP, { fontFamily: 'Arial', fontSize: 10, fill: 'white' });
     hptext.anchor.set(0.5);
     hptext.x = canvasX;
-    hptext.y = canvasY - (PLAYER_RADIUS * 2);
-    app.stage.addChild(hptext);
+    hptext.y = canvasY + (PLAYER_RADIUS * 2) + 10;
+    robotContainer.addChild(hptext);
 
     randcolor = Math.floor(randcolor);
     const fillValue = '#' + randcolor.toString(16).padStart(6, '0');
@@ -79,7 +82,9 @@ function renderPlayer(player, app) {
     text.anchor.set(0.5);
     text.x = canvasX;
     text.y = canvasY + PLAYER_RADIUS + 20;
-    app.stage.addChild(text);
+    robotContainer.addChild(text);
+
+    app.stage.addChild(robotContainer);
 }
 
 export default renderPlayer;

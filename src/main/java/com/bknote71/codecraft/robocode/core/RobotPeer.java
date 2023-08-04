@@ -739,9 +739,10 @@ public class RobotPeer {
             y += velocity * cos(bodyHeading);
 
             // 위치 보정
-            int mapSize = 1000;
-            x = (x + mapSize) % mapSize;
-            y = (y + mapSize) % mapSize;
+            int battlefieldWidth = battleRules.getBattlefieldWidth();
+            int battlefieldHeight = battleRules.getBattlefieldHeight();
+            x = (x + battlefieldWidth) % battlefieldWidth;
+            y = (y + battlefieldHeight) % battlefieldHeight;
         }
     }
 

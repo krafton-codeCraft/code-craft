@@ -8,16 +8,18 @@ import { renderScan }  from './scan/scan';
 import { particletest } from './effect/particles';
 import { robotMessages } from '../chat';
 import { renderSpeechBubble } from '../chat';
+import { particletest , container } from './effect/particles';
+
 export function pixiApp() {
   return new Promise((resolve) => {
     const app = new PIXI.Application({ resizeTo: window });
     document.body.appendChild(app.view);
     makestar(app);
     playground();
-    particletest(app);
+    particletest(playgroundApp);
     app.ticker.add((delta) => {
       playgroundApp.stage.removeChildren();
-
+      playgroundApp.stage.addChild(container);
       const { robots,bullets,scans } = getCurrentState(); 
 
       renderBackground(app, delta);
