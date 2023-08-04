@@ -103,6 +103,14 @@ public abstract class Robot implements IBasicEvent, Runnable {
         }
     }
 
+    public void robot_image(String robotImageName) {
+        if (peer != null) {
+            peer.setRobotImage(robotImageName);
+        } else {
+            uninitializedException();
+        }
+    }
+
     // 사용 안할 커맨드
 
     public double getBattleFieldWidth() {

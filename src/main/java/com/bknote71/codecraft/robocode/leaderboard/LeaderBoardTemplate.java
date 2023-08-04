@@ -6,6 +6,7 @@ import org.springframework.data.redis.core.ScanOptions;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -30,13 +31,15 @@ public class LeaderBoardTemplate {
 
     public static List<LeaderBoardInfo> getLeaderBoard(int battleId) {
         Set<ZSetOperations.TypedTuple<String>> typedTuples = ops.reverseRangeWithScores(prefix + ":" + battleId, 0, -1);
-        return typedTuples.stream()
+        List<LeaderBoardInfo> leaderBoardInfos = typedTuples.stream()
                 .map(typedTuple -> {
                     String username = typedTuple.getValue();
                     Double score = typedTuple.getScore();
                     return new LeaderBoardInfo(username, score.intValue());
                 })
                 .collect(Collectors.toList());
+        System.out.println("leaderboard? " + Arrays.toString(leaderBoardInfos.toArray()));
+        return leaderBoardInfos;
     }
 
 

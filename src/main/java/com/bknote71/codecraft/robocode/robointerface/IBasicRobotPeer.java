@@ -38,4 +38,6 @@ public interface IBasicRobotPeer {
     int getOthers();
 
     double getGunHeat();
+
+    void setRobotImage(String robotImageName);
 }

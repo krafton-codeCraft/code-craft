@@ -92,6 +92,11 @@ public class BasicRobotProxy extends RobotProxy implements IBasicRobotPeer {
         return bullet;
     }
 
+    // set robot image
+    public void setRobotImage(String robotImageName) {
+        peer.setRobotImage(robotImageName);
+    }
+
     // fast setters
     public void setBodyColor(Color color) {
         commands.setBodyColor(color != null ? color.getRGB() : ExecCommands.defaultBodyColor);

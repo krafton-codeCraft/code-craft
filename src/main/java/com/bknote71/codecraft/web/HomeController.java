@@ -124,5 +124,4 @@ public class HomeController {
         LeaderBoardTemplate.union();
         return LeaderBoardTemplate.getTodayRanking();
     }
-
 }

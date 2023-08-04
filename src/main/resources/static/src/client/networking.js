@@ -7,6 +7,7 @@ import { explosionPlay } from './pixi/effect/explosion.js'
 // import constants from '../shared/constants';
 // import renderCheckbox from './htmlComponent/checkbox';
 // import redis from 'redis';
+import { handleChat } from './chat.js';
 
 // websocket connection
 const battleId = 1;
@@ -42,7 +43,8 @@ export const connect = onGameOver => (
       if (message.type === 'senterbattle') {
         robotId = message.robotId;
         robotname = message.robotName;
-        console.log(`enter game!! ${robotId}`);
+        username = message.username;
+        console.log(`enter game!!`, message);
 
       } else if (message.type === 'supdate') { // update (움직임 패킷)
         // 플레이어 update
@@ -56,9 +58,10 @@ export const connect = onGameOver => (
         processGameUpdate(update);
 
       } else if (message.type === 'schat') {
-        // console.log('schat');
+        console.log('schat');
+        handleChat(message.robotId, message.content);
       } else if (message.type === 'sdie') {
-        explosionPlay(message.x,message.y,message.id);
+        explosionPlay(message.x, message.y, message.id);
         console.log('sdie');
       }
     };
@@ -103,6 +106,8 @@ export const requestLeaderBoard = (battleId) => {
   })
     .then(response => response.json())
     .then(data => {
+      console.log('data?');
+      console.log(data);
       return data;
     });
 };
@@ -120,7 +125,7 @@ export const requestTodayRanking = () => {
 
 function compile_code(index, content) {
   const url = `http://${addr}:8080/create/robot`;
-  let Data = {specIndex: index, code: content };
+  let Data = { specIndex: index, code: content };
   console.log(index, content);
   const params = new URLSearchParams(Data).toString();
   fetch(url, {
@@ -189,4 +194,13 @@ export const getRobotInfos = () => {
     .catch(e => {
       console.log(e);
     });
+}
+
+function submitChat(content) {
+  const message = {
+    type: 'cchat',
+    protocol: C_Chat,
+    content: content,
+  }
+  websocket.send(JSON.stringify(message));
 }

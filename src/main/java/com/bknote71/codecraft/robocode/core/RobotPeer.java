@@ -111,6 +111,9 @@ public class RobotPeer {
     private Arc2D scanArc; // 스캔 각도
     private BoundingRectangle boundingBox;
 
+    // 로봇 이미지
+    private String robotImage;
+
     public RobotPeer(int id) {
         this.id = id;
 
@@ -261,6 +264,9 @@ public class RobotPeer {
         isPaintEnabled = enabled;
     }
 
+    public void setRobotImage(String robotImageName) {
+        this.robotImage = robotImageName;
+    }
 
     // execute: 실행해야할 커맨드 세팅
     public final ExecResults executeImpl(ExecCommands newCommands) {

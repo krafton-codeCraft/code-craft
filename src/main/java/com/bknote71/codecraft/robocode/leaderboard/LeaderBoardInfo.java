@@ -28,4 +28,12 @@ public class LeaderBoardInfo {
     public void setScore(int score) {
         this.score = score;
     }
+
+    @Override
+    public String toString() {
+        return "LeaderBoardInfo{" +
+                "username='" + username + '\'' +
+                ", score=" + score +
+                '}';
+    }
 }
