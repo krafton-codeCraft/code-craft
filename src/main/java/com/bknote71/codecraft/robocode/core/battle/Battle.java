@@ -68,6 +68,10 @@ public class Battle {
         return currentTime;
     }
 
+    public int getId() {
+        return battleId;
+    }
+
     public void setBattleId(int id) {
         this.battleId = id;
     }

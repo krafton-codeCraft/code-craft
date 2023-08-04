@@ -15,6 +15,8 @@ import java.util.stream.Collectors;
 public class LeaderBoardTemplate {
     private static RedisTemplate<String, String> redisTemplate;
     private static ZSetOperations<String, String> ops;
+    private static final String prefix = "battle";
+
 
     @Autowired
     public LeaderBoardTemplate(RedisTemplate<String, String> redisTemplate) {
@@ -22,21 +24,25 @@ public class LeaderBoardTemplate {
         this.ops = redisTemplate.opsForZSet();
     }
 
-    public static void updateLeaderBoard(int roomId, String username, int score) {
-        ops.add("gameroom:" + roomId, username, score);
+    public static void updateLeaderBoard(int battleId, String username, int score) {
+        ops.add(prefix + ":" + battleId, username, score);
     }
 
-    public static List<LeaderBoardInfo> getLeaderBoard(int roomId) {
-        Set<ZSetOperations.TypedTuple<String>> typedTuples = ops.reverseRangeWithScores("gameroom:" + roomId, 0, -1);
+    public static List<LeaderBoardInfo> getLeaderBoard(int battleId) {
+        Set<ZSetOperations.TypedTuple<String>> typedTuples = ops.reverseRangeWithScores(prefix + ":" + battleId, 0, -1);
         return typedTuples.stream()
-                .map(typedTuple -> new LeaderBoardInfo(typedTuple.getValue(), typedTuple.getScore().intValue()))
+                .map(typedTuple -> {
+                    String username = typedTuple.getValue();
+                    Double score = typedTuple.getScore();
+                    return new LeaderBoardInfo(username, score.intValue());
+                })
                 .collect(Collectors.toList());
     }
 
 
     public static void union() {
         // 모든 룸들의 플레이어들을 통합 <<
-        String pattern = "gameroom:*";
+        String pattern = prefix + ":*";
         String destKey = "today_ranking";
         Set<String> keys = scanKeysByPattern(pattern);
         ops.unionAndStore(destKey, keys, destKey);
@@ -58,7 +64,11 @@ public class LeaderBoardTemplate {
     public static List<LeaderBoardInfo> getTodayRanking() {
         Set<ZSetOperations.TypedTuple<String>> typedTuples = ops.reverseRangeWithScores("today_ranking", 0, -1);
         return typedTuples.stream()
-                .map(typedTuple -> new LeaderBoardInfo(typedTuple.getValue(), typedTuple.getScore().intValue()))
+                .map(typedTuple -> {
+                    String username = typedTuple.getValue();
+                    Double score = typedTuple.getScore();
+                    return new LeaderBoardInfo(username, score.intValue());
+                })
                 .collect(Collectors.toList());
     }
 

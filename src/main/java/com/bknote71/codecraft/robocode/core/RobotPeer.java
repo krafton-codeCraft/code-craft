@@ -4,6 +4,7 @@ import com.bknote71.codecraft.proto.SDie;
 import com.bknote71.codecraft.robocode.core.battle.Battle;
 import com.bknote71.codecraft.robocode.core.battle.BattleRules;
 import com.bknote71.codecraft.robocode.event.*;
+import com.bknote71.codecraft.robocode.leaderboard.LeaderBoardTemplate;
 import com.bknote71.codecraft.robocode.proxy.BasicRobotProxy;
 import com.bknote71.codecraft.robocode.proxy.RobotProxy;
 import com.bknote71.codecraft.session.ClientSession;
@@ -232,6 +233,14 @@ public class RobotPeer {
     public RobotSpecification[] getSpecifications() {
         return specifications;
     }
+
+    // username
+    public String getUsername() {
+        if (specification == null || specifications == null || specifications.length <= specIndex)
+            return null;
+        return specification.getUsername();
+    }
+
 
     private void setState(RobotState state) {
         this.state = state;
@@ -904,6 +913,8 @@ public class RobotPeer {
 
         if (hp <= 0) {
             onDead();
+            RobotPeer owner = bulletPeer.owner;
+            LeaderBoardTemplate.updateLeaderBoard(battle.getId(), owner.getUsername(), 2);
             return;
         }
 
