@@ -14,13 +14,13 @@ import './css/ingame.css';
 import './css/compile-button.css';
 import pixiApp from './pixi/app.js';
 import { getRobotInfos } from './networking.js';
-
+import { submitChat } from './networking.js';
 const gamecanvers = document.getElementById('game-canvas');
 
 const playMenu = document.getElementById('play-menu');
 const playButton = document.getElementById('play-button');
 const usernameInput = document.getElementById('username-input');
-
+const inputbar = document.getElementById('inputbar')
 const gameoverMenu = document.getElementById('game-over');
 const replayButton = document.getElementById('replay-button');
 const usernamereInput = document.getElementById('username-reinput');
@@ -113,5 +113,16 @@ document.querySelector('#toggle-module').addEventListener('click', function() {
   } else {
     sidebar.classList.add('open');
     toggleButton.classList.add('open');
+  }
+});
+
+inputbar.addEventListener("keyup", function (event) {
+  if (event.key === "Enter") {
+    // 엔터 키를 눌렀을 때 실행할 동작을 여기에 작성합니다.
+    // 예를 들어, 입력한 채팅 메시지를 가져와서 처리하는 등의 작업이 가능합니다.
+    var message = event.target.value;
+    console.log("입력한 메시지:", message);
+    submitChat(message);
+    event.target.value = ""; // 입력란 비우기
   }
 });

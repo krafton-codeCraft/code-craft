@@ -9,17 +9,23 @@ export const updateLeaderboard = throttle(1500, () => {
   var roomId = 1;
   requestLeaderBoard(roomId)
     .then(data => {
+      if (!Array.isArray(data) || data.length === 0) {
+        return;
+      }
       let minLength = Math.min(data.length, 5);
-      let playerRank;
+      let playerRank = -1;
 
       console.log('minLength', minLength);
 
       for (let i = 0; i < data.length; i++) {
+        console.log(username, data[i].username)
         if (username === data[i].username) {
           playerRank = i;
         }
       }
-
+      if (typeof playerRank === -1) {
+        return;
+      }
       if (playerRank < 5) {
         for (let i = 0; i < minLength; i++) {
           rows[i + 1].innerHTML = `<td>${i + 1} ${escape(data[i].username.slice(0, 15)) || 'Anonymous'}</td><td>${data[i].score
