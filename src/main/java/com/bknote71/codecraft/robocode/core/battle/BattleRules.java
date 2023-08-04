@@ -33,7 +33,7 @@ public final class BattleRules {
         }
 
         public static BattleRules createRules(BattleProperties battleProperties) {
-            return new BattleRules(1000, 1000, 0.1);
+            return new BattleRules(1500, 1000, 0.1);
         }
 
     }
