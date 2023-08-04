@@ -3,6 +3,7 @@ package com.bknote71.codecraft.session.packet;
 import com.bknote71.codecraft.entity.RobotSpecEntity;
 import com.bknote71.codecraft.entity.UserEntity;
 import com.bknote71.codecraft.proto.CChangeRobot;
+import com.bknote71.codecraft.proto.CChat;
 import com.bknote71.codecraft.proto.CEnterBattle;
 import com.bknote71.codecraft.proto.Protocol;
 import com.bknote71.codecraft.entity.repository.UserRepository;
@@ -40,13 +41,13 @@ public class PacketHandler {
         // robot index = 0
         RobotPeer robot = createRobotPeer(clientSession, username, enterPacket.getSpecIndex());
         if (robot == null) {
-            System.out.println("로봇 생성 실패");
+            log.error("로봇 생성 실패");
             return;
         }
 
         Battle battle = robot.getBattle();
         if (battle == null) {
-            System.out.println("배틀에 들어가지 못했습니다.");
+            log.error("배틀에 들어가지 못했습니다.");
             return;
         }
 
@@ -56,6 +57,25 @@ public class PacketHandler {
     public void CChangeRobotHandler(ClientSession clientSession, Protocol protocol) {
         CChangeRobot changePacket = (CChangeRobot) protocol;
         changeAndReenter(clientSession.getUsername(), changePacket.getSpecIndex());
+    }
+
+
+    public void CChatHandler(ClientSession session, Protocol protocol) {
+        CChat chatPacket = (CChat) protocol;
+        RobotPeer robot = session.getMyRobot();
+
+        if (robot == null) {
+            log.error("robot이 없어 채팅을 칠 수 없습니다.");
+            return;
+        }
+
+        Battle battle = robot.getBattle();
+        if (battle == null) {
+            log.error("battle이 없어 채팅을 칠 수 없습니다.");
+            return;
+        }
+
+        battle.push(battle::handleChat, robot, chatPacket.getContent());
     }
 
     public RobotSpecification changeAndReenter(String username, int robotIndex) {
