@@ -196,10 +196,10 @@ export const getRobotInfos = () => {
     });
 }
 
-function submitChat(content) {
+export function submitChat(content) {
   const message = {
     type: 'cchat',
-    protocol: C_Chat,
+    protocol: 'C_Chat',
     content: content,
   }
   websocket.send(JSON.stringify(message));
