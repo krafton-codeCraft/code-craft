@@ -6,6 +6,7 @@ import com.bknote71.codecraft.robocode.core.BulletState;
 import com.bknote71.codecraft.robocode.core.RobotPeer;
 import com.bknote71.codecraft.robocode.core.RobotSpecification;
 import com.bknote71.codecraft.robocode.job.JobSerializer;
+import com.bknote71.codecraft.robocode.leaderboard.LeaderBoardTemplate;
 import com.bknote71.codecraft.session.ClientSession;
 import com.bknote71.codecraft.session.packet.TriConsumer;
 import com.bknote71.codecraft.proto.*;
@@ -124,6 +125,9 @@ public class Battle {
 
         log.info("{} is into robots map", robotPeer.getId());
         robots.put(robotPeer.getId(), robotPeer);
+
+        // 바로 업데이트
+        LeaderBoardTemplate.updateLeaderBoard(battleId, robotPeer.getUsername(), 0);
 
         ClientSession session = robotPeer.session();
         if (session == null)
