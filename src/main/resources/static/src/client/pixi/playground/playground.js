@@ -4,7 +4,7 @@ const canvasElement = document.getElementById('game-canvas');
    
 export const playgroundApp = new PIXI.Application({ 
     view : canvasElement,
-    width: 1000, 
+    width: 1500, 
     height: 1000,
     antialias : true,
     backgroundColor : 0x000000,
@@ -15,8 +15,8 @@ export function playground() {
 
     playgroundApp.view.style.position = "absolute";
     playgroundApp.view.style.top = "50%";
-    playgroundApp.view.style.left = "3%";
-    playgroundApp.view.style.transform = "translateY(-50%)";
+    playgroundApp.view.style.left = "50%";
+    playgroundApp.view.style.transform = "translate(-50%, -50%)";
     playgroundApp.view.style.border = "2px solid gray";
     // playgroundApp.renderer.background.color = 0x0000ff;
     // playgroundApp.renderer.background.alpha = 0.5;

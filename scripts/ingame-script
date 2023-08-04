@@ -51,37 +51,35 @@ function code_check(result, status, index, code) {
         terminal.innerHTML = `<span class="terminal-success">컴파일 성공!</span>`;
         robotInfos[index] = code;
     }
-    }
-
-
-    function selectDeckIndex(deckId) {
-        selectedDeck = deckId;
-        if(robotInfos[selectedDeck]){
-            editor.setValue(robotInfos[selectedDeck].code)
-            console.log(selectedDeck);
-        } else {
-            console.log('No robot info found for selected deck.')
-        }
-    }
-
-    function run_code() {
-        change_code(selectedDeck, getEditorValue());
-    }
-
-    function translateErrorToKorean(status) {
-                // 간단한 예제로 에러 메시지를 한국어로 번역하는 함수
-                // 필요한 만큼 메시지를 추가하거나 수정할 수 있습니다.
-                // const errorTranslations = {
-                //     "reached end of file while parsing" : `컴파일 오류: !`,
-                //     "cannot find sym   bol" : `메서드나 속성을 찾을 수 없습니다: !`
-                // };
-                // if (errorTranslations.hasOwnProperty(status)) {
-                //     return errorTranslations[status] + status;
-                // } else {
-        return "컴파일 에러:" + status;
-    }
-
 }
+
+function selectDeckIndex(deckId) {
+    selectedDeck = deckId;
+    if(robotInfos[selectedDeck]){
+        editor.setValue(robotInfos[selectedDeck].code)
+        console.log(selectedDeck);
+    } else {
+        console.log('No robot info found for selected deck.')
+    }
+}
+
+function run_code() {
+    change_code(selectedDeck, getEditorValue());
+}
+
+function translateErrorToKorean(status) {
+            // 간단한 예제로 에러 메시지를 한국어로 번역하는 함수
+            // 필요한 만큼 메시지를 추가하거나 수정할 수 있습니다.
+            // const errorTranslations = {
+            //     "reached end of file while parsing" : `컴파일 오류: !`,
+            //     "cannot find sym   bol" : `메서드나 속성을 찾을 수 없습니다: !`
+            // };
+            // if (errorTranslations.hasOwnProperty(status)) {
+            //     return errorTranslations[status] + status;
+            // } else {
+    return "컴파일 에러:" + status;
+}
+
 
 
 </script>

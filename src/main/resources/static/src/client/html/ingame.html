@@ -28,12 +28,18 @@
 
 <body>
   <canvas id="game-canvas"></canvas>
-  <button id="toggle-main-container" class="space-button">View Code</button>
+  
+  <button id="toggle-event" class="space-button">Event</button>
+  <div id="event-sidebar" class="sidebar">Event Sidebar Content</div>
 
+  <button id="toggle-module" class="space-button">Module</button>
+  <div id="module-sidebar" class="sidebar"> Module Sidebar Content</div>
+
+  <button id="toggle-main-container" class="space-button">View Code</button>
 
   <div id="main-container">
 
-    <div id="closebtn" class="closebtn">×</div>
+    <!-- <div id="closebtn" class="closebtn">×</div> -->
 
     <div id="deck">
       <button id="deck-one" th:onclick="selectDeckIndex(0)">1</button>
