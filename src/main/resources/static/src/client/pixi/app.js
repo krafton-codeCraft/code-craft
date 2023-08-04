@@ -5,7 +5,6 @@ import renderPlayer from './player/player';
 import renderBullet from './bullet/bullet';
 import { getCurrentState } from '../state';
 import { renderScan }  from './scan/scan';
-import { particletest } from './effect/particles';
 import { robotMessages } from '../chat';
 import { renderSpeechBubble } from '../chat';
 import { particletest , container } from './effect/particles';
