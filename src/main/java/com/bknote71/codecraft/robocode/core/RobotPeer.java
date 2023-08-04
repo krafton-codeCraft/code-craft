@@ -140,6 +140,7 @@ public class RobotPeer {
         this.battle = battle;
         this.specIndex = specIndex;
         this.specification = robotSpecifications[specIndex];
+        this.specifications = robotSpecifications;
         this.battleRules = battle.getBattleRules();
         this.statics = new RobotStatics(this.specification, this.specification.getName(), "", battleRules);
         this.robotProxy = new BasicRobotProxy(this.specification, this, statics);
@@ -236,8 +237,9 @@ public class RobotPeer {
 
     // username
     public String getUsername() {
-        if (specification == null || specifications == null || specifications.length <= specIndex)
+        if (specification == null)
             return null;
+
         return specification.getUsername();
     }
 
@@ -912,9 +914,10 @@ public class RobotPeer {
         this.hp = max(hp - bulletPeer.getPower(), 0);
 
         if (hp <= 0) {
-            onDead();
             RobotPeer owner = bulletPeer.owner;
+            log.info("username: {}", owner.getUsername());
             LeaderBoardTemplate.updateLeaderBoard(battle.getId(), owner.getUsername(), 2);
+            onDead();
             return;
         }
 
