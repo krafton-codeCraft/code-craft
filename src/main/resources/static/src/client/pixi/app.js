@@ -5,7 +5,7 @@ import renderPlayer from './player/player';
 import renderBullet from './bullet/bullet';
 import { getCurrentState } from '../state';
 import { renderScan }  from './scan/scan';
-import { particletest } from './effect/particles';
+import { particletest , container } from './effect/particles';
 
 export function pixiApp() {
   return new Promise((resolve) => {
@@ -13,10 +13,10 @@ export function pixiApp() {
     document.body.appendChild(app.view);
     makestar(app);
     playground();
-    // particletest(app);
+    particletest(playgroundApp);
     app.ticker.add((delta) => {
       playgroundApp.stage.removeChildren();
-
+      playgroundApp.stage.addChild(container);
       const { robots,bullets,scans } = getCurrentState(); 
 
       renderBackground(app, delta);

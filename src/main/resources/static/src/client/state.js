@@ -95,9 +95,11 @@ function interpolateObject(object1, object2, ratio) {
   Object.keys(object1).forEach(key => {
     if (key === 'direction') {
       interpolated[key] = interpolateDirection(object1[key], object2[key], ratio);
-    } else if (key === 'x' || key === 'y') {
-      interpolated[key] = interpolatePosition(object1[key], object2[key], ratio);
+    } else if (key === 'y') {
+      interpolated[key] = interpolateYPosition(object1[key], object2[key], ratio);
       //interpolated[key] = object1[key] + (object2[key] - object1[key]) * ratio;
+    } else if (key === 'x') {
+      interpolated[key] = interpolateXPosition(object1[key], object2[key], ratio);
     } else {
       interpolated[key] = object2[key];
     }
@@ -111,7 +113,7 @@ function interpolateObjectArray(objects1, objects2, ratio) {
 }
 
 // 위치 값을 보간하는 함수
-function interpolatePosition(p1, p2, ratio) {
+function interpolateYPosition(p1, p2, ratio) {
   const distance = Math.abs(p2 - p1);
   if (distance > MAP_SIZE / 2) {
     // 경계를 넘어가는 경우, 반대편으로 회전하여 보간
@@ -119,6 +121,19 @@ function interpolatePosition(p1, p2, ratio) {
       p1 += MAP_SIZE;
     } else {
       p1 -= MAP_SIZE;
+    }
+  }
+  return p1 + (p2 - p1) * ratio;
+}
+
+function interpolateXPosition(p1, p2, ratio) {
+  const distance = Math.abs(p2 - p1);
+  if (distance > 1500 / 2) {
+    // 경계를 넘어가는 경우, 반대편으로 회전하여 보간
+    if (p1 < p2) {
+      p1 += 1500;
+    } else {
+      p1 -= 1500;
     }
   }
   return p1 + (p2 - p1) * ratio;

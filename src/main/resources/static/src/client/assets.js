@@ -28,6 +28,7 @@ const ASSET_IMAGE_NAMES = [
   'spaceship5.png',
   'spaceship6.png',
   'spaceship7.png',
+  'particle.png',
 ];
 
 const ASSET_SOUND_NAMES =[
