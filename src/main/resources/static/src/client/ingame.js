@@ -82,15 +82,36 @@ function handleEnterKey(event) {
 
 document.getElementById('toggle-main-container').addEventListener('click', function() {
   var mainContainer = document.getElementById('main-container');
+  var toggleButton = document.getElementById('toggle-main-container');
   if(mainContainer.classList.contains('open')) {
     mainContainer.classList.remove('open');
+    toggleButton.classList.remove('open');
   } else {
     mainContainer.classList.add('open');
+    toggleButton.classList.add('open');
   }
 });
 
-document.getElementById('closebtn').addEventListener('click', function() {
-  var mainContainer = document.getElementById('main-container');
-  mainContainer.classList.remove('open');
+document.querySelector('#toggle-event').addEventListener('click', function() {
+  var sidebar = document.getElementById('event-sidebar');
+  var toggleButton = document.getElementById('toggle-event');
+  if(sidebar.classList.contains('open')) {
+    sidebar.classList.remove('open');
+    toggleButton.classList.remove('open');
+  } else {
+    sidebar.classList.add('open');
+    toggleButton.classList.add('open');
+  }
 });
 
+document.querySelector('#toggle-module').addEventListener('click', function() {
+  var sidebar = document.getElementById('module-sidebar');
+  var toggleButton = document.getElementById('toggle-module');
+  if(sidebar.classList.contains('open')) {
+    sidebar.classList.remove('open');
+    toggleButton.classList.remove('open');
+  } else {
+    sidebar.classList.add('open');
+    toggleButton.classList.add('open');
+  }
+});

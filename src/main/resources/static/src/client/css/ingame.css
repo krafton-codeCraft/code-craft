@@ -327,6 +327,7 @@ button:focus {
 }
 
 #main-container {
+  z-index: 10;
   position: fixed;
   right: -40%; /* Initially hide the container off-screen to the right */
   top: 0;
@@ -347,36 +348,84 @@ body.open {
 
 }
 
-#closebtn {
-  position: absolute;
-  top: 0;
-  left: 15px;
-  font-size: 36px;
-  color: white;
-  background: none;
-  border: none;
-  cursor: pointer;
+#toggle-main-container {
+  z-index: 10;
+  position: fixed;
+  width: 10%;
+  height: 10%;
+  top: 5%;
+  right: 0%; /* Initially hide half of the button off-screen to the right */
+  transition: 0.5s;
 }
 
-#closebtn:hover {
-  color: lightgray;
+#toggle-main-container.open {
+  right: 40%; /* When the container is opened, the button moves to the left */
+}
+
+#toggle-event {
+  z-index: 10;
+  position: fixed;
+  width: 10%;
+  height: 10%;
+  top: 5%;
+  left: 0%; /* Initially hide half of the button off-screen to the right */
+  transition: 0.5s;
+}
+
+#toggle-event.open {
+  left: 30%; /* When the container is opened, the button moves to the left */
+}
+
+#toggle-module {
+  z-index: 10;
+  position: fixed;
+  width: 10%;
+  height: 10%;
+  top: 15%;
+  left: 0%; /* Initially hide half of the button off-screen to the right */
+  transition: 0.5s;
+}
+
+#toggle-module.open {
+  left: 30%; /* When the container is opened, the button moves to the left */
+}
+
+.sidebar {
+  position: fixed;
+  left: -30%; /* Sidebar width */
+  top: 0;
+  width: 30%; /* Sidebar width */
+  height: 100%;
+  background-color: rgba(128, 128, 128, 0.2);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding: 10px;
+  color: #fff;
+}
+
+.sidebar.open {
+  left: 0%;
 }
 
 .space-button {
-  position: absolute;
-  top: 5%;
-  right: 5%;
+  display: inline-block;
   padding: 10px 20px;
-  font-size: 16px;
-  color: #fff;
-  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 100%);
-  border: none;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0,212,255,0.5);
+  font-size: 20px;
   cursor: pointer;
-  transition: all 0.5s;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: rgba(128, 128, 128, 0.2);
+  border: none;
+  transition: all 0.3s;
 }
 
 .space-button:hover {
-  box-shadow: 0 0 20px rgba(0,212,255,1), 0 0 30px rgba(0,212,255,1), 0 0 40px rgba(0,212,255,1);
+  background-color: rgba(128, 128, 128, 0.5);
+}
+
+.space-button:active {
+  background-color: rgba(128, 128, 128, 0.7);
+  transform: translateY(4px);
 }
