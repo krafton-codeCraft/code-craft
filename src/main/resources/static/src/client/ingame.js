@@ -34,9 +34,14 @@ Promise.all([
 
 ]).then(() => {
 
-  play();
+    play(specIndex);
 
 }).catch(console.error);
+
+
+function playBattle(specIndex) {
+    play(specIndex);
+}
 
 function onGameOver(obj) {
   gamecanvers.classList.add('hidden');
@@ -87,3 +92,4 @@ document.getElementById('closebtn').addEventListener('click', function() {
   var mainContainer = document.getElementById('main-container');
   mainContainer.classList.remove('open');
 });
+
