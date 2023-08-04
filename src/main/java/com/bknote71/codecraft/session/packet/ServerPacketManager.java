@@ -30,6 +30,8 @@ public class ServerPacketManager {
         handlers.put(ProtocolType.C_EnterBattle, packetHandler::CEnterBattleHandler);
         onRecvs.put(ProtocolType.C_ChangeRobot, (session, message, protocol) -> makePacket(session, message, protocol, CChangeRobot.class));
         handlers.put(ProtocolType.C_ChangeRobot, packetHandler::CChangeRobotHandler);
+        onRecvs.put(ProtocolType.C_Chat, (session, message, protocol) -> makePacket(session, message, protocol, CChat.class));
+        handlers.put(ProtocolType.C_Chat, packetHandler::CChatHandler);
     }
 
     public void handlePacket(ClientSession session, TextMessage message) {

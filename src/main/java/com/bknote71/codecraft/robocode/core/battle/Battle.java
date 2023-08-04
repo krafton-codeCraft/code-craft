@@ -115,6 +115,8 @@ public class Battle {
         battleRules = BattleRules.HiddenHelper.createRules(battleProperties);
     }
 
+    // 로봇이 처리해야 할 Job
+
     public void enterBattle(RobotPeer robotPeer) {
         log.info("enter battle {}, robot:{}", battleId, robotPeer.getId());
         robotPeer.startBattle();
@@ -163,6 +165,19 @@ public class Battle {
         robotPeer.init(this, specifications, robotIndex);
         robotPeer.startBattle();
     }
+
+    public void handleChat(RobotPeer robot, String content) {
+        if (robot == null) {
+            log.info("robot이 없어 채팅을 처리할 수 없습니다.");
+            return;
+        }
+
+        SChat resChatPacket = new SChat();
+        resChatPacket.setRobotId(robot.getId());
+        resChatPacket.setContent(content);
+        broadcast(resChatPacket);
+    }
+
 
     // 이벤트 등록 및 이벤트 처리
     public void registerDeathRobot(RobotPeer peer) { // == onDie --> DiePacket
