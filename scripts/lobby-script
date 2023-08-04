@@ -25,6 +25,7 @@
       });
     });
   
+  
     function getEditorValue() {
         if (editorLobby) {
             const content = editorLobby.getValue();// Display the content, you can do whatever you want with it
@@ -62,6 +63,7 @@
       function run_code() {
           compile_code(selectedDeckLobby, getEditorValue());
       }
+
       function translateErrorToKorean(status) {
             // 간단한 예제로 에러 메시지를 한국어로 번역하는 함수
             // 필요한 만큼 메시지를 추가하거나 수정할 수 있습니다.

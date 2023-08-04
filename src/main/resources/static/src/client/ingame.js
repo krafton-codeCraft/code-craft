@@ -11,6 +11,7 @@ import { setLeaderboardHidden } from './htmlComponent/leaderboard';
 import './css/bootstrap-reboot.css';
 // import './css/main.css';
 import './css/ingame.css';
+import './css/compile-button.css';
 import pixiApp from './pixi/app.js';
 import { getRobotInfos } from './networking.js';
 
