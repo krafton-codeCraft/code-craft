@@ -1,6 +1,7 @@
 package com.bknote71.codecraft.robocode.core;
 
 import com.bknote71.codecraft.proto.SDie;
+import com.bknote71.codecraft.robocode.Player;
 import com.bknote71.codecraft.robocode.core.battle.Battle;
 import com.bknote71.codecraft.robocode.core.battle.BattleRules;
 import com.bknote71.codecraft.robocode.event.*;
@@ -1002,5 +1003,16 @@ public class RobotPeer {
                 return;
             bulletUpdates.get().add(bulletStatus);
         }
+    }
+
+    // player 로직 (임시로)
+    private Player player;
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }

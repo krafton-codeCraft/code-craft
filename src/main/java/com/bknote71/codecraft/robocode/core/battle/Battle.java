@@ -1,5 +1,6 @@
 package com.bknote71.codecraft.robocode.core.battle;
 
+import com.bknote71.codecraft.robocode.Player;
 import com.bknote71.codecraft.robocode.core.BulletPeer;
 import com.bknote71.codecraft.robocode.core.BulletState;
 import com.bknote71.codecraft.robocode.core.RobotPeer;
@@ -327,4 +328,7 @@ public class Battle {
         // job 처리
         jobSerializer.flush();
     }
+
+    // player 로직 (임시)
+    private Map<Integer, Player> players = new HashMap<>();
 }
