@@ -14,48 +14,6 @@ hr {
   width: 100%;
 }
 
-#gotoLobby {
-
-  font-size: 18px;
-  outline: none;
-  border: none;
-  color: white;
-  background-color: transparent;
-  padding: 5px 20px;
-  border-radius: 3px;
-  transition: background-color 0.2s ease;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-
-}
-
-#gotoIngame {
-
-  font-size: 18px;
-  outline: none;
-  border: none;
-  color: white;
-  background-color: transparent;
-  padding: 5px 20px;
-  border-radius: 3px;
-  transition: background-color 0.2s ease;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-
-}
-
-#gotoIndex {
-
-  font-size: 18px;
-  outline: none;
-  border: none;
-  color: white;
-  background-color: transparent;
-  padding: 5px 20px;
-  border-radius: 3px;
-  transition: background-color 0.2s ease;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-
-}
-
 button {
   font-size: 18px;
   outline: none;
@@ -163,20 +121,21 @@ button:focus {
 /*------------------------------------*/
 
 #deck{
+  z-index: 10;
   position: absolute; 
-  top: 6%; 
-  left: 3%;
-  width: 40%;
-  height: 50%;
+  top: 1%; 
+  left: 4%;
+  width: 100%;
+  height: 90%;
 }
 
 #container {
   position: absolute;
-  top: 38%;
+  top: 39%;
   /* right: 3%;
   width: 40%; */
-  left: 8%;
-  width: 89%;
+  left: 3%;
+  width: 94%;
   height: 81%;
   overflow: hidden; 
   transform: translateY(-50%);
@@ -199,8 +158,8 @@ button:focus {
   top: 87%;
   /* right: 3%; */
   /* width: 40%; */
-  left: 8%;
-  width: 89%;
+  left: 3%;
+  width: 94%;
   height: 20%;
   /* 수정된 높이 */
   display: flex;
@@ -291,11 +250,11 @@ button:focus {
   position: absolute;
   top: 0%;
   padding: 10px 20px;
-  width: 20%;
+  width: 15%;
   font-size: 20px;
   font-weight: bold;
   color: #ffffff;
-  background-color: rgba(128, 128, 128, 0.2);  /* half-transparent grey */
+  background-color: rgba(128, 128, 128, 0.5);  /* half-transparent grey */
   border: none;
   border-radius: 1px;
   cursor: pointer;
@@ -303,15 +262,15 @@ button:focus {
 }
 
 #deck-one {
-  top: 0%;
+  left: 0%;
 }
 
 #deck-two {
-  top: 12%; /* Adjust as necessary */
+  left: 16%; /* Adjust as necessary */
 }
 
 #deck-thress {
-  top: 24%; /* Adjust as necessary */
+  left: 32%; /* Adjust as necessary */
 }
 
 #deck-one:active, #deck-two:active, #deck-thress:active {
@@ -326,6 +285,8 @@ button:focus {
   }
 }
 
+/* -------------------------------------------------------- */
+
 #main-container {
   z-index: 10;
   position: fixed;
@@ -333,7 +294,7 @@ button:focus {
   top: 0;
   width: 40%; /* Container takes 50% of the full width */
   height: 100%; /* Container takes the full height */
-  background-color: rgba(128, 128, 128, 0.2); /* Change to your preferred color */
+  background-color: rgba(128, 128, 128, 0.4); /* Change to your preferred color */
   overflow-x: hidden;
   transition: 0.5s;
 }
@@ -374,6 +335,7 @@ body.open {
 
 #toggle-event.open {
   left: 30%; /* When the container is opened, the button moves to the left */
+  z-index: 11;
 }
 
 #toggle-module {
@@ -381,13 +343,14 @@ body.open {
   position: fixed;
   width: 10%;
   height: 10%;
-  top: 15%;
+  top: 16%;
   left: 0%; /* Initially hide half of the button off-screen to the right */
   transition: 0.5s;
 }
 
 #toggle-module.open {
   left: 30%; /* When the container is opened, the button moves to the left */
+  z-index: 11;
 }
 
 .sidebar {
@@ -396,7 +359,7 @@ body.open {
   top: 0;
   width: 30%; /* Sidebar width */
   height: 100%;
-  background-color: rgba(128, 128, 128, 0.2);
+  background-color: rgba(128, 128, 128, 0.4);
   overflow-x: hidden;
   transition: 0.5s;
   padding: 10px;
@@ -405,24 +368,25 @@ body.open {
 
 .sidebar.open {
   left: 0%;
+  z-index: 11;
 }
 
 .space-button {
   display: inline-block;
   padding: 10px 20px;
-  font-size: 20px;
+  font-size: 24px;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
   outline: none;
   color: #fff;
-  background-color: rgba(128, 128, 128, 0.2);
+  background-color: rgba(128, 128, 128, 0.4);
   border: none;
   transition: all 0.3s;
 }
 
 .space-button:hover {
-  background-color: rgba(128, 128, 128, 0.5);
+  background-color: rgba(128, 128, 128, 0.7);
 }
 
 .space-button:active {
