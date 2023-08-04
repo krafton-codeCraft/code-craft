@@ -3,7 +3,6 @@
 // import io from 'socket.io-client';
 //import { throttle } from 'throttle-debounce';
 import { processGameUpdate } from './state.js';
-import { explosionPlay } from './pixi/effect/explosion.js'
 // import constants from '../shared/constants';
 // import renderCheckbox from './htmlComponent/checkbox';
 // import redis from 'redis';
@@ -61,7 +60,6 @@ export const connect = onGameOver => (
         console.log('schat');
         handleChat(message.robotId, message.content);
       } else if (message.type === 'sdie') {
-        explosionPlay(message.x, message.y, message.id);
         console.log('sdie');
       }
     };

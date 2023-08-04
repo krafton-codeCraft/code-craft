@@ -7,7 +7,7 @@ const { PLAYER_RADIUS,PLAYER_MAXENERGY, PLAYER_MAXHP } = Constants;
 function renderPlayer(player, app) {
 
     const { id, x, y, name , bodyHeading, gunHeading, raderHeading, energy ,hp , dead} = player;
-    console.log(id);
+    // console.log(id);
     if(dead){
         deadRobot.push(id);
         return;
@@ -28,7 +28,7 @@ function renderPlayer(player, app) {
     if(robotId === id){
         randcolor = 0x00ff00;
     }else{
-        randcolor = 0xffffff;
+        randcolor = 0xFFFFFF;
     }
     //spaceship${robotId%8}.png
     // 배 그리기
@@ -42,7 +42,7 @@ function renderPlayer(player, app) {
     bodyship.tint = randcolor
     app.stage.addChild(bodyship);
     
-    /* const gunhead = new PIXI.Sprite(PIXI.Texture.from(getAsset('ship.svg')));
+    const gunhead = new PIXI.Sprite(PIXI.Texture.from(getAsset('ship.svg')));
     gunhead.anchor.set(0.5);
     gunhead.x = canvasX;
     gunhead.y = canvasY;
@@ -50,7 +50,7 @@ function renderPlayer(player, app) {
     gunhead.width = PLAYER_RADIUS;
     gunhead.height = PLAYER_RADIUS;
     gunhead.tint = 0x000000;
-    app.stage.addChild(gunhead); */
+    app.stage.addChild(gunhead);
 
     //체력바 
     /* const innerBar = new PIXI.Graphics();
