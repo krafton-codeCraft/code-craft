@@ -256,7 +256,7 @@ button:focus {
 }
 /* -------------------------------------------------------- */
 
-#compile-button {
+/* #compile-button {
   flex: 2;
   height: 100%;
   display: flex;
@@ -283,7 +283,7 @@ button:focus {
     font-size: 1em;
     padding: 5px 10px;
   }
-}
+} */
 
 /* -------------------------------------------------------- */
 

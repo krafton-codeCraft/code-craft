@@ -26,7 +26,7 @@ body {
     --button-text-color-hover: var(--button-background-color);
     --border-color: #7D8082;
     --button-background-color: #ece8e1;
-    --highlight-color: #ff4655;
+    --highlight-color: rgb(0, 140, 0);
     --button-inner-border-color: transparent;
     --button-bits-color: var(--background-color);
     --button-bits-color-hover: var(--button-background-color);
@@ -40,7 +40,6 @@ body {
     font-weight: bold;
     font-size: 14px;
     transition: all .15s ease;
-    border-radius: 20px;
 }
 
 .btn::before,
