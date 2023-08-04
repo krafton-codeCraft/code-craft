@@ -7,8 +7,7 @@ export const playgroundApp = new PIXI.Application({
     width: 1500, 
     height: 1000,
     antialias : true,
-    backgroundColor : 0x000000,
-    backgroundAlpha : 0,
+    transparent : true,
 });
 
 export function playground() {

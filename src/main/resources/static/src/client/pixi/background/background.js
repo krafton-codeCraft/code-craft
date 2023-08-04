@@ -2,12 +2,12 @@ import * as PIXI from 'pixi.js';
 
 let cameraZ = 0;
 const fov = 20;
-const baseSpeed = 0.1;
+const baseSpeed = 0.25;
 let speed = 0;
 let warpSpeed = 0;
 const starStretch = 5;
 const starBaseSize = 0.05;
-const starAmount = 1000;
+const starAmount = 700;
 
 const starTexture = PIXI.Texture.from('https://pixijs.com/assets/star.png');
 
