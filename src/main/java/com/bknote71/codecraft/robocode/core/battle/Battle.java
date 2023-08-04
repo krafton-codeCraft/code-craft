@@ -331,4 +331,50 @@ public class Battle {
 
     // player 로직 (임시)
     private Map<Integer, Player> players = new HashMap<>();
+
+    public void enterBattle(Player player, RobotPeer robotPeer) {
+        log.info("enter battle {}, player:{}, robot:{}", battleId, player.getId(), robotPeer.getId());
+        // setting
+        player.setBattle(this);
+        player.addRobot(robotPeer);
+        robotPeer.setPlayer(player);
+
+        players.put(player.getId(), player);
+        robots.put(robotPeer.getId(), robotPeer);
+
+        robotPeer.startBattle();
+
+        ClientSession session = player.session();
+        if (session == null)
+            return;
+
+        // enter packet
+        SEnterBattle enterPacket = new SEnterBattle();
+        enterPacket.setRobotId(robotPeer.getId());
+        enterPacket.setRobotName(robotPeer.getName());
+        enterPacket.setSpecIndex(robotPeer.getSpecIndex());
+        enterPacket.setSpecifications(robotPeer.getSpecifications());
+        enterPacket.setUsername(player.getUsername());
+        session.send(enterPacket);
+    }
+
+    public void leaveBattlePlayer(int playerId) {
+        Player player = players.get(playerId);
+        List<RobotPeer> playerRobots = player.getRobots();
+        if (playerRobots == null || playerRobots.isEmpty()) {
+            return;
+        }
+
+        for (RobotPeer robotPeer : playerRobots) {
+            int robotId = robotPeer.getId();
+            log.info("leave battle {}", robotId);
+
+            // clear
+            if (robots.remove(robotId) == null)
+                System.out.println(robotId + " id에 해당하는 로봇은 없습니다.");
+        }
+
+        log.info("robot peer cleanup");
+        player.cleanup();
+    }
 }
