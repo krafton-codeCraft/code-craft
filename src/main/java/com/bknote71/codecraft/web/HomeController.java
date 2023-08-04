@@ -44,7 +44,8 @@ public class HomeController {
 
     @GetMapping("/ingame")
     public String ingame(@AuthenticationPrincipal(expression = "username") String username,
-                         Model model) {
+                         Model model,
+                         int specIndex) {
         List<RobotSpecDto> robotInfos = robotSpecService.getRobotInfo(username);
 
         if (robotInfos.isEmpty()) {
@@ -52,6 +53,7 @@ public class HomeController {
         }
 
         model.addAttribute("robotInfos", robotInfos);
+        model.addAttribute("specIndex", specIndex < 1 ? 0 : specIndex - 1);
         return "ingame";
     }
 
@@ -112,8 +114,8 @@ public class HomeController {
 
     @GetMapping("/get/leaderboard")
     @ResponseBody
-    public List<LeaderBoardInfo> getLeaderBoard(int roomId) {
-        return LeaderBoardTemplate.getLeaderBoard(roomId);
+    public List<LeaderBoardInfo> getLeaderBoard(int battleId) {
+        return LeaderBoardTemplate.getLeaderBoard(battleId);
     }
 
     @GetMapping("/get/today_ranking")

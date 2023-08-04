@@ -1,13 +1,31 @@
 package com.bknote71.codecraft.robocode.leaderboard;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class LeaderBoardInfo {
-    String username;
-    int score;
+    private String username;
+    private int score;
+
+    public LeaderBoardInfo() {
+    }
+
+    public LeaderBoardInfo(String username, int score) {
+        this.username = username;
+        this.score = score;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
 }

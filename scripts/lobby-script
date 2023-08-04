@@ -24,7 +24,6 @@
         wordWrap: "on"
       });
     });
-    /*]]>*/
   
     function getEditorValue() {
         if (editorLobby) {
@@ -76,4 +75,10 @@
                 return "알 수 없는 오류:" + status;
             }
         }
+
+    function enter_ingame() {
+        let specIndex = (selectedDeckLobby + 1);
+        window.location.href='/ingame?specIndex=' + specIndex;
+      }
+      /*]]>*/
   </script>

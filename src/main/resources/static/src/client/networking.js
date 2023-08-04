@@ -74,11 +74,11 @@ export const connect = onGameOver => (
 );
 
 // send data << 어차피 이거 아님
-export const play = () => {
+export const play = (specIndex) => {
   const message = {
     type: 'centerbattle',
     protocol: 'C_EnterBattle',
-    // username: name,
+    specIndex: specIndex,
   };
   websocket.send(JSON.stringify(message));
 };
@@ -96,8 +96,8 @@ export const submitNewCode = (code, specIndex) => {
 }
 
 
-export const requestLeaderBoard = (roomId) => {
-  const url = `http://${addr}:8080/get/leaderboard?roomId=` + roomId;
+export const requestLeaderBoard = (battleId) => {
+  const url = `http://${addr}:8080/get/leaderboard?battleId=` + battleId;
   return fetch(url, {
     method: 'GET',
   })
