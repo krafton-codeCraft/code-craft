@@ -41,6 +41,7 @@
 
   <div id="container-lobby">
     <div id="container-lobby-body"></div>
+
   </div>
 
   <div id="terminal-box">
@@ -49,14 +50,14 @@
     <button id="compile-button" th:onclick="run_code()" class="btn">
       <span class="btn__inner">
         <span class="btn__slide"></span>
-        <span class="btn__content">Run Code</span>
+        <span class="btn__content">Compile</span>
       </span>
     </button>
   </div>
 
   <button class='module-btn'>MODULE</button>
   <button class='event-btn'>EVENT</button>
-  <button id="start-button" class='glowing-btn' th:onclick="enter_ingame()">START</button>
+  <button id="start-button" class='glowing-btn' th:onclick="'window.location.href=\'' + @{/ingame} + '\''">START</button>
   <div id="module-sidebar" class="sidebar"> Module Sidebar Content</div>
   <div id="event-sidebar" class="sidebar">Event Sidebar Content</div>
 
