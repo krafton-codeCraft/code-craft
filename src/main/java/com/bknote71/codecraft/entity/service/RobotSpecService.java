@@ -7,7 +7,9 @@ import com.bknote71.codecraft.entity.repository.UserRepository;
 import com.bknote71.codecraft.robocode.core.RobotSpecification;
 import com.bknote71.codecraft.robocode.loader.AwsS3ClassLoader;
 import com.bknote71.codecraft.session.packet.PacketHandler;
-import com.bknote71.codecraft.web.RobotSpecDto;
+import com.bknote71.codecraft.web.dto.CompileRequest;
+import com.bknote71.codecraft.web.dto.CompileResult;
+import com.bknote71.codecraft.web.dto.RobotSpecDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -38,7 +40,9 @@ public class RobotSpecService {
         List<RobotSpecDto> robotSpecDtos = new ArrayList<>();
         for (RobotSpecEntity spec : specs) {
             // 여기서 뭔가 dto 로 변환 ??
-            robotSpecDtos.add(new RobotSpecDto(null, spec.getName(), username, spec.getFullClassName(), spec.getCode()));
+            String lang = spec.getLang();
+            String specLang = lang == null || lang.isBlank() || lang.isEmpty() ? "java" : spec.getLang();
+            robotSpecDtos.add(new RobotSpecDto(null, spec.getName(), username, spec.getFullClassName(), spec.getCode(), specLang));
         }
 
         return robotSpecDtos;
@@ -46,7 +50,7 @@ public class RobotSpecService {
 
 
     @Transactional
-    public RobotSpecDto saveRobotSpec(String username, int specIndex, String robotName, String fullClassName, String code) {
+    public RobotSpecDto saveRobotSpec(String username, int specIndex, String robotName, String fullClassName, String code, String lang) {
         UserEntity user = userRepository.findByUsername(username);
         if (user == null) {
             System.out.println("save robot spec 하는데 유저가 존재하지 않음");
@@ -58,6 +62,7 @@ public class RobotSpecService {
         robotSpecEntity.setUsername(username);
         robotSpecEntity.setFullClassName(fullClassName);
         robotSpecEntity.setCode(code);
+        robotSpecEntity.setLang(lang);
         robotSpecEntity.setUser(user);
 
         user.changeSpec(specIndex, robotSpecEntity);
@@ -68,15 +73,19 @@ public class RobotSpecService {
             return null;
         }
 
-        return new RobotSpecDto(null, savedEntity.getName(), savedEntity.getUsername(), savedEntity.getFullClassName(), robotSpecEntity.getCode());
+        return new RobotSpecDto(null, savedEntity.getName(), savedEntity.getUsername(), savedEntity.getFullClassName(), robotSpecEntity.getCode(), lang);
     }
 
     @Transactional
-    public RobotSpecDto changeRobotSpec(String username, int robotId, int specIndex, String robotName, String fullClassName, String code) {
+    public RobotSpecDto changeRobotSpec(String username, CompileRequest request, String robotName, String fullClassName) {
         log.info("submit new code");
+        int robotId = request.getRobotId();
+        int specIndex = request.getSpecIndex();
+        String code = request.getCode();
+        String lang = request.getLang();
 
         // spec 변경 및 저장
-        Long updateResult = updateRobotSpec(username, specIndex, robotName, fullClassName, code);
+        Long updateResult = updateRobotSpec(username, specIndex, robotName, fullClassName, code, lang);
 
         if (updateResult == null) {
             log.error("업데이트 로봇 스펙 실패");
@@ -89,11 +98,11 @@ public class RobotSpecService {
             return null;
         }
 
-        return new RobotSpecDto(robotId, spec.getName(), spec.getUsername(), spec.getFullClassName(), code);
+        return new RobotSpecDto(robotId, spec.getName(), spec.getUsername(), spec.getFullClassName(), code, lang);
     }
 
     @Transactional
-    private Long updateRobotSpec(String username, int specIndex, String robotName, String fullClassName, String code) {
+    private Long updateRobotSpec(String username, int specIndex, String robotName, String fullClassName, String code, String lang) {
         UserEntity user = userRepository.findByUsername(username);
 
         List<RobotSpecEntity> specifications = user.getSpecifications();
@@ -106,6 +115,7 @@ public class RobotSpecService {
         robotSpecEntity.setName(robotName);
         robotSpecEntity.setFullClassName(fullClassName);
         robotSpecEntity.setCode(code);
+        robotSpecEntity.setLang(lang);
         return robotSpecEntity.getId();
     }
 
@@ -118,6 +128,27 @@ public class RobotSpecService {
 
     @Transactional
     public void createDefaultRobot(String username) {
-        saveRobotSpec(username, 0, "DefaultRobot", "DefaultRobot.class", DEFAULTROBOT);
+        saveRobotSpec(username, 0, "DefaultRobot", "DefaultRobot.class", DEFAULTROBOT, "java");
+        saveRobotSpec(username, 1, "DefaultRobot", "DefaultRobot.class", DEFAULTROBOT, "java");
+        saveRobotSpec(username, 2, "DefaultRobot", "DefaultRobot.class", DEFAULTROBOT, "java");
+    }
+
+    public Boolean compareWithRequestCode(String username, CompileRequest compileRequest) {
+        // lang 과 code 가 같아야 함
+        UserEntity user = userRepository.findByUsername(username);
+
+        List<RobotSpecEntity> specifications = user.getSpecifications();
+        if (specifications.size() <= compileRequest.getSpecIndex()) {
+            log.error("스펙 인덱스가 잘못됨");
+            return null;
+        }
+
+        RobotSpecEntity robotSpecEntity = specifications.get(compileRequest.getSpecIndex());
+        if (robotSpecEntity.getLang() == compileRequest.getLang()
+                && robotSpecEntity.getCode() == compileRequest.getCode()) {
+            return true;
+        }
+
+        return false;
     }
 }
