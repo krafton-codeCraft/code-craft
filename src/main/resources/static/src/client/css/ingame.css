@@ -407,6 +407,8 @@ button:focus {
   z-index: 11;
 }
 
+/* -------------------------------------------------------- */
+
 .sidebar {
   position: fixed;
   left: -30%; /* Sidebar width */
@@ -424,6 +426,54 @@ button:focus {
   left: 0%;
   z-index: 11;
 }
+
+.sidebar table {
+  width: 90%;
+  border-collapse: collapse;
+  margin: 20px auto; /* 테이블을 가운데에 정렬하기 위해 */
+}
+
+.sidebar table, .sidebar th, .sidebar td {
+  border: 1px solid #7BADE6;
+  padding: 8px 12px;
+  text-align: center; /* 모든 셀을 가운데에 정렬 */
+}
+
+.sidebar th {
+  background-color: rgba(123, 173, 230, 0.5);
+  color: white;
+}
+
+.sidebar tr:nth-child(even) {
+  background-color: rgba(123, 173, 230, 0.3);
+}
+
+/* 반응형 스타일 */
+
+@media only screen and (max-width: 600px) {
+  .sidebar {
+      width: 100%;
+      left: -100%;
+  }
+
+  .sidebar.open {
+      left: 0;
+  }
+
+  .sidebar h2 {
+      font-size: 1.5em; /* 헤더의 글자 크기를 줄임 */
+  }
+
+  .sidebar table {
+      width: 100%;
+  }
+
+  .sidebar th, .sidebar td {
+      padding: 5px 8px; /* 패딩 줄임 */
+  }
+}
+
+/* -------------------------------------------------------- */
 
 .space-button {
   display: inline-block;

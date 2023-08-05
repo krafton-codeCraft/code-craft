@@ -34,10 +34,73 @@
   <canvas id="game-canvas"></canvas>
   
   <button id="toggle-event" class="space-button">Event</button>
-  <div id="event-sidebar" class="sidebar">Event Sidebar Content</div>
+  <div id="event-sidebar" class="sidebar">
+
+    <h2>Robot Command Reference</h2>
+    <table>
+        <tr>
+          <th>Function Name</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>ahead(distance)</td>
+          <td>distance 만큼 앞으로 이동</td>
+        </tr>
+        <tr>
+          <td>back(distance)</td>
+          <td>distance 만큼 뒤로 이동</td>
+        </tr>
+        <tr>
+          <td>fire(power)</td>
+          <td>
+            power 만큼의 총알을쏜다.
+            <br/>
+            power가 클수록 쿨타임이 길다.
+          </td>
+        </tr>
+        <tr>
+          <td>scan()</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>turnLeft(degrees)</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>turnRight(degrees)</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>turnGunLeft(degrees)</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>turnGunRight(degrees)</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+        <!-- ... 나머지 함수들도 이와 같이 추가 ... -->
+    </table>
+
+  </div>
 
   <button id="toggle-module" class="space-button">Module</button>
-  <div id="module-sidebar" class="sidebar"> Module Sidebar Content</div>
+  <div id="module-sidebar" class="sidebar"></div>
 
   <button id="toggle-main-container" class="space-button">View Code</button>
 
@@ -56,14 +119,10 @@
     </div>
 
     <div id="terminal-box">
-      <div id="terminal"></div>
+      <div id="terminal-container">
+        <div id="terminal"></div>
+      </div>
       <div id="separator"></div>
-      <button id="run-button" th:onclick="run_code()" class="btn">
-        <span class="btn__inner">
-          <span class="btn__slide"></span>
-          <span class="btn__content">Run</span>
-        </span>
-      </button>
       <button id="compile-button" th:onclick="run_code()" class="btn">
         <span class="btn__inner">
           <span class="btn__slide"></span>
