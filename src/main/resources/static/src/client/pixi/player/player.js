@@ -1,6 +1,6 @@
 import { getAsset } from '../../assets';
 import { robotId } from '../../networking';
-import { ParticleEffect } from '../effect/particles';
+//import { ParticleEffect ,StarParticleEffect} from '../effect/particles';
 
 const Constants = require('../../../shared/constants');
 const { PLAYER_RADIUS,PLAYER_MAXENERGY, PLAYER_MAXHP } = Constants;
@@ -43,7 +43,6 @@ function createNewPlayerSprite(player){
     const canvasX = x;
     const canvasY = y;
     let randcolor = 0xFFFFFF;
-
     //console.log(`x : ${x} ()  y : ${y}`);
     const ratiohp = energy === 0 ? 0 : energy / PLAYER_MAXENERGY * 60;
     if(robotId === id){

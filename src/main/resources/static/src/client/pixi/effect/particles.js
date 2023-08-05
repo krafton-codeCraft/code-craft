@@ -441,9 +441,9 @@ app.loader.add('star', 'https://cdn.glitch.com/a10133ef-3919-4200-ad35-26200e16b
 } */
 
 export class StarParticleEffect {
-  constructor(app, width, height) {
-    this.WIDTH = width;
-    this.HEIGHT = height;
+  constructor(app, x, y) {
+    this.x = x;
+    this.y = y; 
     this.particles = [];
     this.totalSprites = PIXI.utils.isWebGLSupported() ? 200 : 100;
     this.app = app
@@ -456,7 +456,6 @@ export class StarParticleEffect {
       tint: true,
       alpha: true
     });
-    this.app.stage.addChild(this.effect);
 
     this.textureCanvas = document.createElement('canvas');
     this.textureCanvas.width = this.textureCanvas.height = 16;
@@ -478,23 +477,16 @@ export class StarParticleEffect {
 
         this.app.ticker.add(this.update.bind(this));
 
-        this.app.view.addEventListener('click', (e) => {
-          this.resetEffect({
-            x: e.pageX - this.app.view.offsetLeft,
-            y: e.pageY - this.app.view.offsetTop
-          });
-        });
-
         this.resetEffect({
-          x: this.WIDTH / 2,
-          y: this.HEIGHT / 2
+          x: this.x,
+          y: this.y
         });
       });
   }
 
   resetParticle(particle) {
-    particle.x = this.WIDTH / 2;
-    particle.y = this.HEIGHT / 2;
+    particle.x = this.x;
+    particle.y = this.y;
     particle.size = rand(0.05, 0.1);
     particle.speed = rand(0, 100);
     particle.angle = rand(0, 2 * Math.PI);
@@ -551,15 +543,129 @@ export class StarParticleEffect {
         distance
       );
     }
-    /* if (elapsed > 1500 && !this.waiting) {
+    if (elapsed > 1500 && !this.waiting) {
       this.waiting = true;
       setTimeout(() => {
-        this.waiting = false;
-        this.resetEffect({
-          x: rand(0, this.WIDTH),
-          y: rand(0, this.HEIGHT)
+        this.app.stage.removeChild(this.effect);
+      }, 1500)
+    }
+  }
+}
+
+export class StarParticleEffect2 {
+  constructor(app) {
+    this.app = app;
+    this.effect = new PIXI.particles.ParticleContainer(1000, {
+      position: true,
+      rotation: true,
+      scale: true,
+      uvs: true,
+      tint: true,
+      alpha: true,
+    });
+    this.app.stage.addChild(this.effect);
+    this.particles = [];
+    this.totalSprites = this.app.renderer instanceof PIXI.WebGLRenderer ? 200 : 100;
+  }
+
+  createParticleAtPosition(x, y) {
+    for (let i = 0; i < this.totalSprites; i++) {
+      let particle = new PIXI.Sprite(this.app.loader.resources.star.texture);
+      particle.anchor.set(0.5);
+      this.resetParticle(particle);
+      this.particles.push(particle);
+      this.effect.addChild(particle);
+      particle.x = x;
+      particle.y = y;
+    }
+  }
+
+  resetParticle(particle) {
+    particle.x = WIDTH / 2;
+    particle.y = HEIGHT / 2;
+    particle.size = rand(.05, .1);
+    particle.speed = rand(0, 100);
+    particle.angle = rand(0, 2 * Math.PI);
+    particle.rotation = particle.angle;
+    particle.life = rand(500, 800);
+  }
+
+  resetEffect({ x, y }) {
+    effect.x = x;
+    effect.y = y;
+    particles.forEach(resetParticle);
+    effect.start = Date.now();
+    let tint = [
+      0xff0000,
+      0x00ff00,
+      0x00ffff,
+      0xffff00,
+      0xff00ff,
+      0xffffff
+    ][Math.random() * 6 | 0];
+    effect.tintGradient = [
+      [0, 0xFFFFFF],
+      [1, tint]
+    ];
+    effect.brightnessGradient = [
+      [0, 1],
+      [.8, 1],
+      [.96, 0],
+      [.97, 1],
+      [.98, 0],
+      [.99, 1],
+      [1, 0]
+    ];
+  }
+
+  start() {
+    this.app.loader
+      .add(
+        'star',
+        'https://cdn.glitch.com/a10133ef-3919-4200-ad35-26200e16b146%2Fwhite-star.png?v=1562875677679'
+      )
+      .load((loader, resources) => {
+        for (let i = 0; i < this.totalSprites; i++) {
+          let particle = new PIXI.Sprite(resources.star.texture);
+          particle.anchor.set(0.5);
+          this.resetParticle(particle);
+          this.particles.push(particle);
+          this.effect.addChild(particle);
+        }
+
+        let waiting = false;
+        this.app.ticker.add(() => {
+          let now = Date.now();
+          let elapsed = now - effect.start;
+          for (let i = 0; i < particles.length; i++) {
+            let particle = particles[i];
+            let t = Math.min(elapsed / particle.life, 1);
+            let easedT = Math.pow(t, 1 / 3);
+            let distance = lerp(0, particle.speed, easedT);
+            particle.alpha = gradient(effect.brightnessGradient, t);
+            particle.tint = colorGradient(effect.tintGradient, t);
+            particle.scale.x = particle.size * lerp(.5, 1, t);
+            particle.scale.y = particle.size * lerp(.5, 1, t);
+            particle.x = (
+              Math.cos(particle.angle) *
+              distance
+            );
+            particle.y = (
+              Math.sin(particle.angle) *
+              distance
+            );
+          }
+          if (elapsed > 1500 && !waiting) {
+            waiting = true;
+            setTimeout(() => {
+              waiting = false;
+              resetEffect({
+                x: rand(0, WIDTH),
+                y: rand(0, HEIGHT)
+              });
+            }, rand(1000, 2000))
+          }
         });
-      }, rand(1000, 2000))
-    } */
+      });
   }
 }
