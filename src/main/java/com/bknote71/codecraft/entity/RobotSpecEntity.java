@@ -19,6 +19,8 @@ public class RobotSpecEntity {
     @Column(columnDefinition = "LONGTEXT")
     private String code; // java code
 
+    private String lang;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private UserEntity user;
