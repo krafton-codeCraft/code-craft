@@ -119,10 +119,11 @@ button:focus {
   top: 6%; 
   left: 12%;
   width: 20%;
-  height: 100%;
+  height: 0%;
 }
 
 #container-lobby {
+  z-index: 10;
   position: absolute;
   top: 38%;
   left: 40%;
