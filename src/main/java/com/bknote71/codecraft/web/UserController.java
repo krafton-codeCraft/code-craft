@@ -1,5 +1,6 @@
 package com.bknote71.codecraft.web;
 
+import com.bknote71.codecraft.entity.service.RobotSpecService;
 import com.bknote71.codecraft.entity.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -21,6 +22,7 @@ import java.security.Principal;
 public class UserController {
 
     private final UserService userService;
+    private final RobotSpecService robotSpecService;
 
     @ResponseBody
     public String getusernmae(@AuthenticationPrincipal(expression = "username") String username) {
@@ -30,6 +32,10 @@ public class UserController {
     @PostMapping("/signup")
     public String signup(String username, String password) {
         Long signup = userService.signup(username, password);
+
+        // default 로봇 제공
+        robotSpecService.createDefaultRobot(username);
+
         return "redirect:/";
     }
 
