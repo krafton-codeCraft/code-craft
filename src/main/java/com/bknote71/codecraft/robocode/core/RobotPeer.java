@@ -171,6 +171,10 @@ public class RobotPeer {
         return battle;
     }
 
+    public double getHp() {
+        return hp;
+    }
+
     public double getEnergy() {
         return energy;
     }
@@ -430,7 +434,7 @@ public class RobotPeer {
         setState(RobotState.ACTIVE);
 
         velocity = 0;
-        hp = 0;
+        hp = 100;
         energy = 100;
         gunHeat = 3;
 
@@ -481,7 +485,7 @@ public class RobotPeer {
 
             double firePower = min(energy,
                     min(max(bulletCommand.getPower(), Rules.MIN_BULLET_POWER), Rules.MAX_BULLET_POWER));
-            // updateEnergy(-firePower);
+
             gunHeat += Rules.getGunHeat(firePower);
 
             newBullet = new BulletPeer(this, battleRules, bulletCommand.getBulletId());
@@ -924,6 +928,7 @@ public class RobotPeer {
         if (hp <= 0) {
             RobotPeer owner = bulletPeer.owner;
             log.info("username: {}", owner.getUsername());
+            owner.addHp(20);
             LeaderBoardTemplate.updateLeaderBoard(battle.getId(), owner.getUsername(), 2);
             onDead();
             return;
@@ -932,6 +937,10 @@ public class RobotPeer {
         addEvent(new HitByBulletEvent(bulletPeer.getHeading() + PI - bodyHeading, bulletPeer));
         bulletPeer.owner.addEvent(
                 new BulletHitEvent(bulletPeer.owner.getNameForEvent(this), energy, bulletPeer));
+    }
+
+    private void addHp(int hp) {
+        this.hp += hp;
     }
 
     public void onDead() { // 죽음 ?? 리스폰 해야함

@@ -46,10 +46,8 @@ public abstract class Robot implements IBasicEvent, Runnable {
 
     public final void fire(double power) {
         if (peer != null) {
-            System.out.println("set fire 시작");
             peer.setFire(power);
             peer.execute();
-            System.out.println("set fire 끝");
         } else {
             uninitializedException();
         }
@@ -264,14 +262,4 @@ public abstract class Robot implements IBasicEvent, Runnable {
     private void uninitializedException() {
         throw new RuntimeException("you cannot call");
     }
-
-    //
-    public void onDamaged(BulletPeer bulletPeer) {
-
-    }
-
-    public void pyosik() {
-
-    }
-
 }

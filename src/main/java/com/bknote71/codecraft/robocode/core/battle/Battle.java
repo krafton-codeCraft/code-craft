@@ -223,7 +223,7 @@ public class Battle {
             // 위치 정보
             update.robots.add(
                     new UpdateInfo.RobotInfo(robotPeer.getId(), robotPeer.getName(), robotPeer.getX(), robotPeer.getY(),
-                            robotPeer.getBodyHeading(), robotPeer.getGunHeading(), robotPeer.getRadarHeading(), robotPeer.getEnergy(), robotPeer.isDead())
+                            robotPeer.getBodyHeading(), robotPeer.getGunHeading(), robotPeer.getRadarHeading(), robotPeer.getHp(), robotPeer.isDead())
             );
         }
 
