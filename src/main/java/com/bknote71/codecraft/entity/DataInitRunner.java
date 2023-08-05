@@ -19,7 +19,7 @@ public class DataInitRunner implements CommandLineRunner {
 
 
     @Override
-    @Transactional
+//    @Transactional
     public void run(String... args) throws Exception {
         // 모두 지우세요 ^.^
     }
