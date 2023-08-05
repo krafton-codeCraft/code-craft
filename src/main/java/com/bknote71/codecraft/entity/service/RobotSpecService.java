@@ -119,5 +119,7 @@ public class RobotSpecService {
     @Transactional
     public void createDefaultRobot(String username) {
         saveRobotSpec(username, 0, "DefaultRobot", "DefaultRobot.class", DEFAULTROBOT);
+        saveRobotSpec(username, 1, "DefaultRobot", "DefaultRobot.class", DEFAULTROBOT);
+        saveRobotSpec(username, 2, "DefaultRobot", "DefaultRobot.class", DEFAULTROBOT);
     }
 }

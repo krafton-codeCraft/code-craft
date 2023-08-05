@@ -6,7 +6,6 @@ import com.bknote71.codecraft.robocode.leaderboard.LeaderBoardTemplate;
 import com.bknote71.codecraft.robocode.loader.AwsS3ClassLoader;
 import com.bknote71.codecraft.robocode.loader.CompileResult;
 import com.bknote71.codecraft.session.packet.PacketHandler;
-import com.bknote71.codecraft.web.exception.RobotNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -27,6 +26,7 @@ public class HomeController {
 
     private final PacketHandler packetHandler;
     private final RobotSpecService robotSpecService;
+    private final CodeConvertService convertJavaCode;
 
     @GetMapping("/")
     public String home() {
@@ -67,7 +67,7 @@ public class HomeController {
     @PostMapping("/create/robot")
     @ResponseBody
     public ResponseEntity<?> createRobot(@AuthenticationPrincipal(expression = "username") String username,
-            int specIndex, String code) { // author == username
+                                         int specIndex, String code) { // author == username
         log.info("create robot {}", username);
 
         AwsS3ClassLoader classLoader = new AwsS3ClassLoader("robot-class");
@@ -88,9 +88,14 @@ public class HomeController {
 
     @PostMapping("/change/ingame-robot")
     @ResponseBody
-    public ResponseEntity<?> changeRobotInBattle(@AuthenticationPrincipal(expression = "username") String username,
-            int robotId, int specIndex, String code) { // author == username
-        log.info("change robot {}", username);
+    public ResponseEntity<?> compileRobot(@AuthenticationPrincipal(expression = "username") String username,
+                                          int robotId, int specIndex, String code, String lang) { // author == username
+        log.info("{} change robot, {} {} {} {}", username, robotId, specIndex, code, lang);
+
+        if (lang != "java") {
+            String javaCode = convertJavaCode.convertLangToJava(lang, code);
+            code = javaCode;
+        }
 
         AwsS3ClassLoader classLoader = new AwsS3ClassLoader("robot-class");
         CompileResult result = classLoader.createRobot(username, code);
@@ -122,5 +127,11 @@ public class HomeController {
     public List<LeaderBoardInfo> getTodayRanking() {
         LeaderBoardTemplate.union();
         return LeaderBoardTemplate.getTodayRanking();
+    }
+
+    @PostMapping("/convert-check")
+    @ResponseBody
+    public String convertCheck(String lang, String code) {
+        return convertJavaCode.convertLangToJava(lang, code);
     }
 }
