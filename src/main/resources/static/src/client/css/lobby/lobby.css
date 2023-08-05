@@ -15,46 +15,6 @@ hr {
     width: 100%;
 }
 
-#gotoLobby {
-    font-size: 18px;
-    outline: none;
-    border: none;
-    color: white;
-    background-color: transparent;
-    padding: 5px 20px;
-    border-radius: 3px;
-    transition: background-color 0.2s ease;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-
-#gotoIngame {
-
-    font-size: 18px;
-    outline: none;
-    border: none;
-    color: white;
-    background-color: transparent;
-    padding: 5px 20px;
-    border-radius: 3px;
-    transition: background-color 0.2s ease;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-
-}
-
-#gotoIndex {
-
-    font-size: 18px;
-    outline: none;
-    border: none;
-    color: white;
-    background-color: transparent;
-    padding: 5px 20px;
-    border-radius: 3px;
-    transition: background-color 0.2s ease;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-
-}
-
 button {
     font-size: 18px;
     outline: none;
@@ -203,61 +163,6 @@ button:focus {
   /* Hover color */
 }
 
-/* Firefox custom scrollbar */
-/* -------------------------------------------------------- */
-
-/* #compile-button {
-  position: absolute;
-  z-index: 100;
-  right: 1%;
-  bottom: 4%;
-  padding: 10px 20px;
-  width: 150px;
-  font-size: 20px;
-  font-weight: bold;
-  color: #ffffff;
-  /* background-color: #ff0000; */
-  /* border: 0.5px solid hsl(186 100% 69%); */
-  /* border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.5s ease;
-  opacity: 0.7;
-} */ */
-
-/* #compile-button:hover {
-  background-color: #cc0000;
-  opacity: 0.9;
-} */
-
-/* @media only screen and (max-width: 600px) {
-  #compile-button {
-    font-size: 1em;
-    padding: 5px 10px;
-  }
-} */
-
-/* -------------------------------------------------------- */
-
-/* #start-button {
-  position: absolute;
-  right: 5%;
-  bottom: 5%;
-  padding: 10px 20px;
-  width: 200px;
-  font-size: 2em;
-  font-weight: bold;
-  color: #ffffff;
-  background-color: #ff0000;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.5s ease;
-}
-
-#start-button:hover {
-  background-color: #cc0000;
-} */
-
 #compile-button {
   flex: 2;
   
@@ -269,7 +174,6 @@ button:focus {
     padding: 5px 10px;
   }
 }
-
 
 /* -------------------------------------------------------- */
 

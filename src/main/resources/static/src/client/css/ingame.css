@@ -349,6 +349,7 @@ button:focus {
   background-color: rgba(123, 173, 230, 0.2); /* Change to your preferred color */
   overflow-x: hidden;
   transition: 0.5s;
+  backdrop-filter: blur(5px);
 }
 
 #main-container.open {
@@ -363,6 +364,7 @@ button:focus {
   top: 5%;
   right: 0%; /* Initially hide half of the button off-screen to the right */
   transition: 0.5s;
+  backdrop-filter: blur(5px);
 }
 
 #toggle-main-container.open {
@@ -377,6 +379,7 @@ button:focus {
   top: 5%;
   left: 0%; /* Initially hide half of the button off-screen to the right */
   transition: 0.5s;
+  backdrop-filter: blur(5px);
 }
 
 #toggle-event.hidden-to-left {
@@ -396,6 +399,7 @@ button:focus {
   top: 16%;
   left: 0%; /* Initially hide half of the button off-screen to the right */
   transition: 0.5s;
+  backdrop-filter: blur(5px);
 }
 
 #toggle-module.hidden-to-left {
@@ -406,6 +410,8 @@ button:focus {
   left: 30%; /* When the container is opened, the button moves to the left */
   z-index: 11;
 }
+
+/* -------------------------------------------------------- */
 
 .sidebar {
   position: fixed;
@@ -418,12 +424,61 @@ button:focus {
   transition: 0.5s;
   padding: 10px;
   color: #fff;
+  backdrop-filter: blur(5px);
 }
 
 .sidebar.open {
   left: 0%;
   z-index: 11;
 }
+
+.sidebar table {
+  width: 90%;
+  border-collapse: collapse;
+  margin: 20px auto; /* 테이블을 가운데에 정렬하기 위해 */
+}
+
+.sidebar table, .sidebar th, .sidebar td {
+  border: 1px solid #7BADE6;
+  padding: 8px 12px;
+  text-align: center; /* 모든 셀을 가운데에 정렬 */
+}
+
+.sidebar th {
+  background-color: rgba(123, 173, 230, 0.5);
+  color: white;
+}
+
+.sidebar tr:nth-child(even) {
+  background-color: rgba(123, 173, 230, 0.3);
+}
+
+/* 반응형 스타일 */
+
+@media only screen and (max-width: 600px) {
+  .sidebar {
+      width: 100%;
+      left: -100%;
+  }
+
+  .sidebar.open {
+      left: 0;
+  }
+
+  .sidebar h2 {
+      font-size: 1.5em; /* 헤더의 글자 크기를 줄임 */
+  }
+
+  .sidebar table {
+      width: 100%;
+  }
+
+  .sidebar th, .sidebar td {
+      padding: 5px 8px; /* 패딩 줄임 */
+  }
+}
+
+/* -------------------------------------------------------- */
 
 .space-button {
   display: inline-block;
