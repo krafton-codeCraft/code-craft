@@ -100,7 +100,7 @@ public class HomeController {
             return new ResponseEntity<>(new CompileResult(0, "same code"), HttpStatus.OK);
         }
 
-        if (compileRequest.getLang() != "java") {
+        if (compileRequest.getLang() != null && compileRequest.getLang() != "java") {
             String javaCode = convertJavaCode.convertLangToJava(compileRequest.getLang(), compileRequest.getCode());
             compileRequest.setCode(javaCode);
         }
