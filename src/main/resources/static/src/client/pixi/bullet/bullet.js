@@ -12,7 +12,7 @@ export function renderBullet(bullet, app) {
     let bulletsprite = bulletSprites[id];
 
     if(!bulletsprite){
-        bulletsprite = createNewBulletSprite(bulletsprite);
+        bulletsprite = createNewBulletSprite(bullet);
         bulletSprites[id] = bulletsprite;
         app.stage.addChild(bulletsprite);
     }else{

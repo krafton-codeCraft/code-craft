@@ -9,8 +9,8 @@ export function renderScan(scan, app) {
     if(!playerSprites[id]){
         const scaning = scanSprites[id];
         if(scaning){
-            app.stage.removeChild(sprite);
-            delete playerSprites[id];
+            app.stage.removeChild(scaning);
+            delete scanSprites[id];
         }
         return;
     }
