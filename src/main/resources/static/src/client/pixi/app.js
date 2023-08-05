@@ -5,7 +5,7 @@ import { renderPlayer , playerSprites } from './player/player';
 import { renderBullet , bulletSprites } from './bullet/bullet';
 import { getCurrentState } from '../state';
 import { renderScan }  from './scan/scan';
-import { robotMessages , renderSpeechBubble } from '../chat';
+import { robotMessages , renderSpeechBubble ,messageSprites } from '../chat';
 
 let prevrobots = [];
 let prevbullets = [];
@@ -47,6 +47,8 @@ export function pixiApp() {
           if (robotMessage && robotMessage.expiresAt > Date.now()) {
             renderSpeechBubble(robot, playgroundApp, robotMessage.content);
           } else if (robotMessage && robotMessage.expiresAt <= Date.now()) {
+            playgroundApp.stage.removeChild(messageSprites[robot.id])
+            delete messageSprites[robot.id]
             delete robotMessages[robot.id];
           }
 
