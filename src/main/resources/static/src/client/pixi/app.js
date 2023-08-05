@@ -13,7 +13,7 @@ export function pixiApp() {
     document.body.appendChild(app.view);
     makestar(app);
     playground();
-    // particletest(playgroundApp);
+    
     app.ticker.add((delta) => {
       //playgroundApp.stage.removeChildren();
       const { robots,bullets,scans } = getCurrentState(); 
