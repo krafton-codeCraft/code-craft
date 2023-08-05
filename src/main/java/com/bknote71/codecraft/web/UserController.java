@@ -33,6 +33,10 @@ public class UserController {
     public String signup(String username, String password) {
         Long signup = userService.signup(username, password);
 
+        if (signup == null) {
+            System.out.println("회원가입 실패");
+            return "redirect:/";
+        }
         // default 로봇 제공
         robotSpecService.createDefaultRobot(username);
 
