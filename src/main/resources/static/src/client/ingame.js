@@ -95,24 +95,47 @@ document.getElementById('toggle-main-container').addEventListener('click', funct
 document.querySelector('#toggle-event').addEventListener('click', function() {
   var sidebar = document.getElementById('event-sidebar');
   var toggleButton = document.getElementById('toggle-event');
+  var moduleButton = document.getElementById('toggle-module');
+  var leaderboard = document.getElementById('leaderboard');
+  var inputbar = document.getElementById('inputbar');
+
   if(sidebar.classList.contains('open')) {
+
     sidebar.classList.remove('open');
     toggleButton.classList.remove('open');
+    leaderboard.classList.remove('hidden-to-left');
+    inputbar.classList.remove('hidden-to-left');
+    moduleButton.classList.remove('hidden-to-left');
+
   } else {
+
     sidebar.classList.add('open');
     toggleButton.classList.add('open');
+    leaderboard.classList.add('hidden-to-left');
+    inputbar.classList.add('hidden-to-left');
+    moduleButton.classList.add('hidden-to-left');
   }
 });
 
 document.querySelector('#toggle-module').addEventListener('click', function() {
   var sidebar = document.getElementById('module-sidebar');
   var toggleButton = document.getElementById('toggle-module');
+  var eventButton = document.getElementById('toggle-event');
+  var leaderboard = document.getElementById('leaderboard');
+  var inputbar = document.getElementById('inputbar');
+
   if(sidebar.classList.contains('open')) {
     sidebar.classList.remove('open');
     toggleButton.classList.remove('open');
+    leaderboard.classList.remove('hidden-to-left');
+    inputbar.classList.remove('hidden-to-left');
+    eventButton.classList.remove('hidden-to-left');
   } else {
     sidebar.classList.add('open');
     toggleButton.classList.add('open');
+    leaderboard.classList.add('hidden-to-left');
+    inputbar.classList.add('hidden-to-left');
+    eventButton.classList.add('hidden-to-left');
   }
 });
 

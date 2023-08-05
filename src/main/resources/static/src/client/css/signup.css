@@ -1,3 +1,10 @@
+@font-face{
+    font-family:'DNFForgedBlade';
+    font-style:normal;
+    font-weight:500;
+    src:url('//cdn.df.nexon.com/img/common/font/DNFForgedBlade-Bold.otf') format('opentype');
+}
+
 #full-container {
     display: flex;
     justify-content: space-between;
@@ -26,16 +33,61 @@ body {
     border: 2px solid gray;
 }
 
+#play-menu {
+    /* flex: 5; */
+    position: absolute;
+    top: 50%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    padding: 20px;
+    text-align: center;
+    /* background: rgba(0, 0, 0, 0.7); */
+    border-radius: 10px;
+    color: #ffffff;
+}
+
+@keyframes neonFlicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+        text-shadow: 
+        0 0 5px rgba(123, 173, 230, 0.5), 
+        0 0 10px rgba(123, 173, 230, 0.5),
+        0 0 15px rgba(123, 173, 230, 0.5), 
+        0 0 20px rgba(123, 173, 230, 0.5), 
+        0 0 30px rgba(123, 173, 230, 0.5);
+    }
+    20%, 24%, 55% { 
+        opacity: 0.5;
+        text-shadow: none;
+    }
+}
+
+#play-menu h1 {
+    font-family: 'DNFForgedBlade', sans-serif;
+    margin-top: 0;
+    color: rgba(123, 173, 230, 1);
+    font-size: 6rem;
+    text-shadow: 
+    0 0 5px rgba(123, 173, 230, 0.3), 
+    0 0 10px rgba(123, 173, 230, 0.3),
+    0 0 15px rgba(123, 173, 230, 0.3), 
+    0 0 20px rgba(123, 173, 230, 0.3), 
+    0 0 30px rgba(123, 173, 230, 0.3);
+    animation: neonFlicker 1.5s infinite alternate;
+}
+
 .wrapper {
     position: absolute;
+    /* flex: 5; */
     top: 50%;
     right: 10%;
     width: 400px;
     height: 440px;
     background: transparent;
-    border: 1px solid rgba(60, 60, 60, 0.5);
+    /* border: 1px solid rgba(60, 60, 60, 0.5); */
     backdrop-filter: blur(1px);
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    background-color: rgba(123, 173, 230, 0.1);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -96,9 +148,10 @@ body {
 .input-box input {
     width: 100%;
     height: 100%;
-    background: -webkit-linear-gradient(left, #4A90E2, #8E44AD, #f39c12, #27ae60);
+    background: -webkit-linear-gradient(left, #7BADe6, #4A90E2);
     -webkit-background-clip: text;
-    backdrop-filter: blur(1px);
+    /* backdrop-filter: blur(1px); */
+    background-color: rgba(123, 173, 230, 0.2);
     color: transparent;
     border: none;
     outline: none;
@@ -160,7 +213,7 @@ body {
 .btn {
     width: 100%;
     height: 45px;
-    background: linear-gradient(45deg, #4A90E2, #8E44AD);
+    background: linear-gradient(45deg, #7BADe6, #4A90E2);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     border: none;
@@ -193,23 +246,4 @@ body {
 
 .login-register p a:hover {
     text-decoration: underline;
-}
-
-#play-menu {
-    position: absolute;
-    top: 50%;
-    left: 35%;
-    transform: translate(-50%, -50%);
-    width: 700px;
-    padding: 20px;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
-    color: #ffffff;
-}
-
-#play-menu h1 {
-    margin-top: 0;
-    color: #ff0000;
-    font-size: 6rem;
 }

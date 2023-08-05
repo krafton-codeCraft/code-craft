@@ -12,10 +12,20 @@ let editor;
 
 require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' } });
 require(["vs/editor/editor.main"], function () {
+
+    monaco.editor.defineTheme('myTheme', {
+        base: 'vs-dark',
+        inherit: true,
+        rules: [{ background: '20202080' }],
+        colors: {
+            'editor.background': '#20202080',
+        }
+    });
+
     editor = monaco.editor.create(document.getElementById('container-body'), {
       value: codeOfFirstRobot,
       language: 'java',
-      theme: 'vs-dark',
+      theme: 'myTheme',
       automaticLayout: true,
       fontSize: 20,
       minimap: {
