@@ -24,9 +24,10 @@ const inputbar = document.getElementById('inputbar')
 const gameoverMenu = document.getElementById('game-over');
 const replayButton = document.getElementById('replay-button');
 const usernamereInput = document.getElementById('username-reinput');
+const userSelectedLang = document.getElementById('language-select');
 let flag = true;
 
-Promise.all([
+Promise.all([-
 
   connect(onGameOver),
   downloadAssets(),
