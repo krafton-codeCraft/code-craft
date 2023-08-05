@@ -228,9 +228,20 @@ button:focus {
   background-color: rgba(123, 173, 230, 0.2);
 }
 
-#terminal {
+#terminal-container {
   flex: 8;
   height: 100%;
+  overflow: auto;
+}
+
+#terminal {
+  flex: 8;
+  left: 2%;
+  top: 2%;
+  bottom: 2%;
+  right: 2%;
+
+  height: 96%;
   overflow: auto;
 }
 
