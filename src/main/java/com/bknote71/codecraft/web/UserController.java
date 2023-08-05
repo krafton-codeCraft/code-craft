@@ -28,9 +28,9 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    @ResponseBody
-    public Long signup(String username, String password) {
-        return userService.signup(username, password);
+    public String signup(String username, String password) {
+        Long signup = userService.signup(username, password);
+        return "redirect:/";
     }
 
     @GetMapping("/login")

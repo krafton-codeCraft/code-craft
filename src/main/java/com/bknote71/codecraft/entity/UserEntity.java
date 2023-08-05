@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UserEntity {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String username;
@@ -29,6 +29,7 @@ public class UserEntity {
     }
 
     public void add(RobotSpecEntity robot) {
+        robot.setUser(this); // RobotSpecEntity의 setUser 메서드 호출
         specifications.add(robot);
     }
 
