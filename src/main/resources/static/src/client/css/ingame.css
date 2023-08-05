@@ -5,6 +5,7 @@ body {
   overflow: hidden;
   overscroll-behavior: none;
   background-color: black;
+  font-family: 'Roboto Mono', monospace;
 }
 
 hr {
@@ -55,7 +56,7 @@ button:focus {
   height: 30%;
   padding: 10px;
   /* border-radius: 5px; */
-  background-color: rgba(128,128,128 ,0.2);
+  background-color: rgba(123, 173, 230, 0.2);
   color: white;
   display: flex;
   flex-direction: column;
@@ -236,16 +237,30 @@ button:focus {
 #separator {
   flex: 0;
   width: 2px; /* You can adjust this value to change the width of the line */
-  background-color: #fff; /* Change this color as per your need */
+  color: white;
+}
+
+#run-button {
+  flex: 2;
+  top: 0%;
+  height: 50%;
+}
+
+#compile-button {
+  flex: 2;
+  top: 50%;
+  height: 50%;
 }
 
 .terminal-error {
+  font-size: 20px;  
   font-weight: bold;
   color: rgb(248, 30, 30);
 }
 
 /* 성공 메시지 */
 .terminal-success {
+  font-size: 20px;
   font-weight: bold;
   color: rgb(13, 218, 13);
 }
@@ -269,38 +284,6 @@ button:focus {
   background: rgba(255, 255, 255, 0.7);
   /* Hover color */
 }
-/* -------------------------------------------------------- */
-
-/* #compile-button {
-  flex: 2;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 20px;
-  font-size: 20px;
-  font-weight: bold;
-  color: #ffffff;
-  background-color: #ff0000;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.5s ease;
-  opacity: 0.7;
-}
-
-#compile-button:hover {
-  background-color: #cc0000;
-  opacity: 0.9;
-}
-
-@media only screen and (max-width: 600px) {
-  #compile-button {
-    font-size: 1em;
-    padding: 5px 10px;
-  }
-} */
-
-/* -------------------------------------------------------- */
 
 #deck-one, #deck-two, #deck-thress {
   position: absolute;
