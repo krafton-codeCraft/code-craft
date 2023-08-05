@@ -2,10 +2,9 @@ package com.bknote71.codecraft.robocode.loader;
 
 import com.amazonaws.auth.ClasspathPropertiesFileCredentialsProvider;
 import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.Region;
-import org.springframework.beans.factory.annotation.Value;
+import com.bknote71.codecraft.web.dto.CompileResult;
 
 import java.io.*;
 import java.net.MalformedURLException;

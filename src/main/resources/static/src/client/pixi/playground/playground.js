@@ -16,7 +16,7 @@ export function playground() {
     playgroundApp.view.style.top = "50%";
     playgroundApp.view.style.left = "50%";
     playgroundApp.view.style.transform = "translate(-50%, -50%)";
-    playgroundApp.view.style.border = "2px solid gray";
+    playgroundApp.view.style.boxShadow = "0 0 10px rgba(123, 173, 230, 0.5)";
     // playgroundApp.renderer.background.color = 0x0000ff;
     // playgroundApp.renderer.background.alpha = 0.5;
     // playgroundApp.renderer.view.style.width = "94vh";

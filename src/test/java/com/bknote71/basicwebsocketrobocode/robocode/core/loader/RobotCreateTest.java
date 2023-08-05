@@ -1,9 +1,5 @@
 package com.bknote71.basicwebsocketrobocode.robocode.core.loader;
 
-import com.bknote71.codecraft.robocode.loader.AwsS3ClassLoader;
-import com.bknote71.codecraft.robocode.loader.CompileResult;
-import org.junit.jupiter.api.Test;
-
 public class RobotCreateTest {
 
 //    @Test

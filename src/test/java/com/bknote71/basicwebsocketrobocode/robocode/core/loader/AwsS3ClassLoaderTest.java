@@ -1,13 +1,7 @@
 package com.bknote71.basicwebsocketrobocode.robocode.core.loader;
 
 // import com.bknote71.codecraft.robocode.loader.AwsS3ClassLoader;
-// import com.bknote71.codecraft.robocode.loader.CompileResult;
-
-import com.bknote71.codecraft.robocode.loader.AwsS3ClassLoader;
-import com.bknote71.codecraft.robocode.loader.CompileResult;
-import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
+// import com.bknote71.codecraft.web.dto.CompileResult;
 
 class AwsS3ClassLoaderTest {
 

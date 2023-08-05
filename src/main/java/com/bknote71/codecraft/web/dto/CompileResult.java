@@ -1,4 +1,4 @@
-package com.bknote71.codecraft.robocode.loader;
+package com.bknote71.codecraft.web.dto;
 
 import lombok.Data;
 
@@ -9,6 +9,7 @@ public class CompileResult {
     public String robotname;
     public String fullClassName;
     public String code;
+    public String lang;
     public String username;
 
     public CompileResult(int exitCode, String content) {
