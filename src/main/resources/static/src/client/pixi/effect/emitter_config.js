@@ -5,7 +5,7 @@ export const line = {
 	  end: 0.15
 	},
 	scale: {
-	  start: 1,
+	  start: 3,
 	  end: 0.2,
 	  minimumScaleMultiplier: 1
 	},
@@ -39,7 +39,7 @@ export const line = {
 	blendMode: "normal",
 	frequency: 0.0008,
 	emitterLifetime: -1,
-	maxParticles: 5000,
+	maxParticles: 1000,
 	pos: {
 	  x: 0,
 	  y: 0

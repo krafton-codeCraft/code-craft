@@ -64,7 +64,7 @@ body {
 }
 
 #play-menu h1 {
-    font-family: 'DNFForgedBlade', sans-serif;
+    font-family: 'Roboto Mono', monospace;
     margin-top: 0;
     color: rgba(123, 173, 230, 1);
     font-size: 6rem;
@@ -95,6 +95,7 @@ body {
     transition: height .2s ease;
     margin: auto;
     transform: translate(-50%, -50%);
+    font-family: 'Roboto Mono', monospace;
 }
 
 .wrapper.active {
