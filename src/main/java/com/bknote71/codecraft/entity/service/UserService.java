@@ -27,6 +27,8 @@ public class UserService {
         UserEntity userEntity = new UserEntity(username, passwordEncoder.encode(password));
         UserEntity savedUser = userRepository.save(userEntity);
 
+        System.out.println("create user success " + savedUser.getUsername());
+
         return savedUser.getId();
     }
 

@@ -1,27 +1,42 @@
 import { getAsset } from '../../assets';
 import { robotId } from '../../networking';
-import { deadRobot } from '../scan/scan';
-import { triggerCustomEvent } from '../effect/particles';
 
 const Constants = require('../../../shared/constants');
 const { PLAYER_RADIUS,PLAYER_MAXENERGY, PLAYER_MAXHP } = Constants;
 
-function renderPlayer(player, app) {
-    const robotContainer = new PIXI.Container();
-    const { id, x, y, name , bodyHeading, gunHeading, raderHeading, energy ,hp , dead} = player;
-    triggerCustomEvent(x,y);
+export const playerSprites = {};
+
+export function renderPlayer(player, app) {
+    
+    const { id , dead } = player;
+    
     // console.log(id);
     if(dead){
-        deadRobot.push(id);
-        return;
-    }else{
-        const indexToDelete = deadRobot.indexOf(id);
-        // 배열에서 해당 인덱스의 요소를 삭제합니다.
-        if (indexToDelete !== -1) {
-            deadRobot.splice(indexToDelete, 1);
-            return;
+        const sprite = playerSprites[id];
+        if(sprite){
+            app.stage.removeChild(sprite);
+            delete playerSprites[id];
         }
+        return;
     }
+
+    let robot = playerSprites[id];
+
+    if(!robot){
+        robot = createNewPlayerSprite(player);
+        playerSprites[id] = robot;
+        app.stage.addChild(robot);
+    }else{
+        updatePlayerSpriteData(robot,player);
+    }
+
+    
+}
+
+function createNewPlayerSprite(player){
+    const robotContainer = new PIXI.Container();
+    const { id, x, y, name , bodyHeading, gunHeading, raderHeading, energy ,hp } = player;
+
     const canvasX = x;
     const canvasY = y;
     let randcolor = 0xFFFFFF;
@@ -33,6 +48,7 @@ function renderPlayer(player, app) {
     }else{
         randcolor = 0xFFFFFF;
     }
+    
     //spaceship${robotId%8}.png
     // 배 그리기
     const bodyship = new PIXI.Sprite(PIXI.Texture.from(getAsset(`ship.svg`)));
@@ -84,7 +100,27 @@ function renderPlayer(player, app) {
     text.y = canvasY + PLAYER_RADIUS + 20;
     robotContainer.addChild(text);
 
-    app.stage.addChild(robotContainer);
+    return robotContainer;
+}
+
+function updatePlayerSpriteData(sprite,player){
+    const { x, y , bodyHeading, gunHeading ,hp } = player;
+    const { bodyship , gunhead , hptext , text } = sprite;
+
+    bodyship.x = x;
+    bodyship.y = y;
+    bodyship.rotation = Math.PI - bodyHeading;
+
+    gunhead.x = x;
+    gunhead.y = y;
+    gunhead.rotation = Math.PI - gunHeading;
+
+    hptext.x = x;
+    hptext.y = y + (PLAYER_RADIUS * 2) + 10;
+    hptext.text = hp +'/' + PLAYER_MAXHP;
+
+    text.x = x;
+    text.y = y + PLAYER_RADIUS + 20;
 }
 
 export default renderPlayer;

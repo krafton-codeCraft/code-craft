@@ -4,8 +4,10 @@ const Constants = require('../../../shared/constants');
 const { BULLET_RADIUS } = Constants;
 
 
+export const bulletSprites = {};
+
 function renderBullet(bullet, app) {
-    const { x, y ,id } = bullet;
+    const { x, y } = bullet;
     const canvasX = x;
     const canvasY = y; 
 
