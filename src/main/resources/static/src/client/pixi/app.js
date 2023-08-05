@@ -1,13 +1,11 @@
 import * as PIXI from 'pixi.js';
 import { renderBackground, makestar } from './background/background';
 import { playground, playgroundApp } from './playground/playground';
-import renderPlayer from './player/player';
-import renderBullet from './bullet/bullet';
+import { renderPlayer } from './player/player';
+import { renderBullet } from './bullet/bullet';
 import { getCurrentState } from '../state';
 import { renderScan }  from './scan/scan';
-import { robotMessages } from '../chat';
-import { renderSpeechBubble } from '../chat';
-//import { particletest , container } from './effect/particles';
+import { robotMessages , renderSpeechBubble } from '../chat';
 
 export function pixiApp() {
   return new Promise((resolve) => {
@@ -15,10 +13,9 @@ export function pixiApp() {
     document.body.appendChild(app.view);
     makestar(app);
     playground();
-    //particletest(playgroundApp);
+
     app.ticker.add((delta) => {
       //playgroundApp.stage.removeChildren();
-      //playgroundApp.stage.addChild(container);
       const { robots,bullets,scans } = getCurrentState(); 
 
       renderBackground(app, delta);
@@ -34,7 +31,7 @@ export function pixiApp() {
           } else if (robotMessage && robotMessage.expiresAt <= Date.now()) {
             delete robotMessages[robot.id];
           }
-          
+
         });
         scans.forEach((scan) => renderScan(scan, playgroundApp));
       }

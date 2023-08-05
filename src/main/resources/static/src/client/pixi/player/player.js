@@ -1,8 +1,10 @@
 import { getAsset } from '../../assets';
 import { robotId } from '../../networking';
+import { ParticleEffect } from '../effect/particles';
 
 const Constants = require('../../../shared/constants');
 const { PLAYER_RADIUS,PLAYER_MAXENERGY, PLAYER_MAXHP } = Constants;
+
 
 export const playerSprites = {};
 
@@ -26,6 +28,7 @@ export function renderPlayer(player, app) {
         robot = createNewPlayerSprite(player);
         playerSprites[id] = robot;
         app.stage.addChild(robot);
+        
     }else{
         updatePlayerSpriteData(robot,player);
     }
@@ -36,7 +39,7 @@ export function renderPlayer(player, app) {
 function createNewPlayerSprite(player){
     const robotContainer = new PIXI.Container();
     const { id, x, y, name , bodyHeading, gunHeading, raderHeading, energy ,hp } = player;
-
+    
     const canvasX = x;
     const canvasY = y;
     let randcolor = 0xFFFFFF;
@@ -59,7 +62,7 @@ function createNewPlayerSprite(player){
     bodyship.width = PLAYER_RADIUS * 2;
     bodyship.height = PLAYER_RADIUS * 2;
     bodyship.tint = randcolor
-    robotContainer.addChild(bodyship);
+    robotContainer.addChildAt(bodyship,0);
     
     const gunhead = new PIXI.Sprite(PIXI.Texture.from(getAsset('ship.svg')));
     gunhead.anchor.set(0.5);
@@ -69,7 +72,7 @@ function createNewPlayerSprite(player){
     gunhead.width = PLAYER_RADIUS;
     gunhead.height = PLAYER_RADIUS;
     gunhead.tint = 0x000000;
-    robotContainer.addChild(gunhead);
+    robotContainer.addChildAt(gunhead,1);
 
     //체력바 
     /* const innerBar = new PIXI.Graphics();
@@ -89,7 +92,7 @@ function createNewPlayerSprite(player){
     hptext.anchor.set(0.5);
     hptext.x = canvasX;
     hptext.y = canvasY + (PLAYER_RADIUS * 2) + 10;
-    robotContainer.addChild(hptext);
+    robotContainer.addChildAt(hptext,2);
 
     randcolor = Math.floor(randcolor);
     const fillValue = '#' + randcolor.toString(16).padStart(6, '0');
@@ -98,29 +101,26 @@ function createNewPlayerSprite(player){
     text.anchor.set(0.5);
     text.x = canvasX;
     text.y = canvasY + PLAYER_RADIUS + 20;
-    robotContainer.addChild(text);
+    robotContainer.addChildAt(text,3);
 
     return robotContainer;
 }
 
 function updatePlayerSpriteData(sprite,player){
     const { x, y , bodyHeading, gunHeading ,hp } = player;
-    const { bodyship , gunhead , hptext , text } = sprite;
 
-    bodyship.x = x;
-    bodyship.y = y;
-    bodyship.rotation = Math.PI - bodyHeading;
+    sprite.getChildAt(0).x = x;
+    sprite.getChildAt(0).y = y;
+    sprite.getChildAt(0).rotation = Math.PI - bodyHeading;
 
-    gunhead.x = x;
-    gunhead.y = y;
-    gunhead.rotation = Math.PI - gunHeading;
+    sprite.getChildAt(1).x = x;
+    sprite.getChildAt(1).y = y;
+    sprite.getChildAt(1).rotation = Math.PI - gunHeading;
 
-    hptext.x = x;
-    hptext.y = y + (PLAYER_RADIUS * 2) + 10;
-    hptext.text = hp +'/' + PLAYER_MAXHP;
+    sprite.getChildAt(2).x = x;
+    sprite.getChildAt(2).y = y + (PLAYER_RADIUS * 2) + 10;
+    sprite.getChildAt(2).text = hp +'/' + PLAYER_MAXHP;
 
-    text.x = x;
-    text.y = y + PLAYER_RADIUS + 20;
+    sprite.getChildAt(3).x = x;
+    sprite.getChildAt(3).y = y + PLAYER_RADIUS + 20;
 }
-
-export default renderPlayer;

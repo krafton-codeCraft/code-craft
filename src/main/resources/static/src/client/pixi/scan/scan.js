@@ -19,7 +19,7 @@ export function renderScan(scan, app) {
     let scansprite = scanSprites[id];
 
     if(!scansprite){
-        scansprite = createNewScan()
+        scansprite = createNewScan(scan)
         scanSprites[id] = scansprite;
         app.stage.addChild(scansprite);
     }else{
@@ -29,7 +29,7 @@ export function renderScan(scan, app) {
 }
 
 function createNewScan(scan){
-    const { id,name, robotX,robotY, x,y,width,height, angleStart , angleExtent} = scan;
+    const { id , name, robotX,robotY, x,y,width,height, angleStart , angleExtent} = scan;
     //console.log(`angleStart : ${angleStart}  angleExtent : ${angleExtent}`)
     const midx = robotX;//(x+width)/2
     const midy = robotY;//(y+height)/2
