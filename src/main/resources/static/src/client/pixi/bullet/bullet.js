@@ -4,8 +4,24 @@ const Constants = require('../../../shared/constants');
 const { BULLET_RADIUS } = Constants;
 
 
-function renderBullet(bullet, app) {
-    const { x, y ,id } = bullet;
+export const bulletSprites = {};
+
+export function renderBullet(bullet, app) {
+    const {id} = bullet;
+
+    let bulletsprite = bulletSprites[id];
+
+    if(!bulletsprite){
+        bulletsprite = createNewBulletSprite(bullet);
+        bulletSprites[id] = bulletsprite;
+        app.stage.addChild(bulletsprite);
+    }else{
+        updateBulletSprite(bulletsprite,bullet);
+    }
+}
+
+function createNewBulletSprite(bullet){
+    const { x, y } = bullet;
     const canvasX = x;
     const canvasY = y; 
 
@@ -16,8 +32,12 @@ function renderBullet(bullet, app) {
 
     sprite.width = BULLET_RADIUS * 2;
     sprite.height = BULLET_RADIUS * 2;
-    app.stage.addChild(sprite);
 
+    return sprite;
 }
 
-export default renderBullet;
+function updateBulletSprite(sprite,bullet){
+    const { x, y } = bullet;
+    sprite.x = x;
+    sprite.y = y;
+}
