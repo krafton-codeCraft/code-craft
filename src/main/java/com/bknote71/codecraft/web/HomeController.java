@@ -46,11 +46,10 @@ public class HomeController {
     public String ingame(@AuthenticationPrincipal(expression = "username") String username,
                          Model model,
                          int specIndex) {
+        System.out.println("??");
         List<RobotSpecDto> robotInfos = robotSpecService.getRobotInfo(username);
 
-        if (robotInfos.isEmpty()) {
-            throw new RobotNotFoundException("로봇이 없어 입장하실 수 없습니다.");
-        }
+        System.out.println("robotinfos? " + robotInfos.size());
 
         model.addAttribute("robotInfos", robotInfos);
         model.addAttribute("specIndex", specIndex < 1 ? 0 : specIndex - 1);

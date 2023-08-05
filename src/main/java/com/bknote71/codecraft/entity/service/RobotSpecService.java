@@ -108,4 +108,16 @@ public class RobotSpecService {
         robotSpecEntity.setCode(code);
         return robotSpecEntity.getId();
     }
+
+    private static final String DEFAULTROBOT =
+            "public class DefaultRobot extends Robot {\n" +
+            "    public void run() {\n" +
+            "    }\n" +
+            "}\n";
+
+
+    @Transactional
+    public void createDefaultRobot(String username) {
+        saveRobotSpec(username, 0, "DefaultRobot", "DefaultRobot.class", DEFAULTROBOT);
+    }
 }
