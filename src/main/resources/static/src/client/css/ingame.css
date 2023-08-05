@@ -50,7 +50,7 @@ button:focus {
 #leaderboard {
   position: fixed;
   top: 5%;
-  left: 12%;
+  left: 11%;
   width: 15%;
   height: 30%;
   padding: 10px;
@@ -160,7 +160,7 @@ button:focus {
 }
 
 #container-body {
-  z-index: 12;
+  /* z-index: 12; */
   position: absolute;
   top: 53%;
   left: 50%;
@@ -174,7 +174,7 @@ button:focus {
 #inputbar {
   position: fixed;
   bottom: 5%;
-  left: 12%;
+  left: 11%;
   width: 500px;
   margin: auto;
   background-color: rgba(128, 128, 128, 0.3);
