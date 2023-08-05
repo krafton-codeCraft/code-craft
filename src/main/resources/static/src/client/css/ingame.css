@@ -50,7 +50,7 @@ button:focus {
 #leaderboard {
   position: fixed;
   top: 5%;
-  left: 11%;
+  left: 11.5%;
   width: 15%;
   height: 30%;
   padding: 10px;
@@ -61,8 +61,16 @@ button:focus {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transition: 0.5s;
   /* box-shadow: 0px 0px 10px rgba(255,255,255,0.3); */
 }
+
+#leaderboard.hidden-to-left{
+
+  left: -50%;
+
+}
+
 
 #leaderboard table {
   width: 100%;
@@ -174,19 +182,26 @@ button:focus {
 #inputbar {
   position: fixed;
   bottom: 5%;
-  left: 11%;
+  left: 11.5%;
   width: 500px;
   margin: auto;
-  background-color: rgba(128, 128, 128, 0.3);
+  background-color: rgba(123, 173, 230, 0.2);
   color: white;
   padding: 10px;
   z-index: 10;
   border: none;
   outline: none;
+  transition: 0.5s;
 }
 
 #inputbar:focus {
-  background-color: rgba(128, 128, 128, 0.6);
+  background-color: rgba(123, 173, 230, 0.6);
+}
+
+#inputbar.hidden-to-left{
+
+  left: -50%;
+
 }
 
 #inputbar::placeholder {
@@ -209,7 +224,7 @@ button:focus {
   /* terminal이 아래쪽에 있으므로, positive 값을 사용해야 합니다. */
   /* border: 1px solid hsl(186 100% 69%); */
   cursor: inherit;
-  background-color: rgba(128, 128, 128, 0.2);
+  background-color: rgba(123, 173, 230, 0.2);
 }
 
 #terminal {
@@ -295,7 +310,7 @@ button:focus {
   font-size: 20px;
   font-weight: bold;
   color: #ffffff;
-  background-color: rgba(128, 128, 128, 0.5);  /* half-transparent grey */
+  background-color: rgba(123, 173, 230, 0.7);  /* half-transparent grey */
   border: none;
   border-radius: 1px;
   cursor: pointer;
@@ -314,9 +329,13 @@ button:focus {
   left: 32%; /* Adjust as necessary */
 }
 
+#deck-one:hover, #deck-two:hover, #deck-thress:hover {
+
+  background-color: rgba(123, 173, 230, 0.9);
+}
+
 #deck-one:active, #deck-two:active, #deck-thress:active {
-  color: #000000;
-  background-color: #ffffff;
+  background-color: rgba(123, 173, 230, 1);
 }
 
 @media only screen and (max-width: 600px) {
@@ -335,19 +354,13 @@ button:focus {
   top: 0;
   width: 40%; /* Container takes 50% of the full width */
   height: 100%; /* Container takes the full height */
-  background-color: rgba(128, 128, 128, 0.4); /* Change to your preferred color */
+  background-color: rgba(123, 173, 230, 0.2); /* Change to your preferred color */
   overflow-x: hidden;
   transition: 0.5s;
 }
 
 #main-container.open {
   right: 0; /* When the container is opened, it aligns to the right edge */
-}
-
-body.open {
-
-  background-color: rgba(128, 128, 128, 0.2);
-
 }
 
 #toggle-main-container {
@@ -374,6 +387,10 @@ body.open {
   transition: 0.5s;
 }
 
+#toggle-event.hidden-to-left {
+  left: -30%; /* When the container is opened, the button moves to the left */
+}
+
 #toggle-event.open {
   left: 30%; /* When the container is opened, the button moves to the left */
   z-index: 11;
@@ -389,6 +406,10 @@ body.open {
   transition: 0.5s;
 }
 
+#toggle-module.hidden-to-left {
+  left: -30%; /* When the container is opened, the button moves to the left */
+}
+
 #toggle-module.open {
   left: 30%; /* When the container is opened, the button moves to the left */
   z-index: 11;
@@ -400,7 +421,7 @@ body.open {
   top: 0;
   width: 30%; /* Sidebar width */
   height: 100%;
-  background-color: rgba(128, 128, 128, 0.4);
+  background-color: rgba(123, 173, 230, 0.2);
   overflow-x: hidden;
   transition: 0.5s;
   padding: 10px;
@@ -421,16 +442,16 @@ body.open {
   text-decoration: none;
   outline: none;
   color: #fff;
-  background-color: rgba(128, 128, 128, 0.4);
+  background-color: rgba(123, 173, 230, 0.2);
   border: none;
   transition: all 0.3s;
 }
 
 .space-button:hover {
-  background-color: rgba(128, 128, 128, 0.7);
+  background-color: rgba(123, 173, 230, 0.6);
 }
 
 .space-button:active {
-  background-color: rgba(128, 128, 128, 0.7);
+  background-color: rgba(128, 128, 128, 0.9);
   transform: translateY(4px);
 }

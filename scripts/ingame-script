@@ -16,9 +16,9 @@ require(["vs/editor/editor.main"], function () {
     monaco.editor.defineTheme('myTheme', {
         base: 'vs-dark',
         inherit: true,
-        rules: [{ background: '20202066' }],
+        rules: [{ background: '20202080' }],
         colors: {
-            'editor.background': '#20202066'
+            'editor.background': '#20202080',
         }
     });
 
