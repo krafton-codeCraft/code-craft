@@ -2,6 +2,22 @@
 /*<![CDATA[*/
 var specIndex = [[${specIndex}]];
 var robotInfos = /*[[${robotInfos}]]*/ [];
+    while (robotInfos.length < 4) { // 배열의 길이가 4가 되도록 함
+        robotInfos.push({
+            code: "public class StupidBot extends Robot {\n" +
+                "\n" +
+                "    @Override\n" +
+                "    public void run() {\n" +
+                "        while (true) {\n" +
+                "        }\n" +
+                "    }\n" +
+                "\n" +
+                "    @Override\n" +
+                "    public void onScannedRobot(ScannedRobotEvent event) {\n" +
+                "    }\n" +
+                "}\n"  // 여기에 더미 데이터 형식을 추가
+        });
+}
 var codeOfFirstRobot = 'defaultCode'; // 기본 코드 설정
 if (robotInfos.length > 0) {
   codeOfFirstRobot = robotInfos[specIndex].code; // 0번 인덱스의 코드로 설정
@@ -64,6 +80,7 @@ function code_check(result, status, index, code) {
 }
 
 function selectDeckIndex(deckId) {
+    robotInfos[selectedDeck].code = getEditorValue();
     selectedDeck = deckId;
     if(robotInfos[selectedDeck]){
         editor.setValue(robotInfos[selectedDeck].code)
