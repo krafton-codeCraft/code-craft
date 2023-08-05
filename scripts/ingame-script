@@ -75,7 +75,7 @@ function code_check(result, status, index, code) {
 
     } else {
         terminal.innerHTML = `<span class="terminal-success">컴파일 성공!</span>`;
-        robotInfos[index] = code;
+        robotInfos[index].code = code;
     }
 }
 
