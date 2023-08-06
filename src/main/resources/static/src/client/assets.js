@@ -20,14 +20,6 @@ const ASSET_IMAGE_NAMES = [
   'missile.svg',
   'react.svg',
   'vite.svg',
-  'spaceship0.png',
-  'spaceship1.png',
-  'spaceship2.png',
-  'spaceship3.png',
-  'spaceship4.png',
-  'spaceship5.png',
-  'spaceship6.png',
-  'spaceship7.png',
   'particle.png',
  
 ];

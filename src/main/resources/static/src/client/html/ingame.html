@@ -36,7 +36,7 @@
   
   <button id="toggle-event" class="space-button">Event</button>
   <div id="event-sidebar" class="event-sidebar">
-    <div class="event-box-run">
+    <div class="event-box">
       <strong>
         run() {
         
@@ -145,6 +145,11 @@
 
   </div>
 
+  <button id="toggle-help" class="space-button">Help</button>
+  <div id="help-sidebar" class="help-sidebar">
+    help
+  </div>
+
   <button id="toggle-main-container" class="space-button">View Code</button>
 
   <div id="main-container">
@@ -172,9 +177,13 @@
       <div id="terminal"></div>
       <button id="compile-button" th:onclick="run_code()">
         Compile
-      </button>
-      <div id="loading-button"></div> <!-- index 값을 넘겨줌 -->
+      </button> <!-- index 값을 넘겨줌 -->
     </div>
+
+    <div id="compile-sidebar">
+      <div id="loading-button"></div>
+    </div>
+
   </div>
   <audio id="audioPlayer" autoplay loop>
     <source src="public/assets/NLP_Lobby_Final_Loop.wav" type="audio/wav">
@@ -212,7 +221,7 @@
       
   </div>
 
-   <input id="inputbar" type="text" placeholder="Enter chat..." autocomplete="off" maxlength="80">
+  <input id="inputbar" type="text" placeholder="Enter chat..." autocomplete="off" maxlength="80">
 
   <div id="disconnect-modal" class="hidden">
     <div>
