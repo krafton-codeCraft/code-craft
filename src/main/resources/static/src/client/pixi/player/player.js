@@ -26,20 +26,19 @@ export function renderPlayer(player, app) {
     let robot = playerSprites[id];
 
     if(!robot){
-        
-        new warpEffect(app,player.x,player.y);
+
+        setTimeout(() => {
+            new warpEffect(app,robot.getChildAt(0).x,robot.getChildAt(0).y);
+            app.stage.addChild(robot);
+            animateScale(robot);
+        }, 200 )
 
         robot = createNewPlayerSprite(player);
         playerSprites[id] = robot;
-        app.stage.addChild(robot);
 
-        animateScale(robot);
-    
     }else{
         updatePlayerSpriteData(robot,player);
     }
-
-    
 
 }
 
@@ -94,7 +93,7 @@ function createNewPlayerSprite(player){
     robotContainer.addChildAt(gunhead,1);
    
     //체력바 텍스트
-    const hptext = new PIXI.Text(hp +'/' + PLAYER_MAXHP, { fontFamily: 'Arial', fontSize: 10, fill: 'white' });
+    const hptext = new PIXI.Text(hp, { fontFamily: 'Arial', fontSize: 16, fill: 'white' });
     hptext.anchor.set(0.5);
     hptext.x = canvasX;
     hptext.y = canvasY + (PLAYER_RADIUS * 2) + 10;
@@ -103,7 +102,7 @@ function createNewPlayerSprite(player){
     randcolor = Math.floor(randcolor);
     const fillValue = '#' + randcolor.toString(16).padStart(6, '0');
     // 텍스트 그리기
-    const text = new PIXI.Text(name, { fontFamily: 'Arial', fontSize: 16, fill: fillValue });
+    const text = new PIXI.Text(name, { fontFamily: 'Arial', fontSize: 20, fill: fillValue });
     text.anchor.set(0.5);
     text.x = canvasX;
     text.y = canvasY + PLAYER_RADIUS + 20;    
@@ -126,7 +125,7 @@ function updatePlayerSpriteData(sprite,player){
 
     sprite.getChildAt(2).x = x;
     sprite.getChildAt(2).y = y + (PLAYER_RADIUS * 2) + 10;
-    sprite.getChildAt(2).text = hp +'/' + PLAYER_MAXHP;
+    sprite.getChildAt(2).text = hp;
 
     sprite.getChildAt(3).x = x;
     sprite.getChildAt(3).y = y + PLAYER_RADIUS + 20;
