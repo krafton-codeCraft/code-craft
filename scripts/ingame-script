@@ -93,11 +93,7 @@ function selectDeckIndex(deckId) {
 function run_code() {
     let selectedLanguage =  document.getElementById('language-select').value;
     console.log(selectedLanguage);
-    if (selectedLanguage === 'java'){
-        change_code(selectedDeck, getEditorValue())
-    } else {
-        change_code(selectedDeck, getEditorValue(), selectedLanguage);
-    }
+    change_code(selectedDeck, getEditorValue(), selectedLanguage);
 }
 
 
