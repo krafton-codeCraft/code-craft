@@ -135,7 +135,7 @@ export class BoosterEffect {
 export class explosionEffect{
   constructor(app , x , y){
     this.app = app;
-    this.container = new PIXI.particles.ParticleContainer(2000, {
+    this.container = new PIXI.particles.ParticleContainer(1000, {
       scale: true,
       position: true,
       rotation: false,
@@ -197,7 +197,7 @@ export class explosionEffect{
       blendMode: "normal",
       frequency: 0.001,
       emitterLifetime: 0.5,
-      maxParticles: 2000,
+      maxParticles: 1000,
       pos: {
           x: x,
           y: y
@@ -213,7 +213,7 @@ export class explosionEffect{
 export class warpEffect{
   constructor(app , x , y){
     this.app = app;
-    this.container = new PIXI.particles.ParticleContainer(1000, {
+    this.container = new PIXI.particles.ParticleContainer(500, {
       scale: true,
       position: true,
       rotation: true,
