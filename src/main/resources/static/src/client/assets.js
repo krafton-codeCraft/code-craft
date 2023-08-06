@@ -21,7 +21,7 @@ const ASSET_IMAGE_NAMES = [
   'react.svg',
   'vite.svg',
   'particle.png',
- 
+  'star.png',
 ];
 
 const ASSET_SOUND_NAMES =[
