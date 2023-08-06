@@ -129,6 +129,7 @@ public class HomeController {
     @PostMapping("/convert-check")
     @ResponseBody
     public String convertCheck(String lang, String code) {
+        log.info("server", lang, code);
         return convertJavaCode.convertLangToJava(lang, code);
     }
 }

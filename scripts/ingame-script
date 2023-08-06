@@ -91,8 +91,17 @@ function selectDeckIndex(deckId) {
 }
 
 function run_code() {
-    change_code(selectedDeck, getEditorValue());
+    let selectedLanguage =  document.getElementById('language-select').value;
+    console.log(selectedLanguage);
+    if (selectedLanguage === 'java'){
+        change_code(selectedDeck, getEditorValue());
+    } else {
+        let converted_code = langIsNotJava(selectedLanguage, getEditorValue());
+        console.log(selectedLanguage, "original code:", getEditorValue(), "converted code: ", converted_code);
+        change_code(selectedDeck, converted_code);
+    }
 }
+
 
 function translateErrorToKorean(status) {
             // 간단한 예제로 에러 메시지를 한국어로 번역하는 함수
