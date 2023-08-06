@@ -434,7 +434,7 @@ public class RobotPeer {
         setState(RobotState.ACTIVE);
 
         velocity = 0;
-        hp = 100;
+        hp = 5;
         energy = 100;
         gunHeat = 3;
 

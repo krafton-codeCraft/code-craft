@@ -97,6 +97,7 @@ document.querySelector('#toggle-event').addEventListener('click', function() {
   var sidebar = document.getElementById('event-sidebar');
   var toggleButton = document.getElementById('toggle-event');
   var moduleButton = document.getElementById('toggle-module');
+  var helpButton = document.getElementById('toggle-help');
   var leaderboard = document.getElementById('leaderboard');
   var inputbar = document.getElementById('inputbar');
 
@@ -107,6 +108,7 @@ document.querySelector('#toggle-event').addEventListener('click', function() {
     leaderboard.classList.remove('hidden-to-left');
     inputbar.classList.remove('hidden-to-left');
     moduleButton.classList.remove('hidden-to-left');
+    helpButton.classList.remove('hidden-to-left')
 
   } else {
 
@@ -115,6 +117,7 @@ document.querySelector('#toggle-event').addEventListener('click', function() {
     leaderboard.classList.add('hidden-to-left');
     inputbar.classList.add('hidden-to-left');
     moduleButton.classList.add('hidden-to-left');
+    helpButton.classList.add('hidden-to-left');
   }
 });
 
@@ -122,6 +125,7 @@ document.querySelector('#toggle-module').addEventListener('click', function() {
   var sidebar = document.getElementById('module-sidebar');
   var toggleButton = document.getElementById('toggle-module');
   var eventButton = document.getElementById('toggle-event');
+  var helpButton = document.getElementById('toggle-help');
   var leaderboard = document.getElementById('leaderboard');
   var inputbar = document.getElementById('inputbar');
 
@@ -131,12 +135,39 @@ document.querySelector('#toggle-module').addEventListener('click', function() {
     leaderboard.classList.remove('hidden-to-left');
     inputbar.classList.remove('hidden-to-left');
     eventButton.classList.remove('hidden-to-left');
+    helpButton.classList.remove('hidden-to-left');
   } else {
     sidebar.classList.add('open');
     toggleButton.classList.add('open');
     leaderboard.classList.add('hidden-to-left');
     inputbar.classList.add('hidden-to-left');
     eventButton.classList.add('hidden-to-left');
+    helpButton.classList.add('hidden-to-left');
+  }
+});
+
+document.querySelector('#toggle-help').addEventListener('click', function() {
+  var sidebar = document.getElementById('help-sidebar');
+  var toggleButton = document.getElementById('toggle-module');
+  var eventButton = document.getElementById('toggle-event');
+  var helpButton = document.getElementById('toggle-help');
+  var leaderboard = document.getElementById('leaderboard');
+  var inputbar = document.getElementById('inputbar');
+
+  if(sidebar.classList.contains('open')) {
+    sidebar.classList.remove('open');
+    helpButton.classList.remove('open');
+    leaderboard.classList.remove('hidden-to-left');
+    inputbar.classList.remove('hidden-to-left');
+    eventButton.classList.remove('hidden-to-left');
+    toggleButton.classList.remove('hidden-to-left');
+  } else {
+    sidebar.classList.add('open');
+    helpButton.classList.add('open');
+    leaderboard.classList.add('hidden-to-left');
+    inputbar.classList.add('hidden-to-left');
+    eventButton.classList.add('hidden-to-left');
+    toggleButton.classList.add('hidden-to-left');
   }
 });
 
