@@ -223,10 +223,11 @@ function langIsNotJava(lang, code){
     },
     body: params
   })
-    .then(response => response.json())
+    .then(response => response.text())
     .then(data => {
-      console.log(result);
-      const result = data.text;
+      console.log(data);
+      const result = data.message.content;;
+      console.log("result : ", result)
       return result;
     })
     .catch(error => {
