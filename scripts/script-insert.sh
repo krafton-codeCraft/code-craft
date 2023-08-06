@@ -15,7 +15,7 @@ mv tmpfile1 "$lobbyfile"
 ##########################################################################
 
 ingamefile="${RESOURCES_PATH}/ingame.html"
-ingame_insert_line="224"
+ingame_insert_line="45"
 ingame_insert_file="./scripts/ingame-script"
 
 head -n $(($ingame_insert_line - 1)) "$ingamefile" > tmpfile2
