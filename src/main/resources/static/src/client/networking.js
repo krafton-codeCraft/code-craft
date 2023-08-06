@@ -147,10 +147,10 @@ function compile_code(index, content) {
     });
 };
 
-function change_code(index, content) {
+function change_code(index, content, lang) {
   compileSidebar.classList.add("open");
   const url = `http://${addr}:8080/change/ingame-robot`;
-  let Data = { robotId: robotId, specIndex: index, code: content }
+  let Data = { robotId: robotId, specIndex: index, code: content, lang: lang }
   console.log(Data)
   const params = new URLSearchParams(Data).toString();
   fetch(url, {
@@ -209,27 +209,27 @@ export function submitChat(content) {
   websocket.send(JSON.stringify(message));
 }
 
-function langIsNotJava(lang, code){
-  const url = `http://${addr}:8080/convert-check`;
-  let Data = { lang: lang, code: code}
-  console.log(Data)
-  const params = new URLSearchParams(Data).toString();
-  fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    body: params
-  })
-    .then(response => response.text())
-    .then(data => {
-      console.log(data);
-      const result = data.message.content;;
-      console.log("result : ", result)
-      return result;
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-};
-window.langIsNotJava = langIsNotJava;
+// function langIsNotJava(lang, code){
+//   const url = `http://${addr}:8080/convert-check`;
+//   let Data = { lang: lang, code: code}
+//   console.log(Data)
+//   const params = new URLSearchParams(Data).toString();
+//   fetch(url, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/x-www-form-urlencoded'
+//     },
+//     body: params
+//   })
+//     .then(response => response.text())
+//     .then(data => {
+//       console.log(data);
+//       const result = data.message.content;;
+//       console.log("result : ", result)
+//       return result;
+//     })
+//     .catch(error => {
+//       console.error('Error:', error);
+//     });
+// };
+// window.langIsNotJava = langIsNotJava;

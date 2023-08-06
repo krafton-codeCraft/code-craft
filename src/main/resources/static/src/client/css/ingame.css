@@ -315,6 +315,9 @@ button:focus {
 #deck-thress {
   left: 32%; /* Adjust as necessary */
 }
+#language-select{
+  left: 48%;
+}
 
 #deck-one:hover, #deck-two:hover, #deck-thress:hover {
 
