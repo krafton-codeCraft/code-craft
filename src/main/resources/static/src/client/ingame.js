@@ -181,3 +181,4 @@ inputbar.addEventListener("keyup", function (event) {
     event.target.value = ""; // 입력란 비우기
   }
 });
+
