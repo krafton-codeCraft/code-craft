@@ -411,7 +411,7 @@ button:focus {
   position: fixed;
   width: 10%;
   height: 10%;
-  bottom: 15%;
+  bottom: 16%;
   left: 0%; /* Initially hide half of the button off-screen to the right */
   transition: 0.5s;
   backdrop-filter: blur(5px);
@@ -637,18 +637,43 @@ button:focus {
 }
 
 #audio-box {
-  position: absolute; /* or fixed */
-  left: 10px; /* 원하는 왼쪽 간격 */
-  bottom: 10px; /* 원하는 아래쪽 간격 */
-  z-index: 100; /* 다른 요소 위에 올라오도록 z-index 설정 */
+  position: fixed;
+  width: 10%;
+  height: 10%;
+  bottom: 5%;
+  left: 0%;
+  z-index: 10;
   background-color: none;
+  backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column; /* 요소들을 수직으로 배열 */
+  align-items: center; /* 왼쪽 정렬 */
+  justify-content: center;
+  background-color: rgba(123, 173, 230, 0.3);
+  border-radius: 1px;
+  transition: 0.5s;
 }
 
-/* 오디오 박스 내부 요소 스타일링 (필요에 따라 수정) */
-#audioPlayer {
-  width: 300px; /* 원하는 너비 */
+#audio-box.hidden-to-left {
+  left: -30%;
 }
 
-#playPauseBtn, #volumeControl {
-  margin-top: 10px;
+
+#playPauseBtn {
+  color: #fff;
+  width: 80%;
+  background: linear-gradient(45deg, rgba(123, 173, 230, 0.6), rgba(74, 144, 226, 0.6));
+  border-radius: 1px;
+  margin-bottom: 10%;
+}
+
+#playPauseBtn:hover {
+  background: linear-gradient(45deg, rgba(123, 173, 230, 0.8), rgba(74, 144, 226, 0.8));
+}
+
+#volumeControl {
+
+  width: 80%;
+  bottom: 10%;
+
 }
