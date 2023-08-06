@@ -34,8 +34,44 @@
   <canvas id="game-canvas"></canvas>
   
   <button id="toggle-event" class="space-button">Event</button>
-  <div id="event-sidebar" class="sidebar">
+  <div id="event-sidebar" class="event-sidebar">
+    <div class="event-box-run">
+      <strong>
+        run() {
+        
+        }
+      </strong>
+      <br/>
+      <p>기본적인 상태를 의미합니다.</p>
+    </div>
+    
+    <div class="event-box">
+      <strong>
+        onHitByBullet(HitByBulletEvent hitByBulletEvent){
+        
+        }
+      </strong>
+      <br/>
+      <p>내가 총에 맞았을 때 발생하는 이벤트 입니다.</p>
+    </div>
+    <div class="event-box">
+      <strong>
+        onScannedRobot(ScannedRobotEvent event) {
 
+        }
+      </strong>
+      <br/>
+      <p>레이더가 스캐닝을 성공했을 때 발생하는 이벤트 입니다.</p>
+    </div>
+    <div class="event-box">
+      <strong>
+        onBulletHit(BulletHitEvent bulletHitEvent) {
+
+        }
+      </strong>
+      <br/>
+      <p>내가 쏜 총알이 상대방에게 맞았을때 발생하는 이벤트 입니다.</p>
+    </div>
   </div>
 
   <button id="toggle-module" class="space-button">Module</button>
@@ -125,15 +161,9 @@
     </div>
 
     <div id="terminal-box">
-      <div id="terminal-container">
-        <div id="terminal"></div>
-      </div>
-      <div id="separator"></div>
-      <button id="compile-button" th:onclick="run_code()" class="btn">
-        <span class="btn__inner">
-          <span class="btn__slide"></span>
-          <span class="btn__content">Compile</span>
-        </span>
+      <div id="terminal"></div>
+      <button id="compile-button" th:onclick="run_code()">
+        Compile
       </button>
       <div id="loading-button"></div> <!-- index 값을 넘겨줌 -->
     </div>
