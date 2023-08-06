@@ -39,8 +39,8 @@ public class UserController {
         }
         // default 로봇 제공
         robotSpecService.createDefaultRobot(username);
-
-        return "redirect:/";
+        userService.login(username, password);
+        return "redirect:/lobby";
     }
 
     @GetMapping("/login")
