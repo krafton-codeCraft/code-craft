@@ -935,7 +935,7 @@ public class RobotPeer {
         if (hp <= 0) {
             RobotPeer owner = bulletPeer.owner;
             log.info("username: {}", owner.getUsername());
-            owner.addHp(20);
+            owner.addHp(3);
             score += 2;
             LeaderBoardTemplate.updateLeaderBoard(battle.getId(), owner.getUsername(), 2);
             onDead();
