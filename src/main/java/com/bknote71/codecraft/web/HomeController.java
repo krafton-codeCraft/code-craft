@@ -101,14 +101,17 @@ public class HomeController {
         }
 
         String javaCode = compileRequest.getCode();
-        if (compileRequest.getLang() != null && compileRequest.getLang() != "java") {
-             javaCode = convertJavaCode.convertLangToJava(compileRequest.getLang(), compileRequest.getCode());
+        String lang = compileRequest.getLang();
+        if ((lang != null && !lang.isEmpty() && !lang.isBlank() && !lang.equals("undefined"))
+                && compileRequest.getLang() != "java") {
+            log.info("lang: {}", lang);
+            javaCode = convertJavaCode.convertLangToJava(compileRequest.getLang(), compileRequest.getCode());
         }
 
         AwsS3ClassLoader classLoader = new AwsS3ClassLoader("robot-class");
         CompileResult result = classLoader.createRobot(username, javaCode);
 
-        RobotSpecDto changeResult = null;
+        RobotSpecDto changeResult;
         if (result.exitCode == 0) {
             // 컴파일에 성공하면 신호를 줘야함
             changeResult = robotSpecService.changeRobotSpec(username, compileRequest, result.robotname,
@@ -121,7 +124,7 @@ public class HomeController {
         }
 
         result.username = username;
-        result.lang = changeResult.getLang();
+        result.lang = lang;
 
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

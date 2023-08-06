@@ -24,7 +24,7 @@ public class CodeConvertService {
     private String gpt_model;
 
     public String convertLangToJava(String lang, String code) {
-        String systemcmd = String.format("이제부터 %s 코드를 자바 코드로 변환할거야. 이때 자바코드 이외의 설명은 필요 없어. 그리고 틀린 부분이 있어도 고치지 않고 자바코드로 변환해줘줘", lang);
+        String systemcmd = String.format("이제부터 %s 코드를 public 자바 class 코드로 변환할거야. Robot 이라는 클래스를 상속하고 있고 정의하지 않아도 괜찮아. 이때 자바코드 이외의 설명은 필요 없어. 그리고 틀린 부분이 있어도 고치지 않고 자바코드로 변환해줘줘", lang);
         log.info(lang, code);
         return convert(systemcmd, code);
     }

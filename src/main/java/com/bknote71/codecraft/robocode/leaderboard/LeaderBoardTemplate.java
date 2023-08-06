@@ -24,6 +24,7 @@ public class LeaderBoardTemplate {
     }
 
     public static void updateLeaderBoard(int battleId, String username, int score) {
+        System.out.println("update leader board: " + battleId + ", username" + username + ", score: " + score);
         ops.add(prefix + ":" + battleId, username, score); // 실시간 점수
     }
 
