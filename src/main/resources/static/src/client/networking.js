@@ -7,7 +7,7 @@ import { processGameUpdate } from './state.js';
 // import renderCheckbox from './htmlComponent/checkbox';
 // import redis from 'redis';
 import { handleChat } from './chat.js';
-import { displayRanking } from './lobby.js';
+import { displayRanking } from './codeSpace.js';
 
 const compileSidebar = document.getElementById("compile-sidebar");
 
