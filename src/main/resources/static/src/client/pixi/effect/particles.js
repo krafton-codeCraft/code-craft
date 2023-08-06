@@ -237,12 +237,12 @@ export class warpEffect{
   createEmitter(x,y) {
     const emitter = new PIXI.particles.Emitter(this.container, PIXI.Texture.from(getAsset('particle.png')), {
       alpha: {
-        start: 0.4,
-        end: 0.5
+        start: 0.2,
+        end: 0.8
       },
       scale: {
         start: 0.1,
-        end: 1,
+        end: 0.2,
         minimumScaleMultiplier: 1
       },
       color: {
@@ -269,13 +269,94 @@ export class warpEffect{
         max: 2
       },
       lifetime: {
-        min: 0.4,
-        max: 0.4
+        min: 0.3,
+        max: 0.5
       },
       blendMode: "normal",
       frequency: 0.001,
       emitterLifetime: 1,
       maxParticles: 500,
+      pos: {
+        x: x,
+        y: y
+      },
+      addAtBack: false,
+      spawnType: "burst",
+      particlesPerWave: 1,
+      particleSpacing: 0,
+      angleStart: 0
+    });
+    return emitter;
+  }
+ 
+}
+
+export class warpoutEffect{
+  constructor(app , x , y){
+    this.app = app;
+    this.container = new PIXI.particles.ParticleContainer(500, {
+      scale: true,
+      position: true,
+      rotation: true,
+      uvs: true,
+      tint: true
+    });
+    this.emitter = this.createEmitter(x,y);
+    this.app.stage.addChild(this.container);
+    this.emitter.emit = true;
+    
+    this.emitter.playOnceAndDestroy(() => {
+      this.removeEffect()
+    });
+  }
+
+  removeEffect(){
+    this.app.stage.removeChild(this.container);
+    this.emitter = null;
+  }
+
+  createEmitter(x,y) {
+    const emitter = new PIXI.particles.Emitter(this.container, PIXI.Texture.from(getAsset('particle.png')), {
+      alpha: {
+        start: 0,
+        end: 0.8
+      },
+      scale: {
+        start: 0.1,
+        end: 0.1,
+        minimumScaleMultiplier: 1
+      },
+      color: {
+        start: "#000000",
+        end: "#ffffff"
+      },
+      speed: {
+        start: 100,
+        end: 5,
+        minimumSpeedMultiplier: 1
+      },
+      acceleration: {
+        x: 1,
+        y: 1
+      },
+      maxSpeed: 0,
+      startRotation: {
+        min: 0,
+        max: 360
+      },
+      noRotation: false,
+      rotationSpeed: {
+        min: 3,
+        max: 2
+      },
+      lifetime: {
+        min: 0.3,
+        max: 0.5
+      },
+      blendMode: "normal",
+      frequency: 0.001,
+      emitterLifetime: 1,
+      maxParticles: 1000,
       pos: {
         x: x,
         y: y
