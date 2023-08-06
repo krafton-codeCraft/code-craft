@@ -152,6 +152,8 @@ public class Battle {
             return;
         }
 
+        LeaderBoardTemplate.updateTodayLeaderBoard(robotPeer.getUsername(), robotPeer.getScore());
+
         log.info("robot peer cleanup");
         robotPeer.cleanup();
     }

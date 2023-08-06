@@ -6,10 +6,8 @@ import org.springframework.data.redis.core.ScanOptions;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
@@ -26,7 +24,11 @@ public class LeaderBoardTemplate {
     }
 
     public static void updateLeaderBoard(int battleId, String username, int score) {
-        ops.add(prefix + ":" + battleId, username, score);
+        ops.add(prefix + ":" + battleId, username, score); // 실시간 점수
+    }
+
+    public static void updateTodayLeaderBoard(String username, int score) { // 죽었을 때나 혹은 종료되었을 때 업데이트
+        ops.add(prefix + ":" + LocalDate.now().toString(), username, score);
     }
 
     public static List<LeaderBoardInfo> getLeaderBoard(int battleId) {
@@ -42,11 +44,10 @@ public class LeaderBoardTemplate {
         return leaderBoardInfos;
     }
 
-
     public static void union() {
-        // 모든 룸들의 플레이어들을 통합 <<
-        String pattern = prefix + ":*";
-        String destKey = "today_ranking";
+        // 모든 룸들의 today 플레이어들을 통합 <<
+        String pattern = prefix + ":*-*-*";
+        String destKey = "total_ranking";
         Set<String> keys = scanKeysByPattern(pattern);
         ops.unionAndStore(destKey, keys, destKey);
     }
@@ -64,8 +65,8 @@ public class LeaderBoardTemplate {
         return keys;
     }
 
-    public static List<LeaderBoardInfo> getTodayRanking() {
-        Set<ZSetOperations.TypedTuple<String>> typedTuples = ops.reverseRangeWithScores("today_ranking", 0, -1);
+    public static List<LeaderBoardInfo> getTotalRanking() {
+        Set<ZSetOperations.TypedTuple<String>> typedTuples = ops.reverseRangeWithScores("total_ranking", 0, -1);
         return typedTuples.stream()
                 .map(typedTuple -> {
                     String username = typedTuple.getValue();
@@ -75,4 +76,19 @@ public class LeaderBoardTemplate {
                 .collect(Collectors.toList());
     }
 
+    public static List<LeaderBoardInfo> getTodayRanking() {
+        String pattern = prefix + ":" + LocalDate.now();
+        Set<ZSetOperations.TypedTuple<String>> typedTuples = ops.reverseRangeWithScores(pattern, 0, -1);
+        return typedTuples.stream()
+                .map(typedTuple -> {
+                    String username = typedTuple.getValue();
+                    Double score = typedTuple.getScore();
+                    return new LeaderBoardInfo(username, score.intValue());
+                })
+                .collect(Collectors.toList());
+    }
+
+    public static void unionTotal() {
+
+    }
 }

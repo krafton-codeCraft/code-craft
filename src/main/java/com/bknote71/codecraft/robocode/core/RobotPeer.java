@@ -917,6 +917,13 @@ public class RobotPeer {
 
         status.set(stat);
     }
+    
+    // score
+    private int score = 0;
+
+    public int getScore() {
+        return 0;
+    }
 
     // onXXX
     public void onDamaged(BulletPeer bulletPeer) {
@@ -929,6 +936,7 @@ public class RobotPeer {
             RobotPeer owner = bulletPeer.owner;
             log.info("username: {}", owner.getUsername());
             owner.addHp(20);
+            score += 2;
             LeaderBoardTemplate.updateLeaderBoard(battle.getId(), owner.getUsername(), 2);
             onDead();
             return;
@@ -944,6 +952,7 @@ public class RobotPeer {
     }
 
     public void onDead() { // 죽음 ?? 리스폰 해야함
+        LeaderBoardTemplate.updateTodayLeaderBoard(getUsername(), score);
         // 죽음 처리 작업 푸쉬
         if (isAlive()) {
             // addEvent(new DeathEvent());
