@@ -24,12 +24,12 @@ public class LeaderBoardTemplate {
     }
 
     public static void updateLeaderBoard(int battleId, String username, double score) {
-        System.out.println("update leader board: " + battleId + ", username" + username + ", score: " + score);
-        ops.add(prefix + ":" + battleId, username, score); // 실시간 점수
+        System.out.println("update leader board: " + battleId + ", username " + username + ", score: " + score);
+        ops.incrementScore(prefix + ":" + battleId, username, score); // 실시간 점수
     }
 
     public static void updateTodayLeaderBoard(String username, double score) { // 죽었을 때나 혹은 종료되었을 때 업데이트
-        ops.add(prefix + ":" + LocalDate.now().toString(), username, score);
+        ops.incrementScore(prefix + ":" + LocalDate.now().toString(), username, score);
     }
 
     public static List<LeaderBoardInfo> getLeaderBoard(int battleId) {
