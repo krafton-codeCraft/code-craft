@@ -19,6 +19,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.3.10/pixi.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi-particles/4.3.1/pixi-particles.min.js"></script>
   <script src="src/client/networking.js"></script>
+  <script src="src/client/backgroundMusic.js"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
@@ -154,13 +155,13 @@
       <button id="deck-one" th:onclick="selectDeckIndex(0)">1</button>
       <button id="deck-two" th:onclick="selectDeckIndex(1)">2</button>
       <button id="deck-thress" th:onclick="selectDeckIndex(2)">3</button>
-      <label for="language-select">언어를 선택해주세요:</label>
+      <!-- <label for="language-select">언어를 선택해주세요:</label>
       <select id="language-select">
         <option value="java" selected>자바</option>
         <option value="javascript">자바스크립트</option>
         <option value="python">파이썬</option>
         <option value="cpp">C++</option>
-      </select>
+      </select> -->
     </div>
 
     <div id="container">
@@ -175,7 +176,11 @@
       <div id="loading-button"></div> <!-- index 값을 넘겨줌 -->
     </div>
   </div>
-
+  <audio id="audioPlayer" autoplay loop>
+    <source src="public/assets/NLP_Lobby_Final_Loop.wav" type="audio/wav">
+  </audio>
+  <button id="playPauseBtn">Play/Pause</button>
+  <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.5">
   <div id="leaderboard">
 
     <table>
