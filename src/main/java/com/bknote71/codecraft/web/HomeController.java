@@ -100,13 +100,13 @@ public class HomeController {
             return new ResponseEntity<>(new CompileResult(0, "same code"), HttpStatus.OK);
         }
 
+        String javaCode = compileRequest.getCode();
         if (compileRequest.getLang() != null && compileRequest.getLang() != "java") {
-            String javaCode = convertJavaCode.convertLangToJava(compileRequest.getLang(), compileRequest.getCode());
-            compileRequest.setCode(javaCode);
+             javaCode = convertJavaCode.convertLangToJava(compileRequest.getLang(), compileRequest.getCode());
         }
 
         AwsS3ClassLoader classLoader = new AwsS3ClassLoader("robot-class");
-        CompileResult result = classLoader.createRobot(username, compileRequest.getCode());
+        CompileResult result = classLoader.createRobot(username, javaCode);
 
         RobotSpecDto changeResult = null;
         if (result.exitCode == 0) {

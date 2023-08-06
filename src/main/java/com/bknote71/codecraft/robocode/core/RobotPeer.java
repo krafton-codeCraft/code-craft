@@ -925,6 +925,11 @@ public class RobotPeer {
         return 0;
     }
 
+    private void addScore(int score) {
+        this.score += score;
+    }
+
+
     // onXXX
     public void onDamaged(BulletPeer bulletPeer) {
         if (battle == null)
@@ -935,8 +940,8 @@ public class RobotPeer {
         if (hp <= 0) {
             RobotPeer owner = bulletPeer.owner;
             log.info("username: {}", owner.getUsername());
-            owner.addHp(3);
-            score += 2;
+            owner.addHp(20);
+            owner.addScore(2);
             LeaderBoardTemplate.updateLeaderBoard(battle.getId(), owner.getUsername(), 2);
             onDead();
             return;
@@ -952,7 +957,9 @@ public class RobotPeer {
     }
 
     public void onDead() { // 죽음 ?? 리스폰 해야함
+        LeaderBoardTemplate.updateLeaderBoard(battle.getId(), getUsername(), -score);
         LeaderBoardTemplate.updateTodayLeaderBoard(getUsername(), score);
+        score = 0; // 스코어 초기화
         // 죽음 처리 작업 푸쉬
         if (isAlive()) {
             // addEvent(new DeathEvent());
