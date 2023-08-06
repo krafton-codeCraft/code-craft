@@ -1,7 +1,7 @@
 import { robotId } from '../../networking'
 import { playerSprites } from '../player/player'
 
-const scanSprites = {};
+export const scanSprites = {};
 
 export function renderScan(scan, app) {
     const { id } = scan;
