@@ -63,13 +63,13 @@ function createNewPlayerSprite(player){
     bodyship.tint = randcolor
     robotContainer.addChildAt(bodyship,0);
     
-    const gunhead = new PIXI.Sprite(PIXI.Texture.from(getAsset('ship.svg')));
+    const gunhead = new PIXI.Sprite(PIXI.Texture.from(getAsset('ship2.svg')));
     gunhead.anchor.set(0.5);
     gunhead.x = canvasX;
     gunhead.y = canvasY;
     gunhead.rotation = Math.PI - gunHeading;
-    gunhead.width = PLAYER_RADIUS;
-    gunhead.height = PLAYER_RADIUS;
+    gunhead.width = 0;
+    gunhead.height = 0;
     gunhead.tint = 0x000000;
     robotContainer.addChildAt(gunhead,1);
 
