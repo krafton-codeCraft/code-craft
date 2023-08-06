@@ -21,12 +21,16 @@ const ASSET_IMAGE_NAMES = [
   'react.svg',
   'vite.svg',
   'particle.png',
+ 
 ];
 
 const ASSET_SOUND_NAMES =[
   'fire.mp3',
   'BoomTwice.mp3',
   'InsertCoin.mp3',
+  'NLP_InGame_Final_Int.wav',
+  'NLP_Lobby_Final_Loop.wav',
+
 ];
 // assets을 저장할 객체
 const assets = {};

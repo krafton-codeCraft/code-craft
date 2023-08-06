@@ -19,6 +19,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.3.10/pixi.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi-particles/4.3.1/pixi-particles.min.js"></script>
   <script src="src/client/networking.js"></script>
+  <script src="src/client/backgroundMusic.js"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
@@ -184,7 +185,11 @@
     </div>
 
   </div>
-
+  <audio id="audioPlayer" autoplay loop>
+    <source src="assets/NLP_Lobby_Final_Loop.wav" type="audio/wav">
+  </audio>
+  <button id="playPauseBtn">Play/Pause</button>
+  <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.5">
   <div id="leaderboard">
 
     <table>
