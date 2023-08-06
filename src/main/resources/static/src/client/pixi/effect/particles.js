@@ -1,671 +1,223 @@
 import { getAsset } from '../../assets';
-import { line , test } from './emitter_config';
 
-/* const emitterObject = new PIXI.utils.EventEmitter();
-const customEventName = "customEvent";
-
-export function triggerCustomEvent(x, y) {
-  emitterObject.emit(customEventName, x, y);
-} */
-
-/* export function particletest(app){
-PIXI.settings.RESOLUTION = window.devicePixelRatio || 1;
-
-const sharpness = 1;
-const minDelta = 0.05;
-
-const texture = createTexture(0, 8, app.renderer.resolution);
-const pointer = new PIXI.Point(app.screen.width / 2, app.screen.height / 2);
-const emitterPos = pointer.clone();
-
-const container = new PIXI.ParticleContainer(1000, {
-  scale: true,
-  position: true,
-  rotation: false,
-  uvs: false,
-  tint: true
-});
-
-const emitter = new PIXI.particles.Emitter(container, [texture], line);
-
-let resized = false;
-
-emitter.updateOwnerPos(emitterPos.x, emitterPos.y);
-
-app.stage.addChild(container);
-app.stage.interactive = true;
-app.ticker.add(onTick);
-//app.stage.on("pointermove", event => pointer.copy(event.data.global));
-//
-
-emitterObject.on(customEventName, (x, y) => {
-  pointer.x = x;
-  pointer.y = y;
-});
-
-//
-function onTick(delta) {
-  
-  if (!emitterPos.equals(pointer)) {
-        
-    const dt = 1 - Math.pow(1 - sharpness, delta); 
-    const dx = pointer.x - emitterPos.x;
-    const dy = pointer.y - emitterPos.y;
-    
-
-    const interpolatedX = interpolateXPosition(emitterPos.x, pointer.x, dt);
-    const interpolatedY = interpolateYPosition(emitterPos.y, pointer.y, dt);
-
-    emitterPos.x = interpolatedX;
-    emitterPos.y = interpolatedY;
-
-    // if (Math.abs(dx) > minDelta) {
-    //   emitterPos.x += dx * dt;
-    // } else {
-    //   emitterPos.x = pointer.x;
-    // }
-
-    // if (Math.abs(dy) > minDelta) {
-    //   emitterPos.y += dy * dt;
-    // } else {
-    //   emitterPos.y = pointer.y;
-    // }    
-    
-    emitter.updateOwnerPos(emitterPos.x, emitterPos.y);
-  }
-
-}
-
-// 위치 값을 보간하는 함수
-function interpolateYPosition(p1, p2, ratio) {
-  const distance = Math.abs(p2 - p1);
-  if (distance > 1000 / 2) {
-    // 경계를 넘어가는 경우, 반대편으로 회전하여 보간
-    if (p1 < p2) {
-      p1 += 1000;
-    } else {
-      p1 -= 1000;
-    }
-  }
-  return p1 + (p2 - p1) * ratio;
-}
-
-function interpolateXPosition(p1, p2, ratio) {
-  const distance = Math.abs(p2 - p1);
-  if (distance > 1500 / 2) {
-    // 경계를 넘어가는 경우, 반대편으로 회전하여 보간
-    if (p1 < p2) {
-      p1 += 1500;
-    } else {
-      p1 -= 1500;
-    }
-  }
-  return p1 + (p2 - p1) * ratio;
-}
-  function createTexture(r1, r2, resolution) {
-      
-    const c = (r2 + 1) * resolution;
-    r1 *= resolution;
-    r2 *= resolution;
-      
-    const canvas = document.createElement("canvas");
-    const context = canvas.getContext("2d");
-    canvas.width = canvas.height = c * 2;
-    
-    const gradient = context.createRadialGradient(c, c, r1, c, c, r2);
-    gradient.addColorStop(0, "rgba(255,255,255,1)");
-    gradient.addColorStop(1, "rgba(255,255,255,0)");
-    
-    context.fillStyle = gradient;
-    context.fillRect(0, 0, canvas.width, canvas.height);
-    
-    return PIXI.Texture.from(canvas);
-  }
-
-} */
-
-/* export function particletest2(app){
-  PIXI.settings.RESOLUTION = window.devicePixelRatio || 1;
-
-  const sharpness = 0.1;
-  const minDelta = 0.05;
-  
-  const texture = createTexture(0, 8, app.renderer.resolution);
-  const pointer = new PIXI.Point(app.screen.width / 2, app.screen.height / 2);
-  const emitterPos = pointer.clone();
-  
-  const container = new PIXI.ParticleContainer(1000, {
-    scale: true,
-    position: true,
-    rotation: true,
-    uvs: false,
-    tint: true
-  });
-
-  const emitter = new PIXI.particles.Emitter(container, [texture], test);
-  
-  let resized = false;
-  
-  emitter.updateOwnerPos(emitterPos.x, emitterPos.y);
-  
-  app.stage.addChild(container);
-  app.stage.interactive = true;
-  app.ticker.add(onTick);
-  app.stage.on("pointermove", event => pointer.copy(event.data.global));
-  
-  
-  function onTick(delta) {
-    
-    if (!emitterPos.equals(pointer)) {
-          
-      const dt = 1 - Math.pow(1 - sharpness, delta); 
-      const dx = pointer.x - emitterPos.x;
-      const dy = pointer.y - emitterPos.y;
-      
-      if (Math.abs(dx) > minDelta) {
-        emitterPos.x += dx * dt;
-      } else {
-        emitterPos.x = pointer.x;
-      }
-  
-      if (Math.abs(dy) > minDelta) {
-        emitterPos.y += dy * dt;
-      } else {
-        emitterPos.y = pointer.y;
-      }    
-      
-      emitter.updateOwnerPos(emitterPos.x, emitterPos.y);
-    }
-  
-  }
-  
-    function createTexture(r1, r2, resolution) {
-        
-      const c = (r2 + 1) * resolution;
-      r1 *= resolution;
-      r2 *= resolution;
-        
-      const canvas = document.createElement("canvas");
-      const context = canvas.getContext("2d");
-      canvas.width = canvas.height = c * 2;
-      
-      const gradient = context.createRadialGradient(c, c, r1, c, c, r2);
-      gradient.addColorStop(0, "rgba(255,255,255,1)");
-      gradient.addColorStop(1, "rgba(255,255,255,0)");
-      
-      context.fillStyle = gradient;
-      context.fillRect(0, 0, canvas.width, canvas.height);
-      
-      return PIXI.Texture.from(canvas);
-    }
-} */
-
-export class ParticleEffect {
-  constructor(app) {
+export class BoosterEffect {
+  constructor(app , x , y){
     this.app = app;
-    this.container = new PIXI.ParticleContainer(400, {
+    this.container = new PIXI.particles.ParticleContainer(500, {
       scale: true,
       position: true,
       rotation: false,
       uvs: false,
-      tint: true,
+      tint: true
     });
-
-    this.emitter = this.createEmitter();
-    this.pointer = new PIXI.Point(this.app.screen.width / 2, this.app.screen.height / 2);
+    this.minDelta = 0.01;
+    this.pointer = new PIXI.Point(x, y);
     this.emitterPos = this.pointer.clone();
+    this.emitter = this.createEmitter();
+    this.resized = false;
 
-    this.emitterObject = new PIXI.utils.EventEmitter();
-    this.customEventName = Math.random();
-
+    this.app.stage.addChild(this.container);
     this.app.stage.interactive = true;
     this.app.ticker.add(this.onTick.bind(this));
+  }
 
-    // 이벤트 리스너 추가
-    this.emitterObject.on(this.customEventName, (x, y) => {
-      this.pointer.x = x;
-      this.pointer.y = y;
-    });
+  removeEffect(){
+    this.app.stage.removeChild(this.container);
+    this.emitter = null;
+  }
+
+  moveTo(x, y) {
+    this.pointer.set(x, y);
   }
 
   createEmitter() {
     const texture = this.createTexture(0, 8, this.app.renderer.resolution);
-
-    const emitter = new PIXI.particles.Emitter(this.container, [texture], line);
-
+    const emitter = new PIXI.particles.Emitter(this.container, [texture], {
+      autoUpdate: true,
+      alpha: {
+        start: 0.9,
+        end: 0.1
+      },
+      scale: {
+        start: 0.5,
+        end: 0.4,
+        minimumScaleMultiplier: 1
+      },
+      color: {
+        start: "#e3f9ff",
+        end: "#2196F3"
+      },
+      speed: {
+        start: 0,
+        end: 0,
+        minimumSpeedMultiplier: 1
+      },
+      acceleration: {
+        x: 0,
+        y: 0
+      },
+      maxSpeed: 0,
+      startRotation: {
+        min: 0,
+        max: 0
+      },
+      noRotation: true,
+      rotationSpeed: {
+        min: 0,
+        max: 0
+      },
+      lifetime: {
+        min: 0.1,
+        max: 0.1
+      },  
+      blendMode: "normal",
+      frequency: 0.0008,
+      emitterLifetime: -1,
+      maxParticles: 500,
+      pos: {
+        x: 0,
+        y: 0
+      },
+      addAtBack: false,
+      spawnType: "point"
+    });
     return emitter;
   }
 
   onTick(delta) {
+    if (this.resized) {
+      this.app.renderer.resize(window.innerWidth, window.innerHeight);
+      this.resized = false;
+    }
+
     if (!this.emitterPos.equals(this.pointer)) {
       const dt = 1;
       const dx = this.pointer.x - this.emitterPos.x;
       const dy = this.pointer.y - this.emitterPos.y;
 
-      const interpolatedX = this.interpolateXPosition(this.emitterPos.x, this.pointer.x, dt);
-      const interpolatedY = this.interpolateYPosition(this.emitterPos.y, this.pointer.y, dt);
+      if (Math.abs(dx) > this.minDelta) {
+        this.emitterPos.x += dx * dt;
+      } else {
+        this.emitterPos.x = this.pointer.x;
+      }
 
-      this.emitterPos.x = interpolatedX;
-      this.emitterPos.y = interpolatedY;
+      if (Math.abs(dy) > this.minDelta) {
+        this.emitterPos.y += dy * dt;
+      } else {
+        this.emitterPos.y = this.pointer.y;
+      }
 
       this.emitter.updateOwnerPos(this.emitterPos.x, this.emitterPos.y);
     }
-  }
-
-  triggerCustomEvent(x, y) {
-    this.emitterObject.emit(this.customEventName , x, y);
-  }
-
-  // 위치 값을 보간하는 함수
-  interpolateYPosition(p1, p2, ratio) {
-    const distance = Math.abs(p2 - p1);
-    if (distance > 1000 / 2) {
-      // 경계를 넘어가는 경우, 반대편으로 회전하여 보간
-      if (p1 < p2) {
-        p1 += 1000;
-      } else {
-        p1 -= 1000;
-      }
-    }
-    return p1 + (p2 - p1) * ratio;
-  }
-
-  interpolateXPosition(p1, p2, ratio) {
-    const distance = Math.abs(p2 - p1);
-    if (distance > 1500 / 2) {
-      // 경계를 넘어가는 경우, 반대편으로 회전하여 보간
-      if (p1 < p2) {
-        p1 += 1500;
-      } else {
-        p1 -= 1500;
-      }
-    }
-    return p1 + (p2 - p1) * ratio;
   }
 
   createTexture(r1, r2, resolution) {
     const c = (r2 + 1) * resolution;
     r1 *= resolution;
     r2 *= resolution;
-
+      
     const canvas = document.createElement("canvas");
     const context = canvas.getContext("2d");
     canvas.width = canvas.height = c * 2;
-
+    
     const gradient = context.createRadialGradient(c, c, r1, c, c, r2);
     gradient.addColorStop(0, "rgba(255,255,255,1)");
     gradient.addColorStop(1, "rgba(255,255,255,0)");
-
+    
     context.fillStyle = gradient;
     context.fillRect(0, 0, canvas.width, canvas.height);
-
-    return PIXI.Texture.from(canvas);
-  }
-}
-
-import { rand, lerp, gradient, colorGradient, colorLerp } from './utility';
-
-/* export function starParticletest(){
-
-// canvas to use as the particle texture
-let textureCanvas = document.createElement('canvas');
-document.body.append(textureCanvas);
-textureCanvas.width = textureCanvas.height = 16;
-let textureContext = textureCanvas.getContext('2d');
-textureContext.fillStyle = '#ffffff';
-textureContext.beginPath();
-textureContext.ellipse(8, 8, 4, 4, 0, 0, 6.28);
-textureContext.fill();
-
-let app = new PIXI.Application({
-  width: WIDTH,
-  height: HEIGHT
-});
-document.body.appendChild(app.view);
-
-let effect = new PIXI.particles.ParticleContainer(1000, {
-    position: true,
-    rotation: true,
-    scale: true,
-    uvs: true,
-    tint: true,
-    alpha: true
-});
-app.stage.addChild(effect);
-
-let particles = [];
-
-let totalSprites = app.renderer instanceof PIXI.WebGLRenderer ? 200 : 100;
-
-function resetParticle(particle) {
-  particle.x = WIDTH / 2;
-  particle.y = HEIGHT / 2;
-  particle.size = rand(.05, .1);
-  particle.speed = rand(0, 100);
-  particle.angle = rand(0, 2 * Math.PI);
-  particle.rotation = particle.angle;
-  particle.life = rand(500, 800);
-}
-
-function resetEffect({ x, y }) {
-  effect.x = x;
-  effect.y = y;
-  particles.forEach(resetParticle);
-  effect.start = Date.now();
-  let tint = [
-    0xff0000,
-    0x00ff00,
-    0x00ffff,
-    0xffff00,
-    0xff00ff,
-    0xffffff
-  ][Math.random() * 6 | 0];
-  effect.tintGradient = [
-    [0, 0xFFFFFF],
-    [1, tint]
-  ];
-  effect.brightnessGradient = [
-    [0, 1],
-    [.8, 1],
-    [.96, 0],
-    [.97, 1],
-    [.98, 0],
-    [.99, 1],
-    [1, 0]
-  ];
-}
-
-app.loader.add('star', 'https://cdn.glitch.com/a10133ef-3919-4200-ad35-26200e16b146%2Fwhite-star.png?v=1562875677679')
-.load(function (loader, resources) {
-  
-  for (let i = 0; i < totalSprites; i++) {
-    let particle = new PIXI.Sprite(resources.star.texture);
-
-    particle.anchor.set(0.5);
     
-    resetParticle(particle);
-  
-    particles.push(particle);
-
-    effect.addChild(particle);
-  }
-  
-  let waiting = false;
-  app.ticker.add(function() {
-    let now = Date.now();
-    let elapsed = now - effect.start;
-    for (let i = 0; i < particles.length; i++) {
-      let particle = particles[i];
-      let t = Math.min(elapsed / particle.life, 1);
-      let easedT = Math.pow(t, 1 / 3);
-      let distance = lerp(0, particle.speed, easedT);
-      particle.alpha = gradient(effect.brightnessGradient, t);
-      particle.tint = colorGradient(effect.tintGradient, t);
-      particle.scale.x = particle.size * lerp(.5, 1, t);
-      particle.scale.y = particle.size * lerp(.5, 1, t);
-      particle.x = (
-        Math.cos(particle.angle) *
-        distance
-      );
-      particle.y = (
-        Math.sin(particle.angle) *
-        distance
-      );
-    }
-    if (elapsed > 1500 && !waiting) {
-      waiting = true;
-      setTimeout(() => {
-        waiting = false;
-        resetEffect({
-          x: rand(0, WIDTH),
-          y: rand(0, HEIGHT)
-        });
-      }, rand(1000, 2000))
-    }
-  });
-
-  app.view.addEventListener('click', function (e) {
-    resetEffect({
-      x: e.pageX - app.view.offsetLeft,
-      y: e.pageY - app.view.offsetTop
-    });
-  });
-
-  resetEffect({
-    x: WIDTH / 2,
-    y: HEIGHT / 2
-  });
-});
-
-
-} */
-
-export class StarParticleEffect {
-  constructor(app, x, y) {
-    this.x = x;
-    this.y = y; 
-    this.particles = [];
-    this.totalSprites = PIXI.utils.isWebGLSupported() ? 200 : 100;
-    this.app = app
-
-    this.effect = new PIXI.particles.ParticleContainer(1000, {
-      position: true,
-      rotation: true,
-      scale: true,
-      uvs: true,
-      tint: true,
-      alpha: true
-    });
-
-    this.textureCanvas = document.createElement('canvas');
-    this.textureCanvas.width = this.textureCanvas.height = 16;
-    this.textureContext = this.textureCanvas.getContext('2d');
-    this.textureContext.fillStyle = '#ffffff';
-    this.textureContext.beginPath();
-    this.textureContext.ellipse(8, 8, 4, 4, 0, 0, 6.28);
-    this.textureContext.fill();
-
-    this.app.loader.add('star', 'https://cdn.glitch.com/a10133ef-3919-4200-ad35-26200e16b146%2Fwhite-star.png?v=1562875677679')
-      .load((loader, resources) => {
-        for (let i = 0; i < this.totalSprites; i++) {
-          let particle = new PIXI.Sprite(resources.star.texture);
-          particle.anchor.set(0.5);
-          this.resetParticle(particle);
-          this.particles.push(particle);
-          this.effect.addChild(particle);
-        }
-
-        this.app.ticker.add(this.update.bind(this));
-
-        this.resetEffect({
-          x: this.x,
-          y: this.y
-        });
-      });
+    return PIXI.Texture.fromCanvas(canvas);
   }
 
-  resetParticle(particle) {
-    particle.x = this.x;
-    particle.y = this.y;
-    particle.size = rand(0.05, 0.1);
-    particle.speed = rand(0, 100);
-    particle.angle = rand(0, 2 * Math.PI);
-    particle.rotation = particle.angle;
-    particle.life = rand(500, 800);
-  }
-
-  resetEffect({ x, y }) {
-    this.effect.x = x;
-    this.effect.y = y;
-    this.particles.forEach(this.resetParticle);
-    this.effect.start = Date.now();
-    let tint = [
-      0xff0000,
-      0x00ff00,
-      0x00ffff,
-      0xffff00,
-      0xff00ff,
-      0xffffff
-    ][Math.random() * 6 | 0];
-    this.effect.tintGradient = [
-      [0, 0xFFFFFF],
-      [1, tint]
-    ];
-    this.effect.brightnessGradient = [
-      [0, 1],
-      [0.8, 1],
-      [0.96, 0],
-      [0.97, 1],
-      [0.98, 0],
-      [0.99, 1],
-      [1, 0]
-    ];
-  }
-
-  update() {
-    let now = Date.now();
-    let elapsed = now - this.effect.start;
-    for (let i = 0; i < this.particles.length; i++) {
-      let particle = this.particles[i];
-      let t = Math.min(elapsed / particle.life, 1);
-      let easedT = Math.pow(t, 1 / 3);
-      let distance = lerp(0, particle.speed, easedT);
-      particle.alpha = gradient(this.effect.brightnessGradient, t);
-      particle.tint = colorGradient(this.effect.tintGradient, t);
-      particle.scale.x = particle.size * lerp(0.5, 1, t);
-      particle.scale.y = particle.size * lerp(0.5, 1, t);
-      particle.x = (
-        Math.cos(particle.angle) *
-        distance
-      );
-      particle.y = (
-        Math.sin(particle.angle) *
-        distance
-      );
-    }
-    if (elapsed > 1500 && !this.waiting) {
-      this.waiting = true;
-      setTimeout(() => {
-        this.app.stage.removeChild(this.effect);
-      }, 1500)
-    }
-  }
 }
 
-export class StarParticleEffect2 {
-  constructor(app) {
+export class explosionEffect{
+  constructor(app , x , y){
     this.app = app;
-    this.effect = new PIXI.particles.ParticleContainer(1000, {
-      position: true,
-      rotation: true,
+    this.container = new PIXI.particles.ParticleContainer(2000, {
       scale: true,
-      uvs: true,
-      tint: true,
-      alpha: true,
+      position: true,
+      rotation: false,
+      uvs: false,
+      tint: true
     });
-    this.app.stage.addChild(this.effect);
-    this.particles = [];
-    this.totalSprites = this.app.renderer instanceof PIXI.WebGLRenderer ? 200 : 100;
+    this.emitter = this.createEmitter(x,y);
+    this.app.stage.addChild(this.container);
+    this.emitter.emit = true;
+    
+    this.emitter.playOnceAndDestroy(() => {
+      this.removeEffect()
+    });
   }
 
-  createParticleAtPosition(x, y) {
-    for (let i = 0; i < this.totalSprites; i++) {
-      let particle = new PIXI.Sprite(this.app.loader.resources.star.texture);
-      particle.anchor.set(0.5);
-      this.resetParticle(particle);
-      this.particles.push(particle);
-      this.effect.addChild(particle);
-      particle.x = x;
-      particle.y = y;
-    }
+  removeEffect(){
+    this.app.stage.removeChild(this.container);
+    this.emitter = null;
   }
 
-  resetParticle(particle) {
-    particle.x = WIDTH / 2;
-    particle.y = HEIGHT / 2;
-    particle.size = rand(.05, .1);
-    particle.speed = rand(0, 100);
-    particle.angle = rand(0, 2 * Math.PI);
-    particle.rotation = particle.angle;
-    particle.life = rand(500, 800);
+  createEmitter(x,y) {
+    const emitter = new PIXI.particles.Emitter(this.container, PIXI.Texture.from(getAsset('particle.png')), {
+      alpha: {
+          start: 1,
+          end: 0.15
+      },
+      scale: {
+          start: 0.1,
+          end: 0.3,
+          minimumScaleMultiplier: 0.5
+      },
+      color: {
+          start: "#f2ff00",
+          end: "#ff0000"
+      },
+      speed: {
+          start: 100,
+          end: 200,
+          minimumSpeedMultiplier: 1
+      },
+      acceleration: {
+          x: 1,
+          y: 1
+      },
+      maxSpeed: 0,
+      startRotation: {
+          min: 0,
+          max: 360
+      },
+      noRotation: false,
+      rotationSpeed: {
+          min: 0,
+          max: 0
+      },
+      lifetime: {
+          min: 0.4,
+          max: 0.4
+      },
+      blendMode: "normal",
+      frequency: 0.001,
+      emitterLifetime: 0.5,
+      maxParticles: 2000,
+      pos: {
+          x: x,
+          y: y
+      },
+      addAtBack: false,
+      spawnType: "point"
+    });
+    return emitter;
   }
-
-  resetEffect({ x, y }) {
-    effect.x = x;
-    effect.y = y;
-    particles.forEach(resetParticle);
-    effect.start = Date.now();
-    let tint = [
-      0xff0000,
-      0x00ff00,
-      0x00ffff,
-      0xffff00,
-      0xff00ff,
-      0xffffff
-    ][Math.random() * 6 | 0];
-    effect.tintGradient = [
-      [0, 0xFFFFFF],
-      [1, tint]
-    ];
-    effect.brightnessGradient = [
-      [0, 1],
-      [.8, 1],
-      [.96, 0],
-      [.97, 1],
-      [.98, 0],
-      [.99, 1],
-      [1, 0]
-    ];
-  }
-
-  start() {
-    this.app.loader
-      .add(
-        'star',
-        'https://cdn.glitch.com/a10133ef-3919-4200-ad35-26200e16b146%2Fwhite-star.png?v=1562875677679'
-      )
-      .load((loader, resources) => {
-        for (let i = 0; i < this.totalSprites; i++) {
-          let particle = new PIXI.Sprite(resources.star.texture);
-          particle.anchor.set(0.5);
-          this.resetParticle(particle);
-          this.particles.push(particle);
-          this.effect.addChild(particle);
-        }
-
-        let waiting = false;
-        this.app.ticker.add(() => {
-          let now = Date.now();
-          let elapsed = now - effect.start;
-          for (let i = 0; i < particles.length; i++) {
-            let particle = particles[i];
-            let t = Math.min(elapsed / particle.life, 1);
-            let easedT = Math.pow(t, 1 / 3);
-            let distance = lerp(0, particle.speed, easedT);
-            particle.alpha = gradient(effect.brightnessGradient, t);
-            particle.tint = colorGradient(effect.tintGradient, t);
-            particle.scale.x = particle.size * lerp(.5, 1, t);
-            particle.scale.y = particle.size * lerp(.5, 1, t);
-            particle.x = (
-              Math.cos(particle.angle) *
-              distance
-            );
-            particle.y = (
-              Math.sin(particle.angle) *
-              distance
-            );
-          }
-          if (elapsed > 1500 && !waiting) {
-            waiting = true;
-            setTimeout(() => {
-              waiting = false;
-              resetEffect({
-                x: rand(0, WIDTH),
-                y: rand(0, HEIGHT)
-              });
-            }, rand(1000, 2000))
-          }
-        });
-      });
-  }
+ 
 }
+
+    /* // 파티클의 투명도 감소
+    for (const particle of this.container.children) {
+      particle.alpha -= 0.01; // 투명도를 조절하여 점차적으로 사라지게 함
+      if (particle.alpha <= 0) {
+        this.container.removeChild(particle); // 파티클 제거
+      }
+    }
+    if (this.container.children.length === 0) {
+      console.log("들어오긴했네 ?");
+      this.removeEffect();
+    } */
