@@ -103,10 +103,13 @@ public class HomeController {
         String javaCode = compileRequest.getCode();
         String lang = compileRequest.getLang();
         if ((lang != null && !lang.isEmpty() && !lang.isBlank() && !lang.equals("undefined"))
-                && compileRequest.getLang() != "java") {
+                && !lang.equals("java")) {
+            assert !lang.equals("java");
             log.info("lang: {}", lang);
             javaCode = convertJavaCode.convertLangToJava(compileRequest.getLang(), compileRequest.getCode());
         }
+
+        log.info("java code: {}", javaCode);
 
         AwsS3ClassLoader classLoader = new AwsS3ClassLoader("robot-class");
         CompileResult result = classLoader.createRobot(username, javaCode);

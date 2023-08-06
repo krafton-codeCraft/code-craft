@@ -165,7 +165,7 @@ public class AwsS3ClassLoader extends ClassLoader {
         if (startWords[0].equals("public"))
             javaName = startWords[2];
         else if (startWords[0].equals("class"))
-            javaName = startWords[2];
+            javaName = startWords[1];
 
         if (javaName == null || javaName.isEmpty() || javaName.isBlank()) {
             System.out.println("class name 이 없습니다.");

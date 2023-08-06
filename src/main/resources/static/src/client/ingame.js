@@ -100,6 +100,7 @@ document.querySelector('#toggle-event').addEventListener('click', function() {
   var helpButton = document.getElementById('toggle-help');
   var leaderboard = document.getElementById('leaderboard');
   var inputbar = document.getElementById('inputbar');
+  var audioBox = document.getElementById('audio-box');
 
   if(sidebar.classList.contains('open')) {
 
@@ -108,7 +109,8 @@ document.querySelector('#toggle-event').addEventListener('click', function() {
     leaderboard.classList.remove('hidden-to-left');
     inputbar.classList.remove('hidden-to-left');
     moduleButton.classList.remove('hidden-to-left');
-    helpButton.classList.remove('hidden-to-left')
+    helpButton.classList.remove('hidden-to-left');
+    audioBox.classList.remove('hidden-to-left');
 
   } else {
 
@@ -118,6 +120,8 @@ document.querySelector('#toggle-event').addEventListener('click', function() {
     inputbar.classList.add('hidden-to-left');
     moduleButton.classList.add('hidden-to-left');
     helpButton.classList.add('hidden-to-left');
+    audioBox.classList.add('hidden-to-left');
+
   }
 });
 
@@ -128,6 +132,7 @@ document.querySelector('#toggle-module').addEventListener('click', function() {
   var helpButton = document.getElementById('toggle-help');
   var leaderboard = document.getElementById('leaderboard');
   var inputbar = document.getElementById('inputbar');
+  var audioBox = document.getElementById('audio-box');
 
   if(sidebar.classList.contains('open')) {
     sidebar.classList.remove('open');
@@ -136,6 +141,7 @@ document.querySelector('#toggle-module').addEventListener('click', function() {
     inputbar.classList.remove('hidden-to-left');
     eventButton.classList.remove('hidden-to-left');
     helpButton.classList.remove('hidden-to-left');
+    audioBox.classList.remove('hidden-to-left');
   } else {
     sidebar.classList.add('open');
     toggleButton.classList.add('open');
@@ -143,6 +149,7 @@ document.querySelector('#toggle-module').addEventListener('click', function() {
     inputbar.classList.add('hidden-to-left');
     eventButton.classList.add('hidden-to-left');
     helpButton.classList.add('hidden-to-left');
+    audioBox.classList.add('hidden-to-left');
   }
 });
 
@@ -153,6 +160,7 @@ document.querySelector('#toggle-help').addEventListener('click', function() {
   var helpButton = document.getElementById('toggle-help');
   var leaderboard = document.getElementById('leaderboard');
   var inputbar = document.getElementById('inputbar');
+  var audioBox = document.getElementById('audio-box');
 
   if(sidebar.classList.contains('open')) {
     sidebar.classList.remove('open');
@@ -161,6 +169,7 @@ document.querySelector('#toggle-help').addEventListener('click', function() {
     inputbar.classList.remove('hidden-to-left');
     eventButton.classList.remove('hidden-to-left');
     toggleButton.classList.remove('hidden-to-left');
+    audioBox.classList.remove('hidden-to-left');
   } else {
     sidebar.classList.add('open');
     helpButton.classList.add('open');
@@ -168,6 +177,7 @@ document.querySelector('#toggle-help').addEventListener('click', function() {
     inputbar.classList.add('hidden-to-left');
     eventButton.classList.add('hidden-to-left');
     toggleButton.classList.add('hidden-to-left');
+    audioBox.classList.add('hidden-to-left');
   }
 });
 
