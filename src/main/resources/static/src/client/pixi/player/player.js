@@ -1,6 +1,6 @@
 import { getAsset } from '../../assets';
 import { robotId } from '../../networking';
-//import { ParticleEffect ,StarParticleEffect} from '../effect/particles';
+import { explosionEffect } from '../effect/particles'
 
 const Constants = require('../../../shared/constants');
 const { PLAYER_RADIUS,PLAYER_MAXENERGY, PLAYER_MAXHP } = Constants;
@@ -16,6 +16,7 @@ export function renderPlayer(player, app) {
     if(dead){
         const sprite = playerSprites[id];
         if(sprite){
+            new explosionEffect(app,player.x,player.y);
             app.stage.removeChild(sprite);
             delete playerSprites[id];
         }
@@ -25,6 +26,7 @@ export function renderPlayer(player, app) {
     let robot = playerSprites[id];
 
     if(!robot){
+
         robot = createNewPlayerSprite(player);
         playerSprites[id] = robot;
         app.stage.addChild(robot);
@@ -43,8 +45,10 @@ function createNewPlayerSprite(player){
     const canvasX = x;
     const canvasY = y;
     let randcolor = 0xFFFFFF;
-    //console.log(`x : ${x} ()  y : ${y}`);
+
     const ratiohp = energy === 0 ? 0 : energy / PLAYER_MAXENERGY * 60;
+    /* console.log("robotId" + robotId);
+    console.log("id " + id); */
     if(robotId === id){
         randcolor = 0x00ff00;
     }else{
@@ -72,19 +76,6 @@ function createNewPlayerSprite(player){
     gunhead.height = 0;
     gunhead.tint = 0x000000;
     robotContainer.addChildAt(gunhead,1);
-
-    //체력바 
-    /* const innerBar = new PIXI.Graphics();
-    innerBar.beginFill(0x000000);
-    innerBar.drawRect(canvasX - (PLAYER_RADIUS * 2) , canvasY - (PLAYER_RADIUS * 2) - 5, 60, 10);
-    innerBar.endFill();
-    app.stage.addChild(innerBar);
-
-    const outerBar = new PIXI.Graphics();
-    outerBar.beginFill(0xFF3300);
-    outerBar.drawRect(canvasX - (PLAYER_RADIUS * 2) , canvasY - (PLAYER_RADIUS * 2) - 5,ratiohp , 10);
-    outerBar.endFill();
-    app.stage.addChild(outerBar); */
    
     //체력바 텍스트
     const hptext = new PIXI.Text(hp +'/' + PLAYER_MAXHP, { fontFamily: 'Arial', fontSize: 10, fill: 'white' });
