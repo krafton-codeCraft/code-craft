@@ -1,6 +1,6 @@
 import { getAsset } from '../../assets';
 import { robotId } from '../../networking';
-import { explosionEffect } from '../effect/particles'
+import { explosionEffect ,warpEffect } from '../effect/particles'
 
 const Constants = require('../../../shared/constants');
 const { PLAYER_RADIUS,PLAYER_MAXENERGY, PLAYER_MAXHP } = Constants;
@@ -26,16 +26,32 @@ export function renderPlayer(player, app) {
     let robot = playerSprites[id];
 
     if(!robot){
+        
+        new warpEffect(app,player.x,player.y);
 
         robot = createNewPlayerSprite(player);
         playerSprites[id] = robot;
         app.stage.addChild(robot);
-        
+
+        animateScale(robot);
+    
     }else{
         updatePlayerSpriteData(robot,player);
     }
 
     
+
+}
+
+function animateScale(robot){
+    const scaleSpeed = 0.5;
+    if (robot.getChildAt(0).width < PLAYER_RADIUS * 2) {
+        robot.getChildAt(0).width = Math.min(PLAYER_RADIUS * 2, robot.getChildAt(0).width + scaleSpeed);
+        robot.getChildAt(0).height = Math.min(PLAYER_RADIUS * 2, robot.getChildAt(0).height + scaleSpeed);
+        robot.getChildAt(1).width = Math.min(PLAYER_RADIUS, robot.getChildAt(0).width + scaleSpeed);
+        robot.getChildAt(1).height = Math.min(PLAYER_RADIUS, robot.getChildAt(0).height + scaleSpeed);
+        requestAnimationFrame(() => animateScale(robot));
+    }
 }
 
 function createNewPlayerSprite(player){
@@ -62,8 +78,8 @@ function createNewPlayerSprite(player){
     bodyship.x = canvasX;
     bodyship.y = canvasY;
     bodyship.rotation = Math.PI - bodyHeading;
-    bodyship.width = PLAYER_RADIUS * 2;
-    bodyship.height = PLAYER_RADIUS * 2;
+    bodyship.width = 10;
+    bodyship.height = 10;
     bodyship.tint = randcolor
     robotContainer.addChildAt(bodyship,0);
     
@@ -72,8 +88,8 @@ function createNewPlayerSprite(player){
     gunhead.x = canvasX;
     gunhead.y = canvasY;
     gunhead.rotation = Math.PI - gunHeading;
-    gunhead.width = PLAYER_RADIUS;
-    gunhead.height = PLAYER_RADIUS;
+    gunhead.width = 0;
+    gunhead.height = 0;
     gunhead.tint = 0x000000;
     robotContainer.addChildAt(gunhead,1);
    
@@ -90,9 +106,10 @@ function createNewPlayerSprite(player){
     const text = new PIXI.Text(name, { fontFamily: 'Arial', fontSize: 16, fill: fillValue });
     text.anchor.set(0.5);
     text.x = canvasX;
-    text.y = canvasY + PLAYER_RADIUS + 20;
+    text.y = canvasY + PLAYER_RADIUS + 20;    
     robotContainer.addChildAt(text,3);
 
+    //robotContainer.scale.set(0); // 초기 스케일을 0으로 설정
     return robotContainer;
 }
 
@@ -113,4 +130,5 @@ function updatePlayerSpriteData(sprite,player){
 
     sprite.getChildAt(3).x = x;
     sprite.getChildAt(3).y = y + PLAYER_RADIUS + 20;
+
 }

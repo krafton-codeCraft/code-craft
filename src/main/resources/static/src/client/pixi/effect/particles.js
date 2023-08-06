@@ -210,14 +210,83 @@ export class explosionEffect{
  
 }
 
-    /* // 파티클의 투명도 감소
-    for (const particle of this.container.children) {
-      particle.alpha -= 0.01; // 투명도를 조절하여 점차적으로 사라지게 함
-      if (particle.alpha <= 0) {
-        this.container.removeChild(particle); // 파티클 제거
-      }
-    }
-    if (this.container.children.length === 0) {
-      console.log("들어오긴했네 ?");
-      this.removeEffect();
-    } */
+export class warpEffect{
+  constructor(app , x , y){
+    this.app = app;
+    this.container = new PIXI.particles.ParticleContainer(1000, {
+      scale: true,
+      position: true,
+      rotation: true,
+      uvs: true,
+      tint: true
+    });
+    this.emitter = this.createEmitter(x,y);
+    this.app.stage.addChild(this.container);
+    this.emitter.emit = true;
+    
+    this.emitter.playOnceAndDestroy(() => {
+      this.removeEffect()
+    });
+  }
+
+  removeEffect(){
+    this.app.stage.removeChild(this.container);
+    this.emitter = null;
+  }
+
+  createEmitter(x,y) {
+    const emitter = new PIXI.particles.Emitter(this.container, PIXI.Texture.from(getAsset('particle.png')), {
+      alpha: {
+        start: 0.4,
+        end: 0.5
+      },
+      scale: {
+        start: 0.1,
+        end: 1,
+        minimumScaleMultiplier: 1
+      },
+      color: {
+        start: "#000000",
+        end: "#ffffff"
+      },
+      speed: {
+        start: 100,
+        end: 5,
+        minimumSpeedMultiplier: 1
+      },
+      acceleration: {
+        x: 1,
+        y: 1
+      },
+      maxSpeed: 0,
+      startRotation: {
+        min: 0,
+        max: 360
+      },
+      noRotation: false,
+      rotationSpeed: {
+        min: 3,
+        max: 2
+      },
+      lifetime: {
+        min: 0.4,
+        max: 0.4
+      },
+      blendMode: "normal",
+      frequency: 0.001,
+      emitterLifetime: 1,
+      maxParticles: 500,
+      pos: {
+        x: x,
+        y: y
+      },
+      addAtBack: false,
+      spawnType: "burst",
+      particlesPerWave: 1,
+      particleSpacing: 0,
+      angleStart: 0
+    });
+    return emitter;
+  }
+ 
+}
