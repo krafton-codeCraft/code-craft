@@ -43,7 +43,7 @@ export function renderPlayer(player, app) {
 }
 
 function animateScale(robot){
-    const scaleSpeed = 0.5;
+    const scaleSpeed = 2;
     if (robot.getChildAt(0).width < PLAYER_RADIUS * 2) {
         robot.getChildAt(0).width = Math.min(PLAYER_RADIUS * 2, robot.getChildAt(0).width + scaleSpeed);
         robot.getChildAt(0).height = Math.min(PLAYER_RADIUS * 2, robot.getChildAt(0).height + scaleSpeed);

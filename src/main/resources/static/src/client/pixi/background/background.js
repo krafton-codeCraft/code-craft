@@ -6,8 +6,8 @@ const baseSpeed = 0.08;
 let speed = 0;
 let warpSpeed = 0;
 const starStretch = 5;
-const starBaseSize = 0.08;
-const starAmount = 700;
+const starBaseSize = 0.1;
+const starAmount = 300;
 
 //const starTexture = PIXI.Texture.from('https://pixijs.com/assets/star.png');
 const starTexture = PIXI.Texture.from(`https://cdn.glitch.com/a10133ef-3919-4200-ad35-26200e16b146%2Fwhite-star.png?v=1562875677679`);

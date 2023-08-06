@@ -89,7 +89,9 @@ export class BoosterEffect {
       this.app.renderer.resize(window.innerWidth, window.innerHeight);
       this.resized = false;
     }
-
+    if(!this.emitter){
+      return;
+    }
     if (!this.emitterPos.equals(this.pointer)) {
       const dt = 1;
       const dx = this.pointer.x - this.emitterPos.x;
