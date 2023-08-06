@@ -434,7 +434,7 @@ public class RobotPeer {
         setState(RobotState.ACTIVE);
 
         velocity = 0;
-        hp = 100;
+        hp = 5;
         energy = 100;
         gunHeat = 3;
 
@@ -928,7 +928,7 @@ public class RobotPeer {
         if (hp <= 0) {
             RobotPeer owner = bulletPeer.owner;
             log.info("username: {}", owner.getUsername());
-            owner.addHp(20);
+            owner.addHp(5);
             LeaderBoardTemplate.updateLeaderBoard(battle.getId(), owner.getUsername(), 2);
             onDead();
             return;

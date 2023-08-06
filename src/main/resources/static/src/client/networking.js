@@ -7,8 +7,9 @@ import { processGameUpdate } from './state.js';
 // import renderCheckbox from './htmlComponent/checkbox';
 // import redis from 'redis';
 import { handleChat } from './chat.js';
-const compileButton = document.getElementById("compile-button");
-const loadingButton = document.getElementById("loading-button");
+
+const compileSidebar = document.getElementById("compile-sidebar");
+
 // websocket connection
 const battleId = 1;
 const devaddr = 'localhost';
@@ -147,8 +148,7 @@ function compile_code(index, content) {
 };
 
 function change_code(index, content) {
-  compileButton.style.display = 'none';
-  loadingButton.style.display = 'block';
+  compileSidebar.classList.add("open");
   const url = `http://${addr}:8080/change/ingame-robot`;
   let Data = { robotId: robotId, specIndex: index, code: content }
   console.log(Data)
@@ -167,13 +167,11 @@ function change_code(index, content) {
       const code = data.code
       console.log(data);
       code_check(result, status, index, code);
-      compileButton.style.display = 'block'; // 기존 버튼을 다시 보여줍니다.
-      loadingButton.style.display = 'none'; // 로딩 버튼을 숨깁니다.
+      compileSidebar.classList.remove("open");
     })
     .catch(error => {
       console.error('Error:', error);
-      compileButton.style.display = 'block'; // 기존 버튼을 다시 보여줍니다.
-      loadingButton.style.display = 'none'; // 로딩 버튼을 숨깁니다.
+      compileSidebar.classList.remove("open");
     });
 };
 
