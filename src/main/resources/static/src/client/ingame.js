@@ -27,7 +27,7 @@ const usernamereInput = document.getElementById('username-reinput');
 const userSelectedLang = document.getElementById('language-select');
 let flag = true;
 
-Promise.all([-
+Promise.all([
 
   connect(onGameOver),
   downloadAssets(),
