@@ -37,7 +37,7 @@ Promise.all([
 ]).then(() => {
 
     play(specIndex);
-
+    
 }).catch(console.error);
 
 
@@ -192,3 +192,7 @@ inputbar.addEventListener("keyup", function (event) {
   }
 });
 
+window.onload = function () {
+  var audioElement = document.getElementById('audioPlayer');
+  audioElement.play();
+}
