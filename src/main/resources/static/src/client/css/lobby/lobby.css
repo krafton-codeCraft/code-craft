@@ -88,8 +88,6 @@ button:focus {
 
 #rank {
   position: relative;
-  /* margin-left: 2%;
-  margin-top: 2%; */
   height: 92%;
   background-color: rgba(123, 173, 230, 0.2);
   width: 44%; /* 각 div는 화면 너비의 45%를 차지 */
@@ -97,9 +95,7 @@ button:focus {
 }
 
 #today-rank {
-  position: relative;  
-  /* margin-right: 2%;
-  margin-top: 2%; */
+  position: relative;
   height: 92%;
   background-color: rgba(123, 173, 230, 0.2);
   width: 44%; /* 각 div는 화면 너비의 45%를 차지 */
