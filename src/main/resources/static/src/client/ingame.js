@@ -37,7 +37,7 @@ Promise.all([
 ]).then(() => {
 
     play(specIndex);
-
+    
 }).catch(console.error);
 
 
@@ -181,3 +181,8 @@ inputbar.addEventListener("keyup", function (event) {
     event.target.value = ""; // 입력란 비우기
   }
 });
+
+window.onload = function () {
+  var audioElement = document.getElementById('audioPlayer');
+  audioElement.play();
+}

@@ -315,10 +315,22 @@ button:focus {
 #deck-thress {
   left: 32%; /* Adjust as necessary */
 }
-#language-select{
-  left: 48%;
+#language-select {
+  position: absolute;
+  top: 0%;
+  right: 10%;
+  /* Puts the dropdown to the extreme right */
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  /* Color for the text inside the dropdown */
+  background-color: rgba(123, 173, 230, 0.7);
+  border: none;
+  border-radius: 1px;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
 }
-
 #deck-one:hover, #deck-two:hover, #deck-thress:hover {
 
   background-color: rgba(123, 173, 230, 0.9);
