@@ -39,7 +39,7 @@ export class BoosterEffect {
         end: 0.1
       },
       scale: {
-        start: 0.5,
+        start: 0.8,
         end: 0.4,
         minimumScaleMultiplier: 1
       },
@@ -67,11 +67,11 @@ export class BoosterEffect {
         max: 0
       },
       lifetime: {
-        min: 0.1,
-        max: 0.1
+        min: 0.2,
+        max: 0.2
       },  
       blendMode: "normal",
-      frequency: 0.0008,
+      frequency: 0.0005,
       emitterLifetime: -1,
       maxParticles: 500,
       pos: {
