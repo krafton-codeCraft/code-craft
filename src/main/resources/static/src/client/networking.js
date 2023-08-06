@@ -7,6 +7,7 @@ import { processGameUpdate } from './state.js';
 // import renderCheckbox from './htmlComponent/checkbox';
 // import redis from 'redis';
 import { handleChat } from './chat.js';
+import { displayRanking } from './lobby.js';
 
 const compileSidebar = document.getElementById("compile-sidebar");
 
@@ -120,6 +121,7 @@ export const requestTodayRanking = () => {
     .then(response => response.json())
     .then(data => {
       console.log(data);
+      displayRanking(data);
     });
 };
 
