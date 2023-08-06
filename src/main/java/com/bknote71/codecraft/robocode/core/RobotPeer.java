@@ -437,6 +437,7 @@ public class RobotPeer {
         hp = 5;
         energy = 100;
         gunHeat = 3;
+        score = 0;
 
         isExecFinishedAndDisabled = false;
         scan = false;
@@ -919,13 +920,13 @@ public class RobotPeer {
     }
     
     // score
-    private int score = 0;
+    private double score = 0;
 
     public int getScore() {
         return 0;
     }
 
-    private void addScore(int score) {
+    private void addScore(double score) {
         this.score += score;
     }
 
@@ -959,7 +960,7 @@ public class RobotPeer {
     public void onDead() { // 죽음 ?? 리스폰 해야함
         LeaderBoardTemplate.updateLeaderBoard(battle.getId(), getUsername(), -score);
         LeaderBoardTemplate.updateTodayLeaderBoard(getUsername(), score);
-        score = 0; // 스코어 초기화
+
         // 죽음 처리 작업 푸쉬
         if (isAlive()) {
             // addEvent(new DeathEvent());
