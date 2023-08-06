@@ -3,9 +3,15 @@ package com.bknote71.codecraft.entity.service;
 import com.bknote71.codecraft.entity.UserEntity;
 import com.bknote71.codecraft.entity.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 @Service
@@ -32,13 +38,18 @@ public class UserService {
         return savedUser.getId();
     }
 
-    public Long login(String username, String password) {
-        UserEntity user = userRepository.findByUsername(username);
-        if (user == null) {
-            System.out.println("존재하지 않는 유저입니다.");
-            return null;
+    public boolean login(String username, String password) {
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
+                username,
+                password,
+                List.of(new SimpleGrantedAuthority("ROLE_USER")));
+
+        if (token == null) {
+            return false;
         }
 
-        return user.getId();
+        SecurityContext context = SecurityContextHolder.getContext();
+        context.setAuthentication(token);
+        return true;
     }
 }
