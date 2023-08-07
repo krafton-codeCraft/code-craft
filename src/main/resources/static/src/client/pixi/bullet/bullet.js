@@ -15,7 +15,7 @@ export function renderBullet(bullet, app) {
 
         bulletsprite = createNewBulletSprite(bullet);
         bulletSprites[id] = bulletsprite;
-        app.stage.addChild(bulletsprite);
+        //app.stage.addChild(bulletsprite);
 
         const effectbullet = new BoosterEffect(app, bullet.x,bullet.y);
         effectbullets[id] = effectbullet;

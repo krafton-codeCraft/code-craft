@@ -61,7 +61,6 @@ function createNewPlayerSprite(player){
     const canvasY = y;
     let randcolor = 0xFFFFFF;
 
-    const ratiohp = energy === 0 ? 0 : energy / PLAYER_MAXENERGY * 60;
     /* console.log("robotId" + robotId);
     console.log("id " + id); */
     if(robotId === id){
@@ -91,13 +90,30 @@ function createNewPlayerSprite(player){
     gunhead.height = 0;
     gunhead.tint = 0x000000;
     robotContainer.addChildAt(gunhead,1);
-   
-    //체력바 텍스트
+    
+    //체력이 5이상이라도 5 라고 표현
+    const simhp = hp > 5 ? 5 : hp;
+    const ratiohp = simhp === 0 ? 0 : simhp / 5 * PLAYER_MAXHP;
+
+    //체력바
+    const innerBar = new PIXI.Graphics();
+    innerBar.beginFill(0xFFFFFF);
+    innerBar.drawRect(canvasX - (PLAYER_RADIUS * 2) + 11, canvasY + (PLAYER_RADIUS * 2)+ 10, PLAYER_MAXHP, 10);
+    innerBar.endFill();
+    robotContainer.addChildAt(innerBar,2);
+    const outerBar = new PIXI.Graphics();
+    outerBar.beginFill(0xFF3300);
+    outerBar.drawRect(canvasX - (PLAYER_RADIUS * 2) + 11 , canvasY + (PLAYER_RADIUS * 2)+ 10,ratiohp , 10);
+    outerBar.endFill();
+    robotContainer.addChildAt(outerBar,3); 
+
+
+    /* //체력바 텍스트
     const hptext = new PIXI.Text(hp, { fontFamily: 'Arial', fontSize: 16, fill: 'white' });
     hptext.anchor.set(0.5);
     hptext.x = canvasX;
     hptext.y = canvasY + (PLAYER_RADIUS * 2) + 10;
-    robotContainer.addChildAt(hptext,2);
+    robotContainer.addChildAt(hptext,2); */
 
     randcolor = Math.floor(randcolor);
     const fillValue = '#' + randcolor.toString(16).padStart(6, '0');
@@ -106,7 +122,7 @@ function createNewPlayerSprite(player){
     text.anchor.set(0.5);
     text.x = canvasX;
     text.y = canvasY + PLAYER_RADIUS + 20;    
-    robotContainer.addChildAt(text,3);
+    robotContainer.addChildAt(text,4);
 
     //robotContainer.scale.set(0); // 초기 스케일을 0으로 설정
     return robotContainer;
@@ -114,6 +130,8 @@ function createNewPlayerSprite(player){
 
 function updatePlayerSpriteData(sprite,player){
     const { x, y , bodyHeading, gunHeading ,hp } = player;
+
+   
 
     sprite.getChildAt(0).x = x;
     sprite.getChildAt(0).y = y;
@@ -123,11 +141,25 @@ function updatePlayerSpriteData(sprite,player){
     sprite.getChildAt(1).y = y;
     sprite.getChildAt(1).rotation = Math.PI - gunHeading;
 
-    sprite.getChildAt(2).x = x;
+    /* sprite.getChildAt(2).x = x;
     sprite.getChildAt(2).y = y + (PLAYER_RADIUS * 2) + 10;
-    sprite.getChildAt(2).text = hp;
+    sprite.getChildAt(2).text = hp; */
+    
+    //체력이 5이상이라도 5 라고 표현
+    const simhp = hp > 5 ? 5 : hp;
+    const ratiohp = simhp === 0 ? 0 : simhp / 5 * PLAYER_MAXHP;
 
-    sprite.getChildAt(3).x = x;
-    sprite.getChildAt(3).y = y + PLAYER_RADIUS + 20;
+    sprite.getChildAt(2).clear();
+    sprite.getChildAt(2).beginFill(0xFFFFFF);
+    sprite.getChildAt(2).drawRect(x - (PLAYER_RADIUS * 2) + 11 , y + (PLAYER_RADIUS * 2)+ 10, PLAYER_MAXHP, 10);
+    sprite.getChildAt(2).endFill();
+
+    sprite.getChildAt(3).clear();
+    sprite.getChildAt(3).beginFill(0xFF3300);
+    sprite.getChildAt(3).drawRect(x - (PLAYER_RADIUS * 2) + 11 , y + (PLAYER_RADIUS * 2)+ 10, ratiohp, 10);
+    sprite.getChildAt(3).endFill();
+
+    sprite.getChildAt(4).x = x;
+    sprite.getChildAt(4).y = y + PLAYER_RADIUS + 20;
 
 }
