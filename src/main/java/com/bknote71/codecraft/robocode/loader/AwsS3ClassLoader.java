@@ -175,8 +175,7 @@ public class AwsS3ClassLoader extends ClassLoader {
         // 완성된 .class
         String realContent = "package " + packagePath + ";\n" +
                 importPath + "\n" +
-                "import com.bknote71.codecraft.robocode.event.ScannedRobotEvent;\n" +
-                "import com.bknote71.codecraft.robocode.event.HitByBulletEvent;\n" +
+                "import com.bknote71.codecraft.robocode.event.*;" +
                 code + "\n";
 
         // compile: {javaName}.java 파일 to {javaName}.class 파일
