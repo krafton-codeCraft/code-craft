@@ -109,7 +109,7 @@ public class PacketHandler {
     private RobotPeer createRobotPeer(ClientSession session, String username, int robotIndex) {
         RobotSpecification[] robotSpecifications = getRobotSpecifications(username);
 
-        RobotPeer robotPeer = RobotManager.Instance.add();
+        RobotPeer robotPeer = RobotManager.Instance.create();
         robotPeer.setSession(session);
         session.setMyRobot(robotPeer);
 

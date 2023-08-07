@@ -1,5 +1,6 @@
 package com.bknote71.codecraft.session;
 
+import com.bknote71.codecraft.robocode.core.RobotManager;
 import com.bknote71.codecraft.robocode.core.battle.Battle;
 import com.bknote71.codecraft.robocode.core.RobotPeer;
 import com.bknote71.codecraft.session.packet.ServerPacketManager;
@@ -61,7 +62,7 @@ public class ClientSessionHandler extends TextWebSocketHandler {
             return;
 
         battle.push(battle::leaveBattle, robot.getId());
+        // RobotManager.Instance.remove(robot.getId()); // 임시 <<
         ClientSessionManager.Instance.remove(clientSession);
     }
-
 }
