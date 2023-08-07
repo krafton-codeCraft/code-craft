@@ -73,7 +73,7 @@ public abstract class RobotProxy implements Runnable, IRobotPeer { // 로봇 피
 
     public void startBattle(ExecCommands commands, RobotStatus stat) {
         initializeBattle(commands, stat);
-        threadManager = new ThreadManager();
+        threadManager = null;
         robotThreadManager.start(threadManager);
     }
 
@@ -138,8 +138,8 @@ public abstract class RobotProxy implements Runnable, IRobotPeer { // 로봇 피
     }
 
     public void cleanup() {
-        System.out.println("robot proxy cleanup");
         robot = null;
+        System.out.println("robot proxy cleanup");
 
         if (robotThreadManager != null) {
             robotThreadManager.cleanup();

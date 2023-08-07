@@ -99,5 +99,8 @@ public class RobotClassLoader extends ClassLoader {
     }
 
     public void cleanup() {
+        classLoader = null;
+        robotProxy = null;
+        robotClass = null;
     }
 }

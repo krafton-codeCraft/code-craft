@@ -259,7 +259,8 @@ public class BasicRobotProxy extends RobotProxy implements IBasicRobotPeer {
             // this is to slow down undead robot after cleanup, from fast exception-loop
             try {
                 Thread.sleep(1000);
-            } catch (InterruptedException ignore) {}
+            } catch (InterruptedException ignore) {
+            }
         }
 
         // Entering tick
@@ -407,4 +408,16 @@ public class BasicRobotProxy extends RobotProxy implements IBasicRobotPeer {
         commands.setRadarTurnRemaining(radians);
     }
 
+    public void cleanup() {
+        super.cleanup();
+
+        if (eventManager != null) {
+            eventManager.cleanup();
+            eventManager = null;
+        }
+
+        execResults = null;
+        status = null;
+        commands = null;
+    }
 }
