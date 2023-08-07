@@ -80,14 +80,27 @@ button:focus {
   display: flex;
   top: 20%;
   height: 60%;
-  left: 10%;
-  width: 80%;
+  left: 30%;
+  width: 40%;
+  border-radius: 1px;
   background-color: rgba(123, 173, 230, 0.2);
-  justify-content: space-between; 
-  align-items: center; /* 세로 중앙 정렬 추가 */
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center;     /* 세로 중앙 정렬 */
 }
 
-#rank {
+#today-rank {
+  height: 92%;
+  background-color: rgba(123, 173, 230, 0.2);
+  width: 90%; 
+  overflow-y: auto;
+  backdrop-filter: blur(1px);
+  border-radius: 1px;
+  font-size: 1.5em;
+  color: #fff;
+  text-align: center;
+}
+
+/* #rank {
   margin-left: 2%;
   height: 92%;
   background-color: rgba(123, 173, 230, 0.2);
@@ -97,16 +110,4 @@ button:focus {
   font-size: 1.5em;
   color: #fff;
   text-align: center;
-}
-
-#today-rank {
-  margin-right: 2%;
-  height: 92%;
-  background-color: rgba(123, 173, 230, 0.2);
-  width: 44%; 
-  overflow-y: auto;
-  backdrop-filter: blur(1px);
-  font-size: 1.5em;
-  color: #fff;
-  text-align: center;
-}
+} */
