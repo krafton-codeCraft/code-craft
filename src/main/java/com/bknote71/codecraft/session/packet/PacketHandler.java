@@ -128,7 +128,6 @@ public class PacketHandler {
         return robotPeer;
     }
 
-
     private RobotSpecification[] getRobotSpecifications(String username) {
         UserEntity user = userRepository.findByUsername(username);
 

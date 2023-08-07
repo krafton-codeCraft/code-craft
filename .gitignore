@@ -55,3 +55,7 @@ robot_sample
 
 /robot_my_sample
 robot_my_sample
+
+startapp.sh
+startapplocal.sh
+startdocker.sh
