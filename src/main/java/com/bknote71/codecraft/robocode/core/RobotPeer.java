@@ -74,6 +74,7 @@ public class RobotPeer {
     private double lastRadarHeading;
 
     // robot status
+    private double score;
     private double hp;
     private double energy;
     private double velocity;
@@ -169,6 +170,10 @@ public class RobotPeer {
 
     public Battle getBattle() {
         return battle;
+    }
+
+    public int getScore() {
+        return 0;
     }
 
     public double getHp() {
@@ -918,13 +923,6 @@ public class RobotPeer {
 
         status.set(stat);
     }
-    
-    // score
-    private double score = 0;
-
-    public int getScore() {
-        return 0;
-    }
 
     // onXXX
     public void onDamaged(BulletPeer bulletPeer) {
@@ -936,7 +934,7 @@ public class RobotPeer {
         if (hp <= 0) {
             RobotPeer owner = bulletPeer.owner;
             // compensate
-            owner.compensate();
+            owner.compensate(3, 2);
             onDead();
             return;
         }
@@ -969,13 +967,14 @@ public class RobotPeer {
         battle.pushAfter(1000, this::startBattle);
     }
 
-    private void compensate() {
+    private void compensate(double hp, double score) {
         String username = getUsername();
 
-        log.info("compensate for {}", username);
-        this.hp += 20;
-        this.score += 2;
-        LeaderBoardTemplate.updateLeaderBoard(battle.getId(), username, 2);
+        log.info("compensate for {} ({}, {}) + ({}, {})", username, this.hp, this.score, hp, score);
+
+        this.hp += hp;
+        this.score += score;
+        LeaderBoardTemplate.updateLeaderBoard(battle.getId(), username, score);
     }
 
     public void setDead() {
