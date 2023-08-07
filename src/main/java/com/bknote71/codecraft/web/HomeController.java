@@ -1,12 +1,9 @@
 package com.bknote71.codecraft.web;
 
+import com.bknote71.codecraft.web.compile.JavaClassCompiler;
 import com.bknote71.codecraft.entity.service.RobotSpecService;
-import com.bknote71.codecraft.robocode.leaderboard.LeaderBoardInfo;
-import com.bknote71.codecraft.robocode.leaderboard.LeaderBoardTemplate;
-import com.bknote71.codecraft.robocode.loader.AwsS3ClassLoader;
 import com.bknote71.codecraft.web.dto.CompileRequest;
 import com.bknote71.codecraft.web.dto.CompileResult;
-import com.bknote71.codecraft.session.packet.PacketHandler;
 import com.bknote71.codecraft.web.dto.RobotSpecDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +25,7 @@ public class HomeController {
 
     private final RobotSpecService robotSpecService;
     private final CodeConvertService convertJavaCode;
+    private final JavaClassCompiler javaClassCompiler;
 
     @GetMapping("/")
     public String home() {
@@ -54,40 +52,11 @@ public class HomeController {
         return "ingame";
     }
 
-    @GetMapping("/get/robot-infos")
-    @ResponseBody
-    public ResponseEntity<?> getRobotInfos(@AuthenticationPrincipal(expression = "username") String username) {
-        List<RobotSpecDto> robotInfos = robotSpecService.getRobotInfo(username);
-        return new ResponseEntity<>(robotInfos, HttpStatus.OK);
-    }
-
-    @PostMapping("/create/robot")
-    @ResponseBody
-    public ResponseEntity<?> createRobot(@AuthenticationPrincipal(expression = "username") String username,
-                                         int specIndex, String code) { // author == username
-        log.info("create robot {}", username);
-
-        AwsS3ClassLoader classLoader = new AwsS3ClassLoader("robot-class");
-        CompileResult result = classLoader.createRobot(username, code);
-
-        if (result.exitCode == 0) {
-            RobotSpecDto saveResult = robotSpecService.saveRobotSpec(username, specIndex, result.getRobotname(), result.getFullClassName(), code, "java");
-            if (saveResult == null) {
-                log.error("save robot spec failed");
-                return new ResponseEntity<>(result, HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        }
-
-        result.username = username;
-
-        return new ResponseEntity<>(result, HttpStatus.OK);
-    }
-
-    @PostMapping("/change/ingame-robot")
+    @PostMapping("/compile/ingame-robot")
     @ResponseBody
     public ResponseEntity<?> compileRobot(@AuthenticationPrincipal(expression = "username") String username,
                                           CompileRequest compileRequest) { // author == username
-        log.info("{} change robot, {}", username, compileRequest);
+        log.info("{} compile robot, {}", username, compileRequest);
         // 먼저 비교
         Boolean compareResult = robotSpecService.compareWithRequestCode(username, compileRequest);
         if (compareResult == null) {
@@ -111,8 +80,7 @@ public class HomeController {
 
         log.info("java code: {}", javaCode);
 
-        AwsS3ClassLoader classLoader = new AwsS3ClassLoader("robot-class");
-        CompileResult result = classLoader.createRobot(username, javaCode);
+        CompileResult result = javaClassCompiler.createRobot(username, javaCode);
 
         RobotSpecDto changeResult;
         if (result.exitCode == 0) {

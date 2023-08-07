@@ -339,7 +339,7 @@ public class RobotPeer {
                 // We are expecting this to happen when a round is ended!
 
                 // Immediately reasserts the exception by interrupting the caller thread itself
-                System.out.println("interrupted");
+                log.info("interrupted");
                 Thread.currentThread().interrupt();
             }
             isSleeping.set(false);
@@ -423,7 +423,7 @@ public class RobotPeer {
     }
 
     private void initializeBattle() {
-        System.out.println("initialize battle");
+        log.info("initialize battle");
         // valid spot 에 위치시켜야 함 (나는 아무곳이나 가능)
         Random random = ThreadLocalRandom.current();
         double rndX = random.nextDouble();

@@ -152,6 +152,7 @@ public class Battle {
             return;
         }
 
+        LeaderBoardTemplate.updateLeaderBoard(battleId, robotPeer.getUsername(), -robotPeer.getScore());
         LeaderBoardTemplate.updateTodayLeaderBoard(robotPeer.getUsername(), robotPeer.getScore());
 
         log.info("robot peer cleanup");
