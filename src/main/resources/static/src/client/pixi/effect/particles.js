@@ -3,7 +3,7 @@ import { getAsset } from '../../assets';
 export class BoosterEffect {
   constructor(app , x , y){
     this.app = app;
-    this.container = new PIXI.particles.ParticleContainer(500, {
+    this.container = new PIXI.particles.ParticleContainer(100, {
       scale: true,
       position: true,
       rotation: false,
@@ -22,8 +22,9 @@ export class BoosterEffect {
   }
 
   removeEffect(){
+    this.app.ticker.remove(this.onTick.bind(this))
     this.app.stage.removeChild(this.container);
-    this.emitter = null;
+    delete this.emitter;
   }
 
   moveTo(x, y) {
@@ -36,11 +37,11 @@ export class BoosterEffect {
       autoUpdate: true,
       alpha: {
         start: 0.9,
-        end: 0.1
+        end: 0.5
       },
       scale: {
-        start: 0.8,
-        end: 0.4,
+        start: 1,
+        end: 0.5,
         minimumScaleMultiplier: 1
       },
       color: {
@@ -71,9 +72,9 @@ export class BoosterEffect {
         max: 0.2
       },  
       blendMode: "normal",
-      frequency: 0.0005,
+      frequency: 0.01,
       emitterLifetime: -1,
-      maxParticles: 500,
+      maxParticles: 100,
       pos: {
         x: 0,
         y: 0

@@ -27,7 +27,7 @@ export function pixiApp() {
       if(removebullets){
         removebullets.forEach((removebullet) => {
           effectbullets[removebullet.id].removeEffect();
-          playgroundApp.stage.removeChild(bulletSprites[removebullet.id]);
+          //playgroundApp.stage.removeChild(bulletSprites[removebullet.id]);
           delete effectbullets[removebullet.id];
           delete bulletSprites[removebullet.id];
         });
