@@ -74,6 +74,7 @@ public class RobotPeer {
     private double lastRadarHeading;
 
     // robot status
+    private double score;
     private double hp;
     private double energy;
     private double velocity;
@@ -169,6 +170,10 @@ public class RobotPeer {
 
     public Battle getBattle() {
         return battle;
+    }
+
+    public int getScore() {
+        return 0;
     }
 
     public double getHp() {
@@ -918,18 +923,6 @@ public class RobotPeer {
 
         status.set(stat);
     }
-    
-    // score
-    private double score = 0;
-
-    public int getScore() {
-        return 0;
-    }
-
-    private void addScore(double score) {
-        this.score += score;
-    }
-
 
     // onXXX
     public void onDamaged(BulletPeer bulletPeer) {
@@ -940,10 +933,8 @@ public class RobotPeer {
 
         if (hp <= 0) {
             RobotPeer owner = bulletPeer.owner;
-            log.info("username: {}", owner.getUsername());
-            owner.addHp(3);
-            owner.addScore(2);
-            LeaderBoardTemplate.updateLeaderBoard(battle.getId(), owner.getUsername(), 2);
+            // compensate
+            owner.compensate(3, 2);
             onDead();
             return;
         }
@@ -951,10 +942,6 @@ public class RobotPeer {
         addEvent(new HitByBulletEvent(bulletPeer.getHeading() + PI - bodyHeading, bulletPeer));
         bulletPeer.owner.addEvent(
                 new BulletHitEvent(bulletPeer.owner.getNameForEvent(this), energy, bulletPeer));
-    }
-
-    private void addHp(int hp) {
-        this.hp += hp;
     }
 
     public void onDead() { // 죽음 ?? 리스폰 해야함
@@ -978,6 +965,16 @@ public class RobotPeer {
 
         // 다시 배틀 시작
         battle.pushAfter(1000, this::startBattle);
+    }
+
+    private void compensate(double hp, double score) {
+        String username = getUsername();
+
+        log.info("compensate for {} ({}, {}) + ({}, {})", username, this.hp, this.score, hp, score);
+
+        this.hp += hp;
+        this.score += score;
+        LeaderBoardTemplate.updateLeaderBoard(battle.getId(), username, score);
     }
 
     public void setDead() {
