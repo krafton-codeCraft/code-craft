@@ -13,7 +13,6 @@ import './css/bootstrap-reboot.css';
 import './css/ingame.css';
 import './css/compile-button.css';
 import pixiApp from './pixi/app.js';
-import { getRobotInfos } from './networking.js';
 import { submitChat } from './networking.js';
 const gamecanvers = document.getElementById('game-canvas');
 
@@ -32,7 +31,7 @@ Promise.all([
   connect(onGameOver),
   downloadAssets(),
   pixiApp(),
-  // getRobotInfos(),
+
 
 ]).then(() => {
 

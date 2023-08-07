@@ -18,7 +18,6 @@ Promise.all([
 
   // downloadAssets(),
   pixiApp(),
-  // getRobotInfos(),
   
 ]).then(() => {
 

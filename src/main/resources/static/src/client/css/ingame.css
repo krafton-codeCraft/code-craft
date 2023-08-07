@@ -177,7 +177,18 @@ button:focus {
   overflow: hidden;
   cursor: inherit;
 }
-
+.control-button {
+  background: none;
+  border: none;
+  color: #ffffff;
+  /* Set the color of the text to white */
+  font-size: 20px;
+  /* Set the size of the text */
+  margin: 0 5px;
+  /* Add some space around the buttons */
+  cursor: pointer;
+  /* Change the cursor when hovering over the button */
+}
 #inputbar {
   z-index: 10;
   position: fixed;
@@ -650,7 +661,6 @@ button:focus {
       border-top: 16px solid #3498db;
   }
 }
-
 #audio-box {
   position: fixed;
   width: 10%;
@@ -658,13 +668,13 @@ button:focus {
   bottom: 5%;
   left: 0%;
   z-index: 10;
-  background-color: none;
+  background-color: transparent;
+  /* Change here */
   backdrop-filter: blur(5px);
   display: flex;
-  flex-direction: column; /* 요소들을 수직으로 배열 */
-  align-items: center; /* 왼쪽 정렬 */
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  background-color: rgba(123, 173, 230, 0.3);
   border-radius: 1px;
   transition: 0.5s;
 }
@@ -674,7 +684,7 @@ button:focus {
 }
 
 
-#playPauseBtn {
+#muteUnmuteBtn {
   color: #fff;
   width: 80%;
   background: linear-gradient(45deg, rgba(123, 173, 230, 0.6), rgba(74, 144, 226, 0.6));
@@ -682,15 +692,18 @@ button:focus {
   margin-bottom: 10%;
 }
 
-#playPauseBtn:hover {
+#muteUnmuteBtn:hover {
   background: linear-gradient(45deg, rgba(123, 173, 230, 0.8), rgba(74, 144, 226, 0.8));
 }
 
-#volumeControl {
+#muteUnmuteIcon {
+  height: 50px;
+  width: 50px;
+}
 
+#volumeControl {
   width: 80%;
   bottom: 10%;
-
 }
 
 .event-box table {

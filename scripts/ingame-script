@@ -45,12 +45,27 @@ require(["vs/editor/editor.main"], function () {
       automaticLayout: true,
       fontSize: 20,
       minimap: {
-
         enabled: false,
     },
         wordWrap: "on"
     });
+
+    // Create a function to increase font size
+    window.increaseFontSize = function() {
+        var currentFontSize = editor.getOption(monaco.editor.EditorOption.fontSize);
+        editor.updateOptions({ fontSize: currentFontSize + 1 });
+    }
+
+    // Create a function to decrease font size
+    window.decreaseFontSize = function() {
+        var currentFontSize = editor.getOption(monaco.editor.EditorOption.fontSize);
+        if (currentFontSize > 1) { // Keep the minimum size at 1 to prevent disappearing text
+            editor.updateOptions({ fontSize: currentFontSize - 1 });
+        }
+    }
 });
+
+
 /*]]>*/
 
 // play battle
@@ -63,7 +78,7 @@ function getEditorValue() {
     }
 }
 
-function code_check(result, status, index, code) {
+function code_check(result, status, index, code, lang) {
     const terminal = document.getElementById('terminal');
     
     if (result != 0) {
@@ -76,6 +91,7 @@ function code_check(result, status, index, code) {
     } else {
         terminal.innerHTML = `<span class="terminal-success">컴파일 성공!</span>`;
         robotInfos[index].code = code;
+        robotInfos[index].lang = lang;
     }
 }
 
@@ -83,8 +99,11 @@ function selectDeckIndex(deckId) {
     robotInfos[selectedDeck].code = getEditorValue();
     selectedDeck = deckId;
     if(robotInfos[selectedDeck]){
+        var language = robotInfos[selectedDeck].lang;
         editor.setValue(robotInfos[selectedDeck].code)
         console.log(selectedDeck);
+
+        document.getElementById('language-select').value = language;
     } else {
         console.log('No robot info found for selected deck.')
     }
@@ -94,6 +113,7 @@ function run_code() {
     let selectedLanguage =  document.getElementById('language-select').value;
     console.log(selectedLanguage);
     change_code(selectedDeck, getEditorValue(), selectedLanguage);
+    robotInfos[selectedDeck].lang = selectedLanguage;
 }
 
 
