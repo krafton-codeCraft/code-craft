@@ -10,7 +10,6 @@ public class ThreadManager {
     private final List<Thread> safeThreads = new CopyOnWriteArrayList<Thread>();
     private final List<ThreadGroup> safeThreadGroups = new CopyOnWriteArrayList<ThreadGroup>();
     private final List<ThreadGroup> groups = new CopyOnWriteArrayList<ThreadGroup>();
-    private final List<Thread> outputStreamThreads = new CopyOnWriteArrayList<Thread>();
     private final List<RobotProxy> robots = new CopyOnWriteArrayList<>();
 
     private Thread robotLoaderThread;
@@ -28,6 +27,11 @@ public class ThreadManager {
 
     public void addSafeThreadGroup(ThreadGroup safeThreadGroup) {
         safeThreadGroups.add(safeThreadGroup);
+    }
+
+    public void reset() {
+        groups.clear();
+        robots.clear();
     }
 
     public void addThreadGroup(ThreadGroup g, RobotProxy robotProxy) {

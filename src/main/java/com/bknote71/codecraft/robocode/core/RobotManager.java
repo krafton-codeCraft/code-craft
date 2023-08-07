@@ -1,8 +1,5 @@
 package com.bknote71.codecraft.robocode.core;
 
-import com.bknote71.codecraft.session.ClientSession;
-import com.bknote71.codecraft.session.ClientSessionManager;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,22 +12,18 @@ public class RobotManager {
 
     private int id;
 
-    public RobotPeer add() {
+    public RobotPeer create() {
         synchronized (lock) {
             int robotId = ++id;
             RobotPeer robotPeer = new RobotPeer(robotId);
-            robots.put(robotId, robotPeer);
+            robots.put(robotId, robotPeer); // 만일을 위해 남겨둔다.
             return robotPeer;
         }
     }
 
     public void remove(int robotId) {
         synchronized (lock) {
-            RobotPeer removedRobot = robots.remove(robotId);
-            if (removedRobot == null)
-                return;
-
-            removedRobot.cleanup();
+            robots.remove(robotId);
         }
     }
 }

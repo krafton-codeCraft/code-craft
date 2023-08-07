@@ -10,7 +10,7 @@ public class BulletPeer {
 
     private static final int EXPLOSION_LENGTH = 17;
 
-    private static final int RADIUS = 10;
+    private static final int RADIUS = 20;
 
     protected final RobotPeer owner;
     private final BattleRules battleRules;
