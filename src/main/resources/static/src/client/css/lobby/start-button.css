@@ -38,8 +38,8 @@ body {
     cursor: pointer;
     padding: 0.35em 1em;
     /* border: 2px solid var(--glow-color); */
-    border-radius: 1px;
-    background-color: rgba(123, 173, 230, 0.2);
+    border-radius: 2px;
+    background-color: rgba(123, 173, 230, 0.1);
     perspective: 2em;
     font-family: 'Roboto Mono', monospace;
     font-size: 2em;
@@ -50,12 +50,12 @@ body {
     align-items: center;
     text-align: center;
 
-    -webkit-box-shadow: inset 0px 0px 0px 0px var(--glow-color),
-        0px 0px 0px 0px var(--glow-color);
-    -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
-        0px 0px 0px 0px var(--glow-color);
-    box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
-        0px 0px 0px 0px var(--glow-color);
+    -webkit-box-shadow: inset 0px 0px 2px 0px var(--glow-color),
+        0px 0px 0px 2px var(--glow-color);
+    -moz-box-shadow: inset 0px 0px 2px 0px var(--glow-color),
+        0px 0px 0px 2px var(--glow-color);
+    box-shadow: inset 0px 0px 2px 0px var(--glow-color),
+        0px 0px 0px 2px var(--glow-color);
     animation: border-flicker 2s linear infinite;
 }
 .glowing-btn span {

@@ -23,13 +23,23 @@ public class LeaderBoardTemplate {
         this.ops = redisTemplate.opsForZSet();
     }
 
-    public static void updateLeaderBoard(int battleId, String username, double score) {
-        System.out.println("update leader board: " + battleId + ", username " + username + ", score: " + score);
+    public static void incrementLeaderboardScore(int battleId, String username, double score) {
         ops.incrementScore(prefix + ":" + battleId, username, score); // 실시간 점수
     }
 
-    public static void updateTodayLeaderBoard(String username, double score) { // 죽었을 때나 혹은 종료되었을 때 업데이트
-        ops.incrementScore(prefix + ":" + LocalDate.now().toString(), username, score);
+    public static void resetLeaderboardScore(int battleId, String username) {
+        ops.add(prefix + ":" + battleId, username, 0);
+    }
+
+    public static void removeFromLeaderboard(int battleId, String username) {
+        ops.remove(prefix + ":" + battleId, username);
+    }
+
+    public static void updateTodayLeaderBoard(String username, double score) {
+        // 죽었을 때나 혹은 종료되었을 때 가장 높은 점수로
+        Double orgScore = ops.score(prefix + ":" + LocalDate.now(), username);
+        if (orgScore == null || orgScore < score)
+            ops.incrementScore(prefix + ":" + LocalDate.now(), username, score);
     }
 
     public static List<LeaderBoardInfo> getLeaderBoard(int battleId) {

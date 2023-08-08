@@ -108,7 +108,7 @@ function createNewMessage(robot , content){
     const tailHeight = 10; // 말풍선의 꼬리 부분 높이
 
     bubble.beginFill(0xFFFFFF); // 하얀색으로 채우기
-    bubble.drawRoundedRect(robot.x - bubbleWidth / 2, bubbleY, bubbleWidth, bubbleHeight, 10);
+    bubble.drawRoundedRect(robot.x - bubbleWidth / 2, bubbleY, bubbleWidth, bubbleHeight, 0);
     bubble.endFill();
 
     // 말풍선의 꼬리 부분 추가 (downwards pointing tail)
