@@ -57,7 +57,7 @@ button:focus {
   height: 30%;
   padding: 10px;
   /* border-radius: 5px; */
-  background-color: rgba(123, 173, 230, 0.2);
+  background-color: rgba(73, 123, 180, 0.2);
   color: white;
   display: flex;
   flex-direction: column;
@@ -205,7 +205,7 @@ button[th:onclick="decreaseFontSize()"] {
   left: 11.5%;
   width: 500px;
   margin: auto;
-  background-color: rgba(123, 173, 230, 0.2);
+  background-color: rgba(73, 123, 180, 0.2);
   color: white;
   padding: 10px;
   z-index: 10;
@@ -215,7 +215,7 @@ button[th:onclick="decreaseFontSize()"] {
 }
 
 #inputbar:focus {
-  background-color: rgba(123, 173, 230, 0.6);
+  background-color: rgba(73, 123, 180, 0.6);
 }
 
 #inputbar.hidden-to-left{
@@ -252,7 +252,7 @@ button[th:onclick="decreaseFontSize()"] {
   left: 0%;
   width: 75%;
   overflow: auto;
-  background-color: rgba(123, 173, 230, 0.2);
+  background-color: rgba(73, 123, 180, 0.2);
 }
 
 #compile-button {
@@ -317,7 +317,7 @@ button[th:onclick="decreaseFontSize()"] {
   font-size: 20px;
   font-weight: bold;
   color: #ffffff;
-  background-color: rgba(123, 173, 230, 0.7);  /* half-transparent grey */
+  background-color: rgba(73, 123, 180, 0.7);  /* half-transparent grey */
   border: none;
   border-radius: 1px;
   cursor: pointer;
@@ -345,7 +345,7 @@ button[th:onclick="decreaseFontSize()"] {
   font-weight: bold;
   color: white;
   /* Color for the text inside the dropdown */
-  background-color: rgba(123, 173, 230, 0.7);
+  background-color: rgba(73, 123, 180, 0.7);
   border: none;
   border-radius: 1px;
   cursor: pointer;
@@ -353,11 +353,11 @@ button[th:onclick="decreaseFontSize()"] {
 }
 #deck-one:hover, #deck-two:hover, #deck-thress:hover {
 
-  background-color: rgba(123, 173, 230, 0.9);
+  background-color: rgba(73, 123, 180, 0.9);
 }
 
 #deck-one:active, #deck-two:active, #deck-thress:active {
-  background-color: rgba(123, 173, 230, 1);
+  background-color: rgba(73, 123, 180, 1);
 }
 
 @media only screen and (max-width: 600px) {
@@ -463,39 +463,19 @@ button[th:onclick="decreaseFontSize()"] {
 
 /* -------------------------------------------------------- */
 
-.event-box, .event-box-run {
-  padding: 15px;
-  margin-bottom: 15px;
-  background-color: rgba(123, 173, 230, 0.2);
-  border: 1px solid rgba(123, 173, 230, 0.5); /* 각 박스를 구분하기 위한 테두리 추가 */
-  border-radius: 1px; 
-  color: #fff;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 박스에 그림자 효과를 추가하여 독립적으로 보이게 함 */
-}
-
-.event-box-run {
-  background-color: rgba(123, 173, 230, 0.3);
-}
-
-.event-box strong, .event-box-run strong {
-  display: block;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5); /* strong과 p 사이에 구분선 추가 */
-  margin-bottom: 10px; 
-  padding-bottom: 10px; 
-}
-
 .event-sidebar {
   position: fixed;
   left: -30%;
   top: 0;
   width: 30%;
   height: 100%;
-  background-color: rgba(123, 173, 230, 0.2);
+  background-color: rgba(73, 123, 180, 0.2);
   overflow-x: hidden;
   transition: 0.5s;
   padding: 15px 15px;
   color: #fff;
   backdrop-filter: blur(5px);
+  font-size: 20px;
 }
 
 .event-sidebar.open {
@@ -509,12 +489,13 @@ button[th:onclick="decreaseFontSize()"] {
   top: 0;
   width: 30%;
   height: 100%;
-  background-color: rgba(123, 173, 230, 0.2);
+  background-color: rgba(73, 123, 180, 0.2);
   overflow-x: hidden;
   transition: 0.5s;
   padding: 15px 15px;
   color: #fff;
   backdrop-filter: blur(5px);
+  font-size: 20;
 }
 
 .help-sidebar.open {
@@ -528,12 +509,13 @@ button[th:onclick="decreaseFontSize()"] {
   top: 0;
   width: 30%; /* Sidebar width */
   height: 100%;
-  background-color: rgba(123, 173, 230, 0.2);
+  background-color: rgba(73, 123, 180, 0.2);
   overflow-x: hidden;
   transition: 0.5s;
   padding: 10px;
   color: #fff;
   backdrop-filter: blur(5px);
+  font-size: 20px;
 }
 
 .sidebar.open {
@@ -563,12 +545,12 @@ button[th:onclick="decreaseFontSize()"] {
 }
 
 .sidebar th {
-  background-color: rgba(123, 173, 230, 0.5);
+  background-color: rgba(73, 123, 180, 0.5);
   color: white;
 }
 
 .sidebar tr:nth-child(even) {
-  background-color: rgba(123, 173, 230, 0.3);
+  background-color: rgba(73, 123, 180, 0.3);
 }
 
 /* 반응형 스타일 */
@@ -607,13 +589,13 @@ button[th:onclick="decreaseFontSize()"] {
   text-decoration: none;
   outline: none;
   color: #fff;
-  background-color: rgba(123, 173, 230, 0.2);
+  background-color: rgba(73, 123, 180, 0.2);
   border: none;
   transition: all 0.3s;
 }
 
 .space-button:hover {
-  background-color: rgba(123, 173, 230, 0.6);
+  background-color: rgba(73, 123, 180, 0.6);
 }
 
 .space-button:active {
@@ -628,7 +610,7 @@ button[th:onclick="decreaseFontSize()"] {
   top: 0;
   width: 100%; /* Container takes the full width */
   height: 100%; /* Container takes the full height */
-  background-color: rgba(123, 173, 230, 0.1);
+  background-color: rgba(73, 123, 180, 0.1);
   overflow-x: hidden;
   transition: 0.5s;
   backdrop-filter: blur(10px);
@@ -696,13 +678,13 @@ button[th:onclick="decreaseFontSize()"] {
 #muteUnmuteBtn {
   color: #fff;
   width: 80%;
-  background: linear-gradient(45deg, rgba(123, 173, 230, 0.6), rgba(74, 144, 226, 0.6));
+  background: linear-gradient(45deg, rgba(73, 123, 180, 0.6), rgba(74, 144, 226, 0.6));
   border-radius: 1px;
   margin-bottom: 10%;
 }
 
 #muteUnmuteBtn:hover {
-  background: linear-gradient(45deg, rgba(123, 173, 230, 0.8), rgba(74, 144, 226, 0.8));
+  background: linear-gradient(45deg, rgba(73, 123, 180, 0.8), rgba(74, 144, 226, 0.8));
 }
 
 #muteUnmuteIcon {
@@ -715,6 +697,23 @@ button[th:onclick="decreaseFontSize()"] {
   bottom: 10%;
 }
 
+.event-box{
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: rgba(73, 123, 180, 0.2);
+  border: 1px solid rgba(73, 123, 180, 0.5); /* 각 박스를 구분하기 위한 테두리 추가 */
+  border-radius: 1px; 
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 박스에 그림자 효과를 추가하여 독립적으로 보이게 함 */
+}
+
+.event-box strong {
+  display: block;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5); /* strong과 p 사이에 구분선 추가 */
+  margin-bottom: 10px; 
+  padding-bottom: 10px; 
+}
+
 .event-box table {
   width: 100%;
   border-collapse: collapse;
@@ -722,6 +721,36 @@ button[th:onclick="decreaseFontSize()"] {
 }
 
 .event-box table td {
+  padding: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* -------------------------------------------------------- */
+
+.module-box{
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: rgba(73, 123, 180, 0.2);
+  border: 1px solid rgba(73, 123, 180, 0.5); /* 각 박스를 구분하기 위한 테두리 추가 */
+  border-radius: 1px; 
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 박스에 그림자 효과를 추가하여 독립적으로 보이게 함 */
+}
+
+.module-box strong {
+  display: block;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5); /* strong과 p 사이에 구분선 추가 */
+  margin-bottom: 10px; 
+  padding-bottom: 10px; 
+}
+
+.module-box table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #fff;
+}
+
+.module-box table td {
   padding: 5px;
   border: 1px solid rgba(255, 255, 255, 0.5);
 }
