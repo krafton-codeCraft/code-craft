@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const volumeControl = document.getElementById('volumeControl');
     const muteUnmuteIcon = document.getElementById('muteUnmuteIcon'); // get the icon inside the button
 
+    audioPlayer.volume = volumeControl.value;
 
     // Mute or unmute the audio
     muteUnmuteBtn.addEventListener('click', function () {
@@ -15,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
             muteUnmuteIcon.src = "assets/mute.png"; // Set to mute icon
         }
     });
-
+    
     // Adjust the volume
     volumeControl.addEventListener('input', function () {
         audioPlayer.volume = volumeControl.value;
