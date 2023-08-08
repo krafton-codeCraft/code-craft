@@ -21,7 +21,8 @@ const ASSET_IMAGE_NAMES = [
   'crown.png',
   'firework.png',
   'function.png',
-  'help.png'
+  'help.png',
+  'webicon.png',
 ];
 
 const ASSET_SOUND_NAMES =[

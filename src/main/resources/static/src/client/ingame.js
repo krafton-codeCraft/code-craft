@@ -30,13 +30,11 @@ Promise.all([
 
   connect(onGameOver),
   downloadAssets(),
-  pixiApp(),
-
-
+  
 ]).then(() => {
-
+  pixiApp().then(()=>{
     play(specIndex);
-    
+  })
 }).catch(console.error);
 
 
