@@ -75,18 +75,62 @@ button:focus {
 
 /*------------------------------------*/
 
+#play-menu {
+    /* flex: 5; */
+    position: absolute;
+    top: 5%;
+    justify-content: center;
+    width: 700px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    color: #ffffff;
+}
+
+@keyframes neonFlicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+        text-shadow: 
+        0 0 5px rgba(123, 173, 230, 0.5), 
+        0 0 10px rgba(123, 173, 230, 0.5),
+        0 0 15px rgba(123, 173, 230, 0.5), 
+        0 0 20px rgba(123, 173, 230, 0.5), 
+        0 0 30px rgba(123, 173, 230, 0.5);
+    }
+    20%, 24%, 55% { 
+        opacity: 0.5;
+        text-shadow: none;
+    }
+}
+
+#play-menu h1 {
+    font-family: 'Roboto Mono', monospace;
+    margin-top: 0;
+    color: rgba(123, 173, 230, 1);
+    font-size: 4rem;
+    text-shadow: 
+    0 0 5px rgba(123, 173, 230, 0.3), 
+    0 0 10px rgba(123, 173, 230, 0.3),
+    0 0 15px rgba(123, 173, 230, 0.3), 
+    0 0 20px rgba(123, 173, 230, 0.3), 
+    0 0 30px rgba(123, 173, 230, 0.3);
+    animation: neonFlicker 1.5s infinite alternate;
+}
+
+/*------------------------------------*/
+
 #rank-box {
     position: absolute;
     display: flex;
-    top: 10%;
-    height: 70%;
+    top: 20%;
+    height: 60%;
     left: 30%;
     width: 40%;
-    border-radius: 10px; /* 둥글게 변경 */
+    border-radius: 2px; /* 둥글게 변경 */
     background-color: rgba(0, 0, 0, 0.4); /* 약간의 투명한 검은색 배경으로 변경 */
     justify-content: center;
     align-items: center;
-    box-shadow: 0 0 15px rgba(123, 173, 230, 0.5); /* 투명한 그림자 추가 */
+    box-shadow: 0 0 2px rgba(123, 173, 230, 0.5); /* 투명한 그림자 추가 */
   }
   
   #today-rank {
@@ -95,7 +139,7 @@ button:focus {
       width: 90%; 
       overflow-y: auto;
       backdrop-filter: blur(2px); /* 더 크게 흐리게 설정 */
-      border-radius: 10px; /* 둥글게 변경 */
+      border-radius: 2px; /* 둥글게 변경 */
       font-size: 1.5em;
       color: #fff;
       text-align: center;
@@ -165,3 +209,27 @@ button:focus {
     width: 80%;
     bottom: 10%;
 }
+
+/*------------------------------------*/
+
+/* #start-button {
+    position: absolute;
+    top: 5%;
+    justify-content: center;
+    width: 700px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    font-family: 'Roboto Mono', monospace;
+    margin-top: 0;
+    color: rgba(123, 173, 230, 1);
+    font-size: 2rem;
+    text-shadow: 
+    0 0 5px rgba(123, 173, 230, 0.3), 
+    0 0 10px rgba(123, 173, 230, 0.3),
+    0 0 15px rgba(123, 173, 230, 0.3), 
+    0 0 20px rgba(123, 173, 230, 0.3), 
+    0 0 30px rgba(123, 173, 230, 0.3);
+    animation: neonFlicker 1.5s infinite alternate;
+
+} */
