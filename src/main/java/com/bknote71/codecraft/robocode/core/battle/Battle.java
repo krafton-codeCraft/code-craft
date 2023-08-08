@@ -96,7 +96,7 @@ public class Battle {
 
             updateRobots(update);
 
-            handleDeadRobots(update);
+            // handleDeadRobots(update);
 
             publishStatuses();
 

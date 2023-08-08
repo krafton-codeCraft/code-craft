@@ -980,7 +980,7 @@ public class RobotPeer {
 
         log.info("compensate for {} ({}, {}) + ({}, {})", username, this.hp, this.score, hp, score);
 
-        this.hp = max(this.hp + hp, 5);
+        this.hp = min(this.hp + hp, 5);
         this.score += score;
         LeaderBoardTemplate.incrementLeaderboardScore(battle.getId(), username, score);
     }
