@@ -3,7 +3,7 @@ import { throttle } from 'throttle-debounce';
 import { requestLeaderBoard, playerId, username } from '../networking.js';
 
 const leaderboard = document.getElementById('leaderboard');
-
+export let challenger = null;
 export const updateLeaderboard = throttle(1500, () => {
   var roomId = 1;
   requestLeaderBoard(roomId)
@@ -11,6 +11,7 @@ export const updateLeaderboard = throttle(1500, () => {
       if (!Array.isArray(data) || data.length === 0) {
         return;
       }
+      challenger = data[0].username;
       leaderboard.innerHTML = ''; // Clear existing leaderboard content
 
       // Displaying "Leaderboard" title

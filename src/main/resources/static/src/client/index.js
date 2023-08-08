@@ -15,11 +15,11 @@ let flag = true;
 Promise.all([
 
   downloadAssets(),
-  pixiApp(),
+  
 
 ]).then(() => {
-
-console.log('제발떠라');
+  pixiApp();
+  console.log('제발떠라');
   // usernameInput.focus();
 
   playButton.onclick = () => {

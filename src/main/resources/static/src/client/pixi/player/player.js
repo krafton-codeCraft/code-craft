@@ -1,7 +1,7 @@
 import { getAsset } from '../../assets';
-import { requestLeaderBoard ,robotId } from '../../networking';
+import { robotId } from '../../networking';
 import { explosionEffect ,warpEffect } from '../effect/particles'
-
+import { challenger } from '../../htmlComponent/leaderboard';
 const Constants = require('../../../shared/constants');
 const { PLAYER_RADIUS,PLAYER_MAXENERGY, PLAYER_MAXHP } = Constants;
 
@@ -52,24 +52,18 @@ export function renderPlayer(player, app) {
 
     }
 
-    /* requestLeaderBoard(1).then(data=>{
-        if (!Array.isArray(data) || data.length === 0) {
-            return;
-        }
-        console.log(`data username : ${data[0].username}`)
-        console.log(`username : ${username}`)
-        if( username === data[0].username){
-            if(robot.children.length > 5){
-                updateCrown(robot,player);
-            }else{
-                createNewCrown(robot,player);
-            }
+
+    if (username === challenger){
+        if(robot.children.length > 5){
+            updateCrown(robot,player);
         }else{
-            if(robot.children.length > 5){
-                robot.removeChildAt(5);
-            }
+            createNewCrown(robot,player);
         }
-    }); */
+    }else{
+        if(robot.children.length > 5){
+            robot.removeChildAt(5);
+        }
+    }
 
 }
 
