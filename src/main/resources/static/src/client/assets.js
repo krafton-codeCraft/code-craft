@@ -12,7 +12,6 @@ const ASSET_IMAGE_NAMES = [
   'meteorv.png',
   'icon_sound_off.png',
   'icon_sound_on.png',
-  
   'bomb.svg',
   'missile.svg',
   'react.svg',
@@ -20,7 +19,6 @@ const ASSET_IMAGE_NAMES = [
   'particle.png',
   'star.png',
   'crown.png',
-  'crown2.png',
 ];
 
 const ASSET_SOUND_NAMES =[
