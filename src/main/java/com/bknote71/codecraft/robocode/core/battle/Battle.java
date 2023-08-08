@@ -225,7 +225,7 @@ public class Battle {
             robotPeer.performMove(getRobotsAtRandom());
             // 위치 정보
             update.robots.add(
-                    new UpdateInfo.RobotInfo(robotPeer.getId(), robotPeer.getName(), robotPeer.getX(), robotPeer.getY(),
+                    new UpdateInfo.RobotInfo(robotPeer.getId(), robotPeer.getName(), robotPeer.getUsername(), robotPeer.getX(), robotPeer.getY(),
                             robotPeer.getBodyHeading(), robotPeer.getGunHeading(), robotPeer.getRadarHeading(), robotPeer.getHp(), robotPeer.isDead())
             );
         }
