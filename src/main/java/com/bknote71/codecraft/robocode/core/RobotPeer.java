@@ -753,6 +753,8 @@ public class RobotPeer {
             int battlefieldHeight = battleRules.getBattlefieldHeight();
             x = (x + battlefieldWidth) % battlefieldWidth;
             y = (y + battlefieldHeight) % battlefieldHeight;
+
+            updateBoundingBox();
         }
     }
 

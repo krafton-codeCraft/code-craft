@@ -6,6 +6,7 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.Region;
 import com.bknote71.codecraft.robocode.loader.AwsS3ClassLoader;
 import com.bknote71.codecraft.web.dto.CompileResult;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -16,6 +17,7 @@ import java.util.Arrays;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 @Component
 public class JavaClassCompiler {
 
@@ -31,7 +33,7 @@ public class JavaClassCompiler {
             Properties prop = new Properties();
 
             if (input == null) {
-                System.out.println("Sorry, unable to find config.properties");
+                log.error("Sorry, unable to find config.properties");
             }
 
             //load a properties file from class path
@@ -69,15 +71,20 @@ public class JavaClassCompiler {
             }
         }
 
-        if (startIndex == lines.length)
-            return new CompileResult(-2, "빈 코드입니다.");
+        if (startIndex == lines.length) {
+            log.error("empty code!");
+            return new CompileResult(-1, "빈 코드입니다.");
+        }
 
+        // java name parsing
         String javaName = "";
         String startLine = lines[startIndex];
         String[] startWords = startLine.split(" ");
 
-        if (startWords.length == 0)
-            return new CompileResult(-3, "있을 수 없는일인데..");
+        if (startWords.length == 0) {
+            log.error("있을 수 없는일..");
+            return new CompileResult(-1, "있을 수 없는일인데..");
+        }
 
         if (startWords[0].equals("public"))
             javaName = startWords[2];
@@ -85,8 +92,8 @@ public class JavaClassCompiler {
             javaName = startWords[1];
 
         if (javaName == null || javaName.isEmpty() || javaName.isBlank()) {
-            System.out.println("class name 이 없습니다.");
-            return new CompileResult(-4, "class name 이 없습니다.");
+            log.error("class name 이 없습니다.");
+            return new CompileResult(-1, "class name 이 없습니다.");
         }
 
         // 완성된 .class
@@ -98,7 +105,7 @@ public class JavaClassCompiler {
         // compile: {javaName}.java 파일 to {javaName}.class 파일
         CompileResult result = null;
         if ((result = compileRobot(author, javaName, realContent)).exitCode != 0) {
-            System.out.println(result.content);
+            log.error("compile failed: {}", result.content);
             return result;
         }
 
@@ -123,13 +130,13 @@ public class JavaClassCompiler {
             writer.flush();
             writer.close();
 
-            // 2. javac 로 컴파일
+            /////////////// compile ///////////////
             String javaPath = "src/main/java";
             String libPath = "lib/*";
             String outputDir = outputPath + author;
             String sourceFile = filePath + javaFileName;
 
-            String[] cmd = new String[] {
+            String[] cmd = new String[]{
                     "javac",
                     "-cp",
                     String.format("%s:%s", javaPath, libPath),
@@ -138,17 +145,24 @@ public class JavaClassCompiler {
                     sourceFile
             };
 
-            System.out.println("cmd: " + Arrays.toString(cmd));
+            log.info("cmd: {}", Arrays.toString(cmd));
 
             ProcessBuilder processBuilder = new ProcessBuilder(cmd);
             Process process = processBuilder.start();
 
-            if ((process.waitFor(30, TimeUnit.SECONDS)) != true) { // 정상 종료되지 않음
+            if ((process.waitFor(20, TimeUnit.SECONDS)) != true) { // 정상 종료되지 않음
+                process.destroyForcibly();
+                log.error("Process terminated forcibly after timeout.");
+                return new CompileResult(-1, "timeout");
+            }
+
+            if (process.exitValue() != 0) {
                 InputStream error = process.getErrorStream();
                 return new CompileResult(-1, new String(error.readAllBytes()));
             }
 
-            String[] copyCmd = new String[] {
+            /////////////// copy ///////////////
+            String[] copyCmd = new String[]{
                     "cp",
                     "-f",
                     String.format("%s/%s/%s", outputDir, packagePath.replace(".", "/"), javaClassName),
@@ -159,14 +173,16 @@ public class JavaClassCompiler {
             Process copyProcess = copyProcessBuilder.start();
 
             if (copyProcess.waitFor(5, TimeUnit.SECONDS) != true) {
+                copyProcess.destroyForcibly();
+                return new CompileResult(-1, "timeout");
+            }
+
+            if (copyProcess.exitValue() != 0) {
                 InputStream error = process.getErrorStream();
                 return new CompileResult(-1, new String(error.readAllBytes()));
             }
 
-        } catch (IOException e) {
-            e.printStackTrace();
-            return new CompileResult(-1, e.toString());
-        } catch (InterruptedException e) {
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
             return new CompileResult(-1, e.toString());
         }
@@ -180,17 +196,23 @@ public class JavaClassCompiler {
     }
 
     private void removeDir(String path) {
+        /////////////// remove ///////////////
         try {
-            String[] removeCmd = new String[] {
+            String[] removeCmd = new String[]{
                     "rm",
                     "-rf",
                     path
             };
 
-            ProcessBuilder copyProcessBuilder = new ProcessBuilder(removeCmd);
-            Process removeProcess = copyProcessBuilder.start();
+            ProcessBuilder removeProcessBuilder = new ProcessBuilder(removeCmd);
+            Process removeProcess = removeProcessBuilder.start();
             if (removeProcess.waitFor(5, TimeUnit.SECONDS) != true) {
-                System.out.println("remove 파일 실패");
+                removeProcess.destroyForcibly();
+            }
+
+            if (removeProcess.exitValue() != 0) {
+                log.error("remove 파일 실패");
+                // ??
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
