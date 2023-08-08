@@ -195,3 +195,13 @@ window.onload = function () {
   var audioElement = document.getElementById('audioPlayer');
   audioElement.play();
 }
+
+document.querySelector('#toggle-leaderboard').addEventListener('click', function() {
+  var leaderButton = document.getElementById('leaderboard');
+
+  if(sidebar.classList.contains('open')) {
+    leaderButton.classList.remove('open');
+  } else {
+    leaderButton.classList.add('open');
+  }
+});

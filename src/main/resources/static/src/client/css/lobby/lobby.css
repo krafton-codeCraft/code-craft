@@ -250,13 +250,16 @@ body::after {
 #muteUnmuteBtn {
     color: #fff;
     width: 80%;
-    background: none;
+    transition: 0.5s;
+    background: rgba(73, 123, 180, 0.1);
     border-radius: 1px;
     margin-bottom: 10%;
-}
-
+    transform: 0.5s;
+    justify-content: center;
+  }
+  
 #muteUnmuteBtn:hover {
-    background: linear-gradient(45deg, rgba(123, 173, 230, 0.8), rgba(74, 144, 226, 0.8));
+background: rgba(73, 123, 180, 0.3);;
 }
 
 #muteUnmuteIcon {
