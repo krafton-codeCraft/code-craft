@@ -135,41 +135,51 @@ body::after {
 /*------------------------------------*/
 
 #rank-box {
-  position: absolute;
-  display: flex;
-  top: 20%;
-  height: 60%;
-  left: 30%;
-  width: 40%;
-  border-radius: 1px;
-  background-color: rgba(123, 173, 230, 0.2);
-  justify-content: center; /* 가로 중앙 정렬 */
-  align-items: center;     /* 세로 중앙 정렬 */
-}
+    position: absolute;
+    display: flex;
+    top: 10%;
+    height: 70%;
+    left: 30%;
+    width: 40%;
+    border-radius: 10px; /* 둥글게 변경 */
+    background-color: rgba(0, 0, 0, 0.4); /* 약간의 투명한 검은색 배경으로 변경 */
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 15px rgba(123, 173, 230, 0.5); /* 투명한 그림자 추가 */
+  }
+  
+  #today-rank {
+      height: 92%;
+      background-color: rgba(0, 0, 0, 0.3); /* 약간의 투명한 검은색 배경으로 변경 */
+      width: 90%; 
+      overflow-y: auto;
+      backdrop-filter: blur(2px); /* 더 크게 흐리게 설정 */
+      border-radius: 10px; /* 둥글게 변경 */
+      font-size: 1.5em;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+  }
+  
+  table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+  }
+  
+  th, td {
+      border-bottom: 1px solid rgba(123, 173, 230, 0.3); /* 수정: solid 추가 */
+      padding: 8px;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.2); /* 약간의 투명한 검은색 배경으로 변경 */
+  }
+  
+  th {
+      background-color: rgba(123, 173, 230, 0.5);
+  }
 
-#today-rank {
-  height: 92%;
-  background-color: rgba(123, 173, 230, 0.2);
-  width: 90%; 
-  overflow-y: auto;
-  backdrop-filter: blur(1px);
-  border-radius: 1px;
-  font-size: 1.5em;
-  color: #fff;
-  text-align: center;
-}
-
-/* #rank {
-  margin-left: 2%;
-  height: 92%;
-  background-color: rgba(123, 173, 230, 0.2);
-  width: 44%; 
-  overflow-y: auto;
-  backdrop-filter: blur(1px);
-  font-size: 1.5em;
-  color: #fff;
-  text-align: center;
-} */
+/*------------------------------------*/
+  
 #audio-box {
     position: fixed;
     width: 10%;
@@ -196,7 +206,7 @@ body::after {
 #muteUnmuteBtn {
     color: #fff;
     width: 80%;
-    background: linear-gradient(45deg, rgba(123, 173, 230, 0.6), rgba(74, 144, 226, 0.6));
+    background: none;
     border-radius: 1px;
     margin-bottom: 10%;
 }
