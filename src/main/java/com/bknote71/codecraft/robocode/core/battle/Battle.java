@@ -152,11 +152,12 @@ public class Battle {
             return;
         }
 
-        LeaderBoardTemplate.updateLeaderBoard(battleId, robotPeer.getUsername(), -robotPeer.getScore());
-        LeaderBoardTemplate.updateTodayLeaderBoard(robotPeer.getUsername(), robotPeer.getScore());
-
         log.info("robot peer cleanup");
         robotPeer.cleanup();
+
+        String robotPeerUsername = robotPeer.getUsername();
+        LeaderBoardTemplate.updateLeaderBoard(battleId, robotPeerUsername, -robotPeer.getScore());
+        LeaderBoardTemplate.updateTodayLeaderBoard(robotPeerUsername, robotPeer.getScore());
     }
 
     public void changeRobot(int robotId, RobotSpecification[] specifications, int robotIndex) {
