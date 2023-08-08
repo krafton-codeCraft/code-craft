@@ -22,6 +22,8 @@ const ASSET_IMAGE_NAMES = [
   'vite.svg',
   'particle.png',
   'star.png',
+  'firework.png',
+  'function.png',
 ];
 
 const ASSET_SOUND_NAMES =[
