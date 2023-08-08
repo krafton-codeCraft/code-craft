@@ -16,9 +16,8 @@ let flag = true;
 
 Promise.all([
 
-  // downloadAssets(),
+  downloadAssets(),
   pixiApp(),
-  // getRobotInfos(),
   
 ]).then(() => {
 

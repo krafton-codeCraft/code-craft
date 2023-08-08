@@ -1,16 +1,18 @@
 document.addEventListener("DOMContentLoaded", function () {
     const audioPlayer = document.getElementById('audioPlayer');
-    const playPauseBtn = document.getElementById('playPauseBtn');
+    const muteUnmuteBtn = document.getElementById('muteUnmuteBtn');
     const volumeControl = document.getElementById('volumeControl');
+    const muteUnmuteIcon = document.getElementById('muteUnmuteIcon'); // get the icon inside the button
 
-    // Play or pause the audio
-    playPauseBtn.addEventListener('click', function () {
-        if (audioPlayer.paused) {
-            audioPlayer.play();
-            playPauseBtn.innerHTML = "Pause";
+
+    // Mute or unmute the audio
+    muteUnmuteBtn.addEventListener('click', function () {
+        if (audioPlayer.muted) {
+            audioPlayer.muted = false;
+            muteUnmuteIcon.src = "assets/volume.png"; // Set to volume icon
         } else {
-            audioPlayer.pause();
-            playPauseBtn.innerHTML = "Play";
+            audioPlayer.muted = true;
+            muteUnmuteIcon.src = "assets/mute.png"; // Set to mute icon
         }
     });
 
@@ -19,7 +21,3 @@ document.addEventListener("DOMContentLoaded", function () {
         audioPlayer.volume = volumeControl.value;
     });
 });
-
-
-
-

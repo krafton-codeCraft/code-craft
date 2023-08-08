@@ -125,33 +125,9 @@ export const requestTodayRanking = () => {
     });
 };
 
-function compile_code(index, content) {
-  const url = `http://${addr}:8080/create/robot`;
-  let Data = { specIndex: index, code: content };
-  console.log(index, content);
-  const params = new URLSearchParams(Data).toString();
-  fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    body: params
-  })
-    .then(response => response.json())
-    .then(data => {
-      const result = data.exitCode;
-      const status = data.content;
-      const code = data.code
-      code_check_lobby(result, status, index, code);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-};
-
 function change_code(index, content, lang) {
   compileSidebar.classList.add("open");
-  const url = `http://${addr}:8080/change/ingame-robot`;
+  const url = `http://${addr}:8080/compile/ingame-robot`;
   let Data = { robotId: robotId, specIndex: index, code: content, lang: lang }
   console.log(Data)
   const params = new URLSearchParams(Data).toString();
@@ -166,9 +142,10 @@ function change_code(index, content, lang) {
     .then(data => {
       const result = data.exitCode;
       const status = data.content;
-      const code = data.code
+      const code = data.code;
+      const lang = data.lang
       console.log(data);
-      code_check(result, status, index, code);
+      code_check(result, status, index, code, lang);
       compileSidebar.classList.remove("open");
     })
     .catch(error => {
@@ -178,29 +155,6 @@ function change_code(index, content, lang) {
 };
 
 window.change_code = change_code;
-window.compile_code = compile_code;
-
-export const getRobotInfos = () => {
-  console.log('asdfasdfasdf');
-  const url = `http://${addr}:8080/get/robot-infos`;
-  return fetch(url, {
-    method: 'GET'
-  })
-    .then(response => {
-      return response.json();
-    })
-
-    .then(data => {
-      // console.log(data[0].code);
-      // const info = data[0].code;
-      // setEditorValueLobby(info);
-      console.log(data);
-      return data;
-    })
-    .catch(e => {
-      console.log(e);
-    });
-}
 
 export function submitChat(content) {
   const message = {

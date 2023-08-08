@@ -3,7 +3,7 @@
 RESOURCES_PATH="./src/main/resources/templates"
 
 lobbyfile="${RESOURCES_PATH}/lobby.html"
-lobby_insert_line="70"
+lobby_insert_line="55"
 lobby_insert_file="./scripts/lobby-script"
 
 head -n $(($lobby_insert_line - 1)) "$lobbyfile" > tmpfile1
