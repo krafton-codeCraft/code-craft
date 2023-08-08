@@ -936,7 +936,7 @@ public class RobotPeer {
         if (hp <= 0) {
             RobotPeer owner = bulletPeer.owner;
             // compensate
-            owner.compensate(battle.getId(), 3, 2);
+            owner.compensate(3, 2);
             onDead();
             return;
         }
@@ -947,7 +947,10 @@ public class RobotPeer {
     }
 
     public void onDead() { // 죽음 ?? 리스폰 해야함
-        LeaderBoardTemplate.updateLeaderBoard(battle.getId(), getUsername(), -score);
+        if (battle == null)
+            return;
+
+        LeaderBoardTemplate.resetLeaderboardScore(battle.getId(), getUsername());
         LeaderBoardTemplate.updateTodayLeaderBoard(getUsername(), score);
 
         // 죽음 처리 작업 푸쉬
@@ -969,14 +972,17 @@ public class RobotPeer {
         battle.pushAfter(1000, this::startBattle);
     }
 
-    private void compensate(int battleId, double hp, double score) {
+    private void compensate(double hp, double score) {
+        if (battle == null)
+            return;
+
         String username = getUsername();
 
         log.info("compensate for {} ({}, {}) + ({}, {})", username, this.hp, this.score, hp, score);
 
-        this.hp += hp;
+        this.hp = max(this.hp + hp, 5);
         this.score += score;
-        LeaderBoardTemplate.updateLeaderBoard(battleId, username, score);
+        LeaderBoardTemplate.incrementLeaderboardScore(battle.getId(), username, score);
     }
 
     public void setDead() {
