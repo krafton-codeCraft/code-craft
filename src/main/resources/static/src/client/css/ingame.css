@@ -480,6 +480,7 @@ button[th:onclick="decreaseFontSize()"] {
   z-index: 11;
 }
 
+<<<<<<< HEAD
 #toggle-leaderboard {
   z-index: 10;
   position: fixed;
@@ -497,6 +498,14 @@ button[th:onclick="decreaseFontSize()"] {
   top: 0%; /* When the container is opened, the button moves to the left */
 }
 
+=======
+.space-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* This ensures the image maintains its aspect ratio */
+}
+>>>>>>> a0a1350934aef0fd661d730457af20f3b9952224
 /* -------------------------------------------------------- */
 
 .event-sidebar {

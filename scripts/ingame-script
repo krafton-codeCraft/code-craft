@@ -92,7 +92,6 @@ function code_check(result, status, index, code, lang) {
         terminal.innerHTML = `<span class="terminal-success">컴파일 성공!</span>`;
         robotInfos[index].code = code;
         robotInfos[index].lang = lang;
-        
         setTimeout(() => {
             terminal.innerHTML = '';
         }, 5000);

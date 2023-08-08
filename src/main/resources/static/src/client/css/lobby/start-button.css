@@ -58,6 +58,9 @@ body {
         0px 0px 0px 0px var(--glow-color);
     animation: border-flicker 2s linear infinite;
 }
+.glowing-btn span {
+    letter-spacing: 0em;
+}
 
 .glowing-txt {
     float: left;
