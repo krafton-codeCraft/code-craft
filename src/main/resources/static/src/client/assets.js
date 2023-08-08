@@ -10,18 +10,17 @@ const ASSET_IMAGE_NAMES = [
   'target.png',
   'meteor.png',
   'meteorv.png',
-  'shield1.png',
-  'shield2.png',
-  'shield3.png',
   'icon_sound_off.png',
   'icon_sound_on.png',
-  'dirty-bomb.png',
+  
   'bomb.svg',
   'missile.svg',
   'react.svg',
   'vite.svg',
   'particle.png',
   'star.png',
+  'crown.png',
+  'crown2.png',
 ];
 
 const ASSET_SOUND_NAMES =[
