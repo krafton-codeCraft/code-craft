@@ -87,7 +87,7 @@ function code_check(result, status, index, code, lang) {
         const translatedError = translateErrorToKorean(firstError);
         console.log(firstError)
         terminal.innerHTML = `<span class="terminal-error">${translatedError}: ${result}</span>`;
-
+        
     } else {
         terminal.innerHTML = `<span class="terminal-success">컴파일 성공!</span>`;
         robotInfos[index].code = code;
