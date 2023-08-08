@@ -17,10 +17,10 @@ let flag = true;
 Promise.all([
 
   downloadAssets(),
-  pixiApp(),
+  
   
 ]).then(() => {
-
+  pixiApp();
   document.addEventListener("DOMContentLoaded", function () {
     requestTodayRanking();
   });
