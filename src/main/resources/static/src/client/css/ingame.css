@@ -656,7 +656,7 @@ button[th:onclick="decreaseFontSize()"] {
   position: fixed;
   width: 10%;
   height: 10%;
-  bottom: 5%;
+  bottom: 3%;
   left: 0%;
   z-index: 10;
   background-color: transparent;
@@ -678,13 +678,14 @@ button[th:onclick="decreaseFontSize()"] {
 #muteUnmuteBtn {
   color: #fff;
   width: 80%;
-  background: linear-gradient(45deg, rgba(73, 123, 180, 0.6), rgba(74, 144, 226, 0.6));
+  transition: 0.5s;
+  background: rgba(73, 123, 180, 0.1);
   border-radius: 1px;
   margin-bottom: 10%;
 }
 
 #muteUnmuteBtn:hover {
-  background: linear-gradient(45deg, rgba(73, 123, 180, 0.8), rgba(74, 144, 226, 0.8));
+  background: rgba(73, 123, 180, 0.3s);;
 }
 
 #muteUnmuteIcon {
