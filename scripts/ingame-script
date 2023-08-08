@@ -63,6 +63,8 @@ require(["vs/editor/editor.main"], function () {
             editor.updateOptions({ fontSize: currentFontSize - 1 });
         }
     }
+    updateEditorBasedOnLanguageSelection();
+
 });
 
 
@@ -100,7 +102,6 @@ function code_check(result, status, index, code, lang) {
 
 function selectDeckIndex(deckId) {
     robotInfos[selectedDeck].code = getEditorValue();
-    updateEditorBasedOnLanguageSelection();
     selectedDeck = deckId;
     if(robotInfos[selectedDeck]){
         var language = robotInfos[selectedDeck].lang;
