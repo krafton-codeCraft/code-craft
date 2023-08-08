@@ -107,7 +107,6 @@ body::after {
 }
 
 #leaderboard {
-    background-color: rgba(255, 255, 255, 0.1);
     border: 3px solid #9f6ee7;
     border-radius: 10px;
     box-shadow: 0 0 15px 3px rgba(159, 110, 231, 0.5);
@@ -186,16 +185,17 @@ body::after {
     left: 30%;
     width: 40%;
     border-radius: 2px; /* 둥글게 변경 */
-    background-color: rgba(0, 0, 0, 0.4); /* 약간의 투명한 검은색 배경으로 변경 */
+    background-color: none; /* 약간의 투명한 검은색 배경으로 변경 */
     justify-content: center;
     align-items: center;
-    box-shadow: 0 0 2px rgba(123, 173, 230, 0.5); /* 투명한 그림자 추가 */
+    /* box-shadow: 0 0 2px rgba(123, 173, 230, 0.5); 투명한 그림자 추가 */
   }
   
   #today-rank {
-      height: 92%;
-      background-color: rgba(0, 0, 0, 0.3); /* 약간의 투명한 검은색 배경으로 변경 */
-      width: 90%; 
+      background-color: rgba(123, 173, 230, 0.2);
+      height: 100%;
+      /* background-color: rgba(0, 0, 0, 0.3); 약간의 투명한 검은색 배경으로 변경 */
+      width: 100%; 
       overflow-y: auto;
       backdrop-filter: blur(2px); /* 더 크게 흐리게 설정 */
       border-radius: 2px; /* 둥글게 변경 */
@@ -207,6 +207,7 @@ body::after {
   
   table {
       width: 100%;
+      border-radius: 2px;
       border-collapse: collapse;
       margin-top: 20px;
   }
@@ -251,7 +252,7 @@ body::after {
     color: #fff;
     width: 80%;
     transition: 0.5s;
-    background: rgba(73, 123, 180, 0.1);
+    background: rgba(123, 173, 230, 0.2);
     border-radius: 1px;
     margin-bottom: 10%;
     transform: 0.5s;
@@ -259,7 +260,7 @@ body::after {
   }
   
 #muteUnmuteBtn:hover {
-background: rgba(73, 123, 180, 0.3);;
+background: rgba(123, 173, 230, 0.4);;
 }
 
 #muteUnmuteIcon {
