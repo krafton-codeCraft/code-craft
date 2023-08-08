@@ -127,7 +127,7 @@ public class Battle {
         robots.put(robotPeer.getId(), robotPeer);
 
         // 바로 업데이트
-        LeaderBoardTemplate.updateLeaderBoard(battleId, robotPeer.getUsername(), 0);
+        LeaderBoardTemplate.incrementLeaderboardScore(battleId, robotPeer.getUsername(), 0);
 
         ClientSession session = robotPeer.session();
         if (session == null)
@@ -156,7 +156,7 @@ public class Battle {
         robotPeer.cleanup();
 
         String robotPeerUsername = robotPeer.getUsername();
-        LeaderBoardTemplate.updateLeaderBoard(battleId, robotPeerUsername, -robotPeer.getScore());
+        LeaderBoardTemplate.removeFromLeaderboard(battleId, robotPeerUsername);
         LeaderBoardTemplate.updateTodayLeaderBoard(robotPeerUsername, robotPeer.getScore());
     }
 
