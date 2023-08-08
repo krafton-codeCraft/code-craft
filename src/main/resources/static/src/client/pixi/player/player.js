@@ -1,5 +1,5 @@
 import { getAsset } from '../../assets';
-import { requestLeaderBoard ,robotId ,username } from '../../networking';
+import { requestLeaderBoard ,robotId } from '../../networking';
 import { explosionEffect ,warpEffect } from '../effect/particles'
 
 const Constants = require('../../../shared/constants');
@@ -10,7 +10,7 @@ export const playerSprites = {};
 
 export function renderPlayer(player, app) {
     
-    const { id , dead } = player;
+    const { id , dead , username } = player;
     
     // console.log(id);
     if(dead){
@@ -52,12 +52,12 @@ export function renderPlayer(player, app) {
 
     }
 
-    requestLeaderBoard(1).then(data=>{
+    /* requestLeaderBoard(1).then(data=>{
         if (!Array.isArray(data) || data.length === 0) {
             return;
         }
-        /* console.log(`data username : ${data[0].username}`)
-        console.log(`username : ${username}`) */
+        console.log(`data username : ${data[0].username}`)
+        console.log(`username : ${username}`)
         if( username === data[0].username){
             if(robot.children.length > 5){
                 updateCrown(robot,player);
@@ -69,7 +69,7 @@ export function renderPlayer(player, app) {
                 robot.removeChildAt(5);
             }
         }
-    });
+    }); */
 
 }
 
@@ -112,7 +112,7 @@ function animateScale(robot){
 
 function createNewPlayerSprite(player){
     const robotContainer = new PIXI.Container();
-    const { id, x, y, name , bodyHeading, gunHeading, raderHeading, energy ,hp } = player;
+    const { id, x, y, name , bodyHeading, gunHeading, raderHeading ,hp } = player;
     
     const canvasX = x;
     const canvasY = y;
