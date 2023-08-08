@@ -27,6 +27,7 @@ body {
 
 .glowing-btn {
     align-items: center;
+    text-align: center;
     position: absolute;
     justify-content: center;
     bottom: 5%;
@@ -49,12 +50,12 @@ body {
     align-items: center;
     text-align: center;
 
-    -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
-        0px 0px 0.5em 0px var(--glow-color);
+    -webkit-box-shadow: inset 0px 0px 0px 0px var(--glow-color),
+        0px 0px 0px 0px var(--glow-color);
     -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
-        0px 0px 0.5em 0px var(--glow-color);
+        0px 0px 0px 0px var(--glow-color);
     box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
-        0px 0px 0.5em 0px var(--glow-color);
+        0px 0px 0px 0px var(--glow-color);
     animation: border-flicker 2s linear infinite;
 }
 .glowing-btn span {

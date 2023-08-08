@@ -81,12 +81,16 @@ function handleEnterKey(event) {
 document.getElementById('toggle-main-container').addEventListener('click', function() {
   var mainContainer = document.getElementById('main-container');
   var toggleButton = document.getElementById('toggle-main-container');
+  var leaderButton = document.getElementById('toggle-leaderboard');
+
   if(mainContainer.classList.contains('open')) {
     mainContainer.classList.remove('open');
     toggleButton.classList.remove('open');
+    leaderButton.classList.remove('open');
   } else {
     mainContainer.classList.add('open');
     toggleButton.classList.add('open');
+    leaderButton.classList.add('open');
   }
 });
 
@@ -98,6 +102,7 @@ document.querySelector('#toggle-event').addEventListener('click', function() {
   var leaderboard = document.getElementById('leaderboard');
   var inputbar = document.getElementById('inputbar');
   var audioBox = document.getElementById('audio-box');
+  var leaderButton = document.getElementById('toggle-leaderboard');
 
   if(sidebar.classList.contains('open')) {
 
@@ -108,6 +113,7 @@ document.querySelector('#toggle-event').addEventListener('click', function() {
     moduleButton.classList.remove('hidden-to-left');
     helpButton.classList.remove('hidden-to-left');
     audioBox.classList.remove('hidden-to-left');
+    leaderButton.classList.remove('open');
 
   } else {
 
@@ -118,7 +124,7 @@ document.querySelector('#toggle-event').addEventListener('click', function() {
     moduleButton.classList.add('hidden-to-left');
     helpButton.classList.add('hidden-to-left');
     audioBox.classList.add('hidden-to-left');
-
+    leaderButton.classList.add('open');
   }
 });
 
@@ -130,6 +136,7 @@ document.querySelector('#toggle-module').addEventListener('click', function() {
   var leaderboard = document.getElementById('leaderboard');
   var inputbar = document.getElementById('inputbar');
   var audioBox = document.getElementById('audio-box');
+  var leaderButton = document.getElementById('toggle-leaderboard');
 
   if(sidebar.classList.contains('open')) {
     sidebar.classList.remove('open');
@@ -139,6 +146,7 @@ document.querySelector('#toggle-module').addEventListener('click', function() {
     eventButton.classList.remove('hidden-to-left');
     helpButton.classList.remove('hidden-to-left');
     audioBox.classList.remove('hidden-to-left');
+    leaderButton.classList.remove('open');
   } else {
     sidebar.classList.add('open');
     toggleButton.classList.add('open');
@@ -147,6 +155,7 @@ document.querySelector('#toggle-module').addEventListener('click', function() {
     eventButton.classList.add('hidden-to-left');
     helpButton.classList.add('hidden-to-left');
     audioBox.classList.add('hidden-to-left');
+    leaderButton.classList.add('open');
   }
 });
 
@@ -158,6 +167,7 @@ document.querySelector('#toggle-help').addEventListener('click', function() {
   var leaderboard = document.getElementById('leaderboard');
   var inputbar = document.getElementById('inputbar');
   var audioBox = document.getElementById('audio-box');
+  var leaderButton = document.getElementById('toggle-leaderboard');
 
   if(sidebar.classList.contains('open')) {
     sidebar.classList.remove('open');
@@ -167,6 +177,7 @@ document.querySelector('#toggle-help').addEventListener('click', function() {
     eventButton.classList.remove('hidden-to-left');
     toggleButton.classList.remove('hidden-to-left');
     audioBox.classList.remove('hidden-to-left');
+    leaderButton.classList.remove('open');
   } else {
     sidebar.classList.add('open');
     helpButton.classList.add('open');
@@ -175,6 +186,7 @@ document.querySelector('#toggle-help').addEventListener('click', function() {
     eventButton.classList.add('hidden-to-left');
     toggleButton.classList.add('hidden-to-left');
     audioBox.classList.add('hidden-to-left');
+    leaderButton.classList.add('open');
   }
 });
 
@@ -193,3 +205,14 @@ window.onload = function () {
   var audioElement = document.getElementById('audioPlayer');
   audioElement.play();
 }
+
+document.querySelector('#toggle-leaderboard').addEventListener('click', function() {
+  var leaderButton = document.getElementById('toggle-leaderboard');
+  var leaderboard = document.getElementById('leaderboard');
+
+  if(leaderboard.classList.contains('open')) {
+    leaderboard.classList.remove('open');
+  } else {
+    leaderboard.classList.add('open');
+  }
+});
