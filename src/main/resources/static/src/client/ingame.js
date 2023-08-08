@@ -197,11 +197,14 @@ window.onload = function () {
 }
 
 document.querySelector('#toggle-leaderboard').addEventListener('click', function() {
-  var leaderButton = document.getElementById('leaderboard');
+  var leaderButton = document.getElementById('toggle-leaderboard');
+  var leaderboard = document.getElementById('leaderboard');
 
-  if(sidebar.classList.contains('open')) {
+  if(leaderboard.classList.contains('open')) {
     leaderButton.classList.remove('open');
+    leaderboard.classList.remove('open');
   } else {
     leaderButton.classList.add('open');
+    leaderboard.classList.add('open');
   }
 });

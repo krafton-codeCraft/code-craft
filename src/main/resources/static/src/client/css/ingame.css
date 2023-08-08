@@ -51,7 +51,7 @@ button:focus {
 #leaderboard {
   z-index: 10;
   position: fixed;
-  top: 5%;
+  top: -50%;
   left: 11.5%;
   width: 20%;
   /* 더 넓게 조정 */
@@ -74,6 +74,12 @@ button:focus {
   /* 모서리 둥글게 */
   /* border: 3px solid #9f6ee7; */
   /* 로비 CSS 스타일의 테두리 적용 */
+}
+
+#leaderboard.open {
+
+  top: 5%;
+
 }
 
 #leaderboard.hidden-to-left {
@@ -277,7 +283,7 @@ button[th:onclick="decreaseFontSize()"] {
   transition: all 0.3s ease;
   border: none;
   outline: none;
-  border-radius: 1px;
+  border-radius: 2px;
   cursor: pointer;
   font-size: 20px;
   color: #ffffff;
@@ -474,6 +480,23 @@ button[th:onclick="decreaseFontSize()"] {
   z-index: 11;
 }
 
+#toggle-leaderboard {
+  z-index: 10;
+  position: fixed;
+  width: 10%;
+  height: 5%;
+  left: 50%;
+  top: 0%; /* Initially hide half of the button off-screen to the right */
+  transition: 0.5s;
+  border-radius: 2px;
+  backdrop-filter: blur(5px);
+  transform: translateX(-50%);
+}
+
+#toggle-leaderboard.open {
+  top: 0%; /* When the container is opened, the button moves to the left */
+}
+
 /* -------------------------------------------------------- */
 
 .event-sidebar {
@@ -602,17 +625,16 @@ button[th:onclick="decreaseFontSize()"] {
   text-decoration: none;
   outline: none;
   color: #fff;
-  background-color: rgba(73, 123, 180, 0.2);
+  background-color: rgba(73, 123, 180, 0.8);
   border: none;
   transition: all 0.3s;
 }
 
 .space-button:hover {
-  background-color: rgba(73, 123, 180, 0.6);
+  background-color: rgba(73, 123, 180, 1);
 }
 
 .space-button:active {
-  background-color: rgba(128, 128, 128, 0.9);
   transform: translateY(4px);
 }
 
