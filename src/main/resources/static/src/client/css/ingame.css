@@ -474,6 +474,12 @@ button[th:onclick="decreaseFontSize()"] {
   z-index: 11;
 }
 
+.space-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* This ensures the image maintains its aspect ratio */
+}
 /* -------------------------------------------------------- */
 
 .event-sidebar {
