@@ -15,6 +15,7 @@ public class UpdateInfo {
     public static class RobotInfo {
         int id;
         String name; // 로봇 이름
+        String username;
         double x;
         double y;
         double bodyHeading;
@@ -23,10 +24,11 @@ public class UpdateInfo {
         double hp;
         boolean dead;
 
-        public RobotInfo(int id, String name, double x, double y,
+        public RobotInfo(int id, String name, String username, double x, double y,
                          double bodyHeading, double gunHeading, double radarHeading, double hp, boolean dead) {
             this.id = id;
             this.name = name;
+            this.username = username;
             this.x = x;
             this.y = y;
             this.bodyHeading = bodyHeading;

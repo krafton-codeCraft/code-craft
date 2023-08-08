@@ -1,5 +1,5 @@
 import { getAsset } from '../../assets';
-import { robotId } from '../../networking';
+import { requestLeaderBoard ,robotId } from '../../networking';
 import { explosionEffect ,warpEffect } from '../effect/particles'
 
 const Constants = require('../../../shared/constants');
@@ -10,13 +10,23 @@ export const playerSprites = {};
 
 export function renderPlayer(player, app) {
     
-    const { id , dead } = player;
+    const { id , dead , username } = player;
     
     // console.log(id);
     if(dead){
         const sprite = playerSprites[id];
         if(sprite){
+            // 폭발 이펙트
             new explosionEffect(app,player.x,player.y);
+            // 폭발 사운드
+            const expSound = new Audio(getAsset('BoomTwice.mp3').src);
+            expSound.volume = 0.1; 
+            expSound.loop = false;
+            expSound.addEventListener('ended', () => {
+                expSound.remove();
+            })
+            expSound.play();
+
             app.stage.removeChild(sprite);
             delete playerSprites[id];
         }
@@ -37,9 +47,56 @@ export function renderPlayer(player, app) {
         playerSprites[id] = robot;
 
     }else{
+        
         updatePlayerSpriteData(robot,player);
+
     }
 
+    /* requestLeaderBoard(1).then(data=>{
+        if (!Array.isArray(data) || data.length === 0) {
+            return;
+        }
+        console.log(`data username : ${data[0].username}`)
+        console.log(`username : ${username}`)
+        if( username === data[0].username){
+            if(robot.children.length > 5){
+                updateCrown(robot,player);
+            }else{
+                createNewCrown(robot,player);
+            }
+        }else{
+            if(robot.children.length > 5){
+                robot.removeChildAt(5);
+            }
+        }
+    }); */
+
+}
+
+function createNewCrown(sprite , player){
+    const { x, y} = player;
+    const canvasX = x;
+    const canvasY = y;
+
+    const crown = new PIXI.Sprite(PIXI.Texture.from(getAsset('crown.png')));
+    crown.anchor.set(0.5);
+    crown.x = canvasX;
+    crown.y = canvasY - PLAYER_RADIUS *2 + 5;
+    crown.tint = 0xFFD700
+    crown.width = 50;
+    crown.height = 50;
+    sprite.addChildAt(crown,5);
+}
+
+function updateCrown(sprite , player){
+    const { x, y } = player;
+    const canvasX = x;
+    const canvasY = y;
+
+    sprite.getChildAt(5).x = canvasX;
+    sprite.getChildAt(5).y = canvasY  - PLAYER_RADIUS *2 + 5;
+
+    
 }
 
 function animateScale(robot){
@@ -55,7 +112,7 @@ function animateScale(robot){
 
 function createNewPlayerSprite(player){
     const robotContainer = new PIXI.Container();
-    const { id, x, y, name , bodyHeading, gunHeading, raderHeading, energy ,hp } = player;
+    const { id, x, y, name , bodyHeading, gunHeading, raderHeading ,hp } = player;
     
     const canvasX = x;
     const canvasY = y;
@@ -129,13 +186,19 @@ function createNewPlayerSprite(player){
 }
 
 function updatePlayerSpriteData(sprite,player){
-    const { x, y , bodyHeading, gunHeading ,hp } = player;
+    const { id, name, x, y , bodyHeading, gunHeading ,hp } = player;
 
-   
+    let randcolor = 0xFFFFFF;
+    if(robotId === id){
+        randcolor = 0x00ff00;
+    }else{
+        randcolor = 0xFFFFFF;
+    }
 
     sprite.getChildAt(0).x = x;
     sprite.getChildAt(0).y = y;
     sprite.getChildAt(0).rotation = Math.PI - bodyHeading;
+    sprite.getChildAt(0).tint = randcolor;
 
     sprite.getChildAt(1).x = x;
     sprite.getChildAt(1).y = y;
@@ -161,5 +224,6 @@ function updatePlayerSpriteData(sprite,player){
 
     sprite.getChildAt(4).x = x;
     sprite.getChildAt(4).y = y + PLAYER_RADIUS + 20;
+    sprite.getChildAt(4).text = name;
 
 }
