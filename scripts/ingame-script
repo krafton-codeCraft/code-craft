@@ -82,7 +82,7 @@ function code_check(result, status, index, code, lang) {
     const terminal = document.getElementById('terminal');
     
     if (result != 0) {
-            
+        console.log("status?????:" , status);
         const firstError = status.split('\n')[0];
         const translatedError = translateErrorToKorean(firstError);
         console.log(firstError)

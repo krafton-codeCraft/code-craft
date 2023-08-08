@@ -60,17 +60,76 @@ button:focus {
         min-width: 280px;
     }
 
-    #leaderboard th {
-        padding: 0 3px;
-    }
+    body {
+    background: #020916; /* 우주 배경의 기본색 */
+    overflow: hidden;
+    position: relative;
+}
 
-    #leaderboard td {
-        padding: 0 3px;
-    }
+/* 별들 생성 */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    z-index: 0;
 
-    #leaderboard table {
-        font-size: 14px;
-    }
+    /* 랜덤한 별의 효과 생성 */
+    background: 
+        radial-gradient(white, rgba(255, 255, 255, 0.2) 2px, transparent 30px),
+        radial-gradient(white, rgba(255, 255, 255, 0.15) 1px, transparent 30px),
+        radial-gradient(white, rgba(255, 255, 255, 0.1) 2px, transparent 40px);
+    
+    background-repeat: repeat;
+    background-size: 550px 550px, 350px 350px, 250px 250px;
+}
+
+/* 별똥별 생성 */
+body::after {
+    content: "";
+    position: absolute;
+    top: 10%;
+    left: 15%;
+    width: 3px;
+    height: 3px;
+    background: radial-gradient(circle, white 60%, transparent 70%);
+    box-shadow: 
+        3px 3px white, 
+        5px 5px white, 
+        -3px -3px white,
+        -5px -5px white,
+        3px -3px white,
+        -3px 3px white;
+    z-index: 1;
+}
+
+#leaderboard {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 3px solid #9f6ee7;
+    border-radius: 10px;
+    box-shadow: 0 0 15px 3px rgba(159, 110, 231, 0.5);
+    color: #FFF;
+    padding: 20px;
+}
+
+#leaderboard th, #leaderboard td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #9f6ee7;
+}
+
+#leaderboard table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+}
+
+#leaderboard tr:last-child td {
+    border-bottom: none;
+}
+
 }
 
 /*------------------------------------*/
