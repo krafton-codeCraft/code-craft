@@ -193,8 +193,10 @@
 
     <div id="container">
       <div id="container-body">
-        <button th:onclick="increaseFontSize()">+</button>
-        <button th:onclick="decreaseFontSize()">-</button>
+        <div id="button-container">
+          <button id="plus-button" th:onclick="increaseFontSize()">+</button>
+          <button id="minus-button" th:onclick="decreaseFontSize()">-</button>
+        </div>
       </div>
     </div>
 
