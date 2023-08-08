@@ -145,6 +145,7 @@ function change_code(index, content, lang) {
       const code = data.code;
       const lang = data.lang
       console.log(data);
+      console.log("result: ", result, "status: ", status);
       code_check(result, status, index, code, lang);
       compileSidebar.classList.remove("open");
     })
