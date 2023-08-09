@@ -82,15 +82,17 @@ document.getElementById('toggle-main-container').addEventListener('click', funct
   var mainContainer = document.getElementById('main-container');
   var toggleButton = document.getElementById('toggle-main-container');
   var leaderButton = document.getElementById('toggle-leaderboard');
-
+  var exitButton = document.getElementById('exit-button');
   if(mainContainer.classList.contains('open')) {
     mainContainer.classList.remove('open');
     toggleButton.classList.remove('open');
     leaderButton.classList.remove('open');
+    exitButton.classList.remove('open');
   } else {
     mainContainer.classList.add('open');
     toggleButton.classList.add('open');
     leaderButton.classList.add('open');
+    exitButton.classList.add('open');
   }
 });
 

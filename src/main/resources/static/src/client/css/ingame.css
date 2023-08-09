@@ -344,16 +344,29 @@ button[th:onclick="decreaseFontSize()"] {
   transition: background-color 0.5s ease;
 }
 
+
 #deck-one {
   left: 0%;
+}
+
+#deck-one.active{
+  background-color: rgb(2, 120, 255);
 }
 
 #deck-two {
   left: 16%; /* Adjust as necessary */
 }
 
+#deck-two.active{
+  background-color: rgb(2, 120, 255);
+}
+
 #deck-thress {
   left: 32%; /* Adjust as necessary */
+}
+
+#deck-thress.active{
+  background-color: rgb(2, 120, 255);
 }
 
 #button-container {
@@ -539,6 +552,22 @@ button[th:onclick="decreaseFontSize()"] {
   top: -20%; /* When the container is opened, the button moves to the left */
 }
 
+#exit-button {
+  z-index: 10;
+  border-radius: 15px 15px 15px 15px;
+  position: fixed;
+  color : red;
+  width: 8%;
+  height: 8%;
+  right: 2%;
+  bottom: 5%; /* Initially hide half of the button off-screen to the right */
+  transition: 0.5s;
+  backdrop-filter: blur(5px);
+}
+
+#exit-button.open {
+  right: -20%; /* When the container is opened, the button moves to the left */
+}
 /* -------------------------------------------------------- */
 
 .event-sidebar {
@@ -882,3 +911,4 @@ button[th:onclick="decreaseFontSize()"] {
   content: "b";
   color: green; /* 성공을 나타내기 위한 색상 선택 */
 }
+
