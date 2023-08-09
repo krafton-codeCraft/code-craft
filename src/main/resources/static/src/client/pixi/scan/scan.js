@@ -30,19 +30,20 @@ export function renderScan(scan, app) {
 
 function createNewScan(scan){
     const { id , name, robotX,robotY, x,y,width,height, angleStart , angleExtent} = scan;
-    //console.log(`angleStart : ${angleStart}  angleExtent : ${angleExtent}`)
-    const midx = robotX;//(x+width)/2
-    const midy = robotY;//(y+height)/2
-    const dist = width/2;//distRadius(x,y,width,height);
-    let startrad = null;
-    let endrad = null;
-    if(angleExtent > 0 ){
-        startrad = toRadius(2*Math.PI - angleStart - angleExtent);
-        endrad = toRadius(2*Math.PI - angleStart - (angleExtent *2));
+
+    const midx = robotX;
+    const midy = robotY;
+    const dist = width/2;
+    
+    let turning = null
+    if(angleExtent > 0){
+        turning = true;
     }else{
-        startrad = toRadius(2*Math.PI - angleStart + angleExtent);
-        endrad = toRadius(2*Math.PI - angleStart + (angleExtent *2));
+        turning = false;
     }
+
+    const startrad = toRadius(360 - angleStart - angleExtent);
+    const endrad = toRadius(360 -angleStart - (angleExtent *2));
     
     const Scaning = new PIXI.Graphics();
     if(robotId === id){
@@ -53,7 +54,7 @@ function createNewScan(scan){
         Scaning.lineStyle(1, 0xff0000, 0.25);
     }
     Scaning.moveTo(midx,midy);
-    Scaning.arc(midx,midy, dist , startrad, endrad , true); // 각은 라디안을 사용해야함
+    Scaning.arc(midx,midy, dist , startrad, endrad , turning); // 각은 라디안을 사용해야함
     Scaning.lineTo(midx,midy);
     Scaning.endFill();
     return Scaning;
@@ -61,18 +62,23 @@ function createNewScan(scan){
 
 function updateScanData(sprite, scan){
     const { id,name, robotX,robotY, x,y,width,height, angleStart , angleExtent} = scan;
-    const midx = robotX;//(x+width)/2
-    const midy = robotY;//(y+height)/2
-    const dist = width/2;//distRadius(x,y,width,height);
-    let startrad = null;
-    let endrad = null;
-    if(angleExtent > 0 ){
-        startrad = toRadius(2*Math.PI - angleStart - angleExtent);
-        endrad = toRadius(2*Math.PI - angleStart - (angleExtent *2));
+
+    const midx = robotX;
+    const midy = robotY;
+    const dist = width/2;
+
+    let turning = null
+    if(angleExtent > 0){
+        turning = true;
     }else{
-        startrad = toRadius(2*Math.PI - angleStart + angleExtent);
-        endrad = toRadius(2*Math.PI - angleStart + (angleExtent *2));
+        turning = false;
     }
+
+    const startrad = toRadius(360 - angleStart - angleExtent);
+    const endrad = toRadius(360 -angleStart - (angleExtent *2));
+
+    /* console.log(`startrad = ${startrad} : endrad = ${endrad}`); */
+
     sprite.clear();
     if(robotId === id){
         sprite.beginFill(0x00ff00, 0.25);
@@ -82,12 +88,13 @@ function updateScanData(sprite, scan){
         sprite.lineStyle(1, 0xff0000, 0.25);
     }
     sprite.moveTo(midx,midy);
-    sprite.arc(midx,midy, dist , startrad, endrad , true); // 각은 라디안을 사용해야함
+    sprite.arc(midx,midy, dist , startrad, endrad , turning); // 각은 라디안을 사용해야함
     sprite.lineTo(midx,midy);
     sprite.endFill();
 }
 
 function toRadius(angle){
+
     // 각도가 들어오면 라디안 값으로 변환
     return angle * Math.PI / 180;
 }
