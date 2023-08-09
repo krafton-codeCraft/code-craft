@@ -573,7 +573,7 @@ button[th:onclick="decreaseFontSize()"] {
   padding: 15px 15px;
   color: #fff;
   backdrop-filter: blur(5px);
-  font-size: 20;
+  font-size: 20px;
 }
 
 .help-sidebar.open {
