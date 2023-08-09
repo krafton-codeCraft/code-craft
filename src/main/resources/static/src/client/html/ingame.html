@@ -184,7 +184,7 @@
     <!-- <div id="closebtn" class="closebtn">×</div> -->
 
     <div id="deck">
-      <button id="deck-one" th:onclick="selectDeckIndex(0)">1</button>
+      <button id="deck-one" class="active" th:onclick="selectDeckIndex(0)">1</button>
       <button id="deck-two" th:onclick="selectDeckIndex(1)">2</button>
       <button id="deck-thress" th:onclick="selectDeckIndex(2)">3</button>
       <select id="language-select">
@@ -264,7 +264,7 @@
   </div>
 
   <input id="inputbar" type="text" placeholder="Enter chat..." autocomplete="off" maxlength="80">
-
+  <button id="exit-button" class="space-button" th:onclick = "exit_ingame()" > Exit </button>
   <div id="disconnect-modal" class="hidden">
     <div>
       <h2> 서버 연결 에러! </h2>
