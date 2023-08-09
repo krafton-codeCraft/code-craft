@@ -12,9 +12,6 @@ public class ClientSessionManager {
     Map<String, ClientSession> sessions = new HashMap<>();
     Object lock = new Object();
 
-    Map<String, ClientSession> usernameToSessions = new HashMap<>();
-    Object usernameLock = new Object();
-
     public static ClientSessionManager Instance = new ClientSessionManager();
 
     public ClientSession generate(WebSocketSession session) {
@@ -37,21 +34,6 @@ public class ClientSessionManager {
     public void remove(ClientSession session) {
         synchronized (lock) {
             sessions.remove(session.getSessionId());
-        }
-        synchronized (usernameLock) {
-            usernameToSessions.remove(session.getUsername());
-        }
-    }
-
-    public void registerUsername(String username, ClientSession session) {
-        synchronized (usernameLock) {
-            usernameToSessions.put(username, session);
-        }
-    }
-
-    public ClientSession findByUsername(String username) {
-        synchronized (usernameLock) {
-            return usernameToSessions.get(username);
         }
     }
 }
