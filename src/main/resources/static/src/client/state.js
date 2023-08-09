@@ -95,15 +95,19 @@ function interpolateObject(object1, object2, ratio) {
   Object.keys(object1).forEach(key => {
     if (key === 'direction') {
       interpolated[key] = interpolateDirection(object1[key], object2[key], ratio);
-    } else if (key === 'y') {
+    } else if (key === 'y'||  key === 'robotY') {
       interpolated[key] = interpolateYPosition(object1[key], object2[key], ratio);
       //interpolated[key] = object1[key] + (object2[key] - object1[key]) * ratio;
-    } else if (key === 'x') {
+    } else if (key === 'x' || key === 'robotX') {
       interpolated[key] = interpolateXPosition(object1[key], object2[key], ratio);
+    } else if (key === 'angleStart'){
+      interpolated[key] = interpolateAngle(object1[key], object2[key], ratio);
+    } else if (key === 'angleExtent'){
+      interpolated[key] = object1[key] + (object2[key] - object1[key]) * ratio;
     } else {
       interpolated[key] = object2[key];
     }
-  });
+  }); 
   return interpolated;
 }
 
@@ -156,4 +160,27 @@ function interpolateDirection(d1, d2, ratio) {
     // 일반 보간
     return d1 + (d2 - d1) * ratio;
   }
+}
+
+function interpolateAngle(angle1, angle2, ratio) {
+  // 각도의 차이를 계산하고 절대값으로 변환
+  let diff = angle2 - angle1;
+
+  // 순환성 보정
+  if (Math.abs(diff) > 180) {
+    if (diff > 0) {
+      angle2 -= 360;
+    } else {
+      angle2 += 360;
+    }
+    diff = angle2 - angle1;
+  }
+
+  // 보간된 각도 계산
+  let interpolatedAngle = angle1 + diff * ratio;
+
+  // 0~360도 범위 내로 조정
+  interpolatedAngle = (interpolatedAngle + 360) % 360;
+
+  return interpolatedAngle;
 }
