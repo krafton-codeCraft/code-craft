@@ -106,7 +106,7 @@ function animateScale(robot){
 
 function createNewPlayerSprite(player){
     const robotContainer = new PIXI.Container();
-    const { id, x, y, name , bodyHeading, gunHeading, raderHeading ,hp } = player;
+    const { id, x, y, username , bodyHeading, gunHeading, raderHeading ,hp } = player;
     
     const canvasX = x;
     const canvasY = y;
