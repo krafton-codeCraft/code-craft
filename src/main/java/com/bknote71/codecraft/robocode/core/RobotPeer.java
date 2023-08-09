@@ -405,6 +405,10 @@ public class RobotPeer {
     }
 
     public void startBattle() {
+        if (battle == null) {
+            log.info("start battle but battle is null, so return");
+            return;
+        }
         initializeBattle();
 
         // statistics.reset();
@@ -969,7 +973,8 @@ public class RobotPeer {
         battle.broadcast(diePacket);
 
         // 다시 배틀 시작
-        battle.pushAfter(1000, this::startBattle);
+        RobotPeer robotPeer = this;
+        battle.pushAfter(1000, robotPeer::startBattle);
     }
 
     private void compensate(double hp, double score) {
