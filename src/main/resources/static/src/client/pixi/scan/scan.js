@@ -30,10 +30,10 @@ export function renderScan(scan, app) {
 
 function createNewScan(scan){
     const { id , name, robotX,robotY, x,y,width,height, angleStart , angleExtent} = scan;
-    //console.log(`angleStart : ${angleStart}  angleExtent : ${angleExtent}`)
-    const midx = robotX;//(x+width)/2
-    const midy = robotY;//(y+height)/2
-    const dist = width/2;//distRadius(x,y,width,height);
+
+    const midx = robotX;
+    const midy = robotY;
+    const dist = width/2;
     
     let turning = null
     if(angleExtent > 0){
@@ -63,9 +63,9 @@ function createNewScan(scan){
 function updateScanData(sprite, scan){
     const { id,name, robotX,robotY, x,y,width,height, angleStart , angleExtent} = scan;
 
-    const midx = robotX;//(x+width)/2
-    const midy = robotY;//(y+height)/2
-    const dist = width/2;//distRadius(x,y,width,height);
+    const midx = robotX;
+    const midy = robotY;
+    const dist = width/2;
 
     let turning = null
     if(angleExtent > 0){
@@ -77,7 +77,7 @@ function updateScanData(sprite, scan){
     const startrad = toRadius(360 - angleStart - angleExtent);
     const endrad = toRadius(360 -angleStart - (angleExtent *2));
 
-    console.log(`startrad = ${startrad} : endrad = ${endrad}`);
+    /* console.log(`startrad = ${startrad} : endrad = ${endrad}`); */
 
     sprite.clear();
     if(robotId === id){
