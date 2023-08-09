@@ -1,7 +1,7 @@
 export let robotMessages = {};
 
 export function handleChat(robotId, content) {
-    const expirationTime = Date.now() + 1500;  // 2 seconds from now
+    const expirationTime = Date.now() + 3000;  // 3 seconds from now
     robotMessages[robotId] = {
         content: content,
         expiresAt: expirationTime
