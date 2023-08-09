@@ -30,7 +30,7 @@ public class ClientSessionHandler extends TextWebSocketHandler {
 
         // 클라이언트 세션 생성 및 추가
         ClientSession generatedSession = ClientSessionManager.Instance.generate(session);
-        ClientSessionManager.Instance.registerUsername(username, generatedSession);
+//        ClientSessionManager.Instance.registerUsername(username, generatedSession);
         // ServerPacketManager.Instance.handlePacket(clientSession, new TextMessage("connect"));
     }
 
@@ -62,7 +62,7 @@ public class ClientSessionHandler extends TextWebSocketHandler {
             return;
 
         battle.push(battle::leaveBattle, robot.getId());
-        // RobotManager.Instance.remove(robot.getId()); // 임시 <<
+        RobotManager.Instance.remove(robot.getId()); // 임시 <<
         ClientSessionManager.Instance.remove(clientSession);
     }
 }
