@@ -98,8 +98,8 @@ function animateScale(robot){
     if (robot.getChildAt(0).width < PLAYER_RADIUS * 2) {
         robot.getChildAt(0).width = Math.min(PLAYER_RADIUS * 2, robot.getChildAt(0).width + scaleSpeed);
         robot.getChildAt(0).height = Math.min(PLAYER_RADIUS * 2, robot.getChildAt(0).height + scaleSpeed);
-        robot.getChildAt(1).width = Math.min(PLAYER_RADIUS, robot.getChildAt(0).width + scaleSpeed);
-        robot.getChildAt(1).height = Math.min(PLAYER_RADIUS, robot.getChildAt(0).height + scaleSpeed);
+        robot.getChildAt(1).width = Math.min(PLAYER_RADIUS  , robot.getChildAt(0).width + scaleSpeed);
+        robot.getChildAt(1).height = Math.min(PLAYER_RADIUS + 8, robot.getChildAt(0).height + scaleSpeed);
         requestAnimationFrame(() => animateScale(robot));
     }
 }
@@ -132,7 +132,7 @@ function createNewPlayerSprite(player){
     bodyship.tint = randcolor
     robotContainer.addChildAt(bodyship,0);
     
-    const gunhead = new PIXI.Sprite(PIXI.Texture.from(getAsset('ship2.svg')));
+    const gunhead = new PIXI.Sprite(PIXI.Texture.from(getAsset('gunhead.png')));
     gunhead.anchor.set(0.5);
     gunhead.x = canvasX;
     gunhead.y = canvasY;
