@@ -96,7 +96,7 @@ function code_check(result, status, index, code, lang) {
         robotInfos[index].lang = lang;
         setTimeout(() => {
             terminal.innerHTML = '';
-        }, 5000);
+        }, 10000);
     }
 }
 
