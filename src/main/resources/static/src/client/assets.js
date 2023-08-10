@@ -11,6 +11,7 @@ const ASSET_IMAGE_NAMES = [
   'function.png',
   'help.png',
   'webicon.png',
+  'gunhead.png',
 ];
 
 const ASSET_SOUND_NAMES =[
@@ -25,10 +26,9 @@ const assets = {};
 
 // 모든 asset을 다운로드하는 프로미스. Promise.all은 주어진 모든 프로미스가 이행되면 이행되는 
 // 새로운 프로미스를 반환합니다. 이 경우, 모든 asset이 다운로드되면 이 프로미스가 이행됩니다.
-const downloadPromise = Promise.all([
-  ASSET_IMAGE_NAMES.map(downloadImageAsset),
-  ASSET_SOUND_NAMES.map(downloadSoundAsset),
-]);
+const downloadPromise = Promise.all([ASSET_IMAGE_NAMES.map(downloadImageAsset)]).then(()=>{
+  return Promise.all([ASSET_SOUND_NAMES.map(downloadSoundAsset)]);
+});
 
 // asset을 다운로드하는 함수. 이 함수는 주어진 자산 이름에 대한 이미지를 생성하고, 
 // 이미지가 로드되면 assets 객체에 이미지를 저장하고 프로미스를 이행하는 새로운 프로미스를 반환합니다.
