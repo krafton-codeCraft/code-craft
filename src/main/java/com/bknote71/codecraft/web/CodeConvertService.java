@@ -27,8 +27,8 @@ public class CodeConvertService {
         String systemcmd = String.format(
                 "이제부터 %s 코드를 \"public 자바 class 코드\"로 변환할거야. " +
                 "Robot 이라는 클래스를 상속하고 있고 해당 클래스는 정의하지 않아도 괜찮아. " +
-                "이때 자바코드 이외의 설명은 필요 없어. " +
-                "즉 ```java ... ``` 않의 코드만 보여줘"+
+                "이때 자바코드 이외의 설명은 필요 없어. 마크다운하지마" +
+                "public class부분부터 소스코드만 보여줘" +
                 "그리고 틀린 부분이 있어도 고치지 않고 자바코드로 변환해줘줘",
                 lang);
         return convert(systemcmd, code);
