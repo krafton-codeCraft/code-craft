@@ -11,6 +11,7 @@ module.exports = merge(common, {
     
     new EnvironmentPlugin({
       ADDRR: 'localhost',
+      SADDRR: '3.38.208.255',
     }),
   ],
 
