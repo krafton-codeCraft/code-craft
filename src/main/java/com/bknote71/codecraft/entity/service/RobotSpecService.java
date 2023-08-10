@@ -120,17 +120,16 @@ public class RobotSpecService {
     }
 
     private static final String DEFAULTROBOT =
-            "public class DefaultRobot extends Robot {\n" +
+            "public class DefaultRobot%d extends Robot {\n" +
             "    public void run() {\n" +
             "    }\n" +
             "}\n";
 
-
     @Transactional
     public void createDefaultRobot(String username) {
-        saveRobotSpec(username, 0, "DefaultRobot", "DefaultRobot.class", DEFAULTROBOT, "java");
-        saveRobotSpec(username, 1, "DefaultRobot", "DefaultRobot.class", DEFAULTROBOT, "java");
-        saveRobotSpec(username, 2, "DefaultRobot", "DefaultRobot.class", DEFAULTROBOT, "java");
+        saveRobotSpec(username, 0, "DefaultRobot0", "DefaultRobot0.class", String.format(DEFAULTROBOT, 0), "java");
+        saveRobotSpec(username, 1, "DefaultRobot1", "DefaultRobot1.class", String.format(DEFAULTROBOT, 1), "java");
+        saveRobotSpec(username, 2, "DefaultRobot2", "DefaultRobot2.class", String.format(DEFAULTROBOT, 2), "java");
     }
 
     public Boolean compareWithRequestCode(String username, CompileRequest compileRequest) {
