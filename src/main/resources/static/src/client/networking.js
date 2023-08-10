@@ -102,7 +102,7 @@ export const submitNewCode = (code, specIndex) => {
 
 
 export const requestLeaderBoard = (battleId) => {
-  const url = `http://${addr}:8080/get/leaderboard?battleId=` + battleId;
+  const url = `http://${saddr}:8080/get/leaderboard?battleId=` + battleId;
   return fetch(url, {
     method: 'GET',
   })
@@ -115,7 +115,7 @@ export const requestLeaderBoard = (battleId) => {
 };
 
 export const requestTodayRanking = () => {
-  const url = `http://${addr}:8080/get/today_ranking`;
+  const url = `http://${saddr}:8080/get/today_ranking`;
   fetch(url, {
     method: 'GET',
   })
