@@ -16,6 +16,6 @@ permissions:
 ### 도커 시작 (?) ###
 hooks:
   ApplicationStart:
-    - location: /home/ubuntu/code-craft/startapp.sh
+    - location: startapp.sh
       timeout: 180
       runas: ubuntu
