@@ -41,7 +41,7 @@ export function renderPlayer(player, app) {
             new warpEffect(app,robot.getChildAt(0).x,robot.getChildAt(0).y);
             app.stage.addChild(robot);
             animateScale(robot);
-        }, 200 )
+        }, 100 )
 
         robot = createNewPlayerSprite(player);
         playerSprites[id] = robot;
