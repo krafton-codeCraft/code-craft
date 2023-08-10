@@ -103,7 +103,7 @@ public class JavaClassCompiler {
                 code + "\n";
 
         // compile: {javaName}.java 파일 to {javaName}.class 파일
-        CompileResult result = null;
+        CompileResult result;
         if ((result = compileRobot(author, javaName, realContent)).exitCode != 0) {
             log.error("compile failed: {}", result.content);
             return result;
@@ -148,6 +148,7 @@ public class JavaClassCompiler {
             log.info("cmd: {}", Arrays.toString(cmd));
 
             ProcessBuilder processBuilder = new ProcessBuilder(cmd);
+            processBuilder.inheritIO();
             Process process = processBuilder.start();
 
             if ((process.waitFor(20, TimeUnit.SECONDS)) != true) { // 정상 종료되지 않음
@@ -157,8 +158,7 @@ public class JavaClassCompiler {
             }
 
             if (process.exitValue() != 0) {
-                InputStream error = process.getErrorStream();
-                return new CompileResult(-1, new String(error.readAllBytes()));
+                return new CompileResult(-1, "Compile Error");
             }
 
             /////////////// copy ///////////////
@@ -170,6 +170,7 @@ public class JavaClassCompiler {
             };
 
             ProcessBuilder copyProcessBuilder = new ProcessBuilder(copyCmd);
+            copyProcessBuilder.inheritIO();
             Process copyProcess = copyProcessBuilder.start();
 
             if (copyProcess.waitFor(5, TimeUnit.SECONDS) != true) {
@@ -178,10 +179,8 @@ public class JavaClassCompiler {
             }
 
             if (copyProcess.exitValue() != 0) {
-                InputStream error = process.getErrorStream();
-                return new CompileResult(-1, new String(error.readAllBytes()));
+                return new CompileResult(-1, "copy error");
             }
-
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
             return new CompileResult(-1, e.toString());
@@ -205,6 +204,7 @@ public class JavaClassCompiler {
             };
 
             ProcessBuilder removeProcessBuilder = new ProcessBuilder(removeCmd);
+            removeProcessBuilder.inheritIO();
             Process removeProcess = removeProcessBuilder.start();
             if (removeProcess.waitFor(5, TimeUnit.SECONDS) != true) {
                 removeProcess.destroyForcibly();
