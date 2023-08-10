@@ -21,6 +21,12 @@ public class RobotManager {
         }
     }
 
+    public RobotPeer find(int robotId) {
+        synchronized (lock) {
+            return robots.get(robotId);
+        }
+    }
+
     public void remove(int robotId) {
         synchronized (lock) {
             robots.remove(robotId);

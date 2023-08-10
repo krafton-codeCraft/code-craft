@@ -106,7 +106,7 @@ function animateScale(robot){
 
 function createNewPlayerSprite(player){
     const robotContainer = new PIXI.Container();
-    const { id, x, y, name , bodyHeading, gunHeading, raderHeading ,hp } = player;
+    const { id, x, y, username , bodyHeading, gunHeading, raderHeading ,hp } = player;
     
     const canvasX = x;
     const canvasY = y;
@@ -169,7 +169,7 @@ function createNewPlayerSprite(player){
     randcolor = Math.floor(randcolor);
     const fillValue = '#' + randcolor.toString(16).padStart(6, '0');
     // 텍스트 그리기
-    const text = new PIXI.Text(name, { fontFamily: 'Arial', fontSize: 20, fill: fillValue });
+    const text = new PIXI.Text(username, { fontFamily: 'Arial', fontSize: 20, fill: fillValue });
     text.anchor.set(0.5);
     text.x = canvasX;
     text.y = canvasY + PLAYER_RADIUS + 20;    
@@ -180,7 +180,7 @@ function createNewPlayerSprite(player){
 }
 
 function updatePlayerSpriteData(sprite,player){
-    const { id, name, x, y , bodyHeading, gunHeading ,hp } = player;
+    const { id, x, y , bodyHeading, gunHeading ,hp } = player;
 
     let randcolor = 0xFFFFFF;
     if(robotId === id){
@@ -218,6 +218,6 @@ function updatePlayerSpriteData(sprite,player){
 
     sprite.getChildAt(4).x = x;
     sprite.getChildAt(4).y = y + PLAYER_RADIUS + 20;
-    sprite.getChildAt(4).text = name;
+    //sprite.getChildAt(4).text = name;
 
 }

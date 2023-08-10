@@ -107,7 +107,23 @@ function selectDeckIndex(deckId) {
         var language = robotInfos[selectedDeck].lang;
         editor.setValue(robotInfos[selectedDeck].code)
         console.log(selectedDeck);
-
+        switch(selectedDeck){
+            case 0:
+                document.getElementById('deck-one').classList.add('active');
+                document.getElementById('deck-two').classList.remove('active');
+                document.getElementById('deck-thress').classList.remove('active');
+                break;
+            case 1:
+                document.getElementById('deck-one').classList.remove('active');
+                document.getElementById('deck-two').classList.add('active');
+                document.getElementById('deck-thress').classList.remove('active');
+                break;
+            case 2:
+                document.getElementById('deck-one').classList.remove('active');
+                document.getElementById('deck-two').classList.remove('active');
+                document.getElementById('deck-thress').classList.add('active');
+                break;
+        }
         document.getElementById('language-select').value = language;
     } else {
         console.log('No robot info found for selected deck.')
@@ -232,7 +248,9 @@ function updateEditorBasedOnLanguageSelection() {
     editor.setValue(code);
     });
 }
-
+function exit_ingame() {
+        window.location.href='/lobby';
+}
 
 
 </script>

@@ -25,8 +25,8 @@ public class RobotThreadManager {
 
     public void checkRunThread() {
         if (Thread.currentThread() != runThread) {
-            System.out.println("현재 스레드: " + Thread.currentThread().getName());
-            System.out.println("run thread: " + runThread.getName());
+            System.out.println("현재 스레드: " + Thread.currentThread().getName() + ", 객체: " + Thread.currentThread());
+            System.out.println("run thread: " + runThread.getName() + ", 객체: " + Thread.currentThread());
             System.out.println("같지 않아? " + (Thread.currentThread() != runThread));
             throw new RobotException("You cannot take action in this thread!");
         }

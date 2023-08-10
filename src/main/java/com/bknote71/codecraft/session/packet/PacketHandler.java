@@ -56,7 +56,12 @@ public class PacketHandler {
 
     public void CChangeRobotHandler(ClientSession clientSession, Protocol protocol) {
         CChangeRobot changePacket = (CChangeRobot) protocol;
-        changeAndReenter(clientSession.getUsername(), changePacket.getSpecIndex());
+        RobotPeer myRobot = clientSession.getMyRobot();
+        if (myRobot == null) {
+            log.error("my robot is null");
+            return;
+        }
+        changeAndReenter(myRobot.getId(), clientSession.getUsername(), changePacket.getSpecIndex());
     }
 
 
@@ -78,10 +83,9 @@ public class PacketHandler {
         battle.push(battle::handleChat, robot, chatPacket.getContent());
     }
 
-    public RobotSpecification changeAndReenter(String username, int robotIndex) {
+    public RobotSpecification changeAndReenter(int robotId, String username, int robotIndex) {
         // 새로운 스펙으로 새로운 로봇 생성
-        ClientSession session = ClientSessionManager.Instance.findByUsername(username);
-        RobotPeer robot = session.getMyRobot();
+        RobotPeer robot = RobotManager.Instance.find(robotId);
         RobotSpecification[] robotSpecifications = getRobotSpecifications(username);
 
         if (robot == null) {
