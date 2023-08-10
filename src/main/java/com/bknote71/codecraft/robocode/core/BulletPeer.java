@@ -25,7 +25,7 @@ public class BulletPeer {
     protected double power;
     private double deltaX;
     private double deltaY;
-    private double velocity = 10; // 임시값
+    private double velocity = 13; // 임시값
 
     private double lastX;
     private double lastY;
