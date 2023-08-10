@@ -3,17 +3,9 @@ const ASSET_IMAGE_NAMES = [
   'ship.svg',
   'ship2.svg',
   'bullet.svg',
-  'icon64.png',
-  'circle.png',
-  'target.png',
   'icon_sound_off.png',
   'icon_sound_on.png',
-  'bomb.svg',
-  'missile.svg',
-  'react.svg',
-  'vite.svg',
   'particle.png',
-  'star.png',
   'crown.png',
   'firework.png',
   'function.png',
@@ -22,7 +14,6 @@ const ASSET_IMAGE_NAMES = [
 ];
 
 const ASSET_SOUND_NAMES =[
-  'fire.mp3',
   'BoomTwice.mp3',
   'InsertCoin.mp3',
   'NLP_InGame_Final_Int.mp3',

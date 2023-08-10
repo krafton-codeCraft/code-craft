@@ -18,7 +18,7 @@ export function renderBullet(bullet, app) {
         //app.stage.addChild(bulletsprite);
 
         const bulletSound = new Audio(getAsset('InsertCoin.mp3').src);
-        bulletSound.volume = 0.1; 
+        bulletSound.volume = 0.15; 
         bulletSound.loop = false;
         bulletSound.addEventListener('ended', () => {
             bulletSound.remove();
