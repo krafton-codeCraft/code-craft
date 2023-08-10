@@ -19,7 +19,7 @@ public class RobotThreadManager {
 
     public void cleanup() {
         System.out.println("robot thread group clean");
-        if (runThread == null || robotProxy == null || robotProxy.getRobot() == null)
+         if (runThread == null || robotProxy == null || robotProxy.getRobot() == null)
             runThreadGroup.interrupt();
     }
 

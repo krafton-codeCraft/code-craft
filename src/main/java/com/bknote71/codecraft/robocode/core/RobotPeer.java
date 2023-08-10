@@ -994,11 +994,6 @@ public class RobotPeer {
         setState(RobotState.DEAD);
     }
 
-
-    public void changeRobotSpec(RobotSpecification[] specifications, int robotIndex) {
-        init(battle, specifications, robotIndex);
-    }
-
     void updateEnergy(double delta) {
         if ((!isExecFinishedAndDisabled && !isEnergyDrained) || delta < 0) {
             setEnergy(energy + delta, true);
