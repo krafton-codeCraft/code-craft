@@ -99,7 +99,7 @@ function animateScale(robot){
         robot.getChildAt(0).width = Math.min(PLAYER_RADIUS * 2, robot.getChildAt(0).width + scaleSpeed);
         robot.getChildAt(0).height = Math.min(PLAYER_RADIUS * 2, robot.getChildAt(0).height + scaleSpeed);
         robot.getChildAt(1).width = Math.min(PLAYER_RADIUS  , robot.getChildAt(0).width + scaleSpeed);
-        robot.getChildAt(1).height = Math.min(PLAYER_RADIUS + 8, robot.getChildAt(0).height + scaleSpeed);
+        robot.getChildAt(1).height = Math.min(PLAYER_RADIUS + 10  , robot.getChildAt(0).height + scaleSpeed);
         requestAnimationFrame(() => animateScale(robot));
     }
 }
