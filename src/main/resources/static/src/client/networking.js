@@ -15,10 +15,10 @@ const compileSidebar = document.getElementById("compile-sidebar");
 const battleId = 1;
 const devaddr = 'localhost';
 // const prodaddr = '3.35.214.100';
-//const addr = process.env.ADDRR;
+const addr = process.env.ADDRR;
 const saddr = process.env.SADDRR;
-// const websocket = new WebSocket(`ws://13.124.67.137:8080/room/${roomId}`);
-const websocket = new WebSocket(`ws://${saddr}:8080/battle/${battleId}`);
+
+const websocket = new WebSocket(`ws://${addr}:8070/battle/${battleId}`);
 
 const wsconnectedPromise = new Promise(resolve => {
   // to websocket, 이벤트 핸들러 변경

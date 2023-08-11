@@ -206,7 +206,7 @@ public class ExecCommands {
         this.scan = scan;
     }
 
-    public synchronized List<BulletCommand> getBullets() {
+    public List<BulletCommand> getBullets() {
         return bullets;
     }
 
