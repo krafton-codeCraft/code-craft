@@ -18,5 +18,10 @@ class UserRepositoryTest {
 //        userRepository.delete(sa);
 //    }
 
+//    @Test
+//    void deleteAll() {
+//        userRepository.deleteAll();
+//    }
+
 
 }

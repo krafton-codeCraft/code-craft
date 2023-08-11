@@ -99,16 +99,18 @@ public class AwsS3ClassLoader extends ClassLoader {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+
         System.out.println("find class: " + name);
+
         try {
             Class<?> result;
             byte[] classBytes = getClassBytes(name);
             String[] authorAndClass = name.split("/");
-            if (authorAndClass.length < 2) {
+            if (authorAndClass.length < 3) {
                 System.out.println("유저가 만들지 않은 로봇임");
                 return null;
             }
-            String robotClass = authorAndClass[1];
+            String robotClass = authorAndClass[2];
             String classname = robotClass.split("\\.")[0];
             String fullPath = packagePath + "." + classname;
 

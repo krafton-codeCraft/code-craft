@@ -12,6 +12,7 @@ public class RobotClassLoader extends ClassLoader {
     private AwsS3ClassLoader classLoader;
 
     private String author;
+    private int specIndex;
     private String fullClassName;
 
     private RobotProxy robotProxy;
@@ -19,9 +20,10 @@ public class RobotClassLoader extends ClassLoader {
 
     private Set<String> referencedClasses = new HashSet<String>();
 
-    public RobotClassLoader(String author, String fullClassName) {
+    public RobotClassLoader(String author, int specIndex, String fullClassName) {
         this.author = author;
         this.fullClassName = fullClassName;
+        this.specIndex = specIndex;
         classLoader = new AwsS3ClassLoader("robot-class");
     }
 
@@ -69,7 +71,7 @@ public class RobotClassLoader extends ClassLoader {
     public synchronized Class<?> loadRobotMainClass(boolean resolve) {
         try {
             if (robotClass == null) {
-                robotClass = loadClass(author + "/" + fullClassName, resolve);
+                robotClass = loadClass(author + "/" + specIndex + "/" + fullClassName, resolve);
                 if (robotClass == null || !Robot.class.isAssignableFrom(robotClass)) {
                     System.out.println("robot class is null? " + robotClass);
                     return null;
