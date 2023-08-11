@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.configurers.SessionManagementConfigurer;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,7 +24,7 @@ import java.io.IOException;
 @EnableWebSocket
 public class SecurityConfiguration {
 
-    private static final String[] permitAllResources = {"/login", "/logout",  "/signup", "/h2-console/**", "/battle/*"};
+    private static final String[] permitAllResources = {"/login", "/logout", "/signup", "/h2-console/**", "/battle/*"};
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -56,6 +57,13 @@ public class SecurityConfiguration {
                     }
                 })
                 .permitAll();
+        http.sessionManagement(s ->
+                s
+                        .sessionFixation(SessionManagementConfigurer.SessionFixationConfigurer::changeSessionId)
+                        .invalidSessionUrl("/login")
+                        .maximumSessions(1)
+                        .expiredUrl("/login"));
+
         return http.build();
     }
 
