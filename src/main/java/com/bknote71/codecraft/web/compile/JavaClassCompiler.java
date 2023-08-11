@@ -59,7 +59,7 @@ public class JavaClassCompiler {
         s3.setRegion(Region.AP_Seoul.toAWSRegion());
     }
 
-    public CompileResult createRobot(String author, String code) {
+    public CompileResult createRobot(String author, String code, int specIndex) {
         // 클래스 이름 파싱
         String[] lines = code.split("\n");
 
@@ -110,8 +110,9 @@ public class JavaClassCompiler {
         }
 
         // upload to s3: author/{javaName}.class 로 업로드
-        String key = author + "/" + javaName + ".class";
-        File file = new File(outputPath + key);
+        String key = author + "/" + specIndex + "/" + javaName + ".class";
+        String jpath = author + "/" + javaName + ".class";
+        File file = new File(outputPath + jpath);
         uploadFileToS3(key, file);
 
         // remove file

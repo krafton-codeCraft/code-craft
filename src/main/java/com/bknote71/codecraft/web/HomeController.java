@@ -80,7 +80,7 @@ public class HomeController {
 
         log.info("java code: {}", javaCode);
 
-        CompileResult result = javaClassCompiler.createRobot(username, javaCode);
+        CompileResult result = javaClassCompiler.createRobot(username, javaCode, compileRequest.getSpecIndex());
 
         RobotSpecDto changeResult;
         if (result.exitCode == 0) {
