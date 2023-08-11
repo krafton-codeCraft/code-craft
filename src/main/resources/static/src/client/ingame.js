@@ -28,13 +28,15 @@ let flag = true;
 
 Promise.all([
 
-  connect(onGameOver),
   downloadAssets(),
   
 ]).then(() => {
-  pixiApp().then(()=>{
-    play(specIndex);
-  })
+  connect(onGameOver).then(()=>{
+    pixiApp().then(()=>{
+      play(specIndex);
+    });
+  });
+  
 }).catch(console.error);
 
 

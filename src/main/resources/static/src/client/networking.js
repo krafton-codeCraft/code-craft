@@ -15,7 +15,7 @@ const compileSidebar = document.getElementById("compile-sidebar");
 const battleId = 1;
 const devaddr = 'localhost';
 // const prodaddr = '3.35.214.100';
-const addr = process.env.ADDRR;
+//const addr = process.env.ADDRR;
 const saddr = process.env.SADDRR;
 // const websocket = new WebSocket(`ws://13.124.67.137:8080/room/${roomId}`);
 const websocket = new WebSocket(`ws://${saddr}:8080/battle/${battleId}`);
@@ -102,7 +102,7 @@ export const submitNewCode = (code, specIndex) => {
 
 
 export const requestLeaderBoard = (battleId) => {
-  const url = `http://${addr}:8080/get/leaderboard?battleId=` + battleId;
+  const url = `http://${saddr}:8080/get/leaderboard?battleId=` + battleId;
   return fetch(url, {
     method: 'GET',
   })
@@ -115,7 +115,7 @@ export const requestLeaderBoard = (battleId) => {
 };
 
 export const requestTodayRanking = () => {
-  const url = `http://${addr}:8080/get/today_ranking`;
+  const url = `http://${saddr}:8080/get/today_ranking`;
   fetch(url, {
     method: 'GET',
   })
