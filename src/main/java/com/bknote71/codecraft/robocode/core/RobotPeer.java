@@ -325,6 +325,7 @@ public class RobotPeer {
 
 
     private void waitForUpdate() {
+        log.info("wait for update");
         synchronized (isSleeping) {
             // Notify the battle that we are now asleep.
             // This ends any pending wait() call in battle.runRound().
@@ -349,6 +350,7 @@ public class RobotPeer {
             // before the battle thread actually wakes up
             isSleeping.notifyAll();
         }
+        log.info("wait for update end");
     }
 
     // -----------
