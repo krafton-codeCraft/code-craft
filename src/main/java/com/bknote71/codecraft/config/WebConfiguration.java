@@ -14,12 +14,13 @@ public class WebConfiguration implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/resources/", "classpath:/public/", "classpath:/static/", "classpath:/static/dist/");
     }
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOrigins("http://codecraft.world")
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                .allowedHeaders("*");
-    }
+//    @Override
+//    public void addCorsMappings(CorsRegistry registry) {
+//        registry.addMapping("/**")
+//                .allowedOrigins("http://codecraft.world")
+//                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+//                .allowCredentials(true)
+//                .allowedHeaders("*");
+//    }
 }
 
