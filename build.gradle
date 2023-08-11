@@ -47,6 +47,8 @@ dependencies {
 	// redis
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis:2.7.11'
+	// https://mvnrepository.com/artifact/org.springframework.session/spring-session-data-redis
+	implementation 'org.springframework.session:spring-session-data-redis:2.7.0'
 
 
 	// https://mvnrepository.com/artifact/com.theokanning.openai-gpt3-java/service

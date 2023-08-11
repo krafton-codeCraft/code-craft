@@ -255,6 +255,12 @@ public class BasicRobotProxy extends RobotProxy implements IBasicRobotPeer {
     // 로봇 로직(커맨드) 수행
     @Override
     protected final void executeImpl() {
+        // interrupt 확인
+        if (Thread.currentThread().isInterrupted()) {
+            System.out.println("thread is interrupted so return");
+            return;
+        }
+
         if (execResults == null) {
             // this is to slow down undead robot after cleanup, from fast exception-loop
             try {
