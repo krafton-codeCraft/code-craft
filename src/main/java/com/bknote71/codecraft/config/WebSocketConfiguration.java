@@ -20,7 +20,7 @@ public class WebSocketConfiguration implements WebSocketConfigurer {
         registry
                 .addHandler(sessionHandler, "/battle/*")
                 .addInterceptors(new HttpSessionHandshakeInterceptor())
-                .setAllowedOrigins("*")
+                .setAllowedOrigins("http://codecraft.world")
         ;
     }
 }
