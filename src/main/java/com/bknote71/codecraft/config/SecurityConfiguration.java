@@ -57,12 +57,12 @@ public class SecurityConfiguration {
                     }
                 })
                 .permitAll();
-        http.sessionManagement(s ->
-                s
-                        .sessionFixation(SessionManagementConfigurer.SessionFixationConfigurer::changeSessionId)
-                        .invalidSessionUrl("/login")
-                        .maximumSessions(1)
-                        .expiredUrl("/login"));
+//        http.sessionManagement(s ->
+//                s
+//                        .sessionFixation(SessionManagementConfigurer.SessionFixationConfigurer::changeSessionId)
+//                        .invalidSessionUrl("/login")
+//                        .maximumSessions(1)
+//                        .expiredUrl("/login"));
 
         return http.build();
     }
