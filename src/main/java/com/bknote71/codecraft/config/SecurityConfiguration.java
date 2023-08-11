@@ -43,8 +43,8 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.cors();
         http.csrf().disable();
-        http.cors().configurationSource(corsConfigurationSource());
         http.authorizeRequests()
                 .antMatchers(permitAllResources).permitAll()
                 .anyRequest().authenticated()
@@ -61,12 +61,6 @@ public class SecurityConfiguration {
                     }
                 })
                 .permitAll();
-//        http.sessionManagement(s ->
-//                s
-//                        .sessionFixation(SessionManagementConfigurer.SessionFixationConfigurer::changeSessionId)
-//                        .invalidSessionUrl("/login")
-//                        .maximumSessions(1)
-//                        .expiredUrl("/login"));
 
         return http.build();
     }
@@ -74,9 +68,10 @@ public class SecurityConfiguration {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedOrigins(Arrays.asList("http://codecraft/world"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
