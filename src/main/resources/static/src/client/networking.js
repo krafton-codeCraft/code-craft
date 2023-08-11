@@ -18,7 +18,7 @@ const devaddr = 'localhost';
 const addr = process.env.ADDRR;
 const saddr = process.env.SADDRR;
 
-const websocket = new WebSocket(`ws://${saddr}:80/battle/${battleId}`);
+const websocket = new WebSocket(`ws://codecraft.world:80/battle/${battleId}`);
 
 const wsconnectedPromise = new Promise(resolve => {
   // to websocket, 이벤트 핸들러 변경
