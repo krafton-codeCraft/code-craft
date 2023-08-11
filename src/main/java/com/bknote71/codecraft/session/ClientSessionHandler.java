@@ -6,11 +6,15 @@ import com.bknote71.codecraft.robocode.core.RobotPeer;
 import com.bknote71.codecraft.session.packet.ServerPacketManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
+
+import java.security.Principal;
 
 @Slf4j
 @Component
@@ -23,15 +27,11 @@ public class ClientSessionHandler extends TextWebSocketHandler {
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         // session 이 지정한 방에 플레이어 추가!!
         log.info("connected established");
-        // log.info("username? " + session.getPrincipal());
-        String username = "";
-        if (session.getPrincipal() != null)
-            username = session.getPrincipal().getName();
+
+        log.info("session: {}", session.getAttributes());
 
         // 클라이언트 세션 생성 및 추가
         ClientSession generatedSession = ClientSessionManager.Instance.generate(session);
-//        ClientSessionManager.Instance.registerUsername(username, generatedSession);
-        // ServerPacketManager.Instance.handlePacket(clientSession, new TextMessage("connect"));
     }
 
     @Override
