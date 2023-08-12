@@ -205,16 +205,16 @@ function updateEditorBasedOnLanguageSelection() {
     case 'python':
     code = `class FireBot:
     def run(self):
-    pass
+        pass
 
     def on_hit_by_bullet(self, hit_by_bullet_event):
-    pass
+        pass
 
     def on_scanned_robot(self, event):
-    pass
+        pass
 
     def on_bullet_hit(self, bullet_hit_event):
-    pass`;
+        pass`;
     break;
     case 'cpp':
     code = `class FireBot {
