@@ -1,5 +1,5 @@
 <p align='center'>
-<img src="./img/codecraft_1.png"/>
+<img src="./img/codecraft_2.png"/>
 </p>
 
 ## 프로젝트 기간
@@ -21,7 +21,10 @@
 채팅 기능
 http://codecraft.world
 시연영상
-포스터 
+<p align='center'>
+<img src="./img/codecraftPosterResize.png"/>
+</p>
+
 
 ## 핵심 기능
 
