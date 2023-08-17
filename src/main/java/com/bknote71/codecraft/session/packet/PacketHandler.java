@@ -85,6 +85,7 @@ public class PacketHandler {
 
     public RobotSpecification changeAndReenter(int robotId, String username, int robotIndex) {
         // 새로운 스펙으로 새로운 로봇 생성
+        log.info("{} {} {}", robotId, username, robotIndex);
         RobotPeer robot = RobotManager.Instance.find(robotId);
         RobotSpecification[] robotSpecifications = getRobotSpecifications(username);
 
@@ -139,7 +140,7 @@ public class PacketHandler {
         RobotSpecification[] robotSpecifications = new RobotSpecification[specCount];
         for (int i = 0; i < specCount; ++i) {
             RobotSpecEntity spec = user.getSpecifications().get(i);
-            robotSpecifications[i] = new RobotSpecification(spec.getName(), spec.getUsername(), spec.getFullClassName());
+            robotSpecifications[i] = new RobotSpecification(spec.getName(), spec.getUsername(), spec.getFullClassName(), i);
         }
 
         return robotSpecifications;

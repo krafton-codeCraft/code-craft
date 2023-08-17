@@ -15,7 +15,7 @@ module.exports = merge(common, {
     
     new EnvironmentPlugin({
       ADDRR: '3.35.214.100',
-      SADDRR: '3.38.208.255',
+      SADDRR: 'codecraft.world',
     }),
   ],
 });

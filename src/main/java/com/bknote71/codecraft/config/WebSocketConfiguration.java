@@ -19,8 +19,8 @@ public class WebSocketConfiguration implements WebSocketConfigurer {
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         registry
                 .addHandler(sessionHandler, "/battle/*")
-                .addInterceptors(new HttpSessionHandshakeInterceptor())
-                .setAllowedOrigins("*")
+                .addInterceptors(new HttpSessionHandshakeInterceptor(), new CustomHandshakeInterceptor())
+                .setAllowedOrigins("http://codecraft.world")
         ;
     }
 }
