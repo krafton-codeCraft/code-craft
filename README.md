@@ -2,6 +2,8 @@
 <img src="./img/codecraft_2.png"/>
 </p>
 
+<br/>
+
 ## 프로젝트 기간
 
 ### 2023.06.29 ~ 2023.08.12
@@ -12,6 +14,8 @@
 - [4주차] CodeCraft 라는 아이디어로 다시 시작(7.27 ~ 8.04)
 - [5주차] 노래 삽입 및 폴리싱(8.05 ~ 8.12)
 
+<br/>
+
 ## 서비스 소개
 
 기획 배경 - 개발이 핫한 요즘 어떻게 하면 사람들이 코딩에 대해 조금 더 쉽게 접근 할 수 있고 흥미를 유도
@@ -21,14 +25,8 @@
 채팅 기능
 http://codecraft.world
 시연영상
-<p align='center'>
-<img src="./img/codecraftPosterResize.png"/>
-</p>
 
-
-## 핵심 기능
-
-## 아키텍처
+<br/>
 
 ## 기술 스택
 - Web
@@ -72,9 +70,48 @@ http://codecraft.world
         <img src="https://img.shields.io/badge/GithubAction-181717?style=flat-square&logo=github&logoColor=white">
         </p>
 
-## 프로젝트 결과
+<br/>
 
-### 개발환경 셋팅
+## 핵심 기능
+
+<p align='center'>
+<img src="./img/13.png"/>
+</p>
+- 설명
+
+<p align='center'>
+<img src="./img/14.png"/>
+</p>
+- 설명
+
+<p align='center'>
+<img src="./img/15.png"/>
+</p>
+- 설명
+
+<p align='center'>
+<img src="./img/16.png"/>
+</p>
+- 설명
+
+<br/>
+
+## 아키텍처
+
+<p align='center'>
+<img src="./img/12.png"/>
+</p>
+
+<br/>
+
+## 포스터
+
+<p align='center'>
+<img src="./img/codecraftPosterResize.png"/>
+</p>
+
+
+## 개발환경 셋팅 (플레이 하는법!)
 ```bash
 # git clone
 $ git clone https://github.com/krafton-codeCraft/code-craft.git
